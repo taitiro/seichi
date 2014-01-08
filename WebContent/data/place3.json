@@ -1,0 +1,45 @@
+{
+  "latlngNorthEast":[43.199999,141.200000],
+  "latlngSouthWest":[42.900000,141.499999],
+  "place" :[{
+    "id":23,
+    "name":"札幌駅",
+    "latlng":[43.068625,141.350801],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":35,
+    "workname":"ほげほげ",
+    "comment":"ふーふーふーふーふーふーふーふーふーふーふー"
+  },{
+    "id":24,
+    "name":"ポプラ並木",
+    "latlng":[43.073766,141.337924],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":26,
+    "workname":"ふがふが",
+    "comment":"ばーばーばーばーばーばーばーばーばーばーばー"
+  },{
+    "id":21,
+    "name":"札幌市時計台",
+    "latlng":[43.062562,141.353650],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":29,
+    "workname":"もふもふ",
+    "comment":"ろーろーろーろーろーろーろーろーろーろーろー"
+  },{
+     "id":22,
+     "name":"さっぽろ羊ケ丘展望台",
+    "latlng":[42.999048,141.394507],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+     "workid":21,
+     "workname":"ぴよぴよ",
+     "comment":"ぴーぴーぴーぴーぴーぴーぴーぴーぴーぴーぴー"
+  },{
+    "id":25,
+    "name":"札幌ドーム",
+    "latlng":[43.015775,141.409529],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":22,
+    "workname":"ぐにゃぐにゃ",
+    "comment":"ぐーぐーぐーぐーぐーぐーぐーぐーぐーぐーぐー"
+  }]
+}

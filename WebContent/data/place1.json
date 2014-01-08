@@ -1,0 +1,45 @@
+{
+  "latlngNorthEast":[35.799999,139.500000],
+  "latlngSouthWest":[35.500000,139.799999],
+  "place" :[{
+    "id":3,
+    "name":"東京都庁",
+    "latlng":[35.689521,139.691704],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":5,
+    "workname":"ほげほげ",
+    "comment":"ふーふーふーふーふーふーふーふーふーふーふー"
+  },{
+    "id":4,
+    "name":"フジテレビ",
+    "latlng":[35.626797,139.774354],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":6,
+    "workname":"ふがふが",
+    "comment":"ばーばーばーばーばーばーばーばーばーばーばー"
+  },{
+    "id":1,
+    "name":"石神井公園",
+    "latlng":[35.738352,139.596212],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":9,
+    "workname":"もふもふ",
+    "comment":"ろーろーろーろーろーろーろーろーろーろーろー"
+  },{
+    "id":2,
+    "name":"国会議事堂",
+    "latlng":[35.675888,139.744858],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":1,
+    "workname":"ぴよぴよ",
+    "comment":"ぴーぴーぴーぴーぴーぴーぴーぴーぴーぴーぴー"
+  },{
+    "id":5,
+    "name":"池袋サンシャインシティ",
+    "latlng":[35.729399,139.718783],
+    "photo":"C:\\Users\\180003\\programing\\seichi\\sample\\image\\sample.jpg",
+    "workid":2,
+    "workname":"ぐにゃぐにゃ",
+    "comment":"ぐーぐーぐーぐーぐーぐーぐーぐーぐーぐーぐー"
+  }]
+}
