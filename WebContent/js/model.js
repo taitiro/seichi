@@ -44,7 +44,7 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
     }),
     //取得する場所情報
     PlaceModel = Backbone.Model.extend({
-      url:'spot/',
+      url:'place/',
       defaults:{
         'id':0,
         'name':undefined,

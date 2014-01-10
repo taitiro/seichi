@@ -54,14 +54,20 @@ footer {
   display:none;
   padding:0;
   position:relative;
+  width:100%;
   z-index:-1;
 }
+#map-container:before{
+  content: "";
+  display: block;
+  padding-top: 50%; 	/* initial ratio of 2:1*/
+}
 #map{
-  position:relative;
+  position:absolute;
   top:0;
   left:0;
-  width:100%;
-  height:600px;
+  bottom: 0;
+  right: 0;
   margin:0;
   padding:0;
 }
