@@ -56,16 +56,20 @@ $(function () {
           console.log(thisMapView);
           thisMapView.placeInfo.push( new google.maps.InfoWindow({
             content : '<div id="map_info"><img src="'
-            + value.get("photo")
+            + value.get("img")
             + '" style="float:left;width:100px;height:100px;"><h2><a href="place/'
             + value.get("id")
             + '">'
             + value.get("name")
-            + '</a></h2><p>作品名：<a href="work/'
-            + value.get("workid")
-            + '">'
-            + value.get("workname")
-            + '</a></p><p>' 
+            + '</a></h2>'
+            /*
+                + '<p>作品名：<a href="work/'
+                + value.get("workid")
+                + '">'
+                + value.get("workname")
+                + '</a></p>'
+                */
+            +'<p>' 
             + value.get("comment")
             + '</p></div>',
             position : aPosition

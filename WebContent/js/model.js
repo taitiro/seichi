@@ -49,9 +49,11 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
         'id':0,
         'name':undefined,
         'latlng':[0,0],
-        'photo':undefined,
+        'img':undefined,
+        /*
         'workid':0,
         'workname':undefined,
+        */
         'comment':undefined
       },
       initialize : function initialize() {    // インスタンス生成時に実行される
@@ -65,7 +67,7 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
     PlaceCollection = Backbone.Collection.extend({
       model : PlaceModel,    // このCollectionのBackbone.Modelを指定
       url : undefined,//取得するJSONのURL．httpから始まってもOK
-      urlRoot : 'data/place1.json?',
+      urlRoot : 'http://localhost:8080/seichi/search?',
       latlngNE:undefined,
       latlngSW:undefined,
       parse : function parse(res) {    // modelにsetする値を指定する

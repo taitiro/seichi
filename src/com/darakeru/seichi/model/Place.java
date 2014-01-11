@@ -2,26 +2,34 @@ package com.darakeru.seichi.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
 /**
- * The persistent class for the work database table.
+ * The persistent class for the place database table.
  * 
  */
 @Entity
-@NamedQuery(name="Work.findAll", query="SELECT w FROM Work w")
-public class Work implements Serializable {
+@NamedQuery(name="Place.findAll", query="SELECT p FROM Place p")
+public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int workid;
+	private int placeid;
+
+	private String address;
 
 	private String img;
 
+	private BigDecimal lat;
+
+	private BigDecimal lng;
+
 	private String name;
 
-	private String productid0;
+	@Lob
+	private String placedesc;
 
 	private String productid1;
 
@@ -30,6 +38,8 @@ public class Work implements Serializable {
 	private String productid3;
 
 	private String productid4;
+
+	private String productid5;
 
 	private String url1;
 
@@ -43,32 +53,35 @@ public class Work implements Serializable {
 
 	private String urlname3;
 
-	private String wikipedia;
+	//bi-directional one-to-one association to Placeinfo
+	@OneToOne(mappedBy="place")
+	private Placeinfo placeinfo;
 
-	@Lob
-	private String workdesc;
+	//bi-directional many-to-one association to Placetag
+	@OneToMany(mappedBy="place")
+	private List<Placetag> placetags;
 
 	//bi-directional many-to-one association to Placework
-	@OneToMany(mappedBy="work")
+	@OneToMany(mappedBy="place")
 	private List<Placework> placeworks;
 
-	//bi-directional one-to-one association to Workinfo
-	@OneToOne(mappedBy="work")
-	private Workinfo workinfo;
-
-	//bi-directional many-to-one association to Worktag
-	@OneToMany(mappedBy="work")
-	private List<Worktag> worktags;
-
-	public Work() {
+	public Place() {
 	}
 
-	public int getWorkid() {
-		return this.workid;
+	public int getPlaceid() {
+		return this.placeid;
 	}
 
-	public void setWorkid(int workid) {
-		this.workid = workid;
+	public void setPlaceid(int placeid) {
+		this.placeid = placeid;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getImg() {
@@ -79,6 +92,22 @@ public class Work implements Serializable {
 		this.img = img;
 	}
 
+	public BigDecimal getLat() {
+		return this.lat;
+	}
+
+	public void setLat(BigDecimal lat) {
+		this.lat = lat;
+	}
+
+	public BigDecimal getLng() {
+		return this.lng;
+	}
+
+	public void setLng(BigDecimal lng) {
+		this.lng = lng;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -87,12 +116,12 @@ public class Work implements Serializable {
 		this.name = name;
 	}
 
-	public String getProductid0() {
-		return this.productid0;
+	public String getPlacedesc() {
+		return this.placedesc;
 	}
 
-	public void setProductid0(String productid0) {
-		this.productid0 = productid0;
+	public void setPlacedesc(String placedesc) {
+		this.placedesc = placedesc;
 	}
 
 	public String getProductid1() {
@@ -125,6 +154,14 @@ public class Work implements Serializable {
 
 	public void setProductid4(String productid4) {
 		this.productid4 = productid4;
+	}
+
+	public String getProductid5() {
+		return this.productid5;
+	}
+
+	public void setProductid5(String productid5) {
+		this.productid5 = productid5;
 	}
 
 	public String getUrl1() {
@@ -175,20 +212,34 @@ public class Work implements Serializable {
 		this.urlname3 = urlname3;
 	}
 
-	public String getWikipedia() {
-		return this.wikipedia;
+	public Placeinfo getPlaceinfo() {
+		return this.placeinfo;
 	}
 
-	public void setWikipedia(String wikipedia) {
-		this.wikipedia = wikipedia;
+	public void setPlaceinfo(Placeinfo placeinfo) {
+		this.placeinfo = placeinfo;
 	}
 
-	public String getWorkdesc() {
-		return this.workdesc;
+	public List<Placetag> getPlacetags() {
+		return this.placetags;
 	}
 
-	public void setWorkdesc(String workdesc) {
-		this.workdesc = workdesc;
+	public void setPlacetags(List<Placetag> placetags) {
+		this.placetags = placetags;
+	}
+
+	public Placetag addPlacetag(Placetag placetag) {
+		getPlacetags().add(placetag);
+		placetag.setPlace(this);
+
+		return placetag;
+	}
+
+	public Placetag removePlacetag(Placetag placetag) {
+		getPlacetags().remove(placetag);
+		placetag.setPlace(null);
+
+		return placetag;
 	}
 
 	public List<Placework> getPlaceworks() {
@@ -201,46 +252,16 @@ public class Work implements Serializable {
 
 	public Placework addPlacework(Placework placework) {
 		getPlaceworks().add(placework);
-		placework.setWork(this);
+		placework.setPlace(this);
 
 		return placework;
 	}
 
 	public Placework removePlacework(Placework placework) {
 		getPlaceworks().remove(placework);
-		placework.setWork(null);
+		placework.setPlace(null);
 
 		return placework;
-	}
-
-	public Workinfo getWorkinfo() {
-		return this.workinfo;
-	}
-
-	public void setWorkinfo(Workinfo workinfo) {
-		this.workinfo = workinfo;
-	}
-
-	public List<Worktag> getWorktags() {
-		return this.worktags;
-	}
-
-	public void setWorktags(List<Worktag> worktags) {
-		this.worktags = worktags;
-	}
-
-	public Worktag addWorktag(Worktag worktag) {
-		getWorktags().add(worktag);
-		worktag.setWork(this);
-
-		return worktag;
-	}
-
-	public Worktag removeWorktag(Worktag worktag) {
-		getWorktags().remove(worktag);
-		worktag.setWork(null);
-
-		return worktag;
 	}
 
 }
