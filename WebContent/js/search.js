@@ -26,9 +26,7 @@ $(function () {
           },
           render : function() {
             console.log('display Form');
-            var i,
-                hash,
-                vars = [],
+            var hash,
                 hashes = this.getParam.split('&'); 
             for(var i = 0; i < hashes.length; i++) { 
               hash = hashes[i].split('='); 
@@ -51,7 +49,7 @@ $(function () {
               this.geolocation.setLocation();
             }else{
               if (this.getParam.indexOf('geolocation=on') == -1){
-                this.geoParam = ''
+                this.geoParam = '';
               }
               this.sendData();
             }
@@ -111,7 +109,7 @@ $(function () {
                   });
               console.log(thisMapView);
               thisMapView.placeInfo.push( new google.maps.InfoWindow({
-                content : '<div id="map_info"><img src="'
+                content : '<div id="map-info"><img src="'
                 + value.get("img")
                 + '" style="float:left;width:100px;height:100px;"><h2><a href="place/'
                 + value.get("id")
@@ -144,9 +142,9 @@ $(function () {
               }else{
                 i=0;
               }
-              thisMapView.mapObj.panTo(thisMapView.placeInfo[i].position)
+              thisMapView.mapObj.panTo(thisMapView.placeInfo[i].position);
               thisMapView.placeInfo[i].open(thisMapView.mapObj);
-            },5000)
+            },5000);
           }
         }),
         ListView = Backbone.View.extend({

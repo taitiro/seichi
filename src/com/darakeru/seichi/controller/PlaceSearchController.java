@@ -74,7 +74,7 @@ public class PlaceSearchController extends HttpServlet {
                             .add(onePlace.getLat())
                             .add(onePlace.getLng()))
                     .add("img",onePlace.getImg())
-                    .add("comment",onePlace.getPlacedesc().replaceAll("\n", "").substring(0, 140));
+                    .add("comment",onePlace.getPlacedesc().replaceAll("\n", ""));
             placeJsonArrayBuilder.add(onePlaceObj);
         }
         em.close();
