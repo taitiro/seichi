@@ -67,7 +67,8 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
     PlaceCollection = Backbone.Collection.extend({
       model : PlaceModel,    // このCollectionのBackbone.Modelを指定
       url : undefined,//取得するJSONのURL．httpから始まってもOK
-      urlRoot : 'http://localhost:8080/seichi/search?',
+      //urlRoot : 'http://localhost:8080/seichi/search?',
+      urlRoot : 'data/test.json?',
       latlngNE:undefined,
       latlngSW:undefined,
       parse : function parse(res) {    // modelにsetする値を指定する

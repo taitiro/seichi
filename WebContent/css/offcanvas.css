@@ -55,7 +55,7 @@ footer {
   padding:0;
   position:relative;
   width:100%;
-  z-index:-1;
+  min-width:320px;
 }
 #map-container:before{
   content: "";
@@ -72,7 +72,8 @@ footer {
   padding:0;
 }
 #map-info{
-  z-index:1;
+  width:300px;
+  z-index:2;
 }
 #mapdesc{
   position:absolute;

@@ -148,25 +148,26 @@ $(function () {
           }
         }),
         ListView = Backbone.View.extend({
-          el: '#place-list',
+          el: '#place-list-content',
           placeInfo : undefined,
+          template : undefined,
           initialize : function(options) {
             console.log('initialize List view');
+            this.template = _.template($("#place-list-template").text());
             _.bindAll(this,'render');
             this.listenTo(this.collection,'sync', this.render);//collectionがsyncされたらrenderメソッドを呼び出すよう監視
           },
           render : function() {
             this.$el.hide('slow');
+            this.$el.html('');
             this.collection.each(function(value){
-              thisListView.$el.append('<section class="row"><div class="col-md-12"><h2>'
-                                      + value.get('name')
-                                      + '</h2><p>'
-                                      + value.get('comment')
-                                      + '</p><ul><li>アクセス数</li><li>訪問者数</li><li>言及数</li></ul><p><a class="btn btn-default" href="place/'
-                                      + value.get("id")
-                                      + '" role="button">View details &raquo;</a></p></div></section>');
+              var data = {
+                "name": value.get('name'),
+                "comment":value.get('comment'),
+                "id":value.get("id"), 
+              };
+              thisListView.$el.append(thisListView.template(data));
             });
-            
             this.$el.show('slow');
             console.log('display List');
           }

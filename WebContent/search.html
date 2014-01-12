@@ -57,18 +57,17 @@
     <div class="container">
       
       <div class="row row-offcanvas row-offcanvas-right">
-        
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
         <article class="col-xs-12 col-sm-9">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
           <section class="jumbotron" id="map-container">
             <div id="map">
             </div>
             <div id="mapdesc">
-            <h1>地図</h1>
-            <p>検索結果に合致する場所の情報</p>
-            <p>左上にでっかく現在の合致件数表示したりして</p>
+              <h1>地図</h1>
+              <p>検索結果に合致する場所の情報</p>
+              <p>左上にでっかく現在の合致件数表示したりして</p>
             </div>
           </section>
           <section id="place-list">
@@ -77,7 +76,28 @@
                 <h1>検索にマッチした場所</h1>
               </div>
             </div>
-            <!-- 検索にマッチした場所のHTMLが挿入される-->
+            <!-- テンプレート外部定義。ここに検索にマッチした場所のHTMLが挿入される -->
+            <div id="place-list-content">ただいま検索中……</div>
+            <script type="text/template" id="place-list-template">
+              <section class="row">
+                <div class="col-md-12">
+                  <h2>
+                    <%- name %>
+            </h2>
+                  <p>
+                    <%- comment %>
+            </p>
+                  <ul>
+                    <li>アクセス数</li>
+                    <li>訪問者数</li>
+                    <li>言及数</li>
+            </ul>
+                  <p>
+                    <a class="btn btn-default" href="place/<%- id %>" role="button">View details &raquo;</a>
+            </p>
+            </div>
+            </section>
+            </script>
           </section>
         </article><!--/span-->
         

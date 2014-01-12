@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.darakeru.seichi.model.Place;
+import com.darakeru.seichi.model.Placework;
 
 /**
  * Servlet implementation class PlaceSearchController
@@ -56,6 +57,7 @@ public class PlaceSearchController extends HttpServlet {
         @SuppressWarnings("unchecked")
         List<Place> placeList = (List<Place>) em.createNamedQuery("Place.findAll").getResultList();
         for (Place onePlace : placeList) {
+            //表示範囲の緯度・経度を計算している
             if( onePlace.getLat().doubleValue() > latNorth.doubleValue() ){
                 latNorth = onePlace.getLat();
             }
@@ -68,13 +70,20 @@ public class PlaceSearchController extends HttpServlet {
             if( onePlace.getLng().doubleValue() < lngEast.doubleValue() ){
                 lngEast = onePlace.getLng();
             }
+            JsonArrayBuilder worksArray = factory.createArrayBuilder();//作品リストのJsonArray
+            for (Placework oneWork : onePlace.getPlaceworks() ){
+                worksArray.add(factory.createObjectBuilder()
+                        .add("id",oneWork.getPlaceworkid())
+                        .add("name",oneWork.getWork().getName()));
+            }
             JsonObjectBuilder onePlaceObj = factory.createObjectBuilder().add("id",onePlace.getPlaceid())
                     .add("name",onePlace.getName())
                     .add("latlng",factory.createArrayBuilder()
                             .add(onePlace.getLat())
                             .add(onePlace.getLng()))
+                    .add("work",worksArray)
                     .add("img",onePlace.getImg())
-                    .add("comment",onePlace.getPlacedesc().replaceAll("\n", ""));
+                    .add("comment",onePlace.getPlacedesc().replaceAll("\n|\r", ""));
             placeJsonArrayBuilder.add(onePlaceObj);
         }
         em.close();
