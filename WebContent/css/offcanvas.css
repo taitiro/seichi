@@ -24,30 +24,30 @@ footer {
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
   }
-  
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
-  
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
-  
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-  
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
-  
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-  }
+
+.row-offcanvas-right
+.sidebar-offcanvas {
+  right: -50%; /* 6 columns */
+}
+
+.row-offcanvas-left
+.sidebar-offcanvas {
+  left: -50%; /* 6 columns */
+}
+
+.row-offcanvas-right.active {
+  right: 50%; /* 6 columns */
+}
+
+.row-offcanvas-left.active {
+  left: 50%; /* 6 columns */
+}
+
+.sidebar-offcanvas {
+  position: absolute;
+  top: 0;
+  width: 50%; /* 6 columns */
+}
 }
 /* seichi setting */
 #map-container{
@@ -74,6 +74,11 @@ footer {
 #map-info{
   width:300px;
   z-index:2;
+}
+#map-info-img{
+  float:left;
+  width:100px;
+  height:100px;
 }
 #mapdesc{
   position:absolute;

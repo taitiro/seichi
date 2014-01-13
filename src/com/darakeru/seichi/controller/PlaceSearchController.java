@@ -73,7 +73,7 @@ public class PlaceSearchController extends HttpServlet {
             JsonArrayBuilder worksArray = factory.createArrayBuilder();//作品リストのJsonArray
             for (Placework oneWork : onePlace.getPlaceworks() ){
                 worksArray.add(factory.createObjectBuilder()
-                        .add("id",oneWork.getPlaceworkid())
+                        .add("id",oneWork.getWork().getWorkid())
                         .add("name",oneWork.getWork().getName()));
             }
             JsonObjectBuilder onePlaceObj = factory.createObjectBuilder().add("id",onePlace.getPlaceid())

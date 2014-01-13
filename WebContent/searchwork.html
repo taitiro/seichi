@@ -47,8 +47,6 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">twitterIDでログイン</a></li>
             <li><a href="#">facebookIDでログイン</a></li>
-            <li class="divider"></li>
-            <li><a href="#">新規登録</a></li>
           </ul>
         </form>
       </div><!-- /.nav-collapse -->
@@ -58,62 +56,37 @@
       
       <div class="row row-offcanvas row-offcanvas-right">
         
-        <article class="col-xs-12 col-sm-9">
+        <article class="col-xs-12 col-sm-9" id="work-list">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <section class="jumbotron" id="map-container">
-            <div id="map">
-            </div>
-            <div id="mapdesc">
-            <h1>地図</h1>
-            <p>検索結果に合致する場所の情報</p>
-            <p>左上にでっかく現在の合致件数表示したりして</p>
-            </div>
+          <section class="jumbotron" id="result">
+            <h1>検索結果</h1>
+            （何を検索したか、合致したのが何件か示す）
           </section>
           <section>
-            <div class="row">
-              <div class="col-md-12">
-                <h1>検索にマッチした場所</h1>
-              </div>
-            </div>
-            <section class="row">
-              <div class="col-md-12">
-                <h2>地点1</h2>
-                <p>説明文ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                <p>どんな場所に聖地があるか示した地図なんかも表示したいね</p>
-                <ul>
-                  <li>アクセス数</li>
-                  <li>訪問者数</li>
-                  <li>言及数</li>
-                </ul>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-              </div><!--/span-->
-            </section>
-            <section class="row">
-              <div class="col-md-12">
-                <h2>地点2</h2>
-                <p>説明文</p>
-                <ul>
-                  <li>アクセス数</li>
-                  <li>訪問者数</li>
-                  <li>言及数</li>
-                </ul>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-              </div><!--/span-->
-            </section>
-            <section class="row">
-              <div class="col-md-12">
-                <h2>地点3</h2>
-                <p>説明文</p>
-                <ul>
-                  <li>アクセス数</li>
-                  <li>訪問者数</li>
-                  <li>言及数</li>
-                </ul>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-              </div><!--/span-->
-            </section><!--/row-->
+            <!-- テンプレート外部定義。ここに検索にマッチした場所のHTMLが挿入される -->
+            <div id="work-list-content">ただいま検索中……</div>
+            <script type="text/template" id="work-list-template">
+              <section class="row">
+                <div class="col-md-12">
+                  <img src="<%- img %>" class="work-list-img">
+                  <h2>
+                    <a href="<%- url %>"><%- name %></a>
+                  </h2>
+                  <p>
+                    <%- comment %>
+                  </p>
+                  <h3>関連する聖地情報</h3>
+                  <ul>
+                    <% _.each(place, function(item) { %>
+                      <li><a href="place/<%= item.id %>"><%= item.name %></a></li>
+                    <% }); %>
+                  </ul>
+                  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+              </section>
+            </script>
           </section>
         </article><!--/span-->
         

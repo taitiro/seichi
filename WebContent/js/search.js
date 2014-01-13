@@ -90,11 +90,13 @@ $(function () {
           },
           
           setMap : function () {
+            console.log('set map');
             var bounds = new google.maps.LatLngBounds(
               new google.maps.LatLng(this.collection.latlngNE[0],this.collection.latlngNE[1]),
               new google.maps.LatLng(this.collection.latlngSW[0],this.collection.latlngSW[1])
             ),
-                center = new google.maps.LatLng(this.collection.first().get("latlng")[0],this.collection.first().get("latlng")[1]);
+                center = new google.maps.LatLng(this.collection.first().get("latlng")[0],this.collection.first().get("latlng")[1]),
+                markerTemplate = _.template($('#map-marker-template').text());
             mapOpt.center = center;
             this.mapObj = new google.maps.Map(this.el,mapOpt);
             //自動調整
@@ -106,26 +108,17 @@ $(function () {
                     position: aPosition,
                     map: thisMapView.mapObj,
                     title:value.get("name")
-                  });
+                  }),
+                  data = {
+                    'name': value.get('name'),
+                    'url':value.url,
+                    'comment':value.get('comment'),
+                    'img':value.get('img')},
+                  placeHtml = '';
+              placeHtml = markerTemplate(data);
               console.log(thisMapView);
               thisMapView.placeInfo.push( new google.maps.InfoWindow({
-                content : '<div id="map-info"><img src="'
-                + value.get("img")
-                + '" style="float:left;width:100px;height:100px;"><h2><a href="place/'
-                + value.get("id")
-                + '">'
-                + value.get("name")
-                + '</a></h2>'
-                /*
-                + '<p>作品名：<a href="work/'
-                + value.get("workid")
-                + '">'
-                + value.get("workname")
-                + '</a></p>'
-                */
-                +'<p>' 
-                + value.get("comment")
-                + '</p></div>',
+                content : placeHtml,
                 position : aPosition
               }));
             });
@@ -164,6 +157,8 @@ $(function () {
               var data = {
                 "name": value.get('name'),
                 "comment":value.get('comment'),
+                'img':value.get('img'),
+                'work':value.get('work'),
                 "id":value.get("id"), 
               };
               thisListView.$el.append(thisListView.template(data));

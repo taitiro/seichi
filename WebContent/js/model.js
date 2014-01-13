@@ -45,21 +45,8 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
     //取得する場所情報
     PlaceModel = Backbone.Model.extend({
       url:'place/',
-      defaults:{
-        'id':0,
-        'name':undefined,
-        'latlng':[0,0],
-        'img':undefined,
-        /*
-        'workid':0,
-        'workname':undefined,
-        */
-        'comment':undefined
-      },
       initialize : function initialize() {    // インスタンス生成時に実行される
-        if (this.id != 0) {
-          this.url += this.id;
-        }
+        this.url += this.get('id');
         console.log(this.get('name'));
       }
     }),
@@ -68,7 +55,7 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
       model : PlaceModel,    // このCollectionのBackbone.Modelを指定
       url : undefined,//取得するJSONのURL．httpから始まってもOK
       //urlRoot : 'http://localhost:8080/seichi/search?',
-      urlRoot : 'data/test.json?',
+      urlRoot : 'data/place.json?',
       latlngNE:undefined,
       latlngSW:undefined,
       parse : function parse(res) {    // modelにsetする値を指定する
