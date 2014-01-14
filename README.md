@@ -4,8 +4,8 @@
 
 ##機能
 * 聖地の情報を簡単に検索できるWebサービス
-    *聖地とは？
-        *本来「巡礼」とは、宗教において重要な意味を持つ聖地に赴く宗教的な行為のことをいう（本来の巡礼に付いての詳細は巡礼の項を参照）。
+    * 聖地とは？
+        * 本来「巡礼」とは、宗教において重要な意味を持つ聖地に赴く宗教的な行為のことをいう（本来の巡礼に付いての詳細は巡礼の項を参照）。
 ここから転じて、ドラマや映画（実写の映像）、近年では漫画・アニメ・小説（ライトノベル）などの物語の舞台となった場所や、スポーツなどの名勝負の舞台となった場所、登場人物の名前の由来地や同名地など、本人にとって思い入れのある場所を「聖地」と呼び、この「聖地」を実際に訪れ、憧れや興奮に思いを馳せることを、「巡礼」と呼ぶようになった（後述）。
 なお、一般には各フィクションの舞台になった場所を探訪することから、「舞台探訪」、あるいは映画などでは「ロケ地巡り」などと呼ばれる。実写の形で公開されるテレビドラマや映画のロケ地が名所となるような事例に比べ、漫画・アニメに端を発する聖地巡礼では、聖地とされている場所（地名）で、そこであると作中において明確に示されているわけではないにもかかわらず、ファンから神聖視されるという点が異なる。
 通常の意味で「聖地」とされる場所は、視覚的にもそれ以外の場所から区別されるようになっているのに対し、アニメファンなどが巡礼の対象とする「聖地」は、それまで通りの風景をほとんど変化させることなく、なんらかのいわれを付加するだけで成立している。
@@ -63,6 +63,7 @@
     * searchwork.js
         * WorkListView
         * WorkFormView
+
 ## Copyright(著作権について)
 This software is released under the MIT License, see LICENSE.txt.
 
@@ -79,17 +80,23 @@ This software is released under the MIT License, see LICENSE.txt.
 ### Java
 [Java EE 7](http://www.oracle.com/technetwork/jp/java/javaee/overview/index.html)
 : Javaの機能セット．以下の機能もだいたいJava EE 7に含まれる技術？
+
 Java Persistence API
 : Java Persistence API（JPA）とは、関係データベースのデータを扱う Java SE および Java EE のアプリケーションを開発するためのJava用フレームワークである(wikipediaより)。まあ要するにORマッピングです
+
 [Hibernate](http://hibernate.org/)
 : JPAのエンジン
+
 [JSR 353 - Java API for JSON Processing](https://jsonp.java.net/)
 : Java公式ののJSONライブラリ．すんげー使いにくいので普通にgsonとかjacksonとか使ったほうがいいと思います
+
 ###JavaScript
 [jQuery](http://jquery.com/)
 :  おなじみJavaScriptフレームワーク
+
 [Underscore.js](http://underscorejs.org/)
 :  テンプレートエンジンや配列管理などの機能があるライブラリ
+
 [Backbone.js](http://backbonejs.org/)
 : JavaScriptでMVC構造を実現するフレームワーク．Ajax機能などに便利
 
@@ -100,7 +107,7 @@ Java Persistence API
 ##今後のToDo
 * 聖地個別ページと作品個別ページをJSPで作る(JSFは……勉強するのがめんどうさそうなので今回はいいや)
     * 聖地個別ページではSNSから拾ってきた口コミ情報を．作品個別ページでは画像検索の結果を表示したい
-        *画像検索はBingの画像検索APIか，devianArtのAPIを使いたい
+        * 画像検索はBingの画像検索APIか，devianArtのAPIを使いたい
 * ユーザー管理機能
     * 完全にTwitterかfacebookのoAuthに頼りたい(自分でパスワードもつの面倒くさい)
     * できるだけ他のWebサービスに規制したいね(画像保存機能とかもなくてflickerやinstagram，photo.twitter.comとかから取ってくるとか)
