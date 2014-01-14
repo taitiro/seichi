@@ -34,7 +34,7 @@
     </context-param>
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-    </listener>
+    </listener><!-- 
     <servlet>
         <servlet-name>php</servlet-name>
         <servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class>
@@ -43,7 +43,7 @@
             <param-value>6</param-value>
         </init-param>
         <init-param>
-            <!-- PHPスクリプトを配備するフォルダのパス docrootが基点 -->
+            PHPスクリプトを配備するフォルダのパス docrootが基点
             <param-name>cgiPathPrefix</param-name>
             <param-value>import</param-value>
         </init-param>
@@ -56,5 +56,5 @@
     <servlet-mapping>
         <servlet-name>php</servlet-name>
         <url-pattern>/import/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> -->
 </web-app>
