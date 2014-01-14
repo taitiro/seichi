@@ -99,7 +99,7 @@
         </article><!--/span-->
         
         <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <h1>検索ウィンドウ</h1>
+          <h1>聖地検索</h1>
           <form action="search.html" method="get" id="searchform">
             <label>場所：<input type="text" name="place"></label>
             <label>作品名：<input type="text" name="work"></label>
@@ -131,6 +131,11 @@
                 <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
               </fieldset>
             </div>
+            <p><input class="btn btn-primary btn-xs pull-right" type="submit" value="送信"></p>
+          </form>
+          <h1>作品検索</h1>
+          <form action="searchwork.html" method="get" id="searchworkform">
+            <label>検索文字：<input type="text" name="name"></label>
             <p><input class="btn btn-primary btn-xs pull-right" type="submit" value="送信"></p>
           </form>
           <h1>広告</h1>
