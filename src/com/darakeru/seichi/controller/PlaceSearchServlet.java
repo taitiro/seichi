@@ -26,14 +26,14 @@ import com.darakeru.seichi.model.Placework;
 /**
  * Servlet implementation class PlaceSearchController
  */
-@WebServlet(description = "場所の検索結果をJSONで返す", urlPatterns = { "/search" })
-public class PlaceSearchController extends HttpServlet {
+@WebServlet(description = "場所の検索結果をJSONで返す", urlPatterns = { "/api/search" })
+public class PlaceSearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private JsonBuilderFactory factory = Json.createBuilderFactory(null);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PlaceSearchController() {
+    public PlaceSearchServlet() {
         super();
     }
 

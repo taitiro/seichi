@@ -13,12 +13,13 @@ print<<<EOF
 </head>
 <body>
   <h1>「舞台探訪アーカイブ」からのインポート</h1>
+  <ul>
 EOF;
 foreach ($data as $one){    
-    echo $one->plaintext;
-    echo "<br />";
+    print "<li><a href=\"work-custom.php?name=".urlencode($one->plaintext)."\">".$one->plaintext."</a></li>";
 }
 print<<<EOF
+  </ul>
 </body>
 </html>
 EOF;

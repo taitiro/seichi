@@ -14,6 +14,7 @@ public class Work implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue
     private int workid;
 
     private String img;
@@ -119,10 +120,10 @@ public class Work implements Serializable {
     }
 
     public String getProductid5() {
-        return this.productid1;
+        return this.productid5;
     }
 
-    public void setProductid(String productid0) {
+    public void setProductid5(String productid5) {
         this.productid5 = productid5;
     }
 

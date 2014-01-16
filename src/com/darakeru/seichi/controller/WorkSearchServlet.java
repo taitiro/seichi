@@ -25,14 +25,14 @@ import com.darakeru.seichi.model.Work;
 /**
  * Servlet implementation class PlaceSearchController
  */
-@WebServlet(description = "場所の検索結果をJSONで返す", urlPatterns = { "/searchwork" })
-public class WorkSearchController extends HttpServlet {
+@WebServlet(description = "場所の検索結果をJSONで返す", urlPatterns = { "/api/searchwork" })
+public class WorkSearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private JsonBuilderFactory factory = Json.createBuilderFactory(null);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WorkSearchController() {
+    public WorkSearchServlet() {
         super();
     }
 

@@ -1,3 +1,5 @@
+<?php
+print <<<EOF
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,3 +20,5 @@
   </ul>
 </body>
 </html>
+EOF
+?>
