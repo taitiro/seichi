@@ -66,7 +66,7 @@ public class AddWorkServlet extends HttpServlet {
         } finally {
             em.close();
             emf.close();
-            response.sendRedirect(Parameter.urlRoot+"work.html");
+            response.sendRedirect(Parameter.URL_ROOT+"work.html");
         }
     }
 

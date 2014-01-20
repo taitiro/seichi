@@ -31,7 +31,7 @@ $(function () {
             for(var i = 0; i < hashes.length; i++) { 
               hash = hashes[i].split('='); 
               if(hash[1] != ''){
-                this.$el.find('input[name="'+hash[0]+'"]').val(hash[1]);
+                this.$el.find('input[name="'+hash[0]+'"]').val(decodeURI(hash[1]));
               }
             }
           },

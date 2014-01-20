@@ -9,7 +9,10 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name = "Work.findAll", query = "SELECT w FROM Work w")
+@NamedQueries({
+    @NamedQuery(name = "Work.findAll", query = "SELECT w FROM Work AS w"),
+    @NamedQuery(name = "Work.findByStr", query = "SELECT w FROM Work AS w WHERE ( w.name LIKE :name ) or ( w.workdesc LIKE :name )"),
+    })
 public class Work implements Serializable {
     private static final long serialVersionUID = 1L;
 

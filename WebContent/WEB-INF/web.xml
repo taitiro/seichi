@@ -45,7 +45,6 @@
     </init-param>
     <init-param>
       <param-name>executable</param-name>
-      <!-- <param-value>C:\xampp\php\php-cgi.exe</param-value> -->
       <param-value>C:\Users\180003\pleiades\xampp\php\php-cgi.exe</param-value>
     </init-param>
     <load-on-startup>5</load-on-startup>

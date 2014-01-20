@@ -12,7 +12,7 @@ $(function() {
     WorkCollection = Backbone.Collection.extend({
         model : WorkModel, // このCollectionのBackbone.Modelを指定
         url : undefined,// 取得するJSONのURL．httpから始まってもOK
-        urlRoot : 'http://localhost:8080/api/seichi/searchwork?',
+        urlRoot : 'http://localhost:8080/seichi/api/searchwork?',
         //urlRoot : 'data/work.json?'
     }),
     // viewのテンプレート作成
@@ -36,10 +36,7 @@ $(function() {
                         hash = hashes[i].split('=');
                         if (hash[1] != '') {
                             this.$el.find('input[name="' + hash[0] + '"]').val(
-                                    hash[1]);
-                          if(){
-                            
-                          }
+                                    decodeURI(hash[1]));
                         }
                     }
                 },
