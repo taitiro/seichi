@@ -50,6 +50,14 @@ footer {
 }
 }
 /* seichi setting */
+/* workdesc setting */
+#workdesc-img{
+  padding:0px 20px;
+  float:left;
+  width:150px;
+  height:auto;
+}
+/* map setting*/
 #map-container{
   display:none;
   padding:0;

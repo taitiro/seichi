@@ -44,7 +44,10 @@ public class WorkServlet extends HttpServlet {
         EntityManager em = emf.createEntityManager();
 
         try{
+            em.getTransaction().begin();
             thisWork = (Work) em.find(Work.class,id);
+            thisWork.getWorkinfo().addAccessnum();
+            em.getTransaction().commit();
         }finally{
             em.close();
             emf.close();

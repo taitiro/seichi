@@ -41,6 +41,10 @@ public class Workinfo implements Serializable {
 	public void setAccessnum(int accessnum) {
 		this.accessnum = accessnum;
 	}
+	
+    public void addAccessnum() {
+        this.accessnum++;
+    }
 
 	public Work getWork() {
 		return this.work;

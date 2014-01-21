@@ -104,5 +104,4 @@ public class PlaceSearchServlet extends HttpServlet {
             //NOP
         }
     }
-
 }
