@@ -44,6 +44,10 @@ public class Placeinfo implements Serializable {
 		this.accessnum = accessnum;
 	}
 
+    public void addAccessnum() {
+        this.accessnum++;
+    }
+    
 	public int getVisitnum() {
 		return this.visitnum;
 	}

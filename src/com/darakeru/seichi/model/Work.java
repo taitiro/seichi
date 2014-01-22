@@ -52,7 +52,7 @@ public class Work implements Serializable {
     private String workdesc;
 
     //bi-directional many-to-one association to Placework
-    @OneToMany(mappedBy = "work")
+    @OneToMany(mappedBy = "work",fetch = FetchType.EAGER)
     private List<Placework> placeworks;
 
     //bi-directional one-to-one association to Workinfo

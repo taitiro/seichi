@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="org.markdown4j.Markdown4jProcessor"
-  import="com.darakeru.seichi.model.Place" import="com.darakeru.seichi.model.Placework"%>
-<jsp:useBean id="thisWork" class="com.darakeru.seichi.model.Work" scope="request" />
-<jsp:useBean id="thisJson" class="com.darakeru.seichi.model.PlaceJsonBean" scope="request" />
+  import="com.darakeru.seichi.model.Place"
+  import="com.darakeru.seichi.model.Placework"
+  import="com.darakeru.seichi.model.Work" %>
+<jsp:useBean id="thisPlace" class="com.darakeru.seichi.model.Place" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,7 +13,7 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-<title>作品情報画面</title>
+<title>聖地情報画面</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +26,6 @@
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript">
-    var mapData = <jsp:getProperty name="thisJson" property="jsonData" />;
-</script>
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -67,69 +65,25 @@
       </p>
       <article class="col-xs-12 col-sm-9">
         <section class="jumbotron">
-            <%=thisWork.getImg().equals("") ? "" : "<img src=\""
-                    + thisWork.getImg() + "\" id=\"workdesc-img\">"%><!-- 作品の画像 -->
-          <h1><jsp:getProperty name="thisWork" property="name" /></h1>
+            <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
+                    + thisPlace.getImg() + "\" id=\"placedesc-img\">"%><!-- 作品の画像 -->
+          <h1><jsp:getProperty name="thisPlace" property="name" /></h1>
           <!-- 作品名 -->
-          <section class="workdesc">
-            <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
+          <section class="placedesc">
+            <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%><!-- 作品の説明 -->
           </section>
         </section>
         <section>
           <div class="row">
             <div class="col-md-4">
               <h2>関連商品</h2>
-              <%=thisWork.getProductid1().equals("") ? "" : thisWork
-                    .getProductid1() + "<br />"%>
-              <%=thisWork.getProductid2().equals("") ? "" : thisWork
-                    .getProductid2() + "<br />"%>
-              <%=thisWork.getProductid3().equals("") ? "" : thisWork
-                    .getProductid3() + "<br />"%>
-              <%=thisWork.getProductid4().equals("") ? "" : thisWork
-                    .getProductid4() + "<br />"%>
-              <%=thisWork.getProductid5().equals("") ? "" : thisWork
-                    .getProductid5() + "<br />"%>
             </div>
             <div class="col-md-4">
               <h2>関連URL</h2>
-              <ul class="list-group">
-                <%
-                    if (!thisWork.getUrl1().equals("")
-                            && !thisWork.getUrlname1().equals("")) {
-                %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url1" />"> <jsp:getProperty name="thisWork" property="urlname1" /></a></li>
-                <%
-                    }
-                %>
-                <%
-                    if (!thisWork.getUrl2().equals("")
-                            && !thisWork.getUrlname2().equals("")) {
-                %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url2" />"> <jsp:getProperty name="thisWork" property="urlname2" /></a></li>
-                <%
-                    }
-                %>
-                <%
-                    if (!thisWork.getUrl3().equals("")
-                            && !thisWork.getUrlname3().equals("")) {
-                %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url3" />"> <jsp:getProperty name="thisWork" property="urlname3" /></a></li>
-                <%
-                    }
-                %>
-              </ul>
             </div>
             <div class="col-md-4">
-                <%
-                    if (!thisWork.getWikipedia().equals("")) {
-                %>
-                <h2>Wikipediaへのリンク</h2>
-                <a href="<jsp:getProperty name="thisWork" property="wikipedia" />">Wikipediaの記事</a>
-                <%
-                    }
-                %>
               <h2>アクセス数</h2>
-              <p><%=thisWork.getWorkinfo().getAccessnum()%>
+              <p><%=thisPlace.getPlaceinfo().getAccessnum()%>
             </div>
           </div>
           <div class="row">
@@ -142,27 +96,20 @@
               </div>
             </div>
           </div>
-          <% if(thisWork.getPlaceworks().size()==0){ %>
-          <!-- 生地情報が登録されていない場合 -->
-            <section class="row">
-              <div class="col-md-12">
-                <p class="alert alert-danger">聖地情報はまだ登録されていません</p>
-              </div>
-            </section>
-          <% }
-          for(Placework onePlacework : thisWork.getPlaceworks() ){
-              Place thisPlace = onePlacework.getPlace();
+          <% 
+          for(Placework onePlacework : thisPlace.getPlaceworks() ){
+              Work thisWork = onePlacework.getWork();
           %>
           <section class="row">
             <div class="col-md-12">
-              <h2><%= thisPlace.getName() %></h2>
+              <h2><%= thisWork.getName() %></h2>
               <section>
-                <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
-                    + thisPlace.getImg() + "\" id=\"placedesc-img\">"%>
-                <%= new Markdown4jProcessor().process(thisPlace.getPlacedesc()) %>
+                <%=thisWork.getImg().equals("") ? "" : "<img src=\""
+                    + thisWork.getImg() + "\" id=\"placedesc-img\">"%>
+                <%= new Markdown4jProcessor().process(thisWork.getWorkdesc()) %>
               </section>
               <p>
-                <a class="btn btn-default" href="place/<%= thisPlace.getPlaceid() %>" role="button">View details &raquo;</a>
+                <a class="btn btn-default" href="../work/<%= thisWork.getWorkid() %>" role="button">View details &raquo;</a>
               </p>
             </div>
             <!--/span-->
@@ -241,7 +188,7 @@
   <script src="../js/offcanvas.js"></script>
   <!-- Load page's js -->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <script src="../js/work.js"></script>
+  <!-- <script src="../js/place.js"></script> -->
 
 </body>
 </html>

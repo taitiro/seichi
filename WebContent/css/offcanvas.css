@@ -53,7 +53,13 @@ footer {
 /* workdesc setting */
 #workdesc-img{
   padding:0px 20px;
-  float:left;
+  float:right;
+  width:150px;
+  height:auto;
+}
+#placedesc-img{
+  padding:0px 20px;
+  float:right;
   width:150px;
   height:auto;
 }

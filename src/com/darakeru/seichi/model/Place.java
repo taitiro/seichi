@@ -1,7 +1,9 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class Place implements Serializable {
 	private List<Placetag> placetags;
 
 	//bi-directional many-to-one association to Placework
-	@OneToMany(mappedBy="place")
+	@OneToMany(mappedBy="place",fetch = FetchType.EAGER)
 	private List<Placework> placeworks;
 
 	public Place() {
