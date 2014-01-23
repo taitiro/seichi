@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.darakeru.seichi.Parameter;
 import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.PlaceJsonBean;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
+import com.darakeru.seichi.model.Workinfo;
 /**
  * Servlet implementation class WorkServlet
  */
@@ -43,7 +45,7 @@ public class WorkServlet extends HttpServlet {
 	    try{
 	        id = Integer.parseInt(request.getPathInfo().substring(1));
 	    }catch (Exception e){
-	        response.sendRedirect("http://localhost:8080/seichi/searchwork.html");
+	        throw new ServletException();
 	    }
 	    
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
@@ -59,7 +61,7 @@ public class WorkServlet extends HttpServlet {
             }
             thisJson.setPlaceList(placeList);
         }catch(Exception e){
-            response.sendRedirect("http://localhost:8080/seichi/");
+            throw new ServletException();
         }finally{
             em.close();
             emf.close();
@@ -72,7 +74,38 @@ public class WorkServlet extends HttpServlet {
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+        Work thisWork = new Work();
+        thisWork.setName(request.getParameter("name"));
+        thisWork.setWorkdesc(request.getParameter("workdesc"));
+        thisWork.setImg(request.getParameter("img"));
+        thisWork.setProductid1(request.getParameter("productid1"));
+        thisWork.setProductid2(request.getParameter("productid2"));
+        thisWork.setProductid3(request.getParameter("productid3"));
+        thisWork.setProductid4(request.getParameter("productid4"));
+        thisWork.setProductid5(request.getParameter("productid5"));
+        thisWork.setUrl1(request.getParameter("url1"));
+        thisWork.setUrlname1(request.getParameter("urlname1"));
+        thisWork.setUrl2(request.getParameter("url2"));
+        thisWork.setUrlname2(request.getParameter("urlname2"));
+        thisWork.setUrl3(request.getParameter("url2"));
+        thisWork.setUrlname3(request.getParameter("urlname2"));
+        thisWork.setWikipedia(request.getParameter("wikipedia"));
+        Workinfo thisWorkinfo = new Workinfo();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(thisWork);
+            thisWorkinfo.setWorkid(thisWork.getWorkid());
+            em.persist(thisWorkinfo);
+            em.getTransaction().commit();
+        } catch(Exception e){
+            e.printStackTrace();;
+        } finally {
+            em.close();
+            emf.close();
+            response.sendRedirect(Parameter.URL_ROOT+"work/"+thisWork.getWorkid());
+        }
     }
 
 }

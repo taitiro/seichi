@@ -26,6 +26,12 @@
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
+
+<script type="text/javascript">
+var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
+    thisLat = <jsp:getProperty name="thisPlace" property="lat" />,
+    thisLng = <jsp:getProperty name="thisPlace" property="lng" />;
+</script>
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -72,6 +78,7 @@
           <section class="placedesc">
             <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%><!-- 作品の説明 -->
           </section>
+          <p>住所：<address><jsp:getProperty name="thisPlace" property="address" /></address></p>
         </section>
         <section>
           <div class="row">
@@ -90,9 +97,6 @@
             <div class="col-md-12">
               <div id="map-container">
                 <div id="map"></div>
-                <section id="mapdesc">
-                  <h1>作品に関連する聖地一覧</h1>
-                </section>
               </div>
             </div>
           </div>
@@ -188,7 +192,7 @@
   <script src="../js/offcanvas.js"></script>
   <!-- Load page's js -->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <!-- <script src="../js/place.js"></script> -->
+  <script src="../js/place.js"></script>
 
 </body>
 </html>

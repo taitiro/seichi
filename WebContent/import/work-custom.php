@@ -1,6 +1,8 @@
 <?php
-require_once dirname ( __FILE__ ) . "\simple_html_dom.php";
 require_once dirname ( __FILE__ ) . "\parameter.php";
+
+$wikipediaPreReplace = array("！","？");//wikipediaが推奨していない文字
+$wikipediaReplace = array("!","?");//wikipediaが推奨している文字
 
 $name = "";
 $input = NULL;
@@ -27,7 +29,8 @@ $input ["wikipedia"] = "";
 
 if (isset ( $_GET ["name"] )) {
   $name = $_GET ["name"];
-  $wikipediaXml = simplexml_load_file ( "http://ja.wikipedia.org/w/api.php?action=opensearch&limit=1&format=xml&search=" . urlencode ( $name ) );
+  $wikipediaXml = simplexml_load_file ( "http://ja.wikipedia.org/w/api.php?action=opensearch&limit=1&format=xml&search="
+      . rawurlencode (str_replace($wikipediaPreReplace, $wikipediaReplace, $name)) );
   if (isset ( $wikipediaXml->Section->Item )) {
     $input ["wikipedia"] = $wikipediaXml->Section->Item->Url;
     $input ["workdesc"] = $wikipediaXml->Section->Item->Description . " （[wikipedia](" . $input ["wikipedia"] . ")より）";
@@ -38,7 +41,7 @@ if (isset ( $_GET ["name"] )) {
   $amazonUrlHeader = "GET\n" . "ecs.amazonaws.jp\n" . "/onca/xml\n";
   $amazonUrlStr = "AWSAccessKeyId=".$AMAZON_API_KEY
       . "&AssociateTag=darakeru-22" 
-          . "&Keywords=" . urlencode($name)
+          . "&Keywords=" . rawurlencode($name)
   . "&Operation=ItemSearch" 
               . "&SearchIndex=All" 
                   . "&Service=AWSECommerceService" 
@@ -129,7 +132,7 @@ print <<<EOF
 </head>
 <body>
   <h1>作品カスタムインポート</h1>
-  <form action="http://localhost:8080/seichi/addwork" method="POST">
+  <form action="http://localhost:8080/seichi/work" method="POST">
     <label>作品名<input type="text" name="name" value="{$input["name"]}"></label>
     <label>作品の説明<textarea name="workdesc">{$input["workdesc"]}</textarea></label>
     <label>作品の画像URL<input type="text" name="img" value="{$input["img"]}"></label>
