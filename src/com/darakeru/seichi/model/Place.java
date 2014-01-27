@@ -1,9 +1,7 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,6 +20,12 @@ public class Place implements Serializable {
 
 	private String address;
 
+	private String facebookid;
+
+	private String foursquareid;
+
+	private String googleid;
+
 	private String img;
 
 	private BigDecimal lat;
@@ -30,7 +34,6 @@ public class Place implements Serializable {
 
 	private String name;
 
-	@Lob
 	private String placedesc;
 
 	private String productid1;
@@ -42,6 +45,8 @@ public class Place implements Serializable {
 	private String productid4;
 
 	private String productid5;
+
+	private String twitterid;
 
 	private String url1;
 
@@ -60,11 +65,11 @@ public class Place implements Serializable {
 	private Placeinfo placeinfo;
 
 	//bi-directional many-to-one association to Placetag
-	@OneToMany(mappedBy="place")
+	@OneToMany(mappedBy="place", fetch = FetchType.EAGER)
 	private List<Placetag> placetags;
 
 	//bi-directional many-to-one association to Placework
-	@OneToMany(mappedBy="place",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="place", fetch = FetchType.EAGER)
 	private List<Placework> placeworks;
 
 	public Place() {
@@ -84,6 +89,30 @@ public class Place implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getFacebookid() {
+		return this.facebookid;
+	}
+
+	public void setFacebookid(String facebookid) {
+		this.facebookid = facebookid;
+	}
+
+	public String getFoursquareid() {
+		return this.foursquareid;
+	}
+
+	public void setFoursquareid(String foursquareid) {
+		this.foursquareid = foursquareid;
+	}
+
+	public String getGoogleid() {
+		return this.googleid;
+	}
+
+	public void setGoogleid(String googleid) {
+		this.googleid = googleid;
 	}
 
 	public String getImg() {
@@ -164,6 +193,14 @@ public class Place implements Serializable {
 
 	public void setProductid5(String productid5) {
 		this.productid5 = productid5;
+	}
+
+	public String getTwitterid() {
+		return this.twitterid;
+	}
+
+	public void setTwitterid(String twitterid) {
+		this.twitterid = twitterid;
 	}
 
 	public String getUrl1() {

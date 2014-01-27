@@ -5,6 +5,7 @@
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height:100%;
 }
 body {
   padding-top: 70px;
@@ -101,4 +102,8 @@ footer {
 }
 label,fieldset{
   display:block;
+}
+/* placeadd setting*/
+.search-result-item{
+  width:100%;
 }

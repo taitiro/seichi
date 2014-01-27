@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+<title>作品検索</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/offcanvas.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body >
+  <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./">たんけんアニメのまち</a>
+    </div>
+    <div class="collapse navbar-collapse container">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">トップページ</a></li>
+        <li><a href="search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
+      </ul>
+      <form class="btn-group navbar-form pull-right">
+        <button type="button" class="btn btn-default btn-sm">ログイン</button>
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">twitterIDでログイン</a></li>
+          <li><a href="#">facebookIDでログイン</a></li>
+        </ul>
+      </form>
+    </div>
+    <!-- /.nav-collapse -->
+  </header>
+  <!-- /.navbar -->
+
+  <div class="container">
+
+    <div class="row">
+
+      <aside class="col-md-5" style="height:500px">
+        <div id="map" class="hidden"></div>
+      </aside>
+      <!--/span-->
+      <article class="col-md-7" id="sidebar">
+        <h1>検索画面</h1>
+        <div id="search-map" class="input-group">
+          <input type="text" class="form-control" id="str" value="" placeholder="その場所の名前・住所など">
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="search-button" type="button">検索</button>
+          </span>
+        </div>
+        <h2>検索結果</h2>
+        <div id="search-result"></div>
+      </article>
+      <!--/span-->
+
+    </div>
+    <!--/row-->
+    <hr>
+    <footer class="container">
+      <ul>
+        <li>運営している人紹介（連絡先など）</li>
+        <li>利用規約</li>
+        <li>注意書き</li>
+        <li>著作権表記</li>
+      </ul>
+    </footer>
+
+  </div>
+  <!--/.container-->
+  <!-- Bootstrap core JavaScript
+================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Load Backbone.js-->
+  <script src="js/underscore-min.js"></script>
+  <script src="js/json2.js"></script>
+  <script src="js/backbone-min.js"></script>
+  <!-- Load page's js -->
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+  <script src="js/placeadd.js"></script>
+</body>
+</html>

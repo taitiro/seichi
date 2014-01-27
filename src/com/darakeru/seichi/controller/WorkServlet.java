@@ -87,8 +87,8 @@ public class WorkServlet extends HttpServlet {
         thisWork.setUrlname1(request.getParameter("urlname1"));
         thisWork.setUrl2(request.getParameter("url2"));
         thisWork.setUrlname2(request.getParameter("urlname2"));
-        thisWork.setUrl3(request.getParameter("url2"));
-        thisWork.setUrlname3(request.getParameter("urlname2"));
+        thisWork.setUrl3(request.getParameter("url3"));
+        thisWork.setUrlname3(request.getParameter("urlname3"));
         thisWork.setWikipedia(request.getParameter("wikipedia"));
         Workinfo thisWorkinfo = new Workinfo();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
