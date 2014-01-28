@@ -13,6 +13,7 @@ import javax.json.JsonObjectBuilder;
  * Session Bean implementation class PlaceJsonBean
  */
 public class PlaceJsonBean implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Place> placeList = null;
     private String jsonData = "";
     /**
