@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="org.markdown4j.Markdown4jProcessor"
-  import="com.darakeru.seichi.model.Place" import="com.darakeru.seichi.model.Placework"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+  import="org.markdown4j.Markdown4jProcessor"
+  import="com.darakeru.seichi.model.Place"
+  import="com.darakeru.seichi.model.Placework"%>
 <jsp:useBean id="thisWork" class="com.darakeru.seichi.model.Work" scope="request" />
 <jsp:useBean id="thisJson" class="com.darakeru.seichi.model.PlaceJsonBean" scope="request" />
 <!DOCTYPE html>

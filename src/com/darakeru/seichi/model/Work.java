@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import com.darakeru.checkparam.CheckStr;
+
 import java.util.List;
 
 
@@ -15,6 +19,10 @@ import java.util.List;
 @NamedQuery(name="Work.findAll", query="SELECT w FROM Work w")
 public class Work implements Serializable {
 	private static final long serialVersionUID = 1L;
+	/** 
+	 * ASIN(Amazon Standard Identification Number)の桁数
+	 */
+	private static final int ASIN_LENGTH = 10;
 
 	@Id
 	private int workid;
@@ -68,16 +76,12 @@ public class Work implements Serializable {
 		return this.workid;
 	}
 
-	public void setWorkid(int workid) {
-		this.workid = workid;
-	}
-
 	public String getImg() {
 		return this.img;
 	}
 
 	public void setImg(String img) {
-		this.img = img;
+        this.img = new CheckStr(img).urlCheck() ? img : "";
 	}
 
 	public String getName() {
@@ -85,7 +89,7 @@ public class Work implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = StringEscapeUtils.escapeHtml4(name);
 	}
 
 	public String getProductid1() {
@@ -93,7 +97,7 @@ public class Work implements Serializable {
 	}
 
 	public void setProductid1(String productid1) {
-		this.productid1 = productid1;
+		this.productid1 = (productid1.length() == ASIN_LENGTH ) ? productid1 : "" ;
 	}
 
 	public String getProductid2() {
@@ -101,7 +105,7 @@ public class Work implements Serializable {
 	}
 
 	public void setProductid2(String productid2) {
-		this.productid2 = productid2;
+        this.productid2 = (productid2.length() == ASIN_LENGTH ) ? productid2 : "" ;
 	}
 
 	public String getProductid3() {
@@ -109,7 +113,7 @@ public class Work implements Serializable {
 	}
 
 	public void setProductid3(String productid3) {
-		this.productid3 = productid3;
+        this.productid3 = (productid3.length() == ASIN_LENGTH ) ? productid3 : "" ;
 	}
 
 	public String getProductid4() {
@@ -117,7 +121,7 @@ public class Work implements Serializable {
 	}
 
 	public void setProductid4(String productid4) {
-		this.productid4 = productid4;
+        this.productid4 = (productid4.length() == ASIN_LENGTH ) ? productid4 : "" ;
 	}
 
 	public String getProductid5() {
@@ -125,7 +129,7 @@ public class Work implements Serializable {
 	}
 
 	public void setProductid5(String productid5) {
-		this.productid5 = productid5;
+        this.productid5 = (productid5.length() == ASIN_LENGTH ) ? productid5 : "" ;
 	}
 
 	public String getUrl1() {
@@ -133,7 +137,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrl1(String url1) {
-		this.url1 = url1;
+        this.url1 = new CheckStr(url1).urlCheck() ? url1 : "";
 	}
 
 	public String getUrl2() {
@@ -141,7 +145,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrl2(String url2) {
-		this.url2 = url2;
+        this.url2 = new CheckStr(url2).urlCheck() ? url2 : "";
 	}
 
 	public String getUrl3() {
@@ -149,7 +153,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrl3(String url3) {
-		this.url3 = url3;
+        this.url3 = new CheckStr(url3).urlCheck() ? url3 : "";
 	}
 
 	public String getUrlname1() {
@@ -157,7 +161,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrlname1(String urlname1) {
-		this.urlname1 = urlname1;
+		this.urlname1 = StringEscapeUtils.escapeHtml4(urlname1);
 	}
 
 	public String getUrlname2() {
@@ -165,7 +169,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrlname2(String urlname2) {
-		this.urlname2 = urlname2;
+		this.urlname2 = StringEscapeUtils.escapeHtml4(urlname2);
 	}
 
 	public String getUrlname3() {
@@ -173,7 +177,7 @@ public class Work implements Serializable {
 	}
 
 	public void setUrlname3(String urlname3) {
-		this.urlname3 = urlname3;
+		this.urlname3 = StringEscapeUtils.escapeHtml4(urlname3);
 	}
 
 	public String getWikipedia() {
@@ -181,7 +185,7 @@ public class Work implements Serializable {
 	}
 
 	public void setWikipedia(String wikipedia) {
-		this.wikipedia = wikipedia;
+        this.wikipedia = new CheckStr(wikipedia).urlCheck() ? wikipedia : "";
 	}
 
 	public String getWorkdesc() {
@@ -189,7 +193,7 @@ public class Work implements Serializable {
 	}
 
 	public void setWorkdesc(String workdesc) {
-		this.workdesc = workdesc;
+		this.workdesc = StringEscapeUtils.escapeHtml4(workdesc);
 	}
 
 	public List<Placework> getPlaceworks() {
@@ -243,5 +247,18 @@ public class Work implements Serializable {
 
 		return worktag;
 	}
-
+    @Override
+    public String toString() {
+        return "Name : " + this.name + "\n"
+                + "Image URL : " + this.img + "\n"
+                + "Place Description : " + this.workdesc + "\n"
+                + "Product ID 1 : " + this.productid1 + "\n"
+                + "Product ID 2 : " + this.productid2 + "\n"
+                + "Product ID 3 : " + this.productid3 + "\n"
+                + "Product ID 4 : " + this.productid4 + "\n"
+                + "Product ID 5 : " + this.productid5 + "\n"
+                + "URL1 : " + this.url1 + " (Name : " + this.urlname1 + "  \n"
+                + "URL2 : " + this.url2 + " (Name : " + this.urlname2 + "  \n"
+                + "URL3 : " + this.url3 + " (Name : " + this.urlname3 + "  \n";
+    }
 }

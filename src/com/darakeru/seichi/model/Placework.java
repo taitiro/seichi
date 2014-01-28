@@ -49,8 +49,8 @@ public class Placework implements Serializable {
 		return this.work;
 	}
 
-	public void setWork(Work work) {
-		this.work = work;
-	}
+    public void setWork(Work work) {
+        this.work = work;
+    }
 
 }

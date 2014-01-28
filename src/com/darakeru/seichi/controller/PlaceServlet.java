@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.darakeru.seichi.Parameter;
 import com.darakeru.seichi.model.Place;
+import com.darakeru.seichi.model.Placeinfo;
+import com.darakeru.seichi.model.Placework;
+import com.darakeru.seichi.model.Work;
 /**
  * Servlet implementation class WorkServlet
  */
@@ -60,7 +64,47 @@ public class PlaceServlet extends HttpServlet {
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+        //リファラーチェック
+        if(!request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmplaceadd")){
+            response.sendRedirect(Parameter.URL_ROOT);
+        }
+        Place thisPlace = new Place();
+        thisPlace.setName(request.getParameter("name"));
+        thisPlace.setPlacedesc(request.getParameter("placedesc"));
+        thisPlace.setLat(request.getParameter("lat"));
+        thisPlace.setLng(request.getParameter("lng"));
+        thisPlace.setImg(request.getParameter("img"));
+        thisPlace.setProductid1(request.getParameter("productid1"));
+        thisPlace.setProductid2(request.getParameter("productid2"));
+        thisPlace.setProductid3(request.getParameter("productid3"));
+        thisPlace.setProductid4(request.getParameter("productid4"));
+        thisPlace.setProductid5(request.getParameter("productid5"));
+        thisPlace.setUrl1(request.getParameter("url1"));
+        thisPlace.setUrlname1(request.getParameter("urlname1"));
+        thisPlace.setUrl2(request.getParameter("url2"));
+        thisPlace.setUrlname2(request.getParameter("urlname2"));
+        thisPlace.setUrl3(request.getParameter("url3"));
+        thisPlace.setUrlname3(request.getParameter("urlname3"));
+        Placeinfo thisPlaceinfo = new Placeinfo();
+        Placework thisPlacework = new Placework();
+        int workid = Integer.parseInt(request.getParameter("workid"));
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(thisPlace);
+            thisPlaceinfo.setPlaceid(thisPlace.getPlaceid());
+            em.persist(thisPlaceinfo);
+            thisPlacework.setPlace(thisPlace);
+            thisPlacework.setWork(em.find(Work.class, workid));
+            em.getTransaction().commit();
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
+            response.sendRedirect(Parameter.URL_ROOT+"place/"+thisPlace.getPlaceid());
+        }
     }
 
 }

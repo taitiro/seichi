@@ -74,6 +74,10 @@ public class WorkServlet extends HttpServlet {
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //リファラーチェック
+        if(!request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd")){
+            response.sendRedirect(Parameter.URL_ROOT);
+        }
         Work thisWork = new Work();
         thisWork.setName(request.getParameter("name"));
         thisWork.setWorkdesc(request.getParameter("workdesc"));
@@ -100,7 +104,7 @@ public class WorkServlet extends HttpServlet {
             em.persist(thisWorkinfo);
             em.getTransaction().commit();
         } catch(Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         } finally {
             em.close();
             emf.close();

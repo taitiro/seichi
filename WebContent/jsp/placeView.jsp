@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="org.markdown4j.Markdown4jProcessor"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+  import="org.markdown4j.Markdown4jProcessor"
   import="com.darakeru.seichi.model.Place"
   import="com.darakeru.seichi.model.Placework"
   import="com.darakeru.seichi.model.Work" %>

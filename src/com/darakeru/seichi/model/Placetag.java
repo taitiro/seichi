@@ -1,7 +1,10 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 
 /**
@@ -39,7 +42,7 @@ public class Placetag implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = StringEscapeUtils.escapeHtml4(name);
 	}
 
 	public Place getPlace() {
