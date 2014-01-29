@@ -1,8 +1,6 @@
 package com.darakeru.seichi.controller;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,8 +41,8 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
             thisPlace.setGoogleid(request.getParameter("googleid"));
             //数値かどうかチェック
             try {
-                thisPlace.setLat(new BigDecimal(request.getParameter("lat")));
-                thisPlace.setLng(new BigDecimal(request.getParameter("lng")));
+                thisPlace.setLat(request.getParameter("lat"));
+                thisPlace.setLng(request.getParameter("lng"));
             } catch (NumberFormatException e) {
                 response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
             }

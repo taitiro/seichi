@@ -1,5 +1,7 @@
 package com.darakeru.seichi.model;
 
+import com.darakeru.seichi.Parameter;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -30,7 +32,7 @@ public class Place implements Serializable {
 
 	private String address;
 
-	private String facebookid;
+	private long facebookid;
 
 	private String foursquareid;
 
@@ -99,12 +101,16 @@ public class Place implements Serializable {
 		this.address = StringEscapeUtils.escapeHtml4(address);
 	}
 
-	public String getFacebookid() {
+	public long getFacebookid() {
 		return this.facebookid;
 	}
 
+    public void setFacebookid(long facebookid) {
+        this.facebookid = facebookid;
+    }
+    
 	public void setFacebookid(String facebookid) {
-		this.facebookid = facebookid;
+		this.facebookid = Long.parseLong(facebookid);
 	}
 
 	public String getFoursquareid() {
@@ -135,24 +141,18 @@ public class Place implements Serializable {
 		return this.lat;
 	}
 
-	public void setLat(BigDecimal lat) {
-		this.lat = lat;
-	}
-
-    public void setLat(String latStr) {
+    public void setLat(String latStr) throws NumberFormatException {
         this.lat = new BigDecimal(latStr);
+        this.lat.setScale(Parameter.LATLNG_SCALE);
     }
     
 	public BigDecimal getLng() {
 		return this.lng;
 	}
 
-	public void setLng(BigDecimal lng) {
-		this.lng = lng;
-	}
-
-    public void setLng(String lngStr) {
-        this.lng = new BigDecimal(lngStr);
+    public void setLng(String lngStr) throws NumberFormatException {
+        this.lat = new BigDecimal(lngStr);
+        this.lng.setScale(Parameter.LATLNG_SCALE);
     }
 
 	public String getName() {
