@@ -1,7 +1,5 @@
 package com.darakeru.seichi.test;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
@@ -14,6 +12,8 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 import org.apache.commons.codec.binary.Base64;
+
+import com.darakeru.seichi.Parameter;
 
 public class TwitterAuth {
 
@@ -28,8 +28,8 @@ public class TwitterAuth {
     public static void main(String[] args) {
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(TWITTER_AUTH_URL).openConnection();
-            String rawAuth = URLEncoder.encode(CONSUMER_KEY, ENC) + ":"
-                    + URLEncoder.encode(CONSUMER_SECRET_KEY, ENC);
+            String rawAuth = URLEncoder.encode(Parameter.TWITTER_CONSUMER_KEY, ENC) + ":"
+                    + URLEncoder.encode(Parameter.TWITTER_CONSUMER_SECRET_KEY, ENC);
             System.out.println("rawAuth: " + rawAuth);
             String beforeAuth = "Basic " + Base64.encodeBase64String(rawAuth.getBytes(ENC));
             System.out.println("beforeAuth: " + beforeAuth);
@@ -40,7 +40,7 @@ public class TwitterAuth {
             con.setRequestProperty("Accept-Encoding", "gzip" );
             con.setRequestProperty("Content-Type", TWITTER_CONTENT_TYPE);
             con.connect();
-            // POSTパラメータを設定（方法２）PrintStreamを利用
+            // POSTパラメータを設定……PrintStreamを利用
             try (PrintStream ps = new PrintStream(con.getOutputStream())) {
                 ps.print(TWITTER_REQUEST_BOSY);
             }
