@@ -1,5 +1,6 @@
 package com.darakeru.seichi.test;
 
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
@@ -8,6 +9,7 @@ import java.net.URLEncoder;
 import java.util.zip.GZIPInputStream;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
@@ -63,6 +65,46 @@ public class TwitterAuth {
             }
             con.disconnect();
             System.out.println("帰ってきた認証コード : " + afterAuth);
+            /*
+            String urlStr = "";///
+            System.out.println("get url : " + urlStr);
+            URL url = new URL(urlStr);
+            HttpURLConnection con2 = (HttpURLConnection) url.openConnection();
+            con2.setRequestProperty("Authorization", "Bearer " + afterAuth);
+            con2.setRequestMethod("GET");
+            try {
+                con2.connect();
+                if (con2.getResponseCode() == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+                    String s;
+                    while ((s = reader.readLine()) != null) {
+                        System.out.println(s);
+                    }
+                    reader.close();
+                    System.out.println("===END===");
+                    JsonReader jsonReader = Json.createReader(con.getInputStream(),ENC);
+                    JsonObject object = jsonReader.readObject();
+                    JsonArray venues = object.getJsonObject("result").getJsonArray("places");
+                    for (int i = 0; i < venues.size(); i++) {
+                        String id = venues.getJsonObject(i).getString("id");
+                        String name = venues.getJsonObject(i).getString("name");
+                        System.out.println("id : " + id);
+                        System.out.println("name : " + name);
+                    }
+                } else {
+                    System.out.println("Error "+ con2.getResponseCode() + " : " + con2.getResponseMessage());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+                    String s;
+                    while ((s = reader.readLine()) != null) {
+                        System.out.println(s);
+                    }
+                    reader.close();
+                    System.out.println("===END===");
+                }
+            } finally {
+                con2.disconnect();
+            }
+            */
         } catch (Exception e) {
             System.out.println("ダメでしたー");
             e.printStackTrace();

@@ -19,7 +19,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Place.findAll", query="SELECT p FROM Place p")
+
+@NamedQueries({
+    @NamedQuery(name="Place.findAll", query="SELECT p FROM Place p"),
+    @NamedQuery(name="Place.findByName", query="SELECT p FROM Place p WHERE (p.name like :name ) OR (p.placedesc like :name )")
+})
 public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
     /** 
@@ -57,8 +61,6 @@ public class Place implements Serializable {
 	private String productid4;
 
 	private String productid5;
-
-	private String twitterid;
 
 	private String url1;
 
@@ -151,7 +153,7 @@ public class Place implements Serializable {
 	}
 
     public void setLng(String lngStr) throws NumberFormatException {
-        this.lat = new BigDecimal(lngStr);
+        this.lng = new BigDecimal(lngStr);
         this.lng.setScale(Parameter.LATLNG_SCALE);
     }
 
@@ -210,14 +212,6 @@ public class Place implements Serializable {
     public void setProductid5(String productid5) {
         this.productid5 = (productid5.length() == ASIN_LENGTH ) ? productid5 : "" ;
     }
-
-	public String getTwitterid() {
-		return this.twitterid;
-	}
-
-	public void setTwitterid(String twitterid) {
-		this.twitterid = twitterid;
-	}
 
 	public String getUrl1() {
 		return this.url1;

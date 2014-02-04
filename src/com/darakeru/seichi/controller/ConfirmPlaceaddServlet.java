@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.darakeru.seichi.Parameter;
 import com.darakeru.seichi.model.ConfirmPlaceBean;
+import com.darakeru.seichi.model.WorkListBean;
 
 /**
  * Servlet implementation class ConfirmPlaceaddServlet
@@ -30,14 +31,21 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
+        /*
+         * リファラーチェック
+         */
+        if(!request.getHeader("referer").equals(Parameter.URL_ROOT + "placeadd.html") 
+                && !request.getHeader("referer").equals(Parameter.URL_ROOT + "customplaceadd.html")
+                && !request.getHeader("referer").equals(Parameter.URL_ROOT + "placeaddtest.html") )
+        {
+            response.sendRedirect(Parameter.URL_ROOT);
+        }
         //セッションチェックを含んでおいてー
         ConfirmPlaceBean thisPlace = new ConfirmPlaceBean();
         //絶対に必要な値
         try {
             thisPlace.setName(request.getParameter("name"));
             thisPlace.setAddress(request.getParameter("address"));
-            thisPlace.setUrl1(request.getParameter("url1"));
-            thisPlace.setUrlname1(request.getParameter("urlname1"));
             thisPlace.setGoogleid(request.getParameter("googleid"));
             //数値かどうかチェック
             try {
@@ -50,56 +58,84 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
             response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
         }
 
-
-        if (request.getParameter("placedesc") != null) {
+        if (request.getParameter("placedesc") != null && !request.getParameter("placedesc").equals("") ) {
             thisPlace.setPlacedesc(request.getParameter("placedesc"));
         }else{
             thisPlace.setPlacedesc("");
         }
-        if (request.getParameter("img") != null) {
+        if (request.getParameter("img") != null && !request.getParameter("img").equals("") ) {
             thisPlace.setImg(request.getParameter("img"));
         }else{
             thisPlace.setImg("");
         }
-        if (request.getParameter("url2") != null) {
+        if (request.getParameter("url1") != null && !request.getParameter("url1").equals("")) {
+            thisPlace.setUrl1(request.getParameter("url1"));
+        }else{
+            thisPlace.setUrl1("");
+        }
+        if (request.getParameter("url2") != null && !request.getParameter("url2").equals("")) {
             thisPlace.setUrl2(request.getParameter("url2"));
         }else{
             thisPlace.setUrl2("");
         }
-        if (request.getParameter("url3") != null) {
+        if (request.getParameter("url3") != null && !request.getParameter("url3").equals("")) {
             thisPlace.setUrl3(request.getParameter("url3"));
         }else{
             thisPlace.setUrl3("");
         }
-        if (request.getParameter("urlname2") != null) {
+        if (request.getParameter("urlname1") != null && !request.getParameter("urlname1").equals("")) {
+            thisPlace.setUrlname1(request.getParameter("urlname1"));
+        }else{
+            thisPlace.setUrlname1("");
+        }
+        if (request.getParameter("urlname2") != null && !request.getParameter("urlname2").equals("")) {
             thisPlace.setUrlname2(request.getParameter("urlname2"));
         }else{
             thisPlace.setUrlname2("");
         }
-        if (request.getParameter("urlname3") != null) {
+        if (request.getParameter("urlname3") != null && !request.getParameter("urlname3").equals("") ) {
             thisPlace.setUrlname3(request.getParameter("urlname3"));
         }else{
             thisPlace.setUrlname3("");
         }
-        
-        if (request.getParameter("foursquareid") != null) {
+        if (request.getParameter("productid1") != null && !request.getParameter("productid1").equals("")) {
+            thisPlace.setProductid1(request.getParameter("productid11"));
+        }else{
+            thisPlace.setProductid1("");
+        }
+        if (request.getParameter("productid2") != null && !request.getParameter("productid2").equals("")) {
+            thisPlace.setProductid2(request.getParameter("productid2"));
+        }else{
+            thisPlace.setProductid2("");
+        }
+        if (request.getParameter("productid3") != null && !request.getParameter("productid3").equals("") ) {
+            thisPlace.setProductid3(request.getParameter("productid3"));
+        }else{
+            thisPlace.setProductid3("");
+        }
+        if (request.getParameter("productid4") != null && !request.getParameter("productid4").equals("")) {
+            thisPlace.setProductid4(request.getParameter("productid4"));
+        }else{
+            thisPlace.setProductid4("");
+        }
+        if (request.getParameter("productid5") != null && !request.getParameter("productid5").equals("") ) {
+            thisPlace.setProductid5(request.getParameter("productid5"));
+        }else{
+            thisPlace.setProductid3("");
+        }
+        if (request.getParameter("foursquareid") != null && !request.getParameter("foursquareid").equals("")) {
             thisPlace.setFoursquareid(request.getParameter("foursquareid"));
         }else{
             thisPlace.setFoursquareid();
         }
-        if (request.getParameter("facebookid") != null) {
+        if (request.getParameter("facebookid") != null && !request.getParameter("facebookid").equals("")) {
             thisPlace.setFacebookid(request.getParameter("facebookid"));
         }else{
             thisPlace.setFacebookid();
         }
-        if (request.getParameter("twitterid") != null) {
-            thisPlace.setTwitterid(request.getParameter("twitterid"));
-        }else{
-            thisPlace.setTwitterid();
-        }
         //数値かどうかチェック
         try {
-            if (request.getParameter("instagramid") != null) {
+            if (request.getParameter("instagramid") != null && !request.getParameter("instagramid").equals("")) {
                 thisPlace.setInstagramid(Integer.parseInt(request.getParameter("instagramid")));
             }else{
                 thisPlace.setInstagramid();
@@ -107,8 +143,11 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
         }
+        if(getServletContext().getAttribute("worklist")==null){
+            getServletContext().setAttribute("worklist", new WorkListBean());
+        }
         //テスト用
-        System.out.println(thisPlace.getName());
+        request.setAttribute("confirmplace",thisPlace);
         response.sendRedirect(Parameter.URL_ROOT);
     }
 }

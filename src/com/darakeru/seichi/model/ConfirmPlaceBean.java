@@ -14,33 +14,29 @@ import javax.json.JsonReader;
 import com.darakeru.seichi.Parameter;
 
 public class ConfirmPlaceBean extends Place implements Serializable {
-/**
- * Foursquareのエンドポイント
- */
-    public static final String FOURSQUARE_SEARCH_URL = "https://api.foursquare.com/v2/venues/search";
+    /**
+     * Foursquareのエンドポイント
+     */
+    public static final String FOURSQUARE_SEARCH_URL = "https://api.foursquare.com/v2/venues/search?";
     /**
      * Instagramのエンドポイント
      */
-        public static final String INSTAGRAM_SEARCH_URL = "https://api.foursquare.com/v2/venues/search";
-        /**
-         * Facebookのエンドポイント
-         */
-    private static final String FACEBOOK_SEARCH_URL = "https://graph.facebook.com/search";
-    
+    public static final String INSTAGRAM_SEARCH_URL = "https://api.instagram.com/v1/locations/search?";
+    /**
+     * Facebookのエンドポイント
+     */
+    private static final String FACEBOOK_SEARCH_URL = "https://graph.facebook.com/search?";
     private LinkedHashMap<Long, String> facebookids;
 
     private LinkedHashMap<String, String> foursquareids;
 
     private LinkedHashMap<Integer, String> instagramids;
-
-    private LinkedHashMap<String, String> twitterids;
-
+    
     public ConfirmPlaceBean() {
         super();
         setFacebookids(new LinkedHashMap<Long, String>());
         setFoursquareids(new LinkedHashMap<String, String>());
         setInstagramids(new LinkedHashMap<Integer, String>());
-        setTwitterids(new LinkedHashMap<String, String>());
     }
 
     @Override
@@ -57,9 +53,12 @@ public class ConfirmPlaceBean extends Place implements Serializable {
                 + "Product ID 3 : " + this.getProductid3() + "\n"
                 + "Product ID 4 : " + this.getProductid4() + "\n"
                 + "Product ID 5 : " + this.getProductid5() + "\n"
-                + "URL1 : " + this.getUrl1() + " (Name : " + this.getUrlname1() + "  \n"
-                + "URL2 : " + this.getUrl2() + " (Name : " + this.getUrlname2() + "  \n"
-                + "URL3 : " + this.getUrl3() + " (Name : " + this.getUrlname3() + "  \n";
+                + "URL1 : " + this.getUrl1() + " (Name : " + this.getUrlname1() + " ） \n"
+                + "URL2 : " + this.getUrl2() + " (Name : " + this.getUrlname2() + " ） \n"
+                + "URL3 : " + this.getUrl3() + " (Name : " + this.getUrlname3() + " ） \n"
+                + "FacebookID : " + this.getFacebookid() + "\n"
+                + "FoursquareID : " + this.getFoursquareid() + "\n"
+                + "InstagramID : " + this.getInstagramid() + "\n";
     }
 
     public LinkedHashMap<Long, String> getFacebookids() {
@@ -98,26 +97,16 @@ public class ConfirmPlaceBean extends Place implements Serializable {
         this.instagramids.put(key, value);
     }
 
-    public LinkedHashMap<String, String> getTwitterids() {
-        return twitterids;
-    }
-
-    public void setTwitterids(LinkedHashMap<String, String> twitterids) {
-        this.twitterids = twitterids;
-    }
-
-    public void addTwitterids(String key, String value) {
-        this.twitterids.put(key, value);
-    }
 
     public void setFoursquareid() throws IOException {
-        URL url = new URL(FOURSQUARE_SEARCH_URL);
+        String urlStr = FOURSQUARE_SEARCH_URL;
+        urlStr += ("ll=" + this.getLat().toPlainString() + "," + this.getLng().toPlainString());
+        urlStr += ("&client_id=" + Parameter.FOURSQUARE_CLIENT_ID);
+        urlStr += ("&client_secret=" + Parameter.FOURSQUARE_CLIENT_SECRET_ID);
+        urlStr += ("&v=" + Parameter.VERSION_DATE);
+        System.out.println("get url : " + urlStr);
+        URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.addRequestProperty("ll", this.getLat().toPlainString());
-        con.addRequestProperty("ll", this.getLng().toPlainString());
-        con.setRequestProperty("client_id", Parameter.FOURSQUARE_CLIENT_ID);
-        con.setRequestProperty("client_secret", Parameter.FOURSQUARE_CLIENT_SECRET_ID);
-        con.setRequestProperty("v", Parameter.VERSION_DATE);
         con.setRequestMethod("GET");
         try {
             con.connect();
@@ -125,15 +114,16 @@ public class ConfirmPlaceBean extends Place implements Serializable {
                 JsonReader jsonReader = Json.createReader(con.getInputStream());
                 JsonObject object = jsonReader.readObject();
                 JsonArray venues = object.getJsonObject("response").getJsonArray("venues");
-                for(int i=0;i<venues.size();i++){
+                for (int i = 0; i < venues.size(); i++) {
                     String id = venues.getJsonObject(i).getString("id");
                     String name = venues.getJsonObject(i).getString("name");
                     this.addFoursquareids(id, name);
-                    if(i==0){
+                    if (i == 0) {
                         this.setFoursquareid(id);
                     }
                 }
             } else {
+                System.out.println("Error "+ con.getResponseCode() + " : " + con.getResponseMessage());
                 this.addFoursquareids("", "Error");
                 this.setFoursquareid("");
             }
@@ -143,11 +133,13 @@ public class ConfirmPlaceBean extends Place implements Serializable {
     }
 
     public void setInstagramid() throws IOException {
-        URL url = new URL(INSTAGRAM_SEARCH_URL);
+        String urlStr = INSTAGRAM_SEARCH_URL;
+        urlStr += ("lat=" + this.getLat().toPlainString());
+        urlStr += ("&lng=" + this.getLng().toPlainString());
+        urlStr += ("&client_id=" + Parameter.INSTAGRAM_CLIENT_ID);
+        System.out.println("get url : " + urlStr);
+        URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestProperty("lat", this.getLat().toPlainString());
-        con.setRequestProperty("lng", this.getLng().toPlainString());
-        con.setRequestProperty("client_id", Parameter.INSTAGRAM_CLIENT_ID);
         con.setRequestMethod("GET");
         try {
             con.connect();
@@ -155,15 +147,17 @@ public class ConfirmPlaceBean extends Place implements Serializable {
                 JsonReader jsonReader = Json.createReader(con.getInputStream());
                 JsonObject object = jsonReader.readObject();
                 JsonArray datas = object.getJsonArray("data");
-                for(int i=0;i<datas.size();i++){
-                    int id = datas.getJsonObject(i).getInt("id");
+                for (int i = 0; i < datas.size(); i++) {
+                    String idStr = datas.getJsonObject(i).getString("id");
+                    int id = Integer.parseInt(idStr);
                     String name = datas.getJsonObject(i).getString("name");
                     this.addInstagramids(id, name);
-                    if(i==0){
+                    if (i == 0) {
                         this.setInstagramid(id);
                     }
                 }
             } else {
+                System.out.println("Error "+ con.getResponseCode() + " : " + con.getResponseMessage());
                 this.addInstagramids(0, "Error");
                 this.setInstagramid(0);
             }
@@ -172,13 +166,14 @@ public class ConfirmPlaceBean extends Place implements Serializable {
         }
     }
 
-    public void setFacebookid() throws IOException{
-        URL url = new URL(FACEBOOK_SEARCH_URL);
+    public void setFacebookid() throws IOException {
+        String urlStr = FACEBOOK_SEARCH_URL;
+        urlStr += ("type=place");
+        urlStr += ("&center=" + this.getLat().toPlainString() + "," + this.getLng().toPlainString());
+        urlStr += ("&access_token=" + Parameter.FACEBOOK_TOKEN);
+        System.out.println("get url : " + urlStr);
+        URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestProperty("type", "place");
-        con.addRequestProperty("center", this.getLat().toPlainString());
-        con.addRequestProperty("center", this.getLng().toPlainString());
-        con.setRequestProperty("access_token", Parameter.FACEBOOK_TOKEN);
         con.setRequestMethod("GET");
         try {
             con.connect();
@@ -186,26 +181,23 @@ public class ConfirmPlaceBean extends Place implements Serializable {
                 JsonReader jsonReader = Json.createReader(con.getInputStream());
                 JsonObject object = jsonReader.readObject();
                 JsonArray datas = object.getJsonArray("data");
-                for(int i=0;i<datas.size();i++){
-                    long id = datas.getJsonObject(i).getJsonNumber("id").longValue();
+                for (int i = 0; i < datas.size(); i++) {
+                    String idStr = datas.getJsonObject(i).getString("id");
+                    long id = Long.parseLong(idStr);
                     String name = datas.getJsonObject(i).getString("name");
                     this.addFacebookids(id, name);
-                    if(i==0){
+                    if (i == 0) {
                         this.setFacebookid(id);
                     }
                 }
             } else {
+                System.out.println("Error "+ con.getResponseCode() + " : " + con.getResponseMessage());
                 this.addFacebookids(0, "Error");
                 this.setFacebookid(0);
             }
         } finally {
             con.disconnect();
         }
-
     }
 
-    public void setTwitterid() {
-        // TODO 自動生成されたメソッド・スタブ
-
-    }
 }

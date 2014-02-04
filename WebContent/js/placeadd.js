@@ -61,7 +61,7 @@ function callback(results, status) {
             console.log(thisLatlngSW[0] + ' : ' + thisLatlngSW[1] + ' : '
                     + thisLatlngNE[0] + ' : ' + thisLatlngNE[1]);
             element.innerHTML = '<h3>' + results[i].name + '</h3>'
-                    +'<form action="place" method="post">'
+                    +'<form action="confirmplaceadd" method="post">'
                     + '<label>名前<input class="form-control" type="text" name="name" value="'
                     + results[i].name
                     + '"></label>'

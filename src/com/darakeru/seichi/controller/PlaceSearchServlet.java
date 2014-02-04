@@ -1,7 +1,7 @@
 package com.darakeru.seichi.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +21,10 @@ import com.darakeru.seichi.model.PlaceJsonBean;
 @WebServlet(description = "場所の検索結果をJSONで返す", urlPatterns = { "/api/search" })
 public class PlaceSearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    /**
+     * 作品の検索結果を表示する最大件数
+     */
+    private static final int LIMIT_NUM = 50;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,11 +42,18 @@ public class PlaceSearchServlet extends HttpServlet {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
         EntityManager em = emf.createEntityManager();
-        List<Place> placeList = null;
+        ArrayList<Place> placeList = null;
         PlaceJsonBean thisPlaceJsonBean = null;
         try {
             // Place クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
-            placeList = (List<Place>) em.createNamedQuery("Place.findAll").getResultList();
+            if (request.getParameter("name") != null && !request.getParameter("name").equals("")) {
+                // Work クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
+                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findByName").setParameter("name", "%" + request.getParameter("name") + "%")
+                        .setMaxResults(LIMIT_NUM).getResultList();
+            } else {
+                // Work クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
+                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findAll").setMaxResults(LIMIT_NUM).getResultList();
+            }
             thisPlaceJsonBean = new PlaceJsonBean(placeList);
         } catch (Exception e) {
             e.printStackTrace();
