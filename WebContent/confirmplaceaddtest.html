@@ -1,0 +1,2241 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    
+    <title>聖地追加の確認</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Select2 CSS -->
+    <link href="css/select2.css" rel="stylesheet">
+    <link href="css/select2-bootstrap.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/offcanvas.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+  </head>
+  <body >
+    <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./">たんけんアニメのまち</a>
+      </div>
+      <div class="collapse navbar-collapse container">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="./">トップページ</a></li>
+          <li><a href="search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
+        </ul>
+        <form class="btn-group navbar-form pull-right">
+          <button type="button" class="btn btn-default btn-sm">ログイン</button>
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">twitterIDでログイン</a></li>
+            <li><a href="#">facebookIDでログイン</a></li>
+          </ul>
+        </form>
+      </div>
+      <!-- /.nav-collapse -->
+    </header>
+    <!-- /.navbar -->
+    
+    <div class="container">
+      
+      
+      <article class="container">
+        <h1>確認・修正画面</h1>
+        <p>以下の内容を確認し，赤くなっている項目を選択・修正した上で「送信」をクリックしてください</p>
+        <form class="form-horizontal" role="form" id="confirm-form" action="index.html" method="post"><!-- 追加項目 -->
+          <div class="form-group">
+            <label for="input-name" class="col-md-3 control-label">名前（必須）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-name" name="name" value="豊郷町立小学校 豊郷小学校" required>
+            </div>
+          </div>
+          <div class="form-group has-error" id="select-workid-wrapper">
+            <label for="select-workid" class="col-md-3 control-label">関連作品（必須・複数選択可）</label>
+            <div class="col-md-9">
+              <select class="form-control" id="select-workid" name="workid" multiple required>
+                
+                <option value="1">ああっ女神さまっ</option>
+                
+                <option value="2">あいうら</option>
+                
+                <option value="3">アイカツ！</option>
+                
+                <option value="4">THE iDOLM@STER</option>
+                
+                <option value="5">アイドルマスターシンデレラガールズ</option>
+                
+                <option value="6">あいまいみー</option>
+                
+                <option value="7">藍より青し</option>
+                
+                <option value="8">青い花</option>
+                
+                <option value="9">蒼き鋼のアルペジオ</option>
+                
+                <option value="10">青の祓魔師</option>
+                
+                <option value="11">あかね色に染まる坂</option>
+                
+                <option value="12">アキハバラ電脳組</option>
+                
+                <option value="13">アクセル・ワールド</option>
+                
+                <option value="14">惡の華</option>
+                
+                <option value="15">朝霧の巫女</option>
+                
+                <option value="16">あずまんが大王</option>
+                
+                <option value="17">あたしンち</option>
+                
+                <option value="18">あっちこっち</option>
+                
+                <option value="19">アドルフに告ぐ</option>
+                
+                <option value="20">Another</option>
+                
+                <option value="21">あにゃまる探偵 キルミンずぅ</option>
+                
+                <option value="22">あの夏で待ってる</option>
+                
+                <option value="23">あの日見た花の名前を僕達はまだ知らない。</option>
+                
+                <option value="24">アベノ橋魔法☆商店街</option>
+                
+                <option value="25">アマガミ</option>
+                
+                <option value="26">AMNESIA</option>
+                
+                <option value="27">荒川アンダー ザ ブリッジ</option>
+                
+                <option value="28">R.O.D</option>
+                
+                <option value="29">アルプスの少女ハイジ</option>
+                
+                <option value="30">UN-GO</option>
+                
+                <option value="31">Yes! プリキュア5</option>
+                
+                <option value="32">イヴの時間</option>
+                
+                <option value="33">異国迷路のクロワーゼ</option>
+                
+                <option value="34">一撃殺虫!!ホイホイさん</option>
+                
+                <option value="35">苺ましまろ</option>
+                
+                <option value="36">いちばんうしろの大魔王</option>
+                
+                <option value="37">いつか天魔の黒ウサギ</option>
+                
+                <option value="38">頭文字D</option>
+                
+                <option value="39">妖狐×僕SS</option>
+                
+                <option value="40">イリヤの空、UFOの夏</option>
+                
+                <option value="41">11eyes</option>
+                
+                <option value="42">Wake Up, Girls!</option>
+                
+                <option value="43">宇宙兄弟</option>
+                
+                <option value="44">宇宙ショーへようこそ</option>
+                
+                <option value="45">有頂天家族</option>
+                
+                <option value="46">うぽって!!</option>
+                
+                <option value="47">海がきこえる</option>
+                
+                <option value="48">うみねこのなく頃に</option>
+                
+                <option value="49">Aチャンネル</option>
+                
+                <option value="50">えびてん 公立海老栖川高校天悶部</option>
+                
+                <option value="51">NHKにようこそ！</option>
+                
+                <option value="52">えむえむっ！</option>
+                
+                <option value="53">エルフェンリート</option>
+                
+                <option value="54">Angel Beats!</option>
+                
+                <option value="55">おおかみこどもの雨と雪</option>
+                
+                <option value="56">オオカミさんと七人の仲間たち</option>
+                
+                <option value="57">おおきく振りかぶって</option>
+                
+                <option value="58">奥さまは魔法少女</option>
+                
+                <option value="59">幼なじみは大統領</option>
+                
+                <option value="60">おジャ魔女どれみ</option>
+                
+                <option value="61">織田信奈の野望</option>
+                
+                <option value="62">おとめ妖怪ざくろ</option>
+                
+                <option value="63">お兄ちゃんだけど愛さえあれば関係ないよねっ</option>
+                
+                <option value="64">お兄ちゃんのことなんかぜんぜん好きじゃないんだからねっ!!</option>
+                
+                <option value="65">おねがい☆ティーチャー</option>
+                
+                <option value="66">おねがい☆ツインズ</option>
+                
+                <option value="67">おもひでぽろぽろ</option>
+                
+                <option value="68">俺の妹がこんなに可愛いわけがない</option>
+                
+                <option value="69">俺たちに翼はない</option>
+                
+                <option value="70">俺の彼女と幼なじみが修羅場すぎる</option>
+                
+                <option value="71">終わりのクロニクル</option>
+                
+                <option value="72">カードキャプターさくら</option>
+                
+                <option value="73">カードファイト!!ヴァンガード</option>
+                
+                <option value="74">ガールズ＆パンツァー</option>
+                
+                <option value="75">会長はメイド様！</option>
+                
+                <option value="76">CHAOS;HEAD</option>
+                
+                <option value="77">ガッチャマン クラウズ</option>
+                
+                <option value="78">河童のクゥと夏休み</option>
+                
+                <option value="79">かなめも</option>
+                
+                <option value="80">CANAAN</option>
+                
+                <option value="81">神様ドォルズ</option>
+                
+                <option value="82">神さまのいない日曜日</option>
+                
+                <option value="83">神様のメモ帳</option>
+                
+                <option value="84">神様はじめました</option>
+                
+                <option value="85">かみちゅ！</option>
+                
+                <option value="86">神のみぞ知るセカイ</option>
+                
+                <option value="87">鴨川ホルモー</option>
+                
+                <option value="88">空の境界</option>
+                
+                <option value="89">借りぐらしのアリエッティ</option>
+                
+                <option value="90">ガリレイドンナ</option>
+                
+                <option value="91">カレイドスター</option>
+                
+                <option value="92">彼氏彼女の事情</option>
+                
+                <option value="93">ガンダムビルドファイターズ</option>
+                
+                <option value="94">かんなぎ</option>
+                
+                <option value="95">学園戦記ムリョウ</option>
+                
+                <option value="96">がくえんゆーとぴあ まなびストレート！</option>
+                
+                <option value="97">崖の上のポニョ</option>
+                
+                <option value="98">学校を出よう!</option>
+                
+                <option value="99">GUNSLINGER GIRL</option>
+                
+                <option value="100">ガンパレードマーチ</option>
+                
+                <option value="101">Kiss×sis</option>
+                
+                <option value="102">帰宅部活動記録</option>
+                
+                <option value="103">北へ。</option>
+                
+                <option value="104">Gift ～eternal rainbow～</option>
+                
+                <option value="105">キミキス</option>
+                
+                <option value="106">君が主で執事が俺で</option>
+                
+                <option value="107">君が望む永遠</option>
+                
+                <option value="108">君と僕。</option>
+                
+                <option value="109">君に届け</option>
+                
+                <option value="110">逆境無頼カイジ</option>
+                
+                <option value="111">究極超人あ～る</option>
+                
+                <option value="112">キューティクル探偵因幡</option>
+                
+                <option value="113">境界の彼方</option>
+                
+                <option value="114">京騒戯画</option>
+                
+                <option value="115">ギルティクラウン</option>
+                
+                <option value="116">キルミーベイベー</option>
+                
+                <option value="117">金色のコルダ</option>
+                
+                <option value="118">きんいろモザイク</option>
+                
+                <option value="119">銀河へキックオフ!!</option>
+                
+                <option value="120">ぎんぎつね</option>
+                
+                <option value="121">くじびきアンバランス</option>
+                
+                <option value="122">GJ部</option>
+                
+                <option value="123">雲のむこう、約束の場所</option>
+                
+                <option value="124">海月姫</option>
+                
+                <option value="125">CLANNAD</option>
+                
+                <option value="126">黒子のバスケ</option>
+                
+                <option value="127">CROSS†CHANNEL</option>
+                
+                <option value="128">黒魔女さんが通る!!</option>
+                
+                <option value="129">けいおん！</option>
+                
+                <option value="130">ケロロ軍曹</option>
+                
+                <option value="131">月面兎兵器ミーナ</option>
+                
+                <option value="132">幻影ヲ駆ケル太陽</option>
+                
+                <option value="133">げんしけん</option>
+                
+                <option value="134">けんぷファー</option>
+                
+                <option value="135">恋風</option>
+                
+                <option value="136">恋と選挙とチョコレート</option>
+                
+                <option value="137">高校球児ザワさん</option>
+                
+                <option value="138">攻殻機動隊</option>
+                
+                <option value="139">鋼鉄天使くるみ</option>
+                
+                <option value="140">神戸在住</option>
+                
+                <option value="141">GO!GO!575</option>
+                
+                <option value="142">ゴールデンタイム</option>
+                
+                <option value="143">極上!!めちゃモテ委員長</option>
+                
+                <option value="144">コクリコ坂から</option>
+                
+                <option value="145">ココロコネクト</option>
+                
+                <option value="146">琴浦さん</option>
+                
+                <option value="147">孤独のグルメ</option>
+                
+                <option value="148">こちら葛飾区亀有公園前派出所</option>
+                
+                <option value="149">言の葉の庭</option>
+                
+                <option value="150">こどものじかん</option>
+                
+                <option value="151">この世界の片隅に</option>
+                
+                <option value="152">この中に１人、妹がいる！</option>
+                
+                <option value="153">これはゾンビですか？</option>
+                
+                <option value="154">サーバント×サービス</option>
+                
+                <option value="155">最近、妹のようすがちょっとおかしいんだが。</option>
+                
+                <option value="156">PSYCHO-PASS</option>
+                
+                <option value="157">最終兵器彼女</option>
+                
+                <option value="158">坂道のアポロン</option>
+                
+                <option value="159">咲 -Saki-</option>
+                
+                <option value="160">さくら荘のペットな彼女</option>
+                
+                <option value="161">ささみさん＠がんばらない</option>
+                
+                <option value="162">サナララ</option>
+                
+                <option value="163">サマーウォーズ</option>
+                
+                <option value="164">サムライフラメンコ</option>
+                
+                <option value="165">さよなら絶望先生</option>
+                
+                <option value="166">さんかれあ</option>
+                
+                <option value="167">斬魔大聖デモンベイン</option>
+                
+                <option value="168">GA 芸術科アートデザインクラス</option>
+                
+                <option value="169">ジオブリーダーズ</option>
+                
+                <option value="170">しおんの王</option>
+                
+                <option value="171">C3－シーキューブ－</option>
+                
+                <option value="172">シゴフミ</option>
+                
+                <option value="173">灼眼のシャナ</option>
+                
+                <option value="174">GIANT KILLING</option>
+                
+                <option value="175">じゃじゃ馬グルーミン★UP!</option>
+                
+                <option value="176">十兵衛ちゃん</option>
+                
+                <option value="177">ジュエルペット サンシャイン</option>
+                
+                <option value="178">Steins;Gate</option>
+                
+                <option value="179">純情ロマンチカ</option>
+                
+                <option value="180">じょしらく</option>
+                
+                <option value="181">ジョジョの奇妙な冒険</option>
+                
+                <option value="182">しろくまカフェ</option>
+                
+                <option value="183">新世紀エヴァンゲリオン</option>
+                
+                <option value="184">新世界より</option>
+                
+                <option value="185">シンフォニック＝レイン</option>
+                
+                <option value="186">侵略！イカ娘</option>
+                
+                <option value="187">スイートプリキュア</option>
+                
+                <option value="188">好きっていいなよ。</option>
+                
+                <option value="189">スキップ・ビート！</option>
+                
+                <option value="190">School Days</option>
+                
+                <option value="191">スケッチブック</option>
+                
+                <option value="192">SKET DANCE</option>
+                
+                <option value="193">涼宮ハルヒの憂鬱</option>
+                
+                <option value="194">スタードライバー</option>
+                
+                <option value="195">ストライクウィッチーズ</option>
+                
+                <option value="196">ストラトス・フォー</option>
+                
+                <option value="197">スパイラル 推理の絆</option>
+                
+                <option value="198">スマイルプリキュア</option>
+                
+                <option value="199">スマガ</option>
+                
+                <option value="200">世紀末オカルト学院</option>
+                
+                <option value="201">セイクリッドセブン</option>
+                
+                <option value="202">生徒会の一存</option>
+                
+                <option value="203">生徒会役員共</option>
+                
+                <option value="204">聖☆おにいさん</option>
+                
+                <option value="205">ゼーガペイン</option>
+                
+                <option value="206">世界一初恋</option>
+                
+                <option value="207">世界征服彼女</option>
+                
+                <option value="208">世界征服〜謀略のズヴィズダー〜</option>
+                
+                <option value="209">世界でいちばんNGな恋</option>
+                
+                <option value="210">赤灯えれじい</option>
+                
+                <option value="211">絶園のテンペスト</option>
+                
+                <option value="212">絶対少年</option>
+                
+                <option value="213">瀬戸の花嫁</option>
+                
+                <option value="214">戦姫絶唱シンフォギア</option>
+                
+                <option value="215">戦国乙女</option>
+                
+                <option value="216">センコロール</option>
+                
+                <option value="217">009 RE:CYBORG</option>
+                
+                <option value="218">戦国コレクション</option>
+                
+                <option value="219">戦国BASARA</option>
+                
+                <option value="220">センチメンタルグラフティ</option>
+                
+                <option value="221">千と千尋の神隠し</option>
+                
+                <option value="222">閃乱カグラ</option>
+                
+                <option value="223">蒼穹のファフナー</option>
+                
+                <option value="224">ソードアート・オンライン</option>
+                
+                <option value="225">そにアニ</option>
+                
+                <option value="226">そふてにっ</option>
+                
+                <option value="227">空色スクエア。</option>
+                
+                <option value="228">そらのおとしもの</option>
+                
+                <option value="229">宙のまにまに</option>
+                
+                <option value="230">ソ・ラ・ノ・ヲ・ト</option>
+                
+                <option value="231">空を見上げる少女の瞳に映る世界</option>
+                
+                <option value="232">それでも町は廻っている</option>
+                
+                <option value="233">DARKER THAN BLACK -黒の契約者-</option>
+                
+                <option value="234">タイガーマスク</option>
+                
+                <option value="235">大正野球娘。</option>
+                
+                <option value="236">ダイヤのA</option>
+                
+                <option value="237">太陽の黙示録</option>
+                
+                <option value="238">高杉さん家のおべんとう</option>
+                
+                <option value="239">たまこまーけっと</option>
+                
+                <option value="240">たまゆら</option>
+                
+                <option value="241">タユタマ</option>
+                
+                <option value="242">TARI TARI</option>
+                
+                <option value="243">ダンガンロンパ</option>
+                
+                <option value="244">断裁分離のクライムエッジ</option>
+                
+                <option value="245">男子高校生の日常</option>
+                
+                <option value="246">探偵オペラ ミルキィホームズ</option>
+                
+                <option value="247">ちっちゃな雪使いシュガー</option>
+                
+                <option value="248">ちはやふる</option>
+                
+                <option value="249">中二病でも恋がしたい！</option>
+                
+                <option value="250">ちょこっとSister</option>
+                
+                <option value="251">超速変形ジャイロゼッター</option>
+                
+                <option value="252">超訳百人一首 うた恋い。</option>
+                
+                <option value="253">月は東に日は西に</option>
+                
+                <option value="254">ツバサ・クロニクル</option>
+                
+                <option value="255">つよきす</option>
+                
+                <option value="256">つり球</option>
+                
+                <option value="257">釣りバカ日誌</option>
+                
+                <option value="258">ディーふらぐ！</option>
+                
+                <option value="259">ティンクル☆くるせいだーす</option>
+                
+                <option value="260">てーきゅう</option>
+                
+                <option value="261">デート・ア・ライブ</option>
+                
+                <option value="262">デジモンアドベンチャー</option>
+                
+                <option value="263">デスクリムゾン</option>
+                
+                <option value="264">DEATH NOTE</option>
+                
+                <option value="265">鉄子の旅</option>
+                
+                <option value="266">鉄のラインバレル</option>
+                
+                <option value="267">鉄道むすめ</option>
+                
+                <option value="268">鉄娘な3姉妹</option>
+                
+                <option value="269">鉄腕バーディ</option>
+                
+                <option value="270">デビルサバイバー</option>
+                
+                <option value="271">デビルマンレディー</option>
+                
+                <option value="272">テルマエ・ロマエ</option>
+                
+                <option value="273">テレパシー少女 蘭</option>
+                
+                <option value="274">デュラララ!!</option>
+                
+                <option value="275">天空のエスカフローネ</option>
+                
+                <option value="276">天使のいない12月</option>
+                
+                <option value="277">天神乱漫</option>
+                
+                <option value="278">天体戦士サンレッド</option>
+                
+                <option value="279">天地無用！</option>
+                
+                <option value="280">電波女と青春男</option>
+                
+                <option value="281">電波的な彼女</option>
+                
+                <option value="282">とある魔術の禁書目録</option>
+                
+                <option value="283">とある科学の超電磁砲</option>
+                
+                <option value="284">12RIVEN</option>
+                
+                <option value="285">東京レイヴンズ</option>
+                
+                <option value="286">To Heart</option>
+                
+                <option value="287">同人少女ＪＢ</option>
+                
+                <option value="288">true tears</option>
+                
+                <option value="289">東京マグニチュード8.0</option>
+                
+                <option value="290">東方永夜抄</option>
+                
+                <option value="291">東方花映塚</option>
+                
+                <option value="292">東方三月精</option>
+                
+                <option value="293">東方星蓮船</option>
+                
+                <option value="294">東方風神録</option>
+                
+                <option value="295">東方文花帖</option>
+                
+                <option value="296">東方儚月抄</option>
+                
+                <option value="297">東方地霊殿</option>
+                
+                <option value="298">東方妖々夢</option>
+                
+                <option value="299">東方神霊廟</option>
+                
+                <option value="300">ドージンワーク</option>
+                
+                <option value="301">ドキドキ！プリキュア</option>
+                
+                <option value="302">図書館戦争</option>
+                
+                <option value="303">DOG DAYS</option>
+                
+                <option value="304">特攻の島</option>
+                
+                <option value="305">.hack</option>
+                
+                <option value="306">となりのトトロ</option>
+                
+                <option value="307">とらドラ！</option>
+                
+                <option value="308">ドルアーガの塔</option>
+                
+                <option value="309">Dororonえん魔くん メ～ラめら</option>
+                
+                <option value="310">ナースウィッチ小麦ちゃんマジカルて</option>
+                
+                <option value="311">謎の彼女X</option>
+                
+                <option value="312">夏色キセキ</option>
+                
+                <option value="313">夏目友人帳</option>
+                
+                <option value="314">波打際のむろみさん</option>
+                
+                <option value="315">NEEDLESS</option>
+                
+                <option value="316">日常</option>
+                
+                <option value="317">にゃんこい</option>
+                
+                <option value="318">忍者ハットリくん</option>
+                
+                <option value="319">ぬらりひょんの孫</option>
+                
+                <option value="320">猫神やおよろず</option>
+                
+                <option value="321">ねじ式</option>
+                
+                <option value="322">ねらわれた学園</option>
+                
+                <option value="323">のうりん</option>
+                
+                <option value="324">ノエイン もうひとりの君へ</option>
+                
+                <option value="325">ノノノノ</option>
+                
+                <option value="326">ノブナガン</option>
+                
+                <option value="327">のんのんびより</option>
+                
+                <option value="328">ハートキャッチプリキュア</option>
+                
+                <option value="329">ハイスクールD×D</option>
+                
+                <option value="330">ハイスコアガール</option>
+                
+                <option value="331">バイトくん</option>
+                
+                <option value="332">薄桜鬼</option>
+                
+                <option value="333">ばくおん!!</option>
+                
+                <option value="334">幕末機関説いろはにほへと</option>
+                
+                <option value="335">バクマン。</option>
+                
+                <option value="336">化物語</option>
+                
+                <option value="337">はたらく魔王さま!</option>
+                
+                <option value="338">ハチミツとクローバー</option>
+                
+                <option value="339">バディ・コンプレックス</option>
+                
+                <option value="340">バトルスピリッツ</option>
+                
+                <option value="341">花咲くいろは</option>
+                
+                <option value="342">はなまる幼稚園</option>
+                
+                <option value="343">ぱにぽに</option>
+                
+                <option value="344">パパのいうことを聞きなさい!</option>
+                
+                <option value="345">ハヤテのごとく!</option>
+                
+                <option value="346">ばらかもん</option>
+                
+                <option value="347">パンティ＆ストッキングwithガーターベルト</option>
+                
+                <option value="348">万能文化猫娘</option>
+                
+                <option value="349">バンブーブレード</option>
+                
+                <option value="350">半分の月がのぼる空</option>
+                
+                <option value="351">東のエデン</option>
+                
+                <option value="352">B型H系</option>
+                
+                <option value="353">ひぐらしのなく頃に</option>
+                
+                <option value="354">美少女戦士セーラームーン</option>
+                
+                <option value="355">ひだまりスケッチ</option>
+                
+                <option value="356">ぴたテン</option>
+                
+                <option value="357">緋弾のアリア</option>
+                
+                <option value="358">ビビッドレッド・オペレーション</option>
+                
+                <option value="359">ビブリア古書堂の事件手帖</option>
+                
+                <option value="360">姫ちゃんのリボン</option>
+                
+                <option value="361">ヒャッコ</option>
+                
+                <option value="362">氷菓</option>
+                
+                <option value="363">秒速5センチメートル</option>
+                
+                <option value="364">びんちょうタン</option>
+                
+                <option value="365">貧乏神が!</option>
+                
+                <option value="366">ファイ・ブレイン</option>
+                
+                <option value="367">ファンタジスタドール</option>
+                
+                <option value="368">フィギュア17</option>
+                
+                <option value="369">ふぃぎゅ@メイト</option>
+                
+                <option value="370">Fate/stay night</option>
+                
+                <option value="371">FORTUNE ARTERIAL</option>
+                
+                <option value="372">フォトカノ</option>
+                
+                <option value="373">伏 鉄砲娘の捕物帳</option>
+                
+                <option value="374">武装神姫</option>
+                
+                <option value="375">フタコイ オルタナティブ</option>
+                
+                <option value="376">ふたつのスピカ</option>
+                
+                <option value="377">ふたりはプリキュア</option>
+                
+                <option value="378">BTOOOM!</option>
+                
+                <option value="379">ブラック・ジャック</option>
+                
+                <option value="380">BROTHERS CONFLICT</option>
+                
+                <option value="383">BLOOD-C</option>
+                
+                <option value="384">BLOOD the Last Vampire</option>
+                
+                <option value="385">planetarian～ちいさなほしのゆめ～</option>
+                
+                <option value="386">フランダースの犬</option>
+                
+                <option value="387">Free!</option>
+                
+                <option value="388">BLEACH</option>
+                
+                <option value="389">プリキュアオールスターズ</option>
+                
+                <option value="390">フリージング</option>
+                
+                <option value="391">プリティーリズム</option>
+                
+                <option value="392">プリンセスラバー!</option>
+                
+                <option value="393">フルメタル・パニック!</option>
+                
+                <option value="394">BLUE SEED</option>
+                
+                <option value="395">フレッシュプリキュア!</option>
+                
+                <option value="396">へうげもの</option>
+                
+                <option value="397">ペルソナ4</option>
+                
+                <option value="398">変態王子と笑わない猫。</option>
+                
+                <option value="399">ベン・トー</option>
+                
+                <option value="400">放浪息子</option>
+                
+                <option value="401">BOYS BE...</option>
+                
+                <option value="402">僕の妹は「大阪おかん」</option>
+                
+                <option value="403">僕は友達が少ない</option>
+                
+                <option value="404">ぼくらの</option>
+                
+                <option value="405">僕らはみんな河合荘</option>
+                
+                <option value="406">星空へ架かる橋</option>
+                
+                <option value="407">火垂るの墓</option>
+                
+                <option value="408">ホッタラケの島</option>
+                
+                <option value="409">炎の転校生</option>
+                
+                <option value="410">ホットロード</option>
+                
+                <option value="411">WHITE ALBUM</option>
+                
+                <option value="412">ポートピア連続殺人事件</option>
+                
+                <option value="413">ボクのセカイをまもるヒト</option>
+                
+                <option value="414">僕等がいた</option>
+                
+                <option value="415">Myself;Yourself</option>
+                
+                <option value="416">マイマイ新子と千年の魔法</option>
+                
+                <option value="417">まかせてイルか!</option>
+                
+                <option value="418">マジでオタクなイングリッシュ!りぼんちゃん</option>
+                
+                <option value="419">真剣で私に恋しなさい</option>
+                
+                <option value="420">ましろ色シンフォニー</option>
+                
+                <option value="421">魔女の宅急便</option>
+                
+                <option value="422">魔法科高校の劣等生</option>
+                
+                <option value="423">魔法少女まどか☆マギカ</option>
+                
+                <option value="424">魔法先生ネギま!</option>
+                
+                <option value="425">魔法使いTai!</option>
+                
+                <option value="426">魔法遣いに大切なこと</option>
+                
+                <option value="427">魔法の天使クリィミーマミ</option>
+                
+                <option value="428">魔法使いの夜</option>
+                
+                <option value="429">マブラヴ</option>
+                
+                <option value="430">ママレード・ボーイ</option>
+                
+                <option value="431">迷い猫オーバーラン!</option>
+                
+                <option value="432">まよチキ!</option>
+                
+                <option value="433">マリア様がみてる</option>
+                
+                <option value="434">輪るピングドラム</option>
+                
+                <option value="435">まんがーる</option>
+                
+                <option value="436">ミカるんX</option>
+                
+                <option value="437">みかん・絵日記</option>
+                
+                <option value="438">みつどもえ</option>
+                
+                <option value="439">美鳥の日々</option>
+                
+                <option value="440">南鎌倉高校女子自転車部</option>
+                
+                <option value="441">みなみけ</option>
+                
+                <option value="442">みのりスクランブル!</option>
+                
+                <option value="443">耳をすませば</option>
+                
+                <option value="444">未来日記</option>
+                
+                <option value="445">ミラクル☆トレイン</option>
+                
+                <option value="446">ミントな僕ら</option>
+                
+                <option value="447">ムダヅモ無き改革</option>
+                
+                <option value="448">無敵看板娘</option>
+                
+                <option value="449">無敵超人ザンボット3</option>
+                
+                <option value="450">無能の人</option>
+                
+                <option value="451">メガゾーン23</option>
+                
+                <option value="452">眼鏡なカノジョ</option>
+                
+                <option value="453">メガネブ!</option>
+                
+                <option value="454">めぞん一刻</option>
+                
+                <option value="455">メタルギアソリッド</option>
+                
+                <option value="456">Memories Off</option>
+                
+                <option value="457">名探偵コナン</option>
+                
+                <option value="458">もし高校野球の女子マネージャーがドラッカーの『マネジメント』を読んだら</option>
+                
+                <option value="459">もののけ姫</option>
+                
+                <option value="460">ももへの手紙</option>
+                
+                <option value="461">もやしもん</option>
+                
+                <option value="462">ヤッターマン</option>
+                
+                <option value="463">やはり俺の青春ラブコメはまちがっている。</option>
+                
+                <option value="464">ヤマノススメ</option>
+                
+                <option value="465">勇者王ガオガイガー</option>
+                
+                <option value="466">勇者になれなかった俺はしぶしぶ就職を決意しました。</option>
+                
+                <option value="467">夕凪の街 桜の国</option>
+                
+                <option value="468">ゆびさきミルクティー</option>
+                
+                <option value="469">夢色パティシエール</option>
+                
+                <option value="470">夢喰いメリー</option>
+                
+                <option value="471">ゆゆ式</option>
+                
+                <option value="472">ゆりてつ 私立百合ヶ咲女子高鉄道部</option>
+                
+                <option value="473">ゆるめいつ</option>
+                
+                <option value="474">ゆるゆり</option>
+                
+                <option value="475">夜明け前より瑠璃色な</option>
+                
+                <option value="476">よくわかる現代魔法</option>
+                
+                <option value="477">ヨコハマ買い出し紀行</option>
+                
+                <option value="478">夜桜四重奏</option>
+                
+                <option value="479">四畳半神話大系</option>
+                
+                <option value="480">ヨスガノソラ</option>
+                
+                <option value="481">よつばと!</option>
+                
+                <option value="482">よみがえる空</option>
+                
+                <option value="483">よんでますよ、アザゼルさん。</option>
+                
+                <option value="484">RIDEBACK</option>
+                
+                <option value="485">らき☆すた</option>
+                
+                <option value="486">ラブひな</option>
+                
+                <option value="487">ラブプラス</option>
+                
+                <option value="488">ラブライブ!</option>
+                
+                <option value="489">らんま1/2</option>
+                
+                <option value="490">ラーゼフォン</option>
+                
+                <option value="491">リーンの翼</option>
+                
+                <option value="492">リコーダーとランドセル</option>
+                
+                <option value="493">リトルバスターズ!</option>
+                
+                <option value="494">輪廻のラグランジェ</option>
+                
+                <option value="495">RDG レッドデータガール</option>
+                
+                <option value="496">レベルＥ</option>
+                
+                <option value="497">恋愛ラボ</option>
+                
+                <option value="498">レンタルマギカ</option>
+                
+                <option value="499">ロウきゅーぶ!</option>
+                
+                <option value="500">ローゼンメイデン</option>
+                
+                <option value="501">ログ・ホライズン</option>
+                
+                <option value="502">ROBOTICS;NOTES</option>
+                
+                <option value="503">WORKING!!</option>
+                
+                <option value="504">私がモテないのはどう考えてもお前らが悪い!</option>
+                
+                <option value="505">わんおふ</option>
+                
+                <option value="506">ブラック★ロックシューター</option>
+                
+              </select>
+              <span class="help-block">複数選択する場合はCtrlキーを押しながら選択したい作品名をクリックしてください（Windowsの場合）</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-address" class="col-md-3 control-label">住所（必須）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-address" name="address" value="滋賀県犬上郡豊郷町大字石畑５２２" required>
+            </div>
+          </div>
+          <div class="form-group has-success">
+            <label for="input-lat" class="col-md-3 control-label">緯度（必須）</label>
+            <div class="col-md-9">
+              <input type="number" step="0.000001" class="form-control" id="input-lat" name="lat" value="35.202957" readonly required>
+            </div>
+          </div>
+          <div class="form-group has-success">
+            <label for="input-lng" class="col-md-3 control-label">経度（必須）</label>
+            <div class="col-md-9">
+              <input type="number" step="0.000001" class="form-control" id="input-lng" name="lng" value="136.233699" readonly required>
+            </div>
+          </div>
+          <div class="form-group has-error" id="textarea-placedesc-wrapper">
+            <label for="textarea-placedesc" class="col-md-3 control-label">説明文（必須）</label>
+            <div class="col-md-9">
+              <textarea class="form-control" id="textarea-placedesc" name="placedesc" placeholder="説明文を入力してください（Markdown記法可）" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-url1" class="col-md-3 control-label">関連URL1</label>
+            <div class="col-md-9">
+              <input type="url" class="form-control" id="input-address" name="url1" value="https://plus.google.com/115648262985341913988/about?hl=ja">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-urlname1" class="col-md-3 control-label">関連URL1の名前</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-urlname1" name="urlname1" value="豊郷町立小学校 豊郷小学校 - 基本情報 - Google+">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-url2" class="col-md-3 control-label">関連URL2</label>
+            <div class="col-md-9">
+              <input type="url" class="form-control" id="input-address" name="url2" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-urlname2" class="col-md-3 control-label">関連URL2の名前</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-urlname2" name="urlname2" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-url3" class="col-md-3 control-label">関連URL3</label>
+            <div class="col-md-9">
+              <input type="url" class="form-control" id="input-address" name="url3" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-urlname3" class="col-md-3 control-label">関連URL3の名前</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-urlname1" name="urlname3" value="">
+            </div>
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="input-productid1" class="col-md-3 control-label">関連商品のASIN（1）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-productid1" name="productid1" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-productid2" class="col-md-3 control-label">関連商品のASIN（2）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-productid2" name="productid2" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-productid3" class="col-md-3 control-label">関連商品のASIN（3）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-productid3" name="productid3" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-productid4" class="col-md-3 control-label">関連商品のASIN（4）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-productid4" name="productid4" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-productid5" class="col-md-3 control-label">関連商品のASIN（5）</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="input-productid5" name="productid5" value="">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="select-facebookid" class="col-md-3 control-label">Facebook上での名前</label>
+            <div class="col-md-9">
+              <select class="form-control" id="select-facebookid" name="facebookid">
+                
+                  <option value="210278822316361">豊郷小学校旧校舎群</option>
+                
+                  <option value="109474975737687">彦根市</option>
+                
+                  <option value="193806484072908">カフェ＆ダイニング Shoko</option>
+                
+                  <option value="126058530781580">豊郷駅</option>
+                
+                  <option value="158824144128238">すたみな太郎愛知川店</option>
+                
+                  <option value="369096169858514">肉処　マルヨシ</option>
+                
+                  <option value="142876102471172">麺屋 半蔵</option>
+                
+                  <option value="149704385059929">天下一品</option>
+                
+                  <option value="306832959424781">株式会社橋本建設</option>
+                
+                  <option value="102227949851328">滋賀県東近江市</option>
+                
+                  <option value="138028862923742">滋賀県近江八幡市</option>
+                
+                  <option value="106514006053250">京都市</option>
+                
+                  <option value="125372490856463">彦根城</option>
+                
+                  <option value="210201345692476">ｽｼﾛｰ</option>
+                
+                  <option value="212071938809556">尼子駅</option>
+                
+                  <option value="105672799466531">日本</option>
+                
+                  <option value="151364951559708">玉屋</option>
+                
+                  <option value="428309793903494">宮川石油</option>
+                
+                  <option value="123616057811789">ライフコンサルティング社労士事務所</option>
+                
+                  <option value="427608563943317">YOGA SHANTI</option>
+                
+                  <option value="163907136997842">米原駅</option>
+                
+                  <option value="325885064098254">にいがたバス研究室</option>
+                
+                  <option value="598044613554762">株式会社橋本不動産</option>
+                
+                  <option value="106093122762866">滋賀県</option>
+                
+                  <option value="517748284943610">彦根　家庭教師のブリッジ</option>
+                
+                  <option value="326236057505928">Total support  ALIVE　</option>
+                
+                  <option value="153207391374598">名神高速道 多賀サービスエリア</option>
+                
+                  <option value="220021681352010">ちゃんぽん亭総本家 豊郷店</option>
+                
+                  <option value="112839462108015">多賀大社</option>
+                
+                  <option value="129968647051426">あらびか</option>
+                
+                  <option value="199040540232450">らーめんチキン野郎</option>
+                
+                  <option value="144084418990671">彦根駅</option>
+                
+                  <option value="285007301584937">高橋保険事務所</option>
+                
+                  <option value="149998798354892">JR 京都駅 - JR Kyoto Station</option>
+                
+                  <option value="158351930842144">Ｃａｆｅ＆Ｂａｒ　　SKY↑JOKER</option>
+                
+                  <option value="131463683664139">I M!sS u EvEn MoRe WhEnEveR i TrY tO fOrGeT yEw</option>
+                
+                  <option value="112364755518559">滋賀県愛知郡</option>
+                
+                  <option value="144003758991073">滋賀県犬上郡</option>
+                
+                  <option value="153497594677833">滋賀県立大学</option>
+                
+                  <option value="126654287383503">epice cafe</option>
+                
+                  <option value="116598795060235">近江肉せんなり亭伽羅</option>
+                
+                  <option value="123866164361651">牛角　愛知川店</option>
+                
+                  <option value="477702882243286">滋賀大学陵水会Ｆacebook</option>
+                
+                  <option value="136494486419206">Viva City</option>
+                
+                  <option value="176884525693391">河瀬駅</option>
+                
+                  <option value="148141488584176">スターバックス コーヒー カインズモール彦根店</option>
+                
+                  <option value="117042081684542">クラブハリエ美濠の舎</option>
+                
+                  <option value="135520949833512">清水寺 / Kiyomizu Temple</option>
+                
+                  <option value="231245003583356">多賀SA</option>
+                
+                  <option value="257863734250990">KSP彦根</option>
+                
+                  <option value="193494674018337">ちゃんぽん亭総本家 本店</option>
+                
+                  <option value="230892253619094">樹〜itsuki〜</option>
+                
+                  <option value="268258073186065">ひこねスカイアドベンチャー</option>
+                
+                  <option value="116843815036682">台湾美食城</option>
+                
+                  <option value="300851833346417">鉄板焼やまと-大和-</option>
+                
+                  <option value="391367714207049">料亭旅館　やす井</option>
+                
+                  <option value="150373018326267">スイス</option>
+                
+                  <option value="274100802612480">多賀EXPASA</option>
+                
+                  <option value="162186697173449">能登川駅</option>
+                
+                  <option value="129268850497915">ベビーフェイス プラネッツ 彦根店</option>
+                
+                  <option value="117148101672622">ちゃんぽん亭総本家 彦根駅前本店</option>
+                
+                  <option value="136796116394808">スターバックスコーヒー EXPASA多賀サービスエリア(下り線)店</option>
+                
+                  <option value="152445524783100">玄宮園</option>
+                
+                  <option value="513988315350134">金剛輪寺</option>
+                
+                  <option value="232287610146504">ブライダルハウス  サムスィング・フォー</option>
+                
+                  <option value="145855195450130">極楽湯</option>
+                
+                  <option value="134504619936158">滋賀大学</option>
+                
+                  <option value="201777459871508">Hair make J BE-CHICK</option>
+                
+                  <option value="524370090923538">MICRO-LADY</option>
+                
+                  <option value="182277121982932">Chris Irônico ツ</option>
+                
+                  <option value="195076587204271">琵琶湖</option>
+                
+                  <option value="235585729810178">西明寺</option>
+                
+                  <option value="179851982047362">近江牛の千成亭</option>
+                
+                  <option value="301305719894993">夢京橋キャッスルロード</option>
+                
+                  <option value="172870299435032">シダックス</option>
+                
+                  <option value="305525446221530">MICRO-LADY COFFEE STAND</option>
+                
+                  <option value="229297020429763">新幹線移動中</option>
+                
+                  <option value="175255469201972">ちゃんぽん亭総本家 戸賀店</option>
+                
+                  <option value="178949965477429">鈴鹿サーキット</option>
+                
+                  <option value="161717067219039">高宮駅 (滋賀県)</option>
+                
+                  <option value="318038508313471">ラーメンつけ麺十二分屋</option>
+                
+                  <option value="130095000401171">彦根市役所</option>
+                
+                  <option value="147229948650523">金閣寺 Kinkakuji Temple</option>
+                
+                  <option value="202520976530140">JR南彦根駅</option>
+                
+                  <option value="247046115328182">Hirose-Beetle（ヒロセビートル）</option>
+                
+                  <option value="145771215459881">彦根市立病院</option>
+                
+                  <option value="124314207651476">彦根カントリー倶楽部</option>
+                
+                  <option value="291302134235924">ぢどり屋</option>
+                
+                  <option value="193583097459063">空の旅人舎</option>
+                
+                  <option value="221981727856284">百済寺</option>
+                
+                  <option value="201706276540995">ヒトミワイナリー</option>
+                
+                  <option value="125695484186169">雪月花</option>
+                
+                  <option value="232755980073360">四番町スクエア</option>
+                
+                  <option value="113034955420419">麺屋ジョニー</option>
+                
+                  <option value="226289660752007">多賀そば・近江牛 金亀庵</option>
+                
+                  <option value="262490830512151">餃子の王将　多賀店</option>
+                
+                  <option value="194583670590249">彦根市民体育センター</option>
+                
+                  <option value="145135182241133">Hirose 愛知川本店（ヒロセ美容室 本店）</option>
+                
+                  <option value="116594938421371">トマト&オニオン　五個荘店</option>
+                
+                  <option value="227525943941282">キリンビール 滋賀工場</option>
+                
+                  <option value="126691714046285">近江牛と近江鶏の店 近江や</option>
+                
+                  <option value="161872630543626">コメダ珈琲店彦根駅東口店</option>
+                
+                  <option value="155597121168978">Baby Face Planets</option>
+                
+                  <option value="547831535305801">滋賀縣護國神社</option>
+                
+                  <option value="103129486437291">スクリーン駅</option>
+                
+                  <option value="1417717185117214">A. SITE</option>
+                
+                  <option value="109603029066132">岐阜市</option>
+                
+                  <option value="256628281124195">Obito Uchiha</option>
+                
+                  <option value="138426226356068">ナチュラルフォト スタジオコンソルテ「マタニティ、ファミリーなどのナチュラルフォト専門スタジオ」</option>
+                
+                  <option value="227381957315284">Spoon</option>
+                
+                  <option value="201555443194771">Takata</option>
+                
+                  <option value="314649165289282">Apakabar</option>
+                
+                  <option value="319039671567575">Pros faladores ツ</option>
+                
+                  <option value="106589566047249">福井県</option>
+                
+                  <option value="214470098607468">京都祇園 天ぷら八坂圓堂</option>
+                
+                  <option value="136938806386055">Creepypastas 死神</option>
+                
+                  <option value="503508816389631">wakkaya</option>
+                
+                  <option value="203894673054999">スターバックス多賀サービスエリア(上り線)店</option>
+                
+                  <option value="377805875590961">ちゃんぽん亭総本家 ビバシティ彦根店</option>
+                
+                  <option value="299670083512088">Oceanbar　Family　オーシャンバーファミリー　能登川</option>
+                
+                  <option value="305152506229820">公益社団法人　彦根観光協会</option>
+                
+                  <option value="245271335505534">彦根市民会館</option>
+                
+                  <option value="206410866048199">ひこね市文化プラザ</option>
+                
+                  <option value="257801440922119">カインズモール彦根</option>
+                
+                  <option value="323736731093884">一般社団法人　比良里山クラブ</option>
+                
+                  <option value="151258764897083">うま屋ラーメン彦根店</option>
+                
+                  <option value="169409279774437">KYOTO DESIGN HOUSE</option>
+                
+                  <option value="226243060748100">秦荘PA</option>
+                
+                  <option value="511895318883914">Natural Food Cafe With Shanti</option>
+                
+                  <option value="109572675792026">彦根口駅</option>
+                
+                  <option value="156188304469171">万国吃驚堂（スポット）</option>
+                
+                  <option value="162560730449480">伏見稲荷大社</option>
+                
+                  <option value="165080443539566">滋賀県米原市</option>
+                
+                  <option value="484709574972695">LIVES</option>
+                
+                  <option value="247213515339413">メルシーボークー</option>
+                
+                  <option value="319255688089227">バリバリジョニー</option>
+                
+                  <option value="383453798438779">A lot of nothing</option>
+                
+                  <option value="205430576288193">Goodbouldering</option>
+                
+                  <option value="150786261610147">餃子の王将彦根店</option>
+                
+                  <option value="494068483940707">南国ダイニングBar PEACE</option>
+                
+                  <option value="495321073872565">滋賀大学チアダンス《SUGARS》</option>
+                
+                  <option value="137497336357494">あみやき亭</option>
+                
+                  <option value="168538183200364">祇園</option>
+                
+                  <option value="302207409808521">まるい本舗　</option>
+                
+                  <option value="594997223860761">花好mokume</option>
+                
+                  <option value="108064205881870">四日市市</option>
+                
+                  <option value="450429771704149">日本運動器徒手理学療法学会</option>
+                
+                  <option value="505794989447438">Dance Studio Works(ダンススタジオ ワークス)</option>
+                
+                  <option value="266679033478018">茶房 こてつ</option>
+                
+                  <option value="153014758050519">キャナリィ</option>
+                
+                  <option value="421719274508958">Kyoto Osaka</option>
+                
+                  <option value="502901459752329">Geiya Cafe</option>
+                
+                  <option value="176078562430380">ユニバーサル・スタジオ・ジャパン / Universal Studios Japan (USJ)</option>
+                
+                  <option value="155878274480583">居酒屋 彦一</option>
+                
+                  <option value="199450126756649">稲枝駅</option>
+                
+                  <option value="152317368267645">あいとうふくしモール</option>
+                
+                  <option value="363625840373647">ひこね街の駅『逓信舍』（ていしんしゃ）</option>
+                
+                  <option value="122506437855739">マクドナルド８号線彦根店</option>
+                
+                  <option value="346474458828427">Ivy.lara(アイビーララ）</option>
+                
+                  <option value="142128999329330">＆ Anne</option>
+                
+                  <option value="611352068894228">とうほくのはる</option>
+                
+                  <option value="583974421642725">アイセック滋賀大学委員会</option>
+                
+                  <option value="172337082846698">肉のはせ川ステーキハウス</option>
+                
+                  <option value="162220697310545">鉄板焼きDining   炎  ーenー</option>
+                
+                  <option value="461735367203257">無国籍料理壺味</option>
+                
+                  <option value="119473808081950">YR-DESIGN</option>
+                
+                  <option value="511607708864896">Caro Angelo</option>
+                
+                  <option value="760703427291740">スリール  パティシエオガワ</option>
+                
+                  <option value="263573187050993">天晨堂 ビバシティブックセンター</option>
+                
+                  <option value="108188649202756">一宮市</option>
+                
+                  <option value="160524820662482">愛知県名古屋市</option>
+                
+                  <option value="114221728590345">大津市</option>
+                
+                  <option value="288726804476763">BORN FREE MEGA STORE/ボーンフリーメガストア</option>
+                
+                  <option value="289612341052122">多賀町B&G海洋センター</option>
+                
+                  <option value="1394036914187115">Healing Salon Pililani</option>
+                
+                  <option value="134228916627113">ナガシマスパーランド</option>
+                
+                  <option value="107576172636995">来来亭南彦根店</option>
+                
+                  <option value="277103335703344">はま寿司 彦根戸賀店</option>
+                
+                  <option value="1412424018984602">福から</option>
+                
+                  <option value="234505399945869">ファブリカ村</option>
+                
+                  <option value="225084910907925">らーめん本気</option>
+                
+                  <option value="121418734614209">藤居本家　蔵元</option>
+                
+                  <option value="548752661876375">C4ncr0ch4n ツ</option>
+                
+                  <option value="391331854255588">滋賀県立彦根球場</option>
+                
+                  <option value="164042213649780">愛知川駅</option>
+                
+                  <option value="139177006126586">八坂神社</option>
+                
+                  <option value="287754141266567">ブリヂストン彦根工場</option>
+                
+                  <option value="1429276040620171">معلومة مفيــدة</option>
+                
+                  <option value="184178365107059">Reda city16 丶officielle 丶</option>
+                
+                  <option value="341395795974479">彦根えきまえ赤おにバル</option>
+                
+                  <option value="373370019461491">しる万本店</option>
+                
+                  <option value="265752523479404">公益社団法人彦根青年会議所</option>
+                
+                  <option value="186661104720355">貴船神社</option>
+                
+                  <option value="488036701218620">株式会社 スリーエー</option>
+                
+                  <option value="165256596877204">Hair make J BE-CHICK LOVE&PEACE店</option>
+                
+                  <option value="327842587310459">C.S.T</option>
+                
+                  <option value="229388373904481">خواطر ツ</option>
+                
+                  <option value="192808530751737">NINJA ALLIANCE</option>
+                
+                  <option value="240053422802507">彦根の自転車店「侍サイクル」</option>
+                
+                  <option value="261852427212087">レイクサイド・ビジュー</option>
+                
+                  <option value="249325328417363">五環生活</option>
+                
+                  <option value="419716788126190">ひこね市民活動センター</option>
+                
+                  <option value="168402286703917">Mafia Dz</option>
+                
+                  <option value="355614927881473">季節のお菓子とおやつ gatto</option>
+                
+                  <option value="138559142891656">マクドナルド彦根ベルロード大藪店</option>
+                
+                  <option value="535644559797221">ベジタブルガーデン　｢笑顔の拡がるイチゴ農園｣</option>
+                
+                  <option value="278465152257718">BAR Two Piece</option>
+                
+                  <option value="224799427608013">Base For Rest</option>
+                
+                  <option value="106079376089182">鈴鹿市</option>
+                
+                  <option value="172920019577498">Grande Bocca</option>
+                
+                  <option value="405620069490102">Seiko Vee-Vas / セイコーヴィーバス（滋賀で一番優しい家具のお店）</option>
+                
+                  <option value="417867128229210">居酒屋　ippei chan</option>
+                
+                  <option value="1375046166094346">滋賀建機  鉄板センター</option>
+                
+                  <option value="178122082252527">中部国際空港　セントレア</option>
+                
+                  <option value="155912697827735">スポーツDepo</option>
+                
+                  <option value="135278396660004">ジャバザハット</option>
+                
+                  <option value="550300661685919">Pin-To</option>
+                
+                  <option value="558950207529724">靴工房 スタジオＫ</option>
+                
+                  <option value="139964456046566">旬菜酒場 菜でしこ　彦根店</option>
+                
+                  <option value="132840103428388">平安神宮 The Heian Shrine</option>
+                
+                  <option value="535504219876192">ｾｷｭﾘﾃｨﾌﾟﾛﾃﾞｭｰｽｓｉｎｇｓ</option>
+                
+                  <option value="252242028202171">*gérbera</option>
+                
+                  <option value="261753057303237">（株）川地工務店・minto</option>
+                
+                  <option value="272860989509218">ギャラリー空</option>
+                
+                  <option value="106688886037500">岐阜県</option>
+                
+                  <option value="110609545626220">愛知県</option>
+                
+                  <option value="112998825393151">三重県</option>
+                
+                  <option value="204779712874214">株式会社滋賀原木</option>
+                
+                  <option value="213735032019631">EPICE FURNITURE （エピスファニチャー）</option>
+                
+                  <option value="345829675506360">魚保keiji</option>
+                
+                  <option value="242948055854547">アサヒメガネ</option>
+                
+                  <option value="425612507452067">くつろぎDining風花</option>
+                
+                  <option value="116985918354550">近江牛レストラン 千成亭</option>
+                
+                  <option value="205444119598363">ゴルフパートナーＲ８彦根店</option>
+                
+                  <option value="438424836176385">ＹＡＢ</option>
+                
+                  <option value="495502330520210">滋大祭 - 彦根キャンパス</option>
+                
+                  <option value="102894743086336">京都府</option>
+                
+                  <option value="103758582996549">奈良県</option>
+                
+                  <option value="109501905748739">大阪府</option>
+                
+                  <option value="314376078572469">ビバシティ彦根 駐車場</option>
+                
+                  <option value="350284361735169">Clap dining</option>
+                
+                  <option value="1380152765563932">Pubclub Urecco</option>
+                
+                  <option value="138248762969593">Sherpa hair skin hospital</option>
+                
+                  <option value="190910680986293">彦根</option>
+                
+                  <option value="267465033332310">ひこね燦ぱれす</option>
+                
+                  <option value="196973323714532">Beetle能登川店（ビートル能登川店）</option>
+                
+                  <option value="432698706838781">重ね煮ごはん　にんまり</option>
+                
+                  <option value="362839670459963">近江の国から木村商店</option>
+                
+                  <option value="252755008194002">ねこカフェ　にゃんこっこ</option>
+                
+                  <option value="433576463427883">スミス記念堂</option>
+                
+                  <option value="606901619337325">クリーンサービス稲枝</option>
+                
+                  <option value="180586621992967">三井アウトレットパーク ジャズドリーム長島</option>
+                
+                  <option value="112645222127825">ラーメン大島軒</option>
+                
+                  <option value="114388868577397">大垣市</option>
+                
+                  <option value="391269527662485">グランジュテ　クラフト工房</option>
+                
+                  <option value="248136171904520">彦根バッティングセンター</option>
+                
+                  <option value="101100533327604">LOTUS  レストランロータス　</option>
+                
+                  <option value="214910965272886">モレラ岐阜</option>
+                
+                  <option value="312458622195801">有限会社　滋賀飲料</option>
+                
+                  <option value="394156200627170">下鴨神社（賀茂御祖神社）</option>
+                
+                  <option value="244527362299450">大徳寺</option>
+                
+                  <option value="140277549480638">中居商事株式会社</option>
+                
+                  <option value="157702270912590">銀閣寺（東山慈照寺）</option>
+                
+                  <option value="537489842979943">SPOON彦根店</option>
+                
+                  <option value="374064132688368">Cafe&Bar伊沙羅</option>
+                
+                  <option value="451507411636330">北海道料理・一品　おいちゃん</option>
+                
+                  <option value="457740124301808">西﨑登記測量事務所</option>
+                
+                  <option value="307632212628887">無印良品の家  彦根店</option>
+                
+                  <option value="273540609348046">geiya dance studio 23NR</option>
+                
+                  <option value="393496177350865">Foolish Club</option>
+                
+                  <option value="175934879151236">美容職業訓練校（ヒロセ・ビートル）</option>
+                
+                  <option value="170165256395552">丸松木材株式会社</option>
+                
+                  <option value="158048180949034">クレフィール湖東</option>
+                
+                  <option value="456389901081522">LE VACABON</option>
+                
+                  <option value="204741966235414">鴨川</option>
+                
+                  <option value="145017312331309">Kurimaro Kitchen Bar</option>
+                
+                  <option value="172088826330346">コメダ珈琲彦根平田店</option>
+                
+                  <option value="627836607245561">日本料理 水幸亭</option>
+                
+                  <option value="131470843608915">miracle cross x bar ミラクル クロスバー next nippon</option>
+                
+                  <option value="136923323071974">伏見稲荷大社　千本鳥居</option>
+                
+                  <option value="357143574317873">カフェ&クラフトギャラリー アルボッチョ</option>
+                
+                  <option value="262479653863001">りーる整骨院</option>
+                
+                  <option value="601262149916910">多賀そば工房 ～手打ち多賀そば発信店～</option>
+                
+                  <option value="147412348656032">【滋賀県彦根市ビバシティ近く肩こり腰痛改善カイロ整体マッサージ】整体健康美　からだの修理屋さん</option>
+                
+                  <option value="445839672161819">グランフロント大阪</option>
+                
+                  <option value="107896649239642">桑名市</option>
+                
+                  <option value="156515021032643">名古屋駅 Nagoya Station</option>
+                
+                  <option value="315637198517912">ひなた家</option>
+                
+                  <option value="113250615398778">北野天満宮</option>
+                
+                  <option value="245823815468883">STUDIO ETERNAL</option>
+                
+                  <option value="1418456225053163">Beetle Bridal-ビートルブライダル</option>
+                
+                  <option value="219582661512030">ESP（eco style project）</option>
+                
+                  <option value="122852684518306">五個荘中央公園</option>
+                
+                  <option value="254323267940025">三井アウトレットパーク滋賀竜王</option>
+                
+                  <option value="355824091152340">株式会社 北山【滋賀県東近江市／外壁塗装・防水工事】</option>
+                
+                  <option value="246119412201530">ケロ　マイス</option>
+                
+                  <option value="122288591266445">Perte Foglia（ペルテフォーリア）</option>
+                
+                  <option value="224690167555394">いと重菓舗</option>
+                
+                  <option value="438336389596295">幹事代行ドットコム滋賀</option>
+                
+                  <option value="229872520447318">Club De Fans De Inuyasha</option>
+                
+                  <option value="224727081042549">K-style</option>
+                
+                  <option value="454621711223998">NEW WORK株式会社</option>
+                
+                  <option value="246392398753388">ホテルグランヴィア京都</option>
+                
+                  <option value="139472452903189">Guest House Muga</option>
+                
+                  <option value="143041885737255">錦市場</option>
+                
+                  <option value="170119926530034">Ronaldo l  Cr7 ッ</option>
+                
+                  <option value="403444603042643">だんらん 日曜の晩ごはん</option>
+                
+                  <option value="210102802373320">オフィスゲンキ</option>
+                
+                  <option value="215890185104187">Libur　Bali　リブールバリ</option>
+                
+                  <option value="484469118315555">Ｐａｔｉｓｓｅｒｉｅ　ＤＥ-ＪＩ</option>
+                
+                  <option value="112051888806373">稲沢市</option>
+                
+                  <option value="138373116204801">京都大学 - Kyoto University</option>
+                
+                  <option value="175970895930424">Frases Escritas ク</option>
+                
+                  <option value="466909533364431">日本語ッッ</option>
+                
+                  <option value="388451924560166">メカニックハウス</option>
+                
+                  <option value="258828284167521">彦根インター</option>
+                
+                  <option value="491620764193644">T-shin café</option>
+                
+                  <option value="281587371872231">長崎食堂</option>
+                
+                  <option value="196849813795686">一般社団法人cbtを学ぶ会</option>
+                
+                  <option value="129341867175921">こんにゃく 美容 セラミド ダイエット  健康   青山 滋 こんにゃくの鬼 おこんにゃく屋</option>
+                
+                  <option value="134364316643026">有限会社ガーディアン・ズ</option>
+                
+                  <option value="416833521676386">創作Diningえん-縁-</option>
+                
+                  <option value="151223144948752">ひこにゃん</option>
+                
+                  <option value="307874535966087">よこせ梨園</option>
+                
+                  <option value="105743649458071">長浜市</option>
+                
+                  <option value="123415757852359">ハイアット リージェンシー 京都</option>
+                
+                  <option value="349805321711393">名古屋コーチンの翠翔</option>
+                
+                  <option value="422250921140598">Hair MiMpi</option>
+                
+                  <option value="170047813045832">ドリームフーズ株式会社</option>
+                
+                  <option value="116947625024927">いぶき亭</option>
+                
+                  <option value="196564060381282">THE WESTIN MIYAKO KYOTO | ウェスティン都ホテル京都</option>
+                
+                  <option value="250747585073042">和食料理家やま咲</option>
+                
+                  <option value="176074819192997">彦根市弓道連盟の応援ページ</option>
+                
+                  <option value="201342016677359">REGAL SHOES 彦根店</option>
+                
+                  <option value="111937038818889">滋賀県草津市</option>
+                
+                  <option value="117181141670270">千代保稲荷神社</option>
+                
+                  <option value="330118443676943">彦根IC</option>
+                
+                  <option value="134549449929823">京都ロイヤルホテル＆スパ / Kyoto Royal Hotel & Spa</option>
+                
+                  <option value="225151644291431">B Legumes a table【ベ レギューム ア ターブル】京都市中京区　フレンチ</option>
+                
+                  <option value="292198224193331">POLA THE BEAUTY 彦根店</option>
+                
+                  <option value="109128045772739">二条城</option>
+                
+                  <option value="153439154729923">さざなみ酒店</option>
+                
+                  <option value="313652385352450">河島美容院</option>
+                
+                  <option value="214083241963938">銀水</option>
+                
+                  <option value="207305389320325">うなぎや源内</option>
+                
+                  <option value="175840565763105">京都大原三千院</option>
+                
+                  <option value="161636014026311">クリクラ湖北</option>
+                
+                  <option value="180962325287079">Echigawa</option>
+                
+                  <option value="274636769232632">多賀ゴルフ練習場</option>
+                
+                  <option value="149737558380427">大阪駅（Osaka Station）</option>
+                
+                  <option value="482495328451333">哲学の道</option>
+                
+                  <option value="531268983595705">満月珈琲店</option>
+                
+                  <option value="618849094827350">حياتي كلـها لله</option>
+                
+                  <option value="148865881814007">魚民彦根駅前店</option>
+                
+                  <option value="178660155534192">目利きの銀次</option>
+                
+                  <option value="152257941506414">御馳創</option>
+                
+                  <option value="497751920239262">カーハウスゼロ/株式会社JOSHO</option>
+                
+                  <option value="163289620413676">Joyfull</option>
+                
+                  <option value="327271683964548">イタリア食堂FUKUMOTO</option>
+                
+                  <option value="112281952117608">琵琶湖</option>
+                
+                  <option value="431558640206951">コトナリエ２０１３　光と環境の祭典</option>
+                
+                  <option value="557603344294448">Việt Nam Quê Hương Chúng Tôi</option>
+                
+                  <option value="189621004511644">鈴木ヘルスケアサービス株式会社</option>
+                
+                  <option value="366275346772123">花牧場</option>
+                
+                  <option value="138577236229892">ひばり公園</option>
+                
+                  <option value="218313884978286">Cafe Gold Coast</option>
+                
+                  <option value="153938698042129">千成亭別館 華見</option>
+                
+                  <option value="227105650679567">川島タイヤ国道307号店</option>
+                
+                  <option value="172718566225848">Branch</option>
+                
+                  <option value="420491078035043">多賀町有線放送</option>
+                
+                  <option value="170602526315729">滋賀県甲賀市</option>
+                
+                  <option value="124493147603038">新大阪駅（Shin-Osaka station）</option>
+                
+                  <option value="107607592655795">地主神社</option>
+                
+                  <option value="129617590419649">京都御苑 / Kyoutogyoen</option>
+                
+                  <option value="283014451737444">Soy+Cafe</option>
+                
+                  <option value="339312252751191">アットタイム彦根店</option>
+                
+                  <option value="292877647443940">Beetle Grande（ビートルグランデ）</option>
+                
+                  <option value="1429668193913930">Beautiful ッ</option>
+                
+                  <option value="435983349780720">まるいし</option>
+                
+                  <option value="179975355530478">Brasil Na Copa ツ</option>
+                
+                  <option value="170881896273961">永観堂</option>
+                
+                  <option value="203114639757751">荒神山公園</option>
+                
+                  <option value="155172157841557">比内地鶏 ほっこりや</option>
+                
+                  <option value="142155582495221">三十三間堂 (Sanjūsangendō)</option>
+                
+                  <option value="415410641908297">グッぼる</option>
+                
+                  <option value="224256314401927">AKATSUKI</option>
+                
+                  <option value="129225390463621">先斗町 / Pontocho</option>
+                
+                  <option value="298637253484618">楽園料理Paraiso</option>
+                
+                  <option value="154916504541718">立命館大学 衣笠キャンパス</option>
+                
+                  <option value="138477249534120">高台寺</option>
+                
+                  <option value="103427049745173">ココス</option>
+                
+                  <option value="134832513392827">東福寺</option>
+                
+                  <option value="144639918931590">名古屋アンパンマンこどもミュージアム</option>
+                
+                  <option value="171668542851621">御在所サービスエリア</option>
+                
+                  <option value="124749774243038">花見小路</option>
+                
+                  <option value="558350134208244">ビアパラダイス 樽2［たるたる］</option>
+                
+                  <option value="108075192546188">敦賀市</option>
+                
+                  <option value="199576263447306">彦根東高等学校</option>
+                
+                  <option value="273111876055146">マリアージュ彦根</option>
+                
+                  <option value="547633581980079">Iphone 6sㅇ</option>
+                
+                  <option value="380144495382898">Peter</option>
+                
+                  <option value="140514195993642">道頓堀　Dōtonbori</option>
+                
+                  <option value="145949678823126">とり屋半兵衛</option>
+                
+                  <option value="532415996812924">｢Ｔｈｅ　8耐｣ＳＷＩＭ　ＥＫＩＤＥＮ　2013　ｉｎ　ひこね</option>
+                
+                  <option value="171657269572160">彦根キャッスルホテル</option>
+                
+                  <option value="187313147971416">Hashimoto Alumi co ltd</option>
+                
+                  <option value="106016572762362">守山市</option>
+                
+                  <option value="357078877715364">アクア×イグニス</option>
+                
+                  <option value="217682888245659">南禅寺</option>
+                
+                  <option value="300066676693632">Jinno Lady's Clinic</option>
+                
+                  <option value="593113854047244">カラオケスタジオPAL</option>
+                
+                  <option value="205072772932979">京都タワー</option>
+                
+                  <option value="143126835729640">京都ホテルオークラ (Kyoto Hotel Okura)</option>
+                
+                  <option value="206632372779376">はせっく</option>
+                
+                  <option value="214536845305451">オートショップフタバ</option>
+                
+                  <option value="239185209585913">I-hope アイホープ</option>
+                
+                  <option value="308547202524798">焼肉 晴家～HARERUYA～</option>
+                
+                  <option value="542900362464198">アトリエ ドリアン</option>
+                
+                  <option value="188084881244596">コンフォートホテル彦根</option>
+                
+                  <option value="267580256588856">いちおしや伝五郎</option>
+                
+                  <option value="228503610513295">東京ビッグサイト</option>
+                
+                  <option value="100100750054521">茶寮 都路里 祇園本店</option>
+                
+                  <option value="154211454614124">同志社大学 今出川キャンパス</option>
+                
+                  <option value="208594222515284">ちゃんぽん亭総本家 能登川店</option>
+                
+                  <option value="163286330461183">彦根城下町</option>
+                
+                  <option value="359715050747331">湖東スタジアム</option>
+                
+                  <option value="168693123176370">アズイン東近江能登川駅前/ビジネスホテル</option>
+                
+                  <option value="357317367695623">せせらぎの里 こうら</option>
+                
+                  <option value="386359644801328">献上伊吹そばつる亀庵</option>
+                
+                  <option value="451562568252923">reino anime</option>
+                
+                  <option value="543347539085048">Rakan Bushnaq</option>
+                
+                  <option value="7175346442">WWE</option>
+                
+                  <option value="11768835826">Monster Energy</option>
+                
+                  <option value="109551372397772">任天堂</option>
+                
+                  <option value="115652781839973">大津SA</option>
+                
+                  <option value="150606628381169">近江多賀亭 Expasa多賀（下り）</option>
+                
+                  <option value="265108330195725">佐和山城跡</option>
+                
+                  <option value="107604159299267">焼肉ダイニング千乃房</option>
+                
+                  <option value="234594819916545">滋賀県立彦根総合運動場陸上競技場</option>
+                
+                  <option value="183448041724227">Coco壱番屋 東近江五個荘店</option>
+                
+                  <option value="119617784763116">円山公園 / Maruyama Park</option>
+                
+                  <option value="192719657420956">国立京都国際会館</option>
+                
+                  <option value="118339311573368">大阪府大阪市</option>
+                
+                  <option value="156471324548954">大津プリンスホテル</option>
+                
+                  <option value="187701024628383">くら寿司</option>
+                
+                  <option value="112722778738804">小浜市</option>
+                
+                  <option value="152782748073539">ビバシティシネマ</option>
+                
+                  <option value="149469395091296">新名神高速道路 土山サービスエリア</option>
+                
+                  <option value="139840019404727">四条烏丸周辺</option>
+                
+                  <option value="209478762403027">龍谷山　本願寺（西本願寺）</option>
+                
+                  <option value="199361516798308">醒ヶ井養鱒場</option>
+                
+                  <option value="151740948240873">お墨月</option>
+                
+                <option value="">この中には存在しません</option>
+              </select>
+              <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="select-instagramid" class="col-md-3 control-label">Instagram上での名前</label>
+            <div class="col-md-9">
+              <select class="form-control" id="select-instagramid" name="instagramid">
+                
+                  <option value="834988">豊郷町立豊郷小学校</option>
+                
+                  <option value="835352">桜が丘高校軽音部部室</option>
+                
+                  <option value="93795">豊郷小学校 旧校舎群</option>
+                
+                  <option value="157508958">あきちゃん</option>
+                
+                  <option value="102249438">むぎゅうううううう</option>
+                
+                  <option value="62924054">豊郷小学校旧校舎群 酬徳記念館</option>
+                
+                  <option value="5956574">豊郷小学校 旧校舎群 講堂</option>
+                
+                  <option value="835047">けいおん‼カフェ</option>
+                
+                  <option value="45811097">愛の豊郷</option>
+                
+                  <option value="80538403">あずにゃんぺろぺろ大本営豊郷支部（記念博物館）</option>
+                
+                  <option value="6485392">豊郷小学校 駐車場</option>
+                
+                  <option value="50515827">カフェ・ダイニング Shoko</option>
+                
+                  <option value="14178890">三羽鶴</option>
+                
+                  <option value="151495974">先人を偲ぶ館</option>
+                
+                  <option value="14442097">豊郷郵便局</option>
+                
+                <option value="">この中には存在しません</option>
+              </select>
+              <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="select-foursquareid" class="col-md-3 control-label">foursquare上での名前</label>
+            <div class="col-md-9">
+              <select class="form-control" id="select-foursquareid" name="foursquareid">
+                
+                  <option value="4d04293b37036dcb98190ffb">桜が丘高校 軽音部部室</option>
+                
+                  <option value="4c00853134ccc9283dcae1cd">豊郷小学校 旧校舎群</option>
+                
+                  <option value="4c19badc6e02b7130ecc627b">豊郷町立豊郷小学校</option>
+                
+                  <option value="4d16c25e8312236a688b59ba">けいおん‼カフェ</option>
+                
+                  <option value="51b3e2d9498e71ddeb5dafe8">律ちゃんの机の中</option>
+                
+                  <option value="4bc179114cdfc9b6a7ca9421">豊郷駅 (Toyosato Sta.)</option>
+                
+                  <option value="4f251309e4b04f6e69dc9f89">三羽鶴</option>
+                
+                  <option value="4f9b75c0e4b0e1cbfe688d9a">カフェ・ダイニング Shoko</option>
+                
+                  <option value="5103ad31e4b00aedb5ba5177">豊辰</option>
+                
+                  <option value="4ea395e8e5facb29c7c33773">さくら遊園地</option>
+                
+                  <option value="4ccbe783ee23a1430ac81aa8">豊郷町役場</option>
+                
+                  <option value="4de9bf881f6e3ddebdba9518">豊郷小学校 駐車場</option>
+                
+                  <option value="4c2eaafaa0ced13afe5a0f6e">玉屋</option>
+                
+                  <option value="4e95469529c275d2aae20ea3">豊郷郵便局</option>
+                
+                  <option value="4db3b0174b226b343d7f1209">先人を偲ぶ館</option>
+                
+                  <option value="51c80640498e84000f6fdc6d">珍カスが集合写真撮ったおっさんの銅像</option>
+                
+                  <option value="5078e8d0e4b0b5e91f80ca6b">あきちゃん</option>
+                
+                  <option value="4f94b568e4b06b0cf74fe84b">滋賀銀行 豊郷支店</option>
+                
+                  <option value="4fc04b7ae4b08acecb05be39">二越</option>
+                
+                  <option value="4dba221f0cb65435c526528c">豊郷病院</option>
+                
+                  <option value="50025786e4b0ae2f1776b259">CUT SALON YASUDA</option>
+                
+                  <option value="4fcabd03e4b088c92dc0102b">JA東びわこ 豊郷支店</option>
+                
+                  <option value="52b7c212498e483d03e0b7f5">ルーチェ・カルマ</option>
+                
+                  <option value="4e5b0f8d483b865169f48bdf">焼きたてパン とよせ</option>
+                
+                  <option value="4bde3a8c0ee3a5934c7730b0">ちゃんぽん亭総本家 豊郷店</option>
+                
+                  <option value="4dc20c71ae60966750a2cad9">セブンイレブン 豊郷店</option>
+                
+                  <option value="4d3c33076b3d236af4ec5e64">ビジネスインホテルくらま</option>
+                
+                  <option value="4ba4c1ccf964a5202db238e3">河瀬駅 (Kawase Sta.)</option>
+                
+                  <option value="4b872202f964a52079b231e3">マクドナルド 8号線豊郷店</option>
+                
+                  <option value="4cb2f690eb65b1f790ef7fcd">天下一品 豊郷店</option>
+                
+                <option value="">この中には存在しません</option>
+              </select>
+              <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+              <input type="submit" class="btn btn-default" value="送信">
+            </div>
+          </div>
+        </form>
+      </article>
+      <!--/span-->
+      
+      <hr>
+      <footer class="container">
+        <ul>
+          <li>運営している人紹介（連絡先など）</li>
+          <li>利用規約</li>
+          <li>注意書き</li>
+          <li>著作権表記</li>
+        </ul>
+      </footer>
+    </div>
+    <!--/.container-->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Load Backbone.js-->
+    <script src="js/underscore-min.js"></script>
+    <script src="js/json2.js"></script>
+    <script src="js/backbone-min.js"></script>
+    <!-- Load page's js -->
+    <script src="js/select2.min.js"></script><!-- 追加事項 -->
+    <script src="js/confirmplaceadd.js"></script><!-- 追加事項 -->
+  </body>
+</html>

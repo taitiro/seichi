@@ -121,7 +121,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         if (request.getParameter("productid5") != null && !request.getParameter("productid5").equals("") ) {
             thisPlace.setProductid5(request.getParameter("productid5"));
         }else{
-            thisPlace.setProductid3("");
+            thisPlace.setProductid5("");
         }
         if (request.getParameter("foursquareid") != null && !request.getParameter("foursquareid").equals("")) {
             thisPlace.setFoursquareid(request.getParameter("foursquareid"));
@@ -143,11 +143,11 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
         }
-        if(getServletContext().getAttribute("worklist")==null){
-            getServletContext().setAttribute("worklist", new WorkListBean());
+        if(getServletContext().getAttribute("workList")==null){
+            getServletContext().setAttribute("workList", new WorkListBean());
         }
         //テスト用
-        request.setAttribute("confirmplace",thisPlace);
-        response.sendRedirect(Parameter.URL_ROOT);
+        request.setAttribute("thisPlace",thisPlace);
+        request.getRequestDispatcher("/jsp/confirmplaceaddView.jsp").forward(request, response);
     }
 }

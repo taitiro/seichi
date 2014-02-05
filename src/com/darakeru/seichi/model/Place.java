@@ -26,10 +26,6 @@ import java.util.List;
 })
 public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
-    /** 
-     * ASIN(Amazon Standard Identification Number)の桁数
-     */
-    private static final int ASIN_LENGTH = 10;
 
 	@Id
 	private int placeid;
@@ -178,7 +174,7 @@ public class Place implements Serializable {
 	}
 
     public void setProductid1(String productid1) {
-        this.productid1 = (productid1.length() == ASIN_LENGTH ) ? productid1 : "" ;
+        this.productid1 = (productid1.length() == Parameter.ASIN_LENGTH ) ? productid1 : "" ;
     }
 
     public String getProductid2() {
@@ -186,7 +182,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid2(String productid2) {
-        this.productid2 = (productid2.length() == ASIN_LENGTH ) ? productid2 : "" ;
+        this.productid2 = (productid2.length() == Parameter.ASIN_LENGTH ) ? productid2 : "" ;
     }
 
     public String getProductid3() {
@@ -194,7 +190,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid3(String productid3) {
-        this.productid3 = (productid3.length() == ASIN_LENGTH ) ? productid3 : "" ;
+        this.productid3 = (productid3.length() == Parameter.ASIN_LENGTH ) ? productid3 : "" ;
     }
 
     public String getProductid4() {
@@ -202,7 +198,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid4(String productid4) {
-        this.productid4 = (productid4.length() == ASIN_LENGTH ) ? productid4 : "" ;
+        this.productid4 = (productid4.length() == Parameter.ASIN_LENGTH ) ? productid4 : "" ;
     }
 
     public String getProductid5() {
@@ -210,7 +206,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid5(String productid5) {
-        this.productid5 = (productid5.length() == ASIN_LENGTH ) ? productid5 : "" ;
+        this.productid5 = (productid5.length() == Parameter.ASIN_LENGTH ) ? productid5 : "" ;
     }
 
 	public String getUrl1() {

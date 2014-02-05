@@ -79,7 +79,8 @@ var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
           <section class="placedesc">
             <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%><!-- 作品の説明 -->
           </section>
-          <p>住所：<address><jsp:getProperty name="thisPlace" property="address" /></address></p>
+          <p>住所：</p>
+         <address><jsp:getProperty name="thisPlace" property="address" /></address>
         </section>
         <section>
           <div class="row">

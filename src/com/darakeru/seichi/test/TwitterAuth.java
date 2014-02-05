@@ -1,6 +1,5 @@
 package com.darakeru.seichi.test;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
@@ -9,7 +8,6 @@ import java.net.URLEncoder;
 import java.util.zip.GZIPInputStream;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
