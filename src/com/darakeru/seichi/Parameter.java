@@ -8,7 +8,7 @@ public class Parameter {
     public static final String FOURSQUARE_CLIENT_SECRET_ID = "F2A0YT1UCMBRKPHLZ3TMQJ1WMCOFOYCCEXO5BOJM1H5BFHBZ";
     public static final String TWITTER_CONSUMER_KEY = "UcPOHILswG0MyR7NVHs4qw";
     public static final String TWITTER_CONSUMER_SECRET_KEY = "vlf282Ko9G1yTdgFsprR16tcjpXajqlWlrLpXiE";
-    public static final String TWITTER_TOKEN = "AAAAAAAAAAAAAAAAAAAAACqLVwAAAAAAd4%2Bd6jbcqT9K6lyccGgVgZCJNno%3DVPO8NPyL1bbqdEvtTtl0t8XXmTEV18ZZQdtujGaemebHqTF83n";
+    public static final String TWITTER_TOKEN = "Bearer AAAAAAAAAAAAAAAAAAAAACqLVwAAAAAAd4%2Bd6jbcqT9K6lyccGgVgZCJNno%3DVPO8NPyL1bbqdEvtTtl0t8XXmTEV18ZZQdtujGaemebHqTF83n";
     public static final String AMAZON_API_ACCESS_KEY = "AKIAJ7Z6KUTRWG2IDXVQ";
     public static final String AMAZON_API_SECRET_KEY = "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";
     /** 
@@ -19,4 +19,8 @@ public class Parameter {
      * バージョンの日付．いまいちなんに使うのかよくわかっていない
      */
     public static final String VERSION_DATE = "20140129";
+    /** 
+     * ASIN(Amazon Standard Identification Number)の桁数
+     */
+    public static final int ASIN_LENGTH = 10;
 }
