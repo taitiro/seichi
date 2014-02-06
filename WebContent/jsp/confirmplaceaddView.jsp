@@ -9,11 +9,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="だらけるこむ（小杉太一郎）">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <meta name="robots" content="noindex,noarchive,follow">
     
-    <title>聖地追加の確認</title>
+    <title>たんけんアニメのまち - 聖地情報追加の確認</title>
     
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     <link href="css/select2-bootstrap.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="css/offcanvas.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -41,10 +41,11 @@
       </div>
       <div class="collapse navbar-collapse container">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="./">トップページ</a></li>
+          <li><a href="./">トップページ</a></li>
           <li><a href="search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
+        <li><a href="placeadd.html">聖地情報の追加</a></li>
         </ul>
-        <form class="btn-group navbar-form pull-right">
+<!--         <form class="btn-group navbar-form pull-right">
           <button type="button" class="btn btn-default btn-sm">ログイン</button>
           <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
@@ -53,7 +54,7 @@
             <li><a href="#">twitterIDでログイン</a></li>
             <li><a href="#">facebookIDでログイン</a></li>
           </ul>
-        </form>
+        </form> -->
       </div>
       <!-- /.nav-collapse -->
     </header>
