@@ -34,9 +34,8 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         /*
          * リファラーチェック
          */
-        if(!request.getHeader("referer").equals(Parameter.URL_ROOT + "placeadd.html") 
-                && !request.getHeader("referer").equals(Parameter.URL_ROOT + "customplaceadd.html")
-                && !request.getHeader("referer").equals(Parameter.URL_ROOT + "placeaddtest.html") )
+        if(!request.getHeader("referer").startsWith(Parameter.URL_ROOT + "placeadd.html") 
+                && !request.getHeader("referer").startsWith(Parameter.URL_ROOT + "customplaceadd.html"))
         {
             response.sendRedirect(Parameter.URL_ROOT);
         }
@@ -57,7 +56,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         } catch (NullPointerException e) {
             response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
         }
-
+        
         if (request.getParameter("placedesc") != null && !request.getParameter("placedesc").equals("") ) {
             thisPlace.setPlacedesc(request.getParameter("placedesc"));
         }else{
@@ -140,13 +139,17 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
             }else{
                 thisPlace.setInstagramid();
             }
+            if (request.getParameter("workid") != null && !request.getParameter("workid").equals("")) {
+                thisPlace.setWorkid(Integer.parseInt(request.getParameter("workid")));
+            }else{
+                thisPlace.setWorkid(0);
+            }
         } catch (NumberFormatException e) {
             response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
         }
         if(getServletContext().getAttribute("workList")==null){
             getServletContext().setAttribute("workList", new WorkListBean());
         }
-        //テスト用
         request.setAttribute("thisPlace",thisPlace);
         request.getRequestDispatcher("/jsp/confirmplaceaddView.jsp").forward(request, response);
     }

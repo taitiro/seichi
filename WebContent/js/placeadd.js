@@ -1,10 +1,15 @@
-var map, service, infowindow,reference, marker_list = new google.maps.MVCArray(), latlngSW = [
+var map, service, infowindow,reference,workid,marker_list = new google.maps.MVCArray(), latlngSW = [
         20.425277, 122.933611 ], latlngNE = [ 45.557777, 153.986388 ], thisBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(latlngSW[0], latlngSW[1]),
         new google.maps.LatLng(latlngNE[0], latlngNE[1])), thisCenter = new google.maps.LatLng(
         35.698683, 139.774219);
 
 function initialize() {
+    if((/^\d+$/).test(location.search.substr(1))){
+      workid = location.search.substr(1);
+    }else{
+      workid = null;
+    }
     map = new google.maps.Map(document.getElementById('map'), {
         center : thisCenter,
         zoom : 17
@@ -27,13 +32,13 @@ function searchStr() {
         marker.setMap(null);
     });
     infowindow = new google.maps.InfoWindow();
-    console.log('callback:do -> ' + request.query);
+    /* console.log('callback:do -> ' + request.query); */
     service.textSearch(request, callback);
 }
 function callback(results, status) {
     var thisLatlngNE = new Array(2), thisLatlngSW = new Array(
             2);
-    console.log('callback:get -> ' + results.length);
+    /* console.log('callback:get -> ' + results.length); */
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             var element = document.createElement('div');
@@ -90,6 +95,7 @@ function callback(results, status) {
                     + '<label>Google Place(Google+)のURL(url1)：<input class="form-control" type="url" name="url1" value="" id="detail-url-'
                     + i + '"></label>'
                     + '<input type="hidden" name="urlname1" value="' + results[i].name + ' - 基本情報 - Google+">'
+                    + (workid == null ? '' : ('<input type="hidden" name="workid" value="' + workid + '">' ))
                     + '<input class="btn btn-primary" type="submit" value="送信">'
                     + '</div>' + '</form>';
             document.getElementById('search-result').appendChild(element);
@@ -104,7 +110,7 @@ function callback(results, status) {
             map.setZoom(17);
         }
     } else {
-        console.log('error : ' + status);
+        /* console.log('error : ' + status); */
     }
 }
 function createMarker(place,i) {
@@ -120,7 +126,7 @@ function createMarker(place,i) {
     });
 }
 function moreDetail(reference,i) {
-    console.log('click');
+    /* console.log('click'); */
     var request = {
         reference : reference
     };

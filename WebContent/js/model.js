@@ -21,11 +21,11 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
       },
       success : function(pos){
         this.set({'lat':pos.coords.latitude,'lng':pos.coords.longitude});
-        console.log('Get Current Position');
+        /* console.log('Get Current Position'); */
       },
       failure : function(){
         this.set({'lat':DEF_LAT_LNG[0],'lng':DEF_LAT_LNG[1]});
-        console.log('Can not Get Current Position');
+        /* console.log('Can not Get Current Position'); */
       },
       setLocation : function(){
         if (navigator.geolocation) { 
@@ -38,7 +38,7 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
           );
         } else {
           this.set({'lat':DEF_LAT_LNG[0],'lng':DEF_LAT_LNG[1]});
-          console.log('NO LOCATION API');
+          /* console.log('NO LOCATION API'); */
         }
       },
     }),
@@ -47,7 +47,7 @@ var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は�
       url:'place/',
       initialize : function initialize() {    // インスタンス生成時に実行される
         this.url += this.get('id');
-        console.log(this.get('name'));
+        /* console.log(this.get('name')); */
       }
     }),
     //Collection

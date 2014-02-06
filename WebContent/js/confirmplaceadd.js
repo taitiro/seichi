@@ -34,7 +34,8 @@ $(document).ready(function(){
       $('#select-workid-wrapper').addClass("has-success");
       defworkid = false;
     }
-    
+  });
+  
   $('#textarea-placedesc').change(function(){
     if( $('#textarea-placedesc').val() != '' ){
       $('#textarea-placedesc-wrapper').removeClass("has-error");
@@ -43,6 +44,5 @@ $(document).ready(function(){
       $('#textarea-placedesc-wrapper').removeClass("has-success");
       $('#textarea-placedesc-wrapper').addClass("has-error");
     }
-  });
   });
 });

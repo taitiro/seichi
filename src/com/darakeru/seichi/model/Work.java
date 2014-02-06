@@ -29,6 +29,7 @@ public class Work implements Serializable {
 	private static final int ASIN_LENGTH = 10;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int workid;
 
 	private String img;

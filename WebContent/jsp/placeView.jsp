@@ -86,9 +86,45 @@ var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
           <div class="row">
             <div class="col-md-4">
               <h2>関連商品</h2>
+              <%=thisPlace.getProductid1().equals("") ? "" : thisPlace
+                    .getProductid1() + "<br />"%>
+              <%=thisPlace.getProductid2().equals("") ? "" : thisPlace
+                    .getProductid2() + "<br />"%>
+              <%=thisPlace.getProductid3().equals("") ? "" : thisPlace
+                    .getProductid3() + "<br />"%>
+              <%=thisPlace.getProductid4().equals("") ? "" : thisPlace
+                    .getProductid4() + "<br />"%>
+              <%=thisPlace.getProductid5().equals("") ? "" : thisPlace
+                    .getProductid5() + "<br />"%>
             </div>
             <div class="col-md-4">
               <h2>関連URL</h2>
+              <ul class="list-group">
+                <%
+                    if (!thisPlace.getUrl1().equals("")
+                            && !thisPlace.getUrlname1().equals("")) {
+                %>
+                <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url1" />"> <jsp:getProperty name="thisPlace" property="urlname1" /></a></li>
+                <%
+                    }
+                %>
+                <%
+                    if (!thisPlace.getUrl2().equals("")
+                            && !thisPlace.getUrlname2().equals("")) {
+                %>
+                <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url2" />"> <jsp:getProperty name="thisPlace" property="urlname2" /></a></li>
+                <%
+                    }
+                %>
+                <%
+                    if (!thisPlace.getUrl3().equals("")
+                            && !thisPlace.getUrlname3().equals("")) {
+                %>
+                <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url3" />"> <jsp:getProperty name="thisPlace" property="urlname3" /></a></li>
+                <%
+                    }
+                %>
+              </ul>
             </div>
             <div class="col-md-4">
               <h2>アクセス数</h2>

@@ -76,6 +76,7 @@
           <section class="workdesc">
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
           </section>
+          <p><a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">聖地情報を登録する</a></p>
         </section>
         <section>
           <div class="row">

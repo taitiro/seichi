@@ -6,7 +6,7 @@ $(function () {
       placeInfo : undefined,
       geolocation : undefined,
       initialize : function(options) {
-        console.log('initialize');
+        /* console.log('initialize'); */
         this.geolocation = new GeolocationModel();
         _.bindAll(this,'render','setMap','roundMap');
         this.listenTo(this.geolocation,"change", this.render);
@@ -19,18 +19,18 @@ $(function () {
         if(this.geolocation.get("lat")){
           geoParam = 'lat=' + this.geolocation.get("lat") + '&lng=' + this.geolocation.get("lng");
           this.collection.url = this.collection.urlRoot + geoParam;
-          console.log('success:getlocation');
+          /* console.log('success:getlocation'); */
         }
         this.collection.fetch({
           success : function success(collection, res, options) {
             // 通信成功時の処理……内容を書く
             thisMapView.setMap();
             thisMapView.roundMap();
-            console.log('success');
+            /* console.log('success'); */
           },
           error : function error() {
             // 通信失敗時の処理
-            console.log('Error');
+            /* console.log('Error'); */
           }
         });
       },
@@ -53,7 +53,7 @@ $(function () {
                 map: thisMapView.mapObj,
                 title:value.get("name")
               });
-          console.log(thisMapView);
+          /* console.log(thisMapView); */
           thisMapView.placeInfo.push( new google.maps.InfoWindow({
             content : '<div id="map-info"><img src="'
             + value.get("img")
@@ -77,7 +77,7 @@ $(function () {
         });
         this.placeInfo[0].open(this.mapObj);
         $('#map-container').show();
-        console.log('display map');
+        /* console.log('display map'); */
       },
       roundMap : function () {
         var i = 0;
@@ -88,17 +88,20 @@ $(function () {
           }else{
             i=0;
           }
-          thisMapView.mapObj.panTo(thisMapView.placeInfo[i].position)
+          thisMapView.mapObj.panTo(thisMapView.placeInfo[i].position);
           thisMapView.placeInfo[i].open(thisMapView.mapObj);
-        },5000)
+        },5000);
       }
     });
     //viewクラスのインスタンス作成（初期処理）
     thisMapView = new MapView({collection : new PlaceCollection() });
   });
-  // その他
-  $('#mobamas-ul').ticker({
-    controls: false,
-    titleText: 'モバマス市況'
-  });
+  //その他
+  console.log("I thought what I'd do was, I'd pretend I was one of those deaf-mutes... or should I?");
+  laugh = function(){
+      setInterval(function(){
+          console.log('You are an Idiot!');
+          console.log('Ahahahaha!');
+      }, 100);
+  };
 });

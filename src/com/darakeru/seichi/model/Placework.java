@@ -1,6 +1,7 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -14,6 +15,7 @@ public class Placework implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int placeworkid;
 
 	//bi-directional many-to-one association to Place

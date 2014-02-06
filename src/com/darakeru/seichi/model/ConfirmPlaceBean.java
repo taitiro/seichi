@@ -73,6 +73,8 @@ public class ConfirmPlaceBean implements Serializable {
 
     private int instagramid;
     
+    private int workid = 0;
+    
     private LinkedHashMap<Long, String> facebookids;
 
     private LinkedHashMap<String, String> foursquareids;
@@ -423,6 +425,18 @@ public class ConfirmPlaceBean implements Serializable {
         } finally {
             con.disconnect();
         }
+    }
+
+    public int getWorkid() {
+        return workid;
+    }
+
+    public void setWorkid(int workid) {
+        this.workid = workid;
+    }
+    
+    public void setWorkid(String workidStr) {
+        this.workid = Integer.parseInt(workidStr);
     }
 
 }

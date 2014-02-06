@@ -5,7 +5,7 @@ $(function() {
         url : 'work/',
         initialize : function initialize() { // インスタンス生成時に実行される
             this.url += this.get('id');
-            console.log(this.get('name'));
+            /* console.log(this.get('name')); */
         }
     }),
     // Collection
@@ -24,13 +24,13 @@ $(function() {
                 el : '#searchworkform',
                 getParam : location.search.substr(1),// GETパラメータを取得．最初の?は元のURLに含まれているので削除
                 initialize : function(options) {
-                    console.log('init Form View');
+                    /* console.log('init Form View'); */
                     _.bindAll(this, 'render', 'onSubmit', 'sendData');
                     this.render();
                     this.sendData();
                 },
                 render : function() {
-                    console.log('display Form');
+                    /* console.log('display Form'); */
                     var hash, hashes = this.getParam.split('&');
                     for (var i = 0; i < hashes.length; i++) {
                         hash = hashes[i].split('=');
@@ -53,11 +53,11 @@ $(function() {
                     this.collection.fetch({
                         success : function success(collection, res, options) {
                             // 通信成功時の処理……内容を書く
-                            console.log('success');
+                            /* console.log('success'); */
                         },
                         error : function error() {
                             // 通信失敗時の処理
-                            console.log('Error');
+                            /* console.log('Error'); */
                         }
                     });
                 }
@@ -65,7 +65,7 @@ $(function() {
         el : '#work-list',
         template : undefined,
         initialize : function(options) {
-            console.log('initialize List view');
+            /* console.log('initialize List view'); */
             this.template = _.template($("#work-list-template").text());
             _.bindAll(this, 'render');
             this.listenTo(this.collection, 'sync', this.render);// collectionがsyncされたらrenderメソッドを呼び出すよう監視
@@ -85,7 +85,7 @@ $(function() {
                         thisListView.template(data));
             });
             this.$el.find('#work-list-content').show('slow');
-            console.log('display List');
+            /* console.log('display List'); */
         }
     }), thisWorkCollection = undefined, thisFormView = undefined, thisListView = undefined;
     // collectionクラスのインスタンス作成(初期処理)

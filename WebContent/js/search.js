@@ -14,7 +14,7 @@ $(function () {
           geoParam : '',
           geoFlag : false,
           initialize : function(options) {
-            console.log('init Form View');
+            /* console.log('init Form View'); */
             _.bindAll(this,'render','initGeoLoc','onSubmit','sendData');
             this.render();
             if(this.getParam.indexOf('geolocation=on') != -1){
@@ -25,7 +25,7 @@ $(function () {
             }
           },
           render : function() {
-            console.log('display Form');
+            /* console.log('display Form'); */
             var hash,
                 hashes = this.getParam.split('&'); 
             for(var i = 0; i < hashes.length; i++) { 
@@ -62,11 +62,11 @@ $(function () {
             this.collection.fetch({
               success : function success(collection, res, options) {
                 // 通信成功時の処理……内容を書く
-                console.log('success');
+                /* console.log('success'); */
               },
               error : function error() {
                 // 通信失敗時の処理
-                console.log('Error');
+                /* console.log('Error'); */
               }
             });
           }
@@ -77,7 +77,7 @@ $(function () {
           placeInfo : undefined,
           round : undefined,
           initialize : function(options) {
-            console.log('initialize Map View');
+            /* console.log('initialize Map View'); */
             _.bindAll(this,'render','setMap','roundMap');
             this.listenTo(this.collection,"sync", this.render);//collectionがsyncされたらrenderメソッドを呼び出すよう監視
           },
@@ -90,7 +90,7 @@ $(function () {
           },
           
           setMap : function () {
-            console.log('set map');
+            /* console.log('set map'); */
             var bounds = new google.maps.LatLngBounds(
               new google.maps.LatLng(this.collection.latlngNE[0],this.collection.latlngNE[1]),
               new google.maps.LatLng(this.collection.latlngSW[0],this.collection.latlngSW[1])
@@ -116,7 +116,7 @@ $(function () {
                     'img':value.get('img')},
                   placeHtml = '';
               placeHtml = markerTemplate(data);
-              console.log(thisMapView);
+              /* console.log(thisMapView); */
               thisMapView.placeInfo.push( new google.maps.InfoWindow({
                 content : placeHtml,
                 position : aPosition
@@ -124,7 +124,7 @@ $(function () {
             });
             this.placeInfo[0].open(this.mapObj);
             $('#map-container').show();
-            console.log('display map');
+            /* console.log('display map'); */
           },
           roundMap : function () {
             var i = 0;
@@ -145,7 +145,7 @@ $(function () {
           placeInfo : undefined,
           template : undefined,
           initialize : function(options) {
-            console.log('initialize List view');
+            /* console.log('initialize List view'); */
             this.template = _.template($("#place-list-template").text());
             _.bindAll(this,'render');
             this.listenTo(this.collection,'sync', this.render);//collectionがsyncされたらrenderメソッドを呼び出すよう監視
@@ -164,7 +164,7 @@ $(function () {
               thisListView.$el.append(thisListView.template(data));
             });
             this.$el.show('slow');
-            console.log('display List');
+            /* console.log('display List'); */
           }
         }),
         thisFormView = undefined,

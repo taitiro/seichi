@@ -18,6 +18,10 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Select2 CSS -->
+    <link href="css/select2.css" rel="stylesheet">
+    <link href="css/select2-bootstrap.css" rel="stylesheet">
+    
     <!-- Custom styles for this template -->
     <link href="css/offcanvas.css" rel="stylesheet">
     
@@ -61,24 +65,27 @@
       <article class="container">
         <h1>確認・修正画面</h1>
         <p>以下の内容を確認し，赤くなっている項目を選択・修正した上で「送信」をクリックしてください</p>
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" id="confirm-form" action="place" method="post">
           <div class="form-group">
             <label for="input-name" class="col-md-3 control-label">名前（必須）</label>
             <div class="col-md-9">
               <input type="text" class="form-control" id="input-name" name="name" value="<jsp:getProperty name="thisPlace" property="name" />" required>
             </div>
           </div>
-          <div class="form-group has-error" id="select-workid-wrapper">
-            <label for="select-workid" class="col-md-3 control-label">関連作品（必須・複数選択可）</label>
-            <div class="col-md-9">
-              <select class="form-control" id="select-workid" name="workid" multiple required>
-                <% for(Map.Entry<Integer,String> oneWork : workList.getWorkList().entrySet() ) { %>
-                <option value="<%= oneWork.getKey() %>"><%= oneWork.getValue() %></option>
-                <% } %>
-              </select>
-              <span class="help-block">複数選択する場合はCtrlキーを押しながら選択したい作品名をクリックしてください（Windowsの場合）</span>
+          <% if( (thisPlace.getWorkid() == 0) ){ %>
+            <div class="form-group has-error" id="select-workid-wrapper">
+              <label for="select-workid" class="col-md-3 control-label">関連作品（必須・複数選択可）</label>
+              <div class="col-md-9">
+                <select class="form-control" id="select-workid" name="workid" multiple required>
+                  <% for(Map.Entry<Integer,String> oneWork : workList.getWorkList().entrySet() ) { %>
+                    <option value="<%= oneWork.getKey() %>"><%= oneWork.getValue() %></option>
+                  <% } %>
+                </select>
+              </div>
             </div>
-          </div>
+          <% } else { %>
+            <input type="hidden" name="workid" value="<jsp:getProperty name="thisPlace" property="workid" />">
+          <% } %>
           <div class="form-group">
             <label for="input-address" class="col-md-3 control-label">住所（必須）</label>
             <div class="col-md-9">
@@ -179,7 +186,7 @@
                 <%  for (Map.Entry<Long, String> facebookid : thisPlace.getFacebookids().entrySet() ) {  %>
                   <option value="<%= facebookid.getKey() %>"><%= facebookid.getValue() %></option>
                 <% } %>
-                <option value="">この中には存在しません</option>
+                <option value="0">この中には存在しません</option>
               </select>
               <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
             </div>
@@ -191,7 +198,7 @@
                 <%  for (Map.Entry<Integer, String> instagramid : thisPlace.getInstagramids().entrySet() ) {  %>
                   <option value="<%= instagramid.getKey() %>"><%= instagramid.getValue() %></option>
                 <% } %>
-                <option value="">この中には存在しません</option>
+                <option value="0">この中には存在しません</option>
               </select>
               <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
             </div>
@@ -208,7 +215,9 @@
               <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
             </div>
           </div>
-          
+          <!-- 既にインプットされている項目 -->
+          <input type="hidden" name="googleid" value="<jsp:getProperty name="thisPlace" property="googleid" />">
+          <input type="hidden" name="img" value="">
           <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
               <input type="submit" class="btn btn-default" value="送信">
@@ -239,6 +248,8 @@
     <script src="js/json2.js"></script>
     <script src="js/backbone-min.js"></script>
     <!-- Load page's js -->
-    <!--<script src="../js/placeadd.js"></script>-->
+    <!-- Load page's js -->
+    <script src="js/select2.min.js"></script>
+    <script src="js/confirmplaceadd.js"></script>
   </body>
 </html>
