@@ -20,7 +20,7 @@ public class CharsetFilter implements Filter {
      * Default constructor. 
      */
     public CharsetFilter() {
-        // TODO Auto-generated constructor stub
+        //NOP
     }
 
 	/**
@@ -28,7 +28,7 @@ public class CharsetFilter implements Filter {
 	 */
 	@Override
     public void destroy() {
-		// TODO Auto-generated method stub
+	    //NOP
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class CharsetFilter implements Filter {
 	 */
 	@Override
     public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	    //NOP
 	}
 
 }

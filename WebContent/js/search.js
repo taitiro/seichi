@@ -61,10 +61,10 @@ $(function () {
             // （collectionのurlにGETリクエストを送信する）
             this.collection.fetch({
               success : function success(collection, res, options) {
-                // 通信成功時の処理……内容を書く
-                /* console.log('success'); */
+                // NOP（syncされた時とバインドされている）
               },
               error : function error() {
+                  $('#place-list').html('<h1>検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
                 // 通信失敗時の処理
                 /* console.log('Error'); */
               }

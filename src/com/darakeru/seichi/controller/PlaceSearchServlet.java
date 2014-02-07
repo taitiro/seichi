@@ -42,27 +42,31 @@ public class PlaceSearchServlet extends HttpServlet {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
         EntityManager em = emf.createEntityManager();
-        ArrayList<Place> placeList = null;
-        PlaceJsonBean thisPlaceJsonBean = null;
         try {
+            ArrayList<Place> placeList = null;
+            PlaceJsonBean thisPlaceJsonBean = null;
             // Place クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
-            if (request.getParameter("name") != null && !request.getParameter("name").equals("")) {
-                // Work クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
-                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findByName").setParameter("name", "%" + request.getParameter("name") + "%")
+            if (request.getParameter("place") != null && !request.getParameter("place").equals("")) {
+                // Place クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
+                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findByName").setParameter("name", "%" + request.getParameter("place") + "%")
                         .setMaxResults(LIMIT_NUM).getResultList();
+                System.out.println("test");
             } else {
-                // Work クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
+                // Place クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
                 placeList = (ArrayList<Place>) em.createNamedQuery("Place.findAll").setMaxResults(LIMIT_NUM).getResultList();
             }
-            thisPlaceJsonBean = new PlaceJsonBean(placeList);
+            if(placeList.isEmpty()){
+                response.sendError(404, "検索結果は存在しません");
+            }else{
+                thisPlaceJsonBean = new PlaceJsonBean(placeList);
+                response.getWriter().print(thisPlaceJsonBean.getJsonData());
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            placeList = null;
-            thisPlaceJsonBean = new PlaceJsonBean();
+            response.sendError(500, "サーバー内部のエラーです");
         } finally {
             em.close();
             emf.close();
         }
-        response.getWriter().print(thisPlaceJsonBean.getJsonData());
     }
 }

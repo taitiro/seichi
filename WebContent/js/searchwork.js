@@ -52,12 +52,10 @@ $(function() {
                     // （collectionのurlにGETリクエストを送信する）
                     this.collection.fetch({
                         success : function success(collection, res, options) {
-                            // 通信成功時の処理……内容を書く
-                            /* console.log('success'); */
+                            // NOP
                         },
                         error : function error() {
-                            // 通信失敗時の処理
-                            /* console.log('Error'); */
+                            $('#work-list').html('<h1>作品検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
                         }
                     });
                 }

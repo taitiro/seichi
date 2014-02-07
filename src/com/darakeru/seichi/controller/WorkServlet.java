@@ -19,13 +19,14 @@ import com.darakeru.seichi.model.PlaceJsonBean;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
 import com.darakeru.seichi.model.Workinfo;
+
 /**
  * Servlet implementation class WorkServlet
  */
 @WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/work/*" })
 public class WorkServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,82 +34,116 @@ public class WorkServlet extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    int id = 0;
-	    Work thisWork = null;
-	    List<Place> placeList = new ArrayList<Place>();
-        PlaceJsonBean thisJson = new PlaceJsonBean();
-	    try{
-	        id = Integer.parseInt(request.getPathInfo().substring(1));
-	    }catch (Exception e){
-	        throw new ServletException();
-	    }
-	    
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
-        EntityManager em = emf.createEntityManager();
-
-        try{
-            em.getTransaction().begin();
-            thisWork = (Work) em.find(Work.class,id);
-            thisWork.getWorkinfo().addAccessnum();
-            em.getTransaction().commit();
-            for(Placework onePlacework : thisWork.getPlaceworks()){
-                placeList.add(onePlacework.getPlace());
-            }
-            thisJson.setPlaceList(placeList);
-        }catch(Exception e){
-            throw new ServletException();
-        }finally{
-            em.close();
-            emf.close();
-        }
-
-        request.setAttribute("thisWork",thisWork);
-        request.setAttribute("thisJson",thisJson);
-        request.getRequestDispatcher("/jsp/workView.jsp").forward(request, response);
-	}
-	
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //リファラーチェック
-        if(!request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd")){
-            response.sendRedirect(Parameter.URL_ROOT);
-        }
-        Work thisWork = new Work();
-        thisWork.setName(request.getParameter("name"));
-        thisWork.setWorkdesc(request.getParameter("workdesc"));
-        thisWork.setImg(request.getParameter("img"));
-        thisWork.setProductid1(request.getParameter("productid1"));
-        thisWork.setProductid2(request.getParameter("productid2"));
-        thisWork.setProductid3(request.getParameter("productid3"));
-        thisWork.setProductid4(request.getParameter("productid4"));
-        thisWork.setProductid5(request.getParameter("productid5"));
-        thisWork.setUrl1(request.getParameter("url1"));
-        thisWork.setUrlname1(request.getParameter("urlname1"));
-        thisWork.setUrl2(request.getParameter("url2"));
-        thisWork.setUrlname2(request.getParameter("urlname2"));
-        thisWork.setUrl3(request.getParameter("url3"));
-        thisWork.setUrlname3(request.getParameter("urlname3"));
-        thisWork.setWikipedia(request.getParameter("wikipedia"));
-        Workinfo thisWorkinfo = new Workinfo();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
-        EntityManager em = emf.createEntityManager();
+        int id = 0;
+        int errorCode = 200;
+        String errorStr = "";
         try {
-            em.getTransaction().begin();
-            em.persist(thisWork);
-            thisWorkinfo.setWorkid(thisWork.getWorkid());
-            em.persist(thisWorkinfo);
-            em.getTransaction().commit();
-        } catch(Exception e){
+            Work thisWork = null;
+            List<Place> placeList = new ArrayList<Place>();
+            PlaceJsonBean thisJson = new PlaceJsonBean();
+            id = Integer.parseInt(request.getPathInfo().substring(1));
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
+            EntityManager em = emf.createEntityManager();
+            try {
+                em.getTransaction().begin();
+                thisWork = (Work) em.find(Work.class, id);
+                if(thisWork == null){
+                    errorCode = 404;
+                    errorStr = "指定された作品IDの作品が存在しません";
+                }else{
+                    thisWork.getWorkinfo().addAccessnum();
+                    for (Placework onePlacework : thisWork.getPlaceworks()) {
+                        placeList.add(onePlacework.getPlace());
+                    }
+                    thisJson.setPlaceList(placeList);
+                    request.setAttribute("thisWork", thisWork);
+                    request.setAttribute("thisJson", thisJson);
+                }
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                errorCode = 500;
+                errorStr = "データベースからのデータ取得時にエラーが発生しました";
+            } finally {
+                em.close();
+                emf.close();
+            }
+        } catch (NumberFormatException e) {
+            errorCode = 404;
+            errorStr = "作品IDは数字で指定してください";
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            em.close();
-            emf.close();
-            response.sendRedirect(Parameter.URL_ROOT+"work/"+thisWork.getWorkid());
+            errorCode = 500;
+            errorStr = "サーバー内部の不明なエラーです";
+        }
+        if (errorCode != 200) {
+            response.sendError(errorCode, errorStr);
+        } else {
+            request.getRequestDispatcher("/jsp/workView.jsp").forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        String redirectURL = "";
+        int errorCode = 200;
+        String errorStr = "";
+        try {
+            //リファラーチェック
+            if (request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd")) {
+                Work thisWork = new Work();
+                thisWork.setName(request.getParameter("name"));
+                thisWork.setWorkdesc(request.getParameter("workdesc"));
+                thisWork.setImg(request.getParameter("img"));
+                thisWork.setProductid1(request.getParameter("productid1"));
+                thisWork.setProductid2(request.getParameter("productid2"));
+                thisWork.setProductid3(request.getParameter("productid3"));
+                thisWork.setProductid4(request.getParameter("productid4"));
+                thisWork.setProductid5(request.getParameter("productid5"));
+                thisWork.setUrl1(request.getParameter("url1"));
+                thisWork.setUrlname1(request.getParameter("urlname1"));
+                thisWork.setUrl2(request.getParameter("url2"));
+                thisWork.setUrlname2(request.getParameter("urlname2"));
+                thisWork.setUrl3(request.getParameter("url3"));
+                thisWork.setUrlname3(request.getParameter("urlname3"));
+                thisWork.setWikipedia(request.getParameter("wikipedia"));
+                Workinfo thisWorkinfo = new Workinfo();
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
+                EntityManager em = emf.createEntityManager();
+                try {
+                    em.getTransaction().begin();
+                    em.persist(thisWork);
+                    thisWorkinfo.setWorkid(thisWork.getWorkid());
+                    em.persist(thisWorkinfo);
+                    em.getTransaction().commit();
+                    redirectURL = Parameter.URL_ROOT + "work/" + thisWork.getWorkid();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    errorCode = 500;
+                    errorStr = "データベースからのデータ取得時にエラーが発生しました";
+                } finally {
+                    em.close();
+                    emf.close();
+                }
+            } else {
+                errorCode = 403;
+                errorStr="不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCode = 500;
+            errorStr = "サーバー内部の不明なエラーです";
+        }
+        if (errorCode != 200) {
+            response.sendError(errorCode, errorStr);
+        } else {
+            response.sendRedirect(redirectURL);
         }
     }
 

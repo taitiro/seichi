@@ -2,7 +2,9 @@
   import="org.markdown4j.Markdown4jProcessor"
   import="com.darakeru.seichi.model.Place"
   import="com.darakeru.seichi.model.Placework"
-  import="com.darakeru.seichi.model.Work" %>
+  import="com.darakeru.seichi.model.Work" 
+  import="com.darakeru.apiClient.instagram.LocationMediaBean" 
+  import="com.darakeru.apiClient.instagram.OneMedia" %>
 <jsp:useBean id="thisPlace" class="com.darakeru.seichi.model.Place" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,7 +12,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="<jsp:getProperty name="thisPlace" property="name" />についての情報が書かれています．">
+<meta name="description" content="<jsp:getProperty name="thisPlace" property="name" />についての情報．SNSでの口コミや投稿写真なども">
+<meta name="keyword" content="聖地,聖地巡礼,舞台探訪,アニメ,漫画,マンガ,まんが,ライトノベル,ゲーム,ドラマ,旅行,観光,位置情報">
 <meta name="author" content="だらけるこむ（小杉太一郎）">
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
@@ -130,6 +133,15 @@ var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
             <div class="col-md-4">
               <h2>アクセス数</h2>
               <p><%=thisPlace.getPlaceinfo().getAccessnum()%>
+            </div>
+          </div>
+          <!-- Instagramの写真表示 -->
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Instagramからの情報</h2>
+              <% for(OneMedia thisMedia : ((LocationMediaBean)application.getAttribute(String.valueOf(thisPlace.getInstagramid()))).getMediaArray() ){ %>
+                <p><a href="<%=thisMedia.getUrl() %>"><img src="<%= thisMedia.getImage()%>"></a><%= thisMedia.getComment()%> by <%= thisMedia.getName()%></p>
+              <% } %>
             </div>
           </div>
           <div class="row">

@@ -46,12 +46,13 @@ public class WorkSearchServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        JsonBuilderFactory factory = Json.createBuilderFactory(null);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
         EntityManager em = emf.createEntityManager();
-        ArrayList<Work> workList = null;
-        JsonBuilderFactory factory = Json.createBuilderFactory(null);
-        JsonArrayBuilder placeJsonArrayBuilder = factory.createArrayBuilder();
+        JsonArray retJsonArray = null;
         try {
+            ArrayList<Work> workList = null;
+            JsonArrayBuilder placeJsonArrayBuilder = factory.createArrayBuilder();
             if (request.getParameter("name") != null && !request.getParameter("name").equals("")) {
                 // Work クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
                 workList = (ArrayList<Work>) em.createNamedQuery("Work.findByName").setParameter("name", "%" + request.getParameter("name") + "%")
@@ -60,7 +61,9 @@ public class WorkSearchServlet extends HttpServlet {
                 // Work クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
                 workList = (ArrayList<Work>) em.createNamedQuery("Work.findAll").setMaxResults(LIMIT_NUM).getResultList();
             }
-
+            if(workList.isEmpty()){
+                response.sendError(404, "検索結果は見つかりませんでした");
+            }
             for (Work oneWork : workList) {
                 JsonArrayBuilder placesArray = factory.createArrayBuilder();//作品リストのJsonArray
                 for (Placework onePlace : oneWork.getPlaceworks()) {
@@ -76,20 +79,16 @@ public class WorkSearchServlet extends HttpServlet {
                         .add("comment", oneWork.getWorkdesc().replaceAll("\n|\r", ""));
                 placeJsonArrayBuilder.add(onePlaceObj);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            workList = null;
-        } finally {
-            em.close();
-            emf.close();
-        }
-        JsonArray retJsonArray = placeJsonArrayBuilder.build();
-        PrintWriter out = response.getWriter();
-        try {
+            retJsonArray = placeJsonArrayBuilder.build();
+            PrintWriter out = response.getWriter();
             JsonWriter jsonWriter = Json.createWriter(out);
             jsonWriter.writeArray(retJsonArray);
         } catch (Exception e) {
-            //TODO 例外処理
+            e.printStackTrace();
+            response.sendError(500, "サーバーでエラーが発生しました");
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }
