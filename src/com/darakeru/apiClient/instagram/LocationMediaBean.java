@@ -15,6 +15,7 @@ import com.darakeru.seichi.Parameter;
 
 public class LocationMediaBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /** Imstagram Client ID */
     private final String CLIENT_ID = Parameter.INSTAGRAM_CLIENT_ID;
     /** Instagram Location Recent Media Endpoint

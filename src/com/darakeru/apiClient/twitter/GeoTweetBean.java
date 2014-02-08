@@ -16,6 +16,7 @@ import com.darakeru.seichi.Parameter;
 
 public class GeoTweetBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /** Twitter Search REST API Endpoint */
     public static final String ENDPOINT_URL = "https://api.twitter.com/1.1/search/tweets.json?";
     /** 検索の際の半径．

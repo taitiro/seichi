@@ -15,6 +15,7 @@ import com.darakeru.seichi.Parameter;
 
 public class VenueBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /** Foursquare Client ID */
     private final String CLIENT_ID = Parameter.FOURSQUARE_CLIENT_ID;
     /** Foursquare Client Secret ID */

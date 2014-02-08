@@ -18,6 +18,7 @@ import com.darakeru.checkparam.CheckStr;
 import com.darakeru.seichi.Parameter;
 
 public class ConfirmPlaceBean implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * Foursquareのエンドポイント
      */

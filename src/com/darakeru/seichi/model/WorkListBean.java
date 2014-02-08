@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class WorkListBean implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @SuppressWarnings("unchecked")
     public WorkListBean(){
