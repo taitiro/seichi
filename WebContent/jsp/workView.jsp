@@ -91,7 +91,7 @@ amzn_wdgt.columns='1';
 amzn_wdgt.rows='3';
 amzn_wdgt.title='この作品に関連する商品';
 amzn_wdgt.width='250';
-amzn_wdgt.ASIN='<%=thisWork.getProductid1().equals("") ? "" : thisWork.getProductid1()%><%=thisWork.getProductid2().equals("") ? "" : "," + thisWork.getProductid2() %><%=thisWork.getProductid3().equals("") ? "" : "," + thisWork.getProductid3()%><%=thisWork.getProductid4().equals("") ? "" : "," + thisWork.getProductid4()%><%=thisWork.getProductid5().equals("") ? "" : "," + thisWork.getProductid5()%>';
+amzn_wdgt.ASIN='<%=thisWork.getProductid1().equals("") ? "" : thisWork.getProductid1() + "," %><%=thisWork.getProductid2().equals("") ? "" : thisWork.getProductid2() + ","%><%=thisWork.getProductid3().equals("") ? "" : thisWork.getProductid3() + ","%><%=thisWork.getProductid4().equals("") ? "" : thisWork.getProductid4() + ","%><%=thisWork.getProductid5().equals("") ? "" : thisWork.getProductid5() + ","%>4862552196';
 amzn_wdgt.showImage='True';
 amzn_wdgt.showPrice='True';
 amzn_wdgt.showRating='True';

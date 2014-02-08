@@ -137,8 +137,11 @@ public class PlaceServlet extends HttpServlet {
                 thisPlace.setInstagramid(request.getParameter("instagramid"));
                 thisPlace.setFoursquareid(request.getParameter("foursquareid"));
                 Placeinfo thisPlaceinfo = new Placeinfo();
-                Placework thisPlacework = new Placework();
-                int workid = Integer.parseInt(request.getParameter("workid"));
+                String[] workidStrArray = request.getParameterValues("workid");
+                int[] workidArray = new int[workidStrArray.length];
+                for(int i=0; i < workidStrArray.length; i++){
+                    workidArray[i] = Integer.parseInt(workidStrArray[i]);
+                }
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
                 EntityManager em = emf.createEntityManager();
                 try {
@@ -146,9 +149,13 @@ public class PlaceServlet extends HttpServlet {
                     em.persist(thisPlace);
                     thisPlaceinfo.setPlaceid(thisPlace.getPlaceid());
                     em.persist(thisPlaceinfo);
-                    thisPlacework.setPlace(thisPlace);
-                    thisPlacework.setWork(em.find(Work.class, workid));
-                    em.persist(thisPlacework);
+                    //workidは複数あるのでforループ
+                    for(int workid : workidArray){
+                        Placework thisPlacework = new Placework();
+                        thisPlacework.setPlace(thisPlace);
+                        thisPlacework.setWork(em.find(Work.class, workid));
+                        em.persist(thisPlacework);
+                    }
                     em.getTransaction().commit();
                     redirectURL = Parameter.URL_ROOT + "place/" + thisPlace.getPlaceid();
                 } catch (Exception e) {
