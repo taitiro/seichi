@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-  import="org.markdown4j.Markdown4jProcessor"
-  import="com.darakeru.seichi.model.Place"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="org.markdown4j.Markdown4jProcessor" import="com.darakeru.seichi.model.Place"
   import="com.darakeru.seichi.model.Placework"%>
 <jsp:useBean id="thisWork" class="com.darakeru.seichi.model.Work" scope="request" />
 <jsp:useBean id="thisJson" class="com.darakeru.seichi.model.PlaceJsonBean" scope="request" />
@@ -46,7 +44,7 @@
         <li><a href="../search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
         <li><a href="../placeadd.html">聖地情報の追加</a></li>
       </ul>
-<!--       <form class="btn-group navbar-form pull-right">
+      <!--       <form class="btn-group navbar-form pull-right">
         <button type="button" class="btn btn-default btn-sm">ログイン</button>
         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
@@ -71,29 +69,39 @@
       </p>
       <article class="col-xs-12 col-sm-9">
         <section class="jumbotron">
-            <%=thisWork.getImg().equals("") ? "" : "<img src=\""
+          <%=thisWork.getImg().equals("") ? "" : "<img src=\""
                     + thisWork.getImg() + "\" id=\"workdesc-img\">"%><!-- 作品の画像 -->
           <h1><jsp:getProperty name="thisWork" property="name" /></h1>
           <!-- 作品名 -->
           <section class="workdesc">
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
           </section>
-          <p><a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">聖地情報を登録する</a></p>
+          <p>
+            <a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">聖地情報を登録する</a>
+          </p>
         </section>
         <section>
           <div class="row">
             <div class="col-md-4">
               <h2>関連商品</h2>
-              <%=thisWork.getProductid1().equals("") ? "" : thisWork
-                    .getProductid1() + "<br />"%>
-              <%=thisWork.getProductid2().equals("") ? "" : thisWork
-                    .getProductid2() + "<br />"%>
-              <%=thisWork.getProductid3().equals("") ? "" : thisWork
-                    .getProductid3() + "<br />"%>
-              <%=thisWork.getProductid4().equals("") ? "" : thisWork
-                    .getProductid4() + "<br />"%>
-              <%=thisWork.getProductid5().equals("") ? "" : thisWork
-                    .getProductid5() + "<br />"%>
+              <script type='text/javascript'>
+var amzn_wdgt={widget:'MyFavorites'};
+amzn_wdgt.tag='darakeru-22';
+amzn_wdgt.columns='1';
+amzn_wdgt.rows='3';
+amzn_wdgt.title='この作品に関連する商品';
+amzn_wdgt.width='250';
+amzn_wdgt.ASIN='<%=thisWork.getProductid1().equals("") ? "" : thisWork.getProductid1()%><%=thisWork.getProductid2().equals("") ? "" : "," + thisWork.getProductid2() %><%=thisWork.getProductid3().equals("") ? "" : "," + thisWork.getProductid3()%><%=thisWork.getProductid4().equals("") ? "" : "," + thisWork.getProductid4()%><%=thisWork.getProductid5().equals("") ? "" : "," + thisWork.getProductid5()%>';
+amzn_wdgt.showImage='True';
+amzn_wdgt.showPrice='True';
+amzn_wdgt.showRating='True';
+amzn_wdgt.design='2';
+amzn_wdgt.colorTheme='Orange';
+amzn_wdgt.headerTextColor='#FFFFFF';
+amzn_wdgt.marketPlace='JP';
+</script>
+              <script type='text/javascript' src='http://wms-fe.amazon-adsystem.com/20070822/JP/js/AmazonWidgets.js'>
+</script>
             </div>
             <div class="col-md-4">
               <h2>関連URL</h2>
@@ -125,14 +133,14 @@
               </ul>
             </div>
             <div class="col-md-4">
-                <%
-                    if (!thisWork.getWikipedia().equals("")) {
-                %>
-                <h2>Wikipediaへのリンク</h2>
-                <a href="<jsp:getProperty name="thisWork" property="wikipedia" />">Wikipediaの記事</a>
-                <%
-                    }
-                %>
+              <%
+                  if (!thisWork.getWikipedia().equals("")) {
+              %>
+              <h2>Wikipediaへのリンク</h2>
+              <a href="<jsp:getProperty name="thisWork" property="wikipedia" />">Wikipediaの記事</a>
+              <%
+                  }
+              %>
               <h2>アクセス数</h2>
               <p><%=thisWork.getWorkinfo().getAccessnum()%>
             </div>
@@ -147,32 +155,37 @@
               </div>
             </div>
           </div>
-          <% if(thisWork.getPlaceworks().size()==0){ %>
+          <%
+              if (thisWork.getPlaceworks().size() == 0) {
+          %>
           <!-- 生地情報が登録されていない場合 -->
-            <section class="row">
-              <div class="col-md-12">
-                <p class="alert alert-danger">聖地情報はまだ登録されていません</p>
-              </div>
-            </section>
-          <% }
-          for(Placework onePlacework : thisWork.getPlaceworks() ){
-              Place thisPlace = onePlacework.getPlace();
+          <section class="row">
+            <div class="col-md-12">
+              <p class="alert alert-danger">聖地情報はまだ登録されていません</p>
+            </div>
+          </section>
+          <%
+              }
+              for (Placework onePlacework : thisWork.getPlaceworks()) {
+                  Place thisPlace = onePlacework.getPlace();
           %>
           <section class="row">
             <div class="col-md-12">
-              <h2><%= thisPlace.getName() %></h2>
+              <h2><%=thisPlace.getName()%></h2>
               <section>
                 <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
-                    + thisPlace.getImg() + "\" id=\"placedesc-img\">"%>
-                <%= new Markdown4jProcessor().process(thisPlace.getPlacedesc()) %>
+                        + thisPlace.getImg() + "\" id=\"placedesc-img\">"%>
+                <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%>
               </section>
               <p>
-                <a class="btn btn-default" href="place/<%= thisPlace.getPlaceid() %>" role="button">View details &raquo;</a>
+                <a class="btn btn-default" href="place/<%=thisPlace.getPlaceid()%>" role="button">View details &raquo;</a>
               </p>
             </div>
             <!--/span-->
           </section>
-          <% } %>
+          <%
+              }
+          %>
           <!--/row-->
         </section>
       </article>

@@ -25,11 +25,40 @@ public class LocationMediaBean implements Serializable {
 
     /** Instagram Location ID */
     private int id;
-    /** コメント */
+    /** それぞれのmedia情報 */
     private ArrayList<OneMedia> mediaArray;
 
-    public LocationMediaBean(int id) throws IOException {
+    public LocationMediaBean(int id){
         this.setId(id);
+        try{
+            if(this.fetchData()){
+                //NOP
+            }else{
+                this.setMediaArray(new ArrayList<OneMedia>());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            this.setMediaArray(new ArrayList<OneMedia>());
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<OneMedia> getMediaArray() {
+        return mediaArray;
+    }
+
+    public void setMediaArray(ArrayList<OneMedia> mediaArray) {
+        this.mediaArray = mediaArray;
+    }
+    
+    public boolean fetchData() throws IOException {
         ArrayList<OneMedia> mediaArray = new ArrayList<>();
         String urlStr = ENDPOINT_URL;
         urlStr += String.valueOf(id);
@@ -59,27 +88,13 @@ public class LocationMediaBean implements Serializable {
                         mediaArray.add(thisMedia);
                     }
                 }
+            }else{
+                return false;
             }
         } finally {
             con.disconnect();
         }
         this.setMediaArray(mediaArray);
+        return true;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    private void setId(int id) {
-        this.id = id;
-    }
-
-    public ArrayList<OneMedia> getMediaArray() {
-        return mediaArray;
-    }
-
-    public void setMediaArray(ArrayList<OneMedia> mediaArray) {
-        this.mediaArray = mediaArray;
-    }
-
 }

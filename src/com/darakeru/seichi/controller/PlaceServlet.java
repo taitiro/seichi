@@ -5,13 +5,16 @@ import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.darakeru.apiClient.foursquare.VenueBean;
 import com.darakeru.apiClient.instagram.LocationMediaBean;
+import com.darakeru.apiClient.twitter.GeoTweetBean;
 import com.darakeru.seichi.Parameter;
 import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.Placeinfo;
@@ -48,10 +51,10 @@ public class PlaceServlet extends HttpServlet {
             try {
                 em.getTransaction().begin();
                 thisPlace = (Place) em.find(Place.class, id);
-                if(thisPlace == null){
+                if (thisPlace == null) {
                     errorCode = 404;
                     errorStr = "指定された場所IDの場所が存在しません";
-                }else{
+                } else {
                     thisPlace.getPlaceinfo().addAccessnum();
                     request.setAttribute("thisPlace", thisPlace);
                 }
@@ -64,7 +67,29 @@ public class PlaceServlet extends HttpServlet {
                 em.close();
                 emf.close();
             }
-            getServletContext().setAttribute(String.valueOf(thisPlace.getInstagramid()), new LocationMediaBean(thisPlace.getInstagramid()));
+            //APIから情報を取得（APIの制限にかかった時はここでなんとかやりくりしてください>未来の自分）
+            ServletContext application = getServletContext();
+            if (Parameter.API_LIMIT) {
+                if (application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                    application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()),
+                            new LocationMediaBean(thisPlace.getInstagramid()));
+                }
+                if (application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                    application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
+                            thisPlace.getFoursquareid()));
+                }
+                if (application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                    application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
+                            thisPlace.getLat(), thisPlace.getLng()));
+                }
+            } else {
+                application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()), new LocationMediaBean(
+                        thisPlace.getInstagramid()));
+                application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
+                        thisPlace.getFoursquareid()));
+                application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
+                        thisPlace.getLat(), thisPlace.getLng()));
+            }
         } catch (NumberFormatException e) {
             errorCode = 404;
             errorStr = "場所IDは数字で指定してください";
@@ -136,7 +161,7 @@ public class PlaceServlet extends HttpServlet {
                 }
             } else {
                 errorCode = 403;
-                errorStr="不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+                errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             }
         } catch (Exception e) {
             e.printStackTrace();

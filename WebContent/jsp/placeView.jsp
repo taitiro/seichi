@@ -4,7 +4,11 @@
   import="com.darakeru.seichi.model.Placework"
   import="com.darakeru.seichi.model.Work" 
   import="com.darakeru.apiClient.instagram.LocationMediaBean" 
-  import="com.darakeru.apiClient.instagram.OneMedia" %>
+  import="com.darakeru.apiClient.instagram.OneMedia" 
+  import="com.darakeru.apiClient.foursquare.VenueBean" 
+  import="com.darakeru.apiClient.foursquare.OneTips" 
+  import="com.darakeru.apiClient.twitter.GeoTweetBean" 
+  import="com.darakeru.apiClient.twitter.OneTweet" %>
 <jsp:useBean id="thisPlace" class="com.darakeru.seichi.model.Place" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,7 +38,8 @@
 <script type="text/javascript">
 var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
     thisLat = <jsp:getProperty name="thisPlace" property="lat" />,
-    thisLng = <jsp:getProperty name="thisPlace" property="lng" />;
+    thisLng = <jsp:getProperty name="thisPlace" property="lng" />,
+    thisReference = '<jsp:getProperty name="thisPlace" property="googleid" />';
 </script>
 </head>
 <body>
@@ -135,12 +140,40 @@ var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
               <p><%=thisPlace.getPlaceinfo().getAccessnum()%>
             </div>
           </div>
+          <!-- Googleの口コミ表示 -->
+          <div class="row hidden" id="google-place-wrapper">
+            <div class="col-md-12" id="google-place">
+              <h2>Googleからの情報</h2>
+            </div>
+          </div>
+          <!-- Twitterのtweet表示 -->
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Twitterからの情報</h2>
+              <% for(OneTweet thisTweet : ((GeoTweetBean)application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()))).getTweetArray() ){ %>
+                <p><a href="<%= thisTweet.getUrl() %>"><%= thisTweet.getComment()%> by <%= thisTweet.getName()%></a></p>
+              <% } %>
+            </div>
+          </div>
           <!-- Instagramの写真表示 -->
           <div class="row">
             <div class="col-md-12">
               <h2>Instagramからの情報</h2>
-              <% for(OneMedia thisMedia : ((LocationMediaBean)application.getAttribute(String.valueOf(thisPlace.getInstagramid()))).getMediaArray() ){ %>
-                <p><a href="<%=thisMedia.getUrl() %>"><img src="<%= thisMedia.getImage()%>"></a><%= thisMedia.getComment()%> by <%= thisMedia.getName()%></p>
+              <% for(OneMedia thisMedia : ((LocationMediaBean)application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()))).getMediaArray() ){ %>
+                <p><a href="<%=thisMedia.getUrl() %>"><img src="<%= thisMedia.getImage()%>"><%= thisMedia.getComment()%> by <%= thisMedia.getName()%></a></p>
+              <% } %>
+            </div>
+          </div>
+          <!-- foursquareの写真表示 -->
+          <div class="row">
+            <div class="col-md-12">
+              <h2>foursquareからの情報</h2>
+              <% for(OneTips thisTips : ((VenueBean) application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()))).getTipsArray() ){ %>
+                <p><a href="<%=thisTips.getUrl() %>">
+                <% if(!thisTips.getImage().equals("")){%>
+                    <img src="<%= thisTips.getImage()%>">
+                <% } %>
+                <%= thisTips.getComment()%> by <%= thisTips.getName()%></a></p>
               <% } %>
             </div>
           </div>
@@ -242,7 +275,7 @@ var thisName = "<jsp:getProperty name="thisPlace" property="name" />",
   <!-- Load project's js -->
   <script src="../js/offcanvas.js"></script>
   <!-- Load page's js -->
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
   <script src="../js/place.js"></script>
 
 </body>
