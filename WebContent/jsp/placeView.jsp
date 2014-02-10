@@ -171,6 +171,13 @@ amzn_wdgt.marketPlace = 'JP';
                   %>
                 </ul>
               </div>
+              
+              <div class="well">
+                <h2 class="page-header">facebookページ</h2>
+                <p>
+                    <a href="https://www.facebook.com/<jsp:getProperty name="thisPlace" property="facebookid" />">facebookページ</a>
+                </p>
+              </div>
             </div>
             <div class="col-md-4">
 

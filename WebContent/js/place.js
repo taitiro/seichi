@@ -2,11 +2,11 @@ $(function() {
   var i = 0, mapObj,service, 
       thisGPosistion = new google.maps.LatLng(thisLat, thisLng),
       mapOpt = {
-        zoom : 17,
+        zoom : 15,
         mapTypeId : google.maps.MapTypeId.ROADMAP,
         scaleControl : true,
         center : thisGPosistion,
-        disableDoubleClickZoom : true,
+        disableDoubleClickZoom : false,
         draggable : true,
         scrollwheel : true,
       },
@@ -20,8 +20,9 @@ $(function() {
     title : thisName,
   });
   $('#map-container').show();
+  service = new google.maps.places.PlacesService(mapObj);;
   /* Googleプレイスライブラリから口コミ情報を取得・表示 */
-  service = new google.maps.places.PlacesService(map);
+  console.log('2 : ' + $('#map-container').val());
   service.getDetails(request, function (place, status) {
     var reviews = new Array(),str,isEmpty =true;
     if (status == google.maps.places.PlacesServiceStatus.OK && place.reviews != null) {
@@ -42,7 +43,7 @@ $(function() {
         $('#google-place').append('<div class-"well"><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
       }
     }else{
-        $('#google-place').append('<div><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
+      $('#google-place').append('<div><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
     }
     $('#google-place-wrapper').removeClass('hidden');
   });

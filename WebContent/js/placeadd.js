@@ -41,6 +41,7 @@ function callback(results, status) {
     /* console.log('callback:get -> ' + results.length); */
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
+          if(results[i].rating != undefined){
             var element = document.createElement('div');
             element.className='search-result-item input-group';
             element.id='detail-' + i;
@@ -104,6 +105,7 @@ function callback(results, status) {
                     moreDetail(reference,i);
                 };
             })(results[i].reference,i);
+          }
         }
         map.fitBounds(thisBounds);
         if (map.zoom > 17) {
