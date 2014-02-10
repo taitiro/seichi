@@ -28,21 +28,21 @@ $(function() {
       for(i=0;i<place.reviews.length;i++){
         if(place.reviews[i].text != null && place.reviews[i].text != ''){
           isEmpty = false;
-          str = '<p>' + place.reviews[i].text + ' by ';
+          str = '<div class-"well"><p>' + place.reviews[i].text + ' by ';
           if(place.reviews[i].author_url != null && place.reviews[i].author_url != ''){
             str += ('<a href="' + place.reviews[i].author_url + '">' + place.reviews[i].author_name + '</a>');
           }else{
             str += place.reviews[i].author_name;
           }
-          str += '</p>';
+          str += '</p></div>';
           $('#google-place').append(str);
         }
       }
       if(isEmpty){
-        $('#google-place').append('<p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p>');
+        $('#google-place').append('<div class-"well"><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
       }
     }else{
-        $('#google-place').append('<p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p>');
+        $('#google-place').append('<div><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
     }
     $('#google-place-wrapper').removeClass('hidden');
   });

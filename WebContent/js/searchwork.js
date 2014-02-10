@@ -55,7 +55,7 @@ $(function() {
                             // NOP
                         },
                         error : function error() {
-                            $('#work-list').html('<h1>作品検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
+                            $('#work-list').html('<h1 class="page-header">作品検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
                         }
                     });
                 }

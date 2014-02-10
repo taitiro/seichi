@@ -71,7 +71,7 @@
         <section class="jumbotron">
           <%=thisWork.getImg().equals("") ? "" : "<img src=\""
                     + thisWork.getImg() + "\" id=\"workdesc-img\">"%><!-- 作品の画像 -->
-          <h1><jsp:getProperty name="thisWork" property="name" /></h1>
+          <h1 class="page-header"><jsp:getProperty name="thisWork" property="name" /></h1>
           <!-- 作品名 -->
           <section class="workdesc">
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
@@ -83,8 +83,10 @@
         <section>
           <div class="row">
             <div class="col-md-4">
-              <h2>関連商品</h2>
-              <script type='text/javascript'>
+              <h2 class="page-header">関連商品</h2>
+
+              <div class="well">
+                <script type='text/javascript'>
 var amzn_wdgt={widget:'MyFavorites'};
 amzn_wdgt.tag='darakeru-22';
 amzn_wdgt.columns='1';
@@ -100,58 +102,68 @@ amzn_wdgt.colorTheme='Orange';
 amzn_wdgt.headerTextColor='#FFFFFF';
 amzn_wdgt.marketPlace='JP';
 </script>
-              <script type='text/javascript' src='http://wms-fe.amazon-adsystem.com/20070822/JP/js/AmazonWidgets.js'>
+                <script type='text/javascript' src='http://wms-fe.amazon-adsystem.com/20070822/JP/js/AmazonWidgets.js'>
 </script>
+              </div>
             </div>
             <div class="col-md-4">
-              <h2>関連URL</h2>
-              <ul class="list-group">
-                <%
+
+              <div class="well">
+                <h2 class="page-header">関連URL</h2>
+                <ul class="list-group">
+                  <%
                     if (!thisWork.getUrl1().equals("")
                             && !thisWork.getUrlname1().equals("")) {
                 %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url1" />"> <jsp:getProperty name="thisWork" property="urlname1" /></a></li>
-                <%
+                  <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url1" />"> <jsp:getProperty name="thisWork" property="urlname1" /></a></li>
+                  <%
                     }
                 %>
-                <%
+                  <%
                     if (!thisWork.getUrl2().equals("")
                             && !thisWork.getUrlname2().equals("")) {
                 %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url2" />"> <jsp:getProperty name="thisWork" property="urlname2" /></a></li>
-                <%
+                  <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url2" />"> <jsp:getProperty name="thisWork" property="urlname2" /></a></li>
+                  <%
                     }
                 %>
-                <%
+                  <%
                     if (!thisWork.getUrl3().equals("")
                             && !thisWork.getUrlname3().equals("")) {
                 %>
-                <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url3" />"> <jsp:getProperty name="thisWork" property="urlname3" /></a></li>
-                <%
+                  <li class="list-group-item"><a href="<jsp:getProperty name="thisWork" property="url3" />"> <jsp:getProperty name="thisWork" property="urlname3" /></a></li>
+                  <%
                     }
                 %>
-              </ul>
+                </ul>
+              </div>
             </div>
             <div class="col-md-4">
-              <%
+
+              <div class="well">
+                <%
                   if (!thisWork.getWikipedia().equals("")) {
               %>
-              <h2>Wikipediaへのリンク</h2>
-              <a href="<jsp:getProperty name="thisWork" property="wikipedia" />">Wikipediaの記事</a>
-              <%
+                <h2 class="page-header">Wikipediaへのリンク</h2>
+                <a href="<jsp:getProperty name="thisWork" property="wikipedia" />">Wikipediaの記事</a>
+                <%
                   }
               %>
-              <h2>アクセス数</h2>
-              <p><%=thisWork.getWorkinfo().getAccessnum()%>
+                <h2 class="page-header">アクセス数</h2>
+                <p><%=thisWork.getWorkinfo().getAccessnum()%></p>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div id="map-container">
-                <div id="map"></div>
-                <section id="mapdesc">
-                  <h1>作品に関連する聖地一覧</h1>
-                </section>
+
+              <div class="well">
+                <div id="map-container">
+                  <div id="map"></div>
+                  <section id="mapdesc">
+                    <h1 class="page-header">作品に関連する聖地一覧</h1>
+                  </section>
+                </div>
               </div>
             </div>
           </div>
@@ -171,15 +183,18 @@ amzn_wdgt.marketPlace='JP';
           %>
           <section class="row">
             <div class="col-md-12">
-              <h2><%=thisPlace.getName()%></h2>
-              <section>
-                <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
+
+              <div class="well">
+                <h2 class="page-header"><%=thisPlace.getName()%></h2>
+                <section>
+                  <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
                         + thisPlace.getImg() + "\" id=\"placedesc-img\">"%>
-                <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%>
-              </section>
-              <p>
-                <a class="btn btn-default" href="place/<%=thisPlace.getPlaceid()%>" role="button">View details &raquo;</a>
-              </p>
+                  <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%>
+                </section>
+                <p>
+                  <a class="btn btn-default" href="place/<%=thisPlace.getPlaceid()%>" role="button">View details &raquo;</a>
+                </p>
+              </div>
             </div>
             <!--/span-->
           </section>
@@ -192,40 +207,49 @@ amzn_wdgt.marketPlace='JP';
       <!--/span-->
 
       <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-        <h1>聖地検索</h1>
-        <form action="../search.html" method="get" id="searchform">
-          <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
-          <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
-          <div id="detailinfo" class="collapse">
-            <label> 検索件数：<input type="number" name="num" value="10">
-            </label> <label> ソート順 <select name="sort">
-                <option value="smart" selected>スマート</option>
-                <option value="visitnum">訪問者数</option>
-                <option value="lastvisit">最終訪問日が早い順</option>
-                <option value="add">登録日が早い順</option>
-                <option value="geoloc">現在地に近い順</option>
-                <option value="place">検索した場所に近い順</option>
-            </select>
-            </label> <label>登録された日： <br /> <input type="date" name="fromdate">から <br /> <input type="date" name="todate">まで
-            </label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
-            <fieldset>
-              検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
-            </fieldset>
-          </div>
-          <p>
-            <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
-          </p>
-        </form>
-        <h1>作品検索</h1>
-        <form action="../searchwork.html" method="get" id="searchworkform">
-          <label>検索文字：<input type="text" name="name"></label>
-          <p>
-            <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
-          </p>
-        </form>
-        <h1>広告</h1>
-        <p>ここに広告置きたい</p>
-        <h1>暫定リンク</h1>
+        <h1 class="page-header">聖地検索</h1>
+
+        <div class="well">
+          <form action="../search.html" method="get" id="searchform">
+            <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
+            <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
+            <div id="detailinfo" class="collapse">
+              <label> 検索件数：<input type="number" name="num" value="10">
+              </label> <label> ソート順 <select name="sort">
+                  <option value="smart" selected>スマート</option>
+                  <option value="visitnum">訪問者数</option>
+                  <option value="lastvisit">最終訪問日が早い順</option>
+                  <option value="add">登録日が早い順</option>
+                  <option value="geoloc">現在地に近い順</option>
+                  <option value="place">検索した場所に近い順</option>
+              </select>
+              </label> <label>登録された日： <br /> <input type="date" name="fromdate">から <br /> <input type="date" name="todate">まで
+              </label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
+              <fieldset>
+                検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
+              </fieldset>
+            </div>
+            <p>
+              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
+            </p>
+          </form>
+        </div>
+        <h1 class="page-header">作品検索</h1>
+
+        <div class="well">
+          <form action="../searchwork.html" method="get" id="searchworkform">
+            <label>検索文字：<input type="text" name="name"></label>
+            <p>
+              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
+            </p>
+          </form>
+        </div>
+        <h1 class="page-header">広告</h1>
+
+        <div class="well">
+          <p>ここに広告置きたい</p>
+        </div>
+        <h1 class="page-header">暫定リンク</h1>
         <ul>
           <li><a href="../search.html">検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>
           <li><a href="../searchwork.html">作品検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>

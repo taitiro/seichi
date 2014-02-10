@@ -30,26 +30,18 @@ $input ["workid"] = "";
 
 if (isset ( $_GET ["name"] )) {
   $name = $_GET ["name"];
-  $wikipediaXml = simplexml_load_file ( "http://ja.wikipedia.org/w/api.php?action=opensearch&limit=1&format=xml&search="
-      . rawurlencode (str_replace($wikipediaPreReplace, $wikipediaReplace, $name)) );
+  $wikipediaXml = simplexml_load_file ( "http://ja.wikipedia.org/w/api.php?action=opensearch&limit=1&format=xml&search=" . rawurlencode ( str_replace ( $wikipediaPreReplace, $wikipediaReplace, $name ) ) );
   if (isset ( $wikipediaXml->Section->Item )) {
     $input ["placedesc"] = $wikipediaXml->Section->Item->Description . " （[wikipedia](" . $input ["wikipedia"] . ")より）";
   } else {
     $input ["placedesc"] = " （[wikipedia](" . $input ["wikipedia"] . ")より）";
   }
   $amazonUrlHeader = "GET\n" . "ecs.amazonaws.jp\n" . "/onca/xml\n";
-  $amazonUrlStr = "AWSAccessKeyId=".$AMAZON_API_KEY
-      . "&AssociateTag=darakeru-22" 
-          . "&Keywords=" . rawurlencode($name)
-  . "&Operation=ItemSearch" 
-              . "&SearchIndex=All" 
-                  . "&Service=AWSECommerceService" 
-                      . "&Timestamp=".urlencode(gmdate("Y-m-d\TH:i:s")).".000Z"
-                          . "&Version=2014-01-16";
-  $amazonApiSig = urlencode(base64_encode(hash_hmac("sha256",$amazonUrlHeader.$amazonUrlStr,$AMAZON_API_SECRET_KEY,true)));
-  $amazonUrl = "http://ecs.amazonaws.jp/onca/xml?".$amazonUrlStr."&Signature=".$amazonApiSig;
+  $amazonUrlStr = "AWSAccessKeyId=" . $AMAZON_API_KEY . "&AssociateTag=darakeru-22" . "&Keywords=" . rawurlencode ( $name ) . "&Operation=ItemSearch" . "&SearchIndex=All" . "&Service=AWSECommerceService" . "&Timestamp=" . urlencode ( gmdate ( "Y-m-d\TH:i:s" ) ) . ".000Z" . "&Version=2014-01-16";
+  $amazonApiSig = urlencode ( base64_encode ( hash_hmac ( "sha256", $amazonUrlHeader . $amazonUrlStr, $AMAZON_API_SECRET_KEY, true ) ) );
+  $amazonUrl = "http://ecs.amazonaws.jp/onca/xml?" . $amazonUrlStr . "&Signature=" . $amazonApiSig;
   
-  $amazonXml = simplexml_load_file($amazonUrl);
+  $amazonXml = simplexml_load_file ( $amazonUrl );
   if (isset ( $amazonXml->Items->Item [0]->ASIN )) {
     $input ["productid1"] = $amazonXml->Items->Item [0]->ASIN;
   } else {
@@ -86,17 +78,14 @@ if (isset ( $_GET ["name"] )) {
     $input ["url1"] = "";
     $input ["urlname1"] = "";
   }
-  if ((isset ( $yahooXml->SiteSearchResults->Item [1] )) 
-  && (strcmp($yahooXml->SiteSearchResults->Item[1]->Url,$input["url1"]) != 0) ) {
+  if ((isset ( $yahooXml->SiteSearchResults->Item [1] )) && (strcmp ( $yahooXml->SiteSearchResults->Item [1]->Url, $input ["url1"] ) != 0)) {
     $input ["url2"] = $yahooXml->SiteSearchResults->Item [1]->Url;
     $input ["urlname2"] = $yahooXml->SiteSearchResults->Item [1]->Title;
   } else {
     $input ["url2"] = "";
     $input ["urlname2"] = "";
   }
-  if ((isset ( $yahooXml->SiteSearchResults->Item [2]))
-  && (strcmp($yahooXml->SiteSearchResults->Item[2]->Url,$input["url1"]) != 0) 
-  && (strcmp($yahooXml->SiteSearchResults->Item[2]->Url,$input["url2"]) != 0) ) {
+  if ((isset ( $yahooXml->SiteSearchResults->Item [2] )) && (strcmp ( $yahooXml->SiteSearchResults->Item [2]->Url, $input ["url1"] ) != 0) && (strcmp ( $yahooXml->SiteSearchResults->Item [2]->Url, $input ["url2"] ) != 0)) {
     $input ["url3"] = $yahooXml->SiteSearchResults->Item [2]->Url;
     $input ["urlname3"] = $yahooXml->SiteSearchResults->Item [2]->Title;
   } else {
