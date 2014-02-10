@@ -37,7 +37,13 @@ if (isset ( $_GET ["name"] )) {
     $input ["placedesc"] = " （[wikipedia](" . $input ["wikipedia"] . ")より）";
   }
   $amazonUrlHeader = "GET\n" . "ecs.amazonaws.jp\n" . "/onca/xml\n";
-  $amazonUrlStr = "AWSAccessKeyId=" . $AMAZON_API_KEY . "&AssociateTag=darakeru-22" . "&Keywords=" . rawurlencode ( $name ) . "&Operation=ItemSearch" . "&SearchIndex=All" . "&Service=AWSECommerceService" . "&Timestamp=" . urlencode ( gmdate ( "Y-m-d\TH:i:s" ) ) . ".000Z" . "&Version=2014-01-16";
+  $amazonUrlStr = "AWSAccessKeyId=" . $AMAZON_API_KEY . "&AssociateTag=darakeru-22" . "&Keywords=" 
+      . rawurlencode ( $name ) 
+      . "&Operation=ItemSearch"  
+      . "&SearchIndex=All" 
+      . "&Service=AWSECommerceService" 
+      . "&Timestamp=" . urlencode ( gmdate ( "Y-m-d\TH:i:s" ) ) . ".000Z" 
+      . "&Version=2014-01-16";
   $amazonApiSig = urlencode ( base64_encode ( hash_hmac ( "sha256", $amazonUrlHeader . $amazonUrlStr, $AMAZON_API_SECRET_KEY, true ) ) );
   $amazonUrl = "http://ecs.amazonaws.jp/onca/xml?" . $amazonUrlStr . "&Signature=" . $amazonApiSig;
   

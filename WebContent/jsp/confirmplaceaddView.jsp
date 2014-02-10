@@ -245,6 +245,7 @@
   <!-- Load page's js -->
   <!-- Load page's js -->
   <script src="js/select2.min.js"></script>
+  <script src="js/select2_locale_ja.js"></script>
   <script src="js/confirmplaceadd.js"></script>
 </body>
 </html>
