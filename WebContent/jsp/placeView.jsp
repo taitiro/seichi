@@ -46,6 +46,19 @@
         <li><a href="../search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
         <li><a href="../placeadd.html">聖地情報の追加</a></li>
       </ul>
+
+      <form class="navbar-form navbar-right" role="search" action="search.html" method="get">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="住所などを入力">
+        </div>
+        <input type="submit" class="btn btn-default" value="聖地検索">
+      </form>
+      <form class="navbar-form navbar-right" role="search" action="searchwork.html" method="get">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="作品名などを入力">
+        </div>
+        <input type="submit" class="btn btn-default" value="作品検索">
+      </form>
       <!--       <form class="btn-group navbar-form pull-right">
         <button type="button" class="btn btn-default btn-sm">ログイン</button>
         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -63,285 +76,207 @@
   </header>
   <!-- /.navbar -->
 
-  <div class="container">
+  <article class="container">
 
-    <div class="row row-offcanvas row-offcanvas-right">
-      <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-      </p>
-      <article class="col-xs-12 col-sm-9">
-        <section class="jumbotron">
-          <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
+    <section class="jumbotron">
+      <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
                     + thisPlace.getImg() + "\" id=\"placedesc-img\">"%><!-- 作品の画像 -->
-          <h1 class="page-header"><jsp:getProperty name="thisPlace" property="name" /></h1>
-          <!-- 作品名 -->
-          <section class="placedesc">
-            <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%><!-- 作品の説明 -->
-          </section>
-          <p>住所：</p>
-          <address><jsp:getProperty name="thisPlace" property="address" /></address>
-        </section>
-        <section>
-          <!-- Instagramの写真表示 -->
-          <div class="row">
-            <div class="col-md-12">
+      <h1 class="page-header"><jsp:getProperty name="thisPlace" property="name" /><small><address><jsp:getProperty name="thisPlace" property="address" /></address></small>
+      </h1>
+      <!-- 作品名 -->
+      <h2 class="page-header">説明</h2>
+      <section id="placedesc">
+        <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%><!-- 作品の説明 -->
+      </section>
+      <div class="row">
+        <div class="col-md-5">
+          <h3 class="page-header">関連商品</h3>
+          <script type='text/javascript'>
+              var amzn_wdgt={widget:'MyFavorites'};
+              amzn_wdgt.tag='darakeru-22';
+              amzn_wdgt.columns='3';
+              amzn_wdgt.rows='1';
+              amzn_wdgt.title='この聖地に関連する商品';
+              amzn_wdgt.width='320';
+              amzn_wdgt.ASIN='<%=thisPlace.getProductid1().equals("") ? "" : thisPlace.getProductid1() + ","%><%=thisPlace.getProductid2().equals("") ? "" : thisPlace.getProductid2() + ","%><%=thisPlace.getProductid3().equals("") ? "" : thisPlace.getProductid3() + ","%><%=thisPlace.getProductid4().equals("") ? "" : thisPlace.getProductid4() + ","%><%=thisPlace.getProductid5().equals("") ? "" : thisPlace.getProductid5() + ","%>4862552196';
+              amzn_wdgt.showImage = 'True';
+              amzn_wdgt.showPrice = 'True';
+              amzn_wdgt.showRating = 'True';
+              amzn_wdgt.design = '2';
+              amzn_wdgt.colorTheme = 'Orange';
+              amzn_wdgt.headerTextColor = '#FFFFFF';
+              amzn_wdgt.marketPlace = 'JP';
+            </script>
+          <script type='text/javascript' src='http://wms-fe.amazon-adsystem.com/20070822/JP/js/AmazonWidgets.js'></script>
+        </div>
 
-              <div class="row well">
-
-                <div>
-                  <h2 class="page-header">Instagramからの情報</h2>
-                  <%
-                      for (OneMedia thisMedia : ((LocationMediaBean) application.getAttribute("instagram_"
-                                                          + String.valueOf(thisPlace.getPlaceid()))).getMediaArray()) {
-                  %>
-                  <div class="col-md-3">
-                    <div class="thumbnail">
-                      <a href="<%=thisMedia.getUrl()%>"><img src="<%=thisMedia.getImage()%>"></a>
-                      <div class="caption">
-                        <%=thisMedia.getComment()%>
-                        by
-                        <%=thisMedia.getName()%>
-                      </div>
-                    </div>
-                  </div>
-                  <%
-                      }
-                  %>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-
-
-              <div class="well">
-
-                <h2 class="page-header">関連商品</h2>
-                <script type='text/javascript'>
-var amzn_wdgt={widget:'MyFavorites'};
-amzn_wdgt.tag='darakeru-22';
-amzn_wdgt.columns='1';
-amzn_wdgt.rows='3';
-amzn_wdgt.title='この聖地に関連する商品';
-amzn_wdgt.width='240';
-amzn_wdgt.ASIN='<%=thisPlace.getProductid1().equals("") ? "" : thisPlace.getProductid1() + ","%><%=thisPlace.getProductid2().equals("") ? "" : thisPlace.getProductid2() + ","%><%=thisPlace.getProductid3().equals("") ? "" : thisPlace.getProductid3() + ","%><%=thisPlace.getProductid4().equals("") ? "" : thisPlace.getProductid4() + ","%><%=thisPlace.getProductid5().equals("") ? "" : thisPlace.getProductid5() + ","%>4862552196';
-amzn_wdgt.showImage = 'True';
-amzn_wdgt.showPrice = 'True';
-amzn_wdgt.showRating = 'True';
-amzn_wdgt.design = '2';
-amzn_wdgt.colorTheme = 'Orange';
-amzn_wdgt.headerTextColor = '#FFFFFF';
-amzn_wdgt.marketPlace = 'JP';
-                 </script>
-                <script type='text/javascript' src='http://wms-fe.amazon-adsystem.com/20070822/JP/js/AmazonWidgets.js'>
-                                                                    
-                                                                </script>
-              </div>
-            </div>
-            <div class="col-md-4">
-
-              <div class="well">
-                <h2 class="page-header">関連URL</h2>
-                <ul class="list-group">
-                  <%
-                      if (!thisPlace.getUrl1().equals("")
+        <div class="col-md-5">
+          <h3 class="page-header">関連URL</h3>
+          <ul class="list-group">
+            <%
+                if (!thisPlace.getUrl1().equals("")
                               && !thisPlace.getUrlname1().equals("")) {
-                  %>
-                  <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url1" />"> <jsp:getProperty name="thisPlace" property="urlname1" /></a></li>
-                  <%
-                      }
-                  %>
-                  <%
-                      if (!thisPlace.getUrl2().equals("")
+            %>
+            <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url1" />"> <jsp:getProperty name="thisPlace" property="urlname1" /></a></li>
+            <%
+                }
+            %>
+            <%
+                if (!thisPlace.getUrl2().equals("")
                               && !thisPlace.getUrlname2().equals("")) {
-                  %>
-                  <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url2" />"> <jsp:getProperty name="thisPlace" property="urlname2" /></a></li>
-                  <%
-                      }
-                  %>
-                  <%
-                      if (!thisPlace.getUrl3().equals("")
+            %>
+            <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url2" />"> <jsp:getProperty name="thisPlace" property="urlname2" /></a></li>
+            <%
+                }
+            %>
+            <%
+                if (!thisPlace.getUrl3().equals("")
                               && !thisPlace.getUrlname3().equals("")) {
-                  %>
-                  <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url3" />"> <jsp:getProperty name="thisPlace" property="urlname3" /></a></li>
-                  <%
-                      }
-                  %>
-                </ul>
-              </div>
-              
-              <div class="well">
-                <h2 class="page-header">facebookページ</h2>
-                <p>
-                    <a href="https://www.facebook.com/<jsp:getProperty name="thisPlace" property="facebookid" />">facebookページ</a>
-                </p>
+            %>
+            <li class="list-group-item"><a href="<jsp:getProperty name="thisPlace" property="url3" />"> <jsp:getProperty name="thisPlace" property="urlname3" /></a></li>
+            <%
+                }
+            %>
+
+            <li class="list-group-item"><a href="https://www.facebook.com/<jsp:getProperty name="thisPlace" property="facebookid" />">facebookページ</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h3 class="page-header">アクセス数</h3>
+          <p><%=thisPlace.getPlaceinfo().getAccessnum()%></p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <!-- Instagramの写真表示 -->
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="page-header">Instagramからの情報</h2>
+          <div class="thumbnails">
+            <%
+                for (OneMedia thisMedia : ((LocationMediaBean) application.getAttribute("instagram_"
+                                                                    + String.valueOf(thisPlace.getPlaceid()))).getMediaArray()) {
+            %>
+            <div class="thumbnail well instagram-thumb">
+              <a href="<%=thisMedia.getUrl()%>"><img src="<%=thisMedia.getImage()%>"></a>
+              <div class="caption">
+                <%=thisMedia.getComment()%>
+                by
+                <%=thisMedia.getName()%>
               </div>
             </div>
-            <div class="col-md-4">
+            <%
+                }
+            %>
 
-              <div class="well">
-                <h2 class="page-header">アクセス数</h2>
-                <p><%=thisPlace.getPlaceinfo().getAccessnum()%></p>
-              </div>
+          </div>
+        </div>
+      </div>    
+      <div class="row">
+        <!-- foursquareの写真表示 -->
+        <div class="col-md-4">
+
+          <div class="well">
+            <h2 class="page-header">foursquareからの情報</h2>
+            <%
+                for (OneTips thisTips : ((VenueBean) application.getAttribute("foursquare_"
+                        + String.valueOf(thisPlace.getPlaceid()))).getTipsArray()) {
+            %>
+            <blockquote>
+              <%
+              if (!thisTips.getImage().equals("")) {
+              %>
+                <img src="<%=thisTips.getImage()%>" class="foursquare-img img-circle">
+              <% } %>
+              <p><%=thisTips.getComment()%></p>
+              <footer>
+                <a href="<%=thisTips.getUrl()%>"> <%=thisTips.getName()%></a>
+              </footer>
+            </blockquote>
+            <%
+                }
+            %>
+          </div>
+        </div>
+        <!-- Twitterのtweet表示 -->
+        <div class="col-md-4">
+
+          <div class="well">
+            <h2 class="page-header">Twitterからの情報</h2>
+              <div class="list-group">
+              <%
+                  for (OneTweet thisTweet : ((GeoTweetBean) application.getAttribute("twitter_"
+                          + String.valueOf(thisPlace.getPlaceid()))).getTweetArray()) {
+              %>
+              <a class="list-group-item" href="<%=thisTweet.getUrl()%>">
+                  <div class="tweet-header">
+                    <%=thisTweet.getName()%><span class="tweet-screen-name">@<%=thisTweet.getScreenName()%></span>
+                    <time class="pull-right"><%=thisTweet.getDate()%></time>
+                  </div>
+                  <div class="tweet-body"><%=thisTweet.getComment()%></div>
+              </a>
+              <%
+                  }
+              %>
             </div>
           </div>
-          <div class="row">
-            <!-- Googleの口コミ表示 -->
-            <div class="col-md-4">
-            <div id="google-place-wrapper">
-              <div id="google-place">
-                <h2 class="page-header">Googleからの情報</h2>
-              </div>
-            </div>
-            </div>
-            <!-- Twitterのtweet表示 -->
-            <div class="col-md-4">
-
-              <div class="well">
-                <h2 class="page-header">Twitterからの情報</h2>
-                <%
-                    for (OneTweet thisTweet : ((GeoTweetBean) application.getAttribute("twitter_"
-                            + String.valueOf(thisPlace.getPlaceid()))).getTweetArray()) {
-                %>
-                <p>
-                  <a href="<%=thisTweet.getUrl()%>"><%=thisTweet.getComment()%> by <%=thisTweet.getName()%></a>
-                </p>
-                <%
-                    }
-                %>
-              </div>
-            </div>
-            <!-- foursquareの写真表示 -->
-            <div class="col-md-4">
-
-              <div class="well">
-                <h2 class="page-header">foursquareからの情報</h2>
-                <%
-                    for (OneTips thisTips : ((VenueBean) application.getAttribute("foursquare_"
-                            + String.valueOf(thisPlace.getPlaceid()))).getTipsArray()) {
-                %>
-                <p>
-                  <a href="<%=thisTips.getUrl()%>"> <%
-     if (!thisTips.getImage().equals("")) {
- %> <img src="<%=thisTips.getImage()%>"> <%
-     }
- %> <%=thisTips.getComment()%> by <%=thisTips.getName()%></a>
-                </p>
-                <%
-                    }
-                %>
-              </div>
+        </div>
+        <!-- Googleの口コミ表示 -->
+        <div class="col-md-4">
+          <div id="google-place-wrapper">
+            <div id="google-place">
+              <h2 class="page-header">Googleからの情報</h2>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-
-              <div class="well">
-                <div id="map-container">
-                  <div id="map"></div>
-                </div>
-              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div id="map-container">
+              <div id="map"></div>
             </div>
-          </div>
-          <section class="row">
-            <div class="col-md-12">
-              <div class="well">
+        </div>
+      </div>
+      <section class="row">
+        <div class="col-md-12">
+          <div class="well">
 
-                <h2 class="page-header">関連作品</h2>
-                <%
-                    for (Placework onePlacework : thisPlace.getPlaceworks()) {
-                        Work thisWork = onePlacework.getWork();
-                %>
+            <h2 class="page-header">関連作品</h2>
+            <%
+                for (Placework onePlacework : thisPlace.getPlaceworks()) {
+                    Work thisWork = onePlacework.getWork();
+            %>
 
-                <h3><%=thisWork.getName()%></h3>
-                <section>
-                  <%=thisWork.getImg().equals("") ? "" : "<img src=\""
+            <h3><%=thisWork.getName()%></h3>
+            <section>
+              <%=thisWork.getImg().equals("") ? "" : "<img src=\""
                         + thisWork.getImg() + "\" id=\"placedesc-img\">"%>
-                  <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%>
-                </section>
-                <p>
-                  <a class="btn btn-default" href="../work/<%=thisWork.getWorkid()%>" role="button">View details &raquo;</a>
-                </p>
-                <%
-                    }
-                %>
-              </div>
-            </div>
-            <!--/span-->
-          </section>
-          <!--/row-->
-        </section>
-      </article>
-      <!--/span-->
-
-      <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-        <h1 class="page-header">聖地検索</h1>
-
-        <div class="well">
-          <form action="../search.html" method="get" id="searchform">
-            <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
-            <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
-            <div id="detailinfo" class="collapse">
-              <label> 検索件数：<input type="number" name="num" value="10">
-              </label> <label> ソート順 <select name="sort">
-                  <option value="smart" selected>スマート</option>
-                  <option value="visitnum">訪問者数</option>
-                  <option value="lastvisit">最終訪問日が早い順</option>
-                  <option value="add">登録日が早い順</option>
-                  <option value="geoloc">現在地に近い順</option>
-                  <option value="place">検索した場所に近い順</option>
-              </select>
-              </label> <label>登録された日： <br /> <input type="date" name="fromdate">から <br /> <input type="date" name="todate">まで
-              </label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
-              <fieldset>
-                検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
-              </fieldset>
-            </div>
+              <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%>
+            </section>
             <p>
-              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
+              <a class="btn btn-default" href="../work/<%=thisWork.getWorkid()%>" role="button">View details &raquo;</a>
             </p>
-          </form>
+            <%
+                }
+            %>
+          </div>
         </div>
-        <h1 class="page-header">作品検索</h1>
-        <div class="well">
-          <form action="../searchwork.html" method="get" id="searchworkform">
-            <label>検索文字：<input type="text" name="name"></label>
-            <p>
-              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
-            </p>
-          </form>
-        </div>
-        <h1 class="page-header">広告</h1>
-
-        <div class="well">
-          <p>ここに広告置きたい</p>
-        </div>
-        <h1 class="page-header">暫定リンク</h1>
-        <ul>
-          <li><a href="../search.html">検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>
-          <li><a href="../searchwork.html">作品検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>
-          <li><a href="../place.html">聖地情報画面</a>（それぞれの場所で個別にJSPでページ出力）</li>
-          <li><a href="../user.html">ユーザー情報画面</a>（それぞれのユーザーで個別にJSPでページ出力）</li>
-          <li><a href="../work.html">作品情報画面</a>（それぞれの作品で個別にJSPでページ出力）</li>
-        </ul>
-      </aside>
-      <!--/span-->
-
-    </div>
-    <!--/row-->
-    <hr>
-    <footer class="container">
-      <ul>
-        <li>運営している人紹介（連絡先など）</li>
-        <li>利用規約</li>
-        <li>注意書き</li>
-        <li>著作権表記</li>
-      </ul>
-    </footer>
-
-  </div>
+        <!--/span-->
+      </section>
+      <!--/row-->
+    </section>
+    <!--/span-->
+  </article>
+  <!--/row-->
+  <hr>
+  <footer class="container">
+    <ul>
+      <li>運営している人紹介（連絡先など）</li>
+      <li>利用規約</li>
+      <li>注意書き</li>
+      <li>著作権表記</li>
+    </ul>
+  </footer>
   <!--/.container-->
   <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -351,6 +286,8 @@ amzn_wdgt.marketPlace = 'JP';
   <!-- Load project's js -->
   <script src="../js/offcanvas.js"></script>
   <!-- Load page's js -->
+  <script src="../js/masonry.pkgd.min.js"></script>
+  <script src="../js/imagesloaded.pkgd.min.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
   <script src="../js/place.js"></script>
 

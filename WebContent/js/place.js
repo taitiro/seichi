@@ -13,6 +13,13 @@ $(function() {
       request={
         reference : thisReference
       };
+
+  $('.thumbnails').imagesLoaded( function(){
+    $('.thumbnails').masonry({
+      itemSelector : '.thumbnail'
+    });
+  });
+  
   mapObj = new google.maps.Map($('#map')[0], mapOpt);
   new google.maps.Marker({
     position : thisGPosistion,

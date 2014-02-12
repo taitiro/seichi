@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.json.Json;
@@ -34,6 +35,7 @@ public class GeoTweetBean implements Serializable {
     public GeoTweetBean(BigDecimal lat, BigDecimal lng) {
         this.setLat(lat);
         this.setLng(lng);
+        this.setTweetArray(new ArrayList<OneTweet>());
         try {
             if (this.fetchData()) {
                 //NOP
@@ -47,7 +49,6 @@ public class GeoTweetBean implements Serializable {
     }
 
     private boolean fetchData() throws IOException {
-        ArrayList<OneTweet> tweetArray = new ArrayList<>();
         String urlStr = ENDPOINT_URL;
         urlStr += ("geocode=" + this.getLat().toPlainString() + "," + this.getLng().toPlainString() + "," + RADIUS);
         URL url = new URL(urlStr);
@@ -57,16 +58,25 @@ public class GeoTweetBean implements Serializable {
         try {
             con.connect();
             if (con.getResponseCode() == 200) {
+                ArrayList<OneTweet> tweetArray = new ArrayList<>();
                 JsonReader jsonReader = Json.createReader(con.getInputStream());
                 JsonObject object = jsonReader.readObject();
                 JsonArray datas = object.getJsonArray("statuses");
                 for (int i = 0; i < datas.size(); i++) {
                     OneTweet thisTweet = new OneTweet();
                     thisTweet.setComment(datas.getJsonObject(i).getString("text"));
-                    thisTweet.setName(datas.getJsonObject(i).getJsonObject("user").getString("screen_name"));
+                    thisTweet.setName(datas.getJsonObject(i).getJsonObject("user").getString("name"));
+                    thisTweet.setScreenName(datas.getJsonObject(i).getJsonObject("user").getString("screen_name"));
+                    try {
+                        thisTweet.setDateByEnglish(datas.getJsonObject(i).getString("created_at"));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        thisTweet.setDate("Unknown");
+                    }
                     thisTweet.setUrl("https://twitter.com/" +thisTweet.getName() +"/status/" + datas.getJsonObject(i).getString("id_str"));
                     tweetArray.add(thisTweet);
                 }
+                this.setTweetArray(tweetArray);
             } else {
                 //System.out.println(con.getResponseCode() + " : " + con.getResponseMessage());
                 return false;
@@ -74,7 +84,6 @@ public class GeoTweetBean implements Serializable {
         } finally {
             con.disconnect();
         }
-        this.setTweetArray(tweetArray);
         return true;
     }
 

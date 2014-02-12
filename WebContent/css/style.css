@@ -27,11 +27,11 @@ footer {
     transition: all 0.25s ease-out;
   }
   .row-offcanvas-right
-.sidebar-offcanvas {
+  .sidebar-offcanvas {
     right: -50%; /* 6 columns */
   }
   .row-offcanvas-left
-.sidebar-offcanvas {
+  .sidebar-offcanvas {
     left: -50%; /* 6 columns */
   }
   .row-offcanvas-right.active {
@@ -47,6 +47,90 @@ footer {
   }
 }
 /* seichi setting */
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 14px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 14px;
+}
+
+.page-header{
+  margin-top:10px;
+}
+
+#placedesc {
+  font-size: 12px;
+}
+#placedesc h1 {
+  font-size: 30px;
+}
+#placedesc h2 {
+  font-size: 24px;
+}
+#placedesc h3 {
+  font-size: 18px;
+}
+#placedesc h4 {
+  font-size: 12px;
+}
+#placedesc h5 {
+  font-size: 12px;
+}
+#placedesc h6 {
+  font-size: 12px;
+}
+
+.jumbotron{
+  font-size: 18px;
+}
+
+.jumbotron h1{
+  font-size: 50px;
+}
+
+address{
+  display:inline;
+}
+
+.instagram-thumb{
+  width:170px;
+  margin:10px;
+}
+.foursquare-img{
+  width:100px;
+  height:100px;
+}
+blockquote footer, blockquote small, blockquote .small {
+  display: block;
+  font-size: 100%;
+  line-height: 1.428571429;
+  padding:10px 0px 0px 0px;
+  color: #999;
+}
+blockquote footer a{
+  color: #999;
+}
+.tweet-header{
+  font: normal normal normal 14px "Helvetica Neue",Arial,sans-serif;
+  font-weight:bold;
+  color: #292f33;
+}
+.tweet-screen-name{
+  font-weight:normal;
+  color: #66757f;
+}
 /* workdesc setting */
 #workdesc-img {
   padding: 0px 20px;
@@ -64,6 +148,7 @@ footer {
 /* map setting*/
 #map-container {
   display: none;
+  margin:10px;
   padding: 0;
   position: relative;
   width: 100%;
