@@ -29,7 +29,6 @@ public class OneTweet {
     private String url;
     
     public OneTweet() {
-        // TODO 自動生成されたコンストラクター・スタブ
     }
     public String getComment() {
         return comment;

@@ -209,11 +209,11 @@
                           + String.valueOf(thisPlace.getPlaceid()))).getTweetArray()) {
               %>
               <a class="list-group-item" href="<%=thisTweet.getUrl()%>">
-                  <div class="tweet-header">
+                  <span class="tweet-header">
                     <%=thisTweet.getName()%><span class="tweet-screen-name">@<%=thisTweet.getScreenName()%></span>
                     <time class="pull-right"><%=thisTweet.getDate()%></time>
-                  </div>
-                  <div class="tweet-body"><%=thisTweet.getComment()%></div>
+                  </span>
+                  <span class="tweet-body"><%=thisTweet.getComment()%></span>
               </a>
               <%
                   }

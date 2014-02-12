@@ -123,9 +123,13 @@ blockquote footer a{
   color: #999;
 }
 .tweet-header{
+  display:block;
   font: normal normal normal 14px "Helvetica Neue",Arial,sans-serif;
   font-weight:bold;
   color: #292f33;
+}
+.tweet-body{
+  display:block;
 }
 .tweet-screen-name{
   font-weight:normal;
