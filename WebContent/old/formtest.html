@@ -1,73 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="だらけるこむ（小杉太一郎）">
-    <link rel="shortcut icon" href="">
-    <title>フォームテスト</title>
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <style>
-      label,fieldset{
-        display:block;
-      }
-    </style>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="だらけるこむ（小杉太一郎）">
+<link rel="shortcut icon" href="">
+<title>フォームテスト</title>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+<style>
+label,fieldset {
+  display: block;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
-  </head>
-  <body>
-    
-    <form action="search.html" method="get" id="searchform" class="container">
-      <label>場所：<input type="text" name="place"></label>
-      <label>作品名：<input type="text" name="work"></label>
-      <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">
-        詳細検索
-      </button>
-      <div id="detailinfo" class="collapse">
-        <label>
-          検索件数：<input type="number" name="num" value="10">
-        </label>
-        <label>
-          ソート順
-          <select name="sort">
-            <option value="smart" selected>スマート</option>
-            <option value="visitnum">訪問者数</option>
-            <option value="lastvisit">最終訪問日が早い順</option>
-            <option value="add">登録日が早い順</option>
-            <option value="geoloc">現在地に近い順</option>
-            <option value="place">検索した場所に近い順</option>
-          </select>
-        </label>
-        <label>登録された日：
-          <br /><input type="date" name="fromdate">から
-          <br /><input type="date" name="todate">まで</label>
-        <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
-        <fieldset>
-          検索方法：
-          <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and"></label>
-          <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
-        </fieldset>
-      </div>
-      <p><input class="btn btn-default btn-xs pull-right" type="submit" value="送信"></p>
-    </form>
-    
-    <!-- Bootstrap core JavaScript
+</head>
+<body>
+
+  <form action="search.html" method="get" id="searchform" class="container">
+    <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
+    <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
+    <div id="detailinfo" class="collapse">
+      <label> 検索件数：<input type="number" name="num" value="10">
+      </label> <label> ソート順 <select name="sort">
+          <option value="smart" selected>スマート</option>
+          <option value="visitnum">訪問者数</option>
+          <option value="lastvisit">最終訪問日が早い順</option>
+          <option value="add">登録日が早い順</option>
+          <option value="geoloc">現在地に近い順</option>
+          <option value="place">検索した場所に近い順</option>
+      </select>
+      </label> <label>登録された日： <br />
+        <input type="date" name="fromdate">から <br />
+        <input type="date" name="todate">まで
+      </label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
+      <fieldset>
+        検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and"></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
+      </fieldset>
+    </div>
+    <p>
+      <input class="btn btn-default btn-xs pull-right" type="submit" value="送信">
+    </p>
+  </form>
+
+  <!-- Bootstrap core JavaScript
 ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Load Backbone.js-->
-    <script src="js/underscore-min.js"></script>
-    <script src="js/json2.js"></script>
-    <script src="js/backbone-min.js"></script>
-    <!-- Load project's js -->
-    <script src="js/offcanvas.js"></script>
-  </body>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Load Backbone.js-->
+  <script src="js/underscore-min.js"></script>
+  <script src="js/json2.js"></script>
+  <script src="js/backbone-min.js"></script>
+  <!-- Load project's js -->
+  <script src="js/offcanvas.js"></script>
+</body>
 </html>

@@ -23,7 +23,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 </head>
-<body >
+<body>
   <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,7 +37,7 @@
         <li><a href="search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
         <li class="active"><a href="../placeadd.html">聖地情報の追加</a></li>
       </ul>
-<!--       <form class="btn-group navbar-form pull-right">
+      <!--       <form class="btn-group navbar-form pull-right">
         <button type="button" class="btn btn-default btn-sm">ログイン</button>
         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
@@ -56,20 +56,26 @@
 
     <div class="row">
 
-      <aside class="col-md-5" style="height:500px">
+      <aside class="col-md-5" style="height: 500px">
         <div id="map" class="hidden"></div>
       </aside>
       <!--/span-->
       <article class="col-md-7" id="sidebar">
-        <h1>検索画面</h1>
-        <div id="search-map" class="input-group">
-          <input type="text" class="form-control" id="str" value="" placeholder="その場所の名前・住所など">
-          <span class="input-group-btn">
-            <button class="btn btn-default" id="search-button" type="button">検索</button>
-          </span>
+
+        <h1 class="page-header">検索画面</h1>
+
+        <div class="well">
+          <div id="search-map" class="input-group">
+            <input type="text" class="form-control" id="str" value="" placeholder="その場所の名前・住所など"> <span class="input-group-btn">
+              <button class="btn btn-default" id="search-button" type="button">検索</button>
+            </span>
+          </div>
         </div>
-        <h2>検索結果</h2>
-        <div id="search-result"></div>
+        <h2 class="page-header">検索結果</h2>
+
+        <div class="well">
+          <div id="search-result"></div>
+        </div>
       </article>
       <!--/span-->
 

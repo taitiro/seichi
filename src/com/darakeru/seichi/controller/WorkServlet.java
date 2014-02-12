@@ -96,7 +96,8 @@ public class WorkServlet extends HttpServlet {
         String errorStr = "";
         try {
             //リファラーチェック
-            if (request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd")) {
+            if (request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd") 
+                    || request.getHeader("Referer").startsWith("http://localhost:8080/seichi/import/work-custom.php")) {
                 Work thisWork = new Work();
                 thisWork.setName(request.getParameter("name"));
                 thisWork.setWorkdesc(request.getParameter("workdesc"));

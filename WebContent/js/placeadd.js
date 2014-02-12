@@ -40,6 +40,16 @@ function callback(results, status) {
             2);
     /* console.log('callback:get -> ' + results.length); */
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+        results.sort(function(a,b){
+            if (a.rating != undefined && b.rating == undefined){
+              return -1;
+            }
+            if (a.rating == undefined && b.rating != undefined){
+              return 1;
+            }
+          // a は b と等しいはず
+          return 0;
+        });
         for (var i = 0; i < results.length; i++) {
             var element = document.createElement('div');
             element.className='search-result-item input-group';
@@ -65,7 +75,7 @@ function callback(results, status) {
                     thisLatlngNE[0], thisLatlngNE[1]));
             console.log(thisLatlngSW[0] + ' : ' + thisLatlngSW[1] + ' : '
                     + thisLatlngNE[0] + ' : ' + thisLatlngNE[1]);
-            element.innerHTML = '<h3>' + results[i].name + '</h3>'
+            element.innerHTML = '<h3 class="page-header">' + results[i].name + '</h3>'
                     +'<form action="confirmplaceadd" method="post">'
                     + '<label>名前<input class="form-control" type="text" name="name" value="'
                     + results[i].name

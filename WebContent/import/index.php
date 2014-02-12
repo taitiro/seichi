@@ -23,7 +23,12 @@ print <<<EOF
   <h2>作品情報インポート</h2>
   <ul>
     <li><a href="work-butai.php">「舞台探訪アーカイブ」の情報を利用</a></li>
-    <li><a href="work-custom.php">手作業インポート</a></li>
+    <li><a href="work-custom.php">手作業インポート</a><br />
+    <form action="work-custom.php" method="get">
+    <label>名前<input type="text" name="name" value=""></label>
+    <label><input type="submit" value="送信"></label>
+    </form>
+    </li>
   </ul>
   <h2>場所情報インポート</h2>
   <ul>

@@ -49,13 +49,14 @@
 * Model - com.darakeru.model
     * Place.java
     * Work.java
-    * User.java(まだ出来てない)
 * Controller - com.darakeru.Controller
     * PlaceSearchServlet.java
     * WorkSearchServlet.java
 * view - WebContent
+    * placeVIew.jsp
+    * workView.jsp
 
-下記参照
+その他のviewコンポーネントは下記参照
 
 ### フロントエンド
 [このサイト](http://tech-sketch.jp/2013/10/jqmized-backbone-1.html)の図が，こういうAjaxをBackbone.jsで実現するプログラム
@@ -113,6 +114,9 @@ Java Persistence API
 
 [Backbone.js](http://backbonejs.org/)
 : JavaScriptでMVC構造を実現するフレームワーク．Ajax機能などに便利
+
+[select2](http://ivaynberg.github.io/select2/)
+: selectフォームの機能を拡張するライブラリ．jQuery&bootstrapへ対応している．
 
 ###PHP(インポートに使うだけ)
 [PHP Simple HTML DOM Parser](http://sourceforge.net/projects/simplehtmldom/files/)

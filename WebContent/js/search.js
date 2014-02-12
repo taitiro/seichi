@@ -64,7 +64,7 @@ $(function () {
                 // NOP（syncされた時とバインドされている）
               },
               error : function error() {
-                  $('#place-list').html('<h1>検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
+                  $('#place-list').html('<h1 class="page-header">検索結果</h1><p class="alert alert-danger">検索内容に合致する結果はありませんでした．</p>');
                 // 通信失敗時の処理
                 /* console.log('Error'); */
               }
