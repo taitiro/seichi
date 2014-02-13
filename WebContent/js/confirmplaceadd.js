@@ -45,4 +45,11 @@ $(document).ready(function(){
       $('#textarea-placedesc-wrapper').addClass("has-error");
     }
   });
+
+  $('#input-captcha').change(function(){
+    if( $('#input-captcha').val() != '' ){
+      $('#input-captcha-wrapper').removeClass("has-error");
+      $('#input-captcha-wrapper').addClass("has-success");
+    }
+  });
 });

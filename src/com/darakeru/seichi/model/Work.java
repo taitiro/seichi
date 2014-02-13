@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Work.findAll", query="SELECT w FROM Work w"),
+    @NamedQuery(name="Work.findAll", query="SELECT w FROM Work w "),
     @NamedQuery(name="Work.findByName", query="SELECT w FROM Work w WHERE (w.name like :name) OR (w.workdesc like :name) "),
     @NamedQuery(name="Work.findIdAndName", query="SELECT w.workid, w.name FROM Work w ORDER BY w.workid")
     })

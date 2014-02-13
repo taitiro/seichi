@@ -21,6 +21,7 @@ import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.Placeinfo;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
+import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
 /**
  * Servlet implementation class WorkServlet
@@ -119,8 +120,14 @@ public class PlaceServlet extends HttpServlet {
         String errorStr = "";
         String redirectURL = Parameter.URL_ROOT;
         try {
-            //リファラーチェック
-            if (request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmplaceadd")) {
+            //リファラーチェック＆CAPTCHAチェック
+            if (!request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmplaceadd")) {
+                errorCode = 403;
+                errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+            } else if (!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))){
+                errorCode = 403;
+                errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
+            } else{
                 Place thisPlace = new Place();
                 thisPlace.setName(request.getParameter("name"));
                 thisPlace.setPlacedesc(request.getParameter("placedesc"));
@@ -173,9 +180,6 @@ public class PlaceServlet extends HttpServlet {
                     em.close();
                     emf.close();
                 }
-            } else {
-                errorCode = 403;
-                errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             }
         } catch (Exception e) {
             e.printStackTrace();

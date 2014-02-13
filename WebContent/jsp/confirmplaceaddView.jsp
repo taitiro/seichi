@@ -211,6 +211,13 @@
             </select> <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
           </div>
         </div>
+        <div class="form-group has-error" id="input-captcha-wrapper">
+          <label for="input-captcha" class="col-md-3 control-label"><img src="jcaptcha.jpg" /><br />（必須）</label>
+          <div class="col-md-9">
+            <input class="form-control" id="input-captcha" type="text" name="jcaptcha" value="" required/>
+            <span class="help-block">左側の画像に表示されている文字を入力してください</span>
+          </div>
+        </div>
         <!-- 既にインプットされている項目 -->
         <input type="hidden" name="googleid" value="<jsp:getProperty name="thisPlace" property="googleid" />"> <input type="hidden" name="img" value="">
         <div class="form-group">
