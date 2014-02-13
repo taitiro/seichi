@@ -23,6 +23,7 @@ public class SeichiProperties {
     private int asinLength;
     private boolean apiLimit;
     private long apiInterval;
+    private String bingAccountKey;
     
     public SeichiProperties() {
         try {
@@ -44,6 +45,7 @@ public class SeichiProperties {
             this.twitterToken = configuration.getProperty("TWITTER_TOKEN");
             this.urlRoot = configuration.getProperty("URL_ROOT");
             this.versionDate = configuration.getProperty("VERSION_DATE");
+            this.bingAccountKey = configuration.getProperty("BING_ACCOUNT_KEY");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,5 +95,9 @@ public class SeichiProperties {
     }
     public long getApiInterval() {
         return apiInterval;
+    }
+
+    public String getBingAccountKey() {
+        return bingAccountKey;
     }
 }
