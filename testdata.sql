@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- データベース: `seichidbcopy`
 --
-CREATE DATABASE IF NOT EXISTS `seichidbcopy` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `seichidbcopy`;
+CREATE DATABASE IF NOT EXISTS `seichidb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `seichidb`;
 
 -- --------------------------------------------------------
 
