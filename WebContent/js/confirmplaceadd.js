@@ -52,4 +52,9 @@ $(document).ready(function(){
       $('#input-captcha-wrapper').addClass("has-success");
     }
   });
+
+  $('#input-captcha-refresh').click(function(){
+	  var now = new Date().getTime();
+	  $('#input-captcha-img').attr('src', 'jcaptcha.jpg?' + now);
+  });
 });

@@ -212,7 +212,13 @@
           </div>
         </div>
         <div class="form-group has-error" id="input-captcha-wrapper">
-          <label for="input-captcha" class="col-md-3 control-label"><img src="jcaptcha.jpg" /><br />（必須）</label>
+          <label for="input-captcha" class="col-md-3 control-label">
+          	<img src="jcaptcha.jpg" id="input-captcha-img" />
+          	<button type="button" class="btn btn-default btn-xs" id="input-captcha-refresh" >
+              <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            <br />（必須）
+          </label>
           <div class="col-md-9">
             <input class="form-control" id="input-captcha" type="text" name="jcaptcha" value="" required/>
             <span class="help-block">左側の画像に表示されている文字を入力してください</span>
