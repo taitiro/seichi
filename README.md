@@ -115,6 +115,9 @@ Java Persistence API
 [Backbone.js](http://backbonejs.org/)
 : JavaScriptでMVC構造を実現するフレームワーク．Ajax機能などに便利
 
+[Masonry](http://masonry.desandro.com/)
+: 要素をPinterest風に敷き詰められるJavaScriptライブラリ．聖地ページに使用．jQuery&bootstrapへ対応している．
+
 [select2](http://ivaynberg.github.io/select2/)
 : selectフォームの機能を拡張するライブラリ．jQuery&bootstrapへ対応している．
 
@@ -123,10 +126,10 @@ Java Persistence API
 : PHPでできたシンプルなHTMLパーサー．使用方法は[PHP Simple HTML DOM Parserの使用方法 - Webスクレイピング ライブラリ](http://www.crystal-creation.com/web-appli/technical-information/programming/php/library/simplehtmldom/)がまとまっています
 
 ##今後のToDo
-* 聖地個別ページと作品個別ページをJSPで作る(JSFは……勉強するのがめんどうさそうなので今回はいいや)
-    * 聖地個別ページではSNSから拾ってきた口コミ情報を．作品個別ページでは画像検索の結果を表示したい
-        * 画像検索はBingの画像検索APIか，devianArtのAPIを使いたい
-* ユーザー管理機能
-    * 完全にTwitterかfacebookのoAuthに頼りたい(自分でパスワードもつの面倒くさい)
-    * できるだけ他のWebサービスに規制したいね(画像保存機能とかもなくてflickerやinstagram，photo.twitter.comとかから取ってくるとか)
-        *でもそうなると今度は著作権の問題ががが
+* 作品個別ページでは画像検索の結果を表示したい
+    * 画像検索はBingの画像検索APIか，devianArtのAPIを使いたい
+* いたずら防止機能
+    * 投稿画面にCAPTCHAをつける
+* 情報編集機能
+* コメント投稿機能
+    * できればチェックインなども同時に行いたい
