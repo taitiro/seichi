@@ -2,6 +2,9 @@ $(document).ready(function(){
   var defworkid = true;
   
   $('#select-workid').select2();
+  $('#select-facebookid').select2();
+  $('#select-instagramid').select2();
+  $('#select-foursquareid').select2();
   
   $('#confirm-form').submit(function(){
     /*名前未入力*/

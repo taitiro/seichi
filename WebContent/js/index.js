@@ -55,9 +55,7 @@ $(function () {
               });
           /* console.log(thisMapView); */
           thisMapView.placeInfo.push( new google.maps.InfoWindow({
-            content : '<div id="map-info"><img src="'
-            + value.get("img")
-            + '" style="float:left;width:100px;height:100px;"><h2><a href="place/'
+            content : '<div id="map-info"><h2><a href="place/'
             + value.get("id")
             + '">'
             + value.get("name")

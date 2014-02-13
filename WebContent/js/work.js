@@ -29,10 +29,7 @@ $(function() {
             placeInfo
                     .push(new google.maps.InfoWindow(
                             {
-                                content : '<div id="map-info"><img src="'
-                                        + mapData.place[i].img
-                                        + '" style="float:left;width:100px;height:100px;"><h2><a href="place/'
-                                        + mapData.place[i].id + '">'
+                                content : '<div id="map-info">'
                                         + mapData.place[i].name
                                         + '</a></h2><p>'
                                         + mapData.place[i].comment

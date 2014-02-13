@@ -203,3 +203,7 @@ label,fieldset {
 .search-result-item {
   width: 100%;
 }
+
+#textarea-placedesc{
+  height:300px;
+}

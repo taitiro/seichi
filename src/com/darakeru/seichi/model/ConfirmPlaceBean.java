@@ -26,7 +26,7 @@ public class ConfirmPlaceBean implements Serializable {
     /**
      * Instagramのエンドポイント
      */
-    public static final String INSTAGRAM_SEARCH_URL = "https://api.instagram.com/v1/locations/search?";
+    public static final String INSTAGRAM_SEARCH_URL = "https://api.instagram.com/v1/locations/search?distance=5000m&";
     /**
      * Facebookのエンドポイント
      */

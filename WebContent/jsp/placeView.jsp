@@ -152,24 +152,30 @@
       <div class="row">
         <div class="col-md-12">
           <h2 class="page-header">Instagramからの情報</h2>
-          <div class="thumbnails">
-            <%
-                for (OneMedia thisMedia : ((LocationMediaBean) application.getAttribute("instagram_"
-                                                                    + String.valueOf(thisPlace.getPlaceid()))).getMediaArray()) {
-            %>
-            <div class="thumbnail well instagram-thumb">
-              <a href="<%=thisMedia.getUrl()%>"><img src="<%=thisMedia.getImage()%>"></a>
-              <div class="caption">
-                <%=thisMedia.getComment()%>
-                by
-                <%=thisMedia.getName()%>
-              </div>
+          <% if(((LocationMediaBean) application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()))).getMediaArray().size() == 0){ %>
+            <div class="well">
+              <p class="alert alert-danger">写真は取得できませんでした。</p>
             </div>
-            <%
-                }
-            %>
-
-          </div>
+          <% }else{ %>
+	          <div class="thumbnails">
+	            <%
+	                for (OneMedia thisMedia : ((LocationMediaBean) application.getAttribute("instagram_"
+	                                                                    + String.valueOf(thisPlace.getPlaceid()))).getMediaArray()) {
+	            %>
+	            <div class="thumbnail well instagram-thumb">
+	              <a href="<%=thisMedia.getUrl()%>"><img src="<%=thisMedia.getImage()%>"></a>
+	              <div class="caption">
+	                <%=thisMedia.getComment()%>
+	                by
+	                <%=thisMedia.getName()%>
+	              </div>
+	            </div>
+	            <%
+	                }
+	            %>
+	
+	          </div>
+          <% } %>
         </div>
       </div>    
       <div class="row">

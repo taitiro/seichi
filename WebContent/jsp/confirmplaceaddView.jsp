@@ -107,6 +107,7 @@
           <label for="textarea-placedesc" class="col-md-3 control-label">説明文（必須）</label>
           <div class="col-md-9">
             <textarea class="form-control" id="textarea-placedesc" name="placedesc" placeholder="説明文を入力してください（Markdown記法可）" required><jsp:getProperty name="thisPlace" property="placedesc" /></textarea>
+             <span class="help-block">Markdown記法が使用できます</span>
           </div>
         </div>
         <div class="form-group">

@@ -64,7 +64,6 @@
             <div id="map"></div>
             <script type="text/template" id="map-marker-template">
               <div id="map-info">
-                <img src="<%- img %>" id="map-info-img">
                 <h2 class="page-header">
                   <a href="<%- url %>"><%- name %></a>
             </h2>
@@ -104,11 +103,6 @@
                     <% _.each(work, function(item) { %>
                       <li><a href="work/<%= item.id %>"><%= item.name %></a></li>
                     <% }); %>
-              </ul>
-                  <ul>
-                    <li>アクセス数</li>
-                    <li>訪問者数</li>
-                    <li>言及数</li>
               </ul>
                   <p>
                     <a class="btn btn-default" href="place/<%- id %>" role="button">View details &raquo;</a>

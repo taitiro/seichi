@@ -112,8 +112,7 @@ $(function () {
                   data = {
                     'name': value.get('name'),
                     'url':value.url,
-                    'comment':value.get('comment'),
-                    'img':value.get('img')},
+                    'comment':value.get('comment')},
                   placeHtml = '';
               placeHtml = markerTemplate(data);
               /* console.log(thisMapView); */
@@ -157,7 +156,6 @@ $(function () {
               var data = {
                 "name": value.get('name'),
                 "comment":value.get('comment'),
-                'img':value.get('img'),
                 'work':value.get('work'),
                 "id":value.get("id"), 
               };
