@@ -11,13 +11,14 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 public class LocationMediaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
     /** Imstagram Client ID */
-    private final String CLIENT_ID = Parameter.INSTAGRAM_CLIENT_ID;
+    private final String CLIENT_ID = conf.getInstagramClientId();
     /** Instagram Location Recent Media Endpoint
      * https://api.instagram.com/v1/locations/ロケーションID/media/recent?client_id=クライアントID
      * */

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.darakeru.apiClient.foursquare.VenueBean;
 import com.darakeru.apiClient.instagram.LocationMediaBean;
 import com.darakeru.apiClient.twitter.GeoTweetBean;
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.Placeinfo;
 import com.darakeru.seichi.model.Placework;
@@ -29,6 +29,7 @@ import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 @WebServlet(description = "聖地情報を登録・表示", urlPatterns = { "/place", "/place/*" })
 public class PlaceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
     private Date apiFetchDate;
 
     /**
@@ -73,19 +74,19 @@ public class PlaceServlet extends HttpServlet {
             Date now = new Date();
             //APIから情報を取得（APIの制限にかかった時はここでなんとかやりくりしてください>未来の自分）
             ServletContext application = getServletContext();
-            if (Parameter.API_LIMIT) {
+            if (conf.isApiLimit()) {
                 if (application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
+                        || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
                     application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()),
                             new LocationMediaBean(thisPlace.getInstagramid()));
                 }
                 if (application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
+                        || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
                     application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
                             thisPlace.getFoursquareid()));
                 }
                 if (application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
+                        || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
                     application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
                             thisPlace.getLat(), thisPlace.getLng()));
                 }
@@ -118,10 +119,10 @@ public class PlaceServlet extends HttpServlet {
             IOException {
         int errorCode = 200;
         String errorStr = "";
-        String redirectURL = Parameter.URL_ROOT;
+        String redirectURL = conf.getUrlRoot();
         try {
             //リファラーチェック＆CAPTCHAチェック
-            if (!request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmplaceadd")) {
+            if (!request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmplaceadd")) {
                 errorCode = 403;
                 errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             } else if (!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))){
@@ -171,7 +172,7 @@ public class PlaceServlet extends HttpServlet {
                         em.persist(thisPlacework);
                     }
                     em.getTransaction().commit();
-                    redirectURL = Parameter.URL_ROOT + "place/" + thisPlace.getPlaceid();
+                    redirectURL = conf.getUrlRoot() + "place/" + thisPlace.getPlaceid();
                 } catch (Exception e) {
                     e.printStackTrace();
                     errorCode = 500;

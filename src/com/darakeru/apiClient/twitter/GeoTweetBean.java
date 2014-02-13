@@ -13,18 +13,19 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 public class GeoTweetBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
     /** Twitter Search REST API Endpoint */
     public static final String ENDPOINT_URL = "https://api.twitter.com/1.1/search/tweets.json?";
     /** 検索の際の半径．
      * とりあえず1kmで．
      */
     private static final String RADIUS = "1km";
-    private static final String AUTH = Parameter.TWITTER_TOKEN;
+    private static final String AUTH = conf.getTwitterToken();
     /** 緯度 */
     private BigDecimal lat;
     /** 経度 */

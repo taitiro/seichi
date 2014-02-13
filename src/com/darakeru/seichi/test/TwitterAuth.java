@@ -13,10 +13,11 @@ import javax.json.JsonReader;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 public class TwitterAuth {
 
+    private static final SeichiProperties conf = new SeichiProperties();
     public static final String CONSUMER_KEY = "";
     public static final String CONSUMER_SECRET_KEY = "";
     public static final String ENC = "utf-8";
@@ -28,8 +29,8 @@ public class TwitterAuth {
     public static void main(String[] args) {
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(TWITTER_AUTH_URL).openConnection();
-            String rawAuth = URLEncoder.encode(Parameter.TWITTER_CONSUMER_KEY, ENC) + ":"
-                    + URLEncoder.encode(Parameter.TWITTER_CONSUMER_SECRET_KEY, ENC);
+            String rawAuth = URLEncoder.encode(conf.getTwitterConsumerKey(), ENC) + ":"
+                    + URLEncoder.encode(conf.getTwitterConsumerSecretKey(), ENC);
             System.out.println("rawAuth: " + rawAuth);
             String beforeAuth = "Basic " + Base64.encodeBase64String(rawAuth.getBytes(ENC));
             System.out.println("beforeAuth: " + beforeAuth);

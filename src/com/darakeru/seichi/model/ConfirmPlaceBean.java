@@ -15,10 +15,11 @@ import javax.json.JsonReader;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.darakeru.checkparam.CheckStr;
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 public class ConfirmPlaceBean implements Serializable {
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
     /**
      * Foursquareのエンドポイント
      */
@@ -161,7 +162,7 @@ public class ConfirmPlaceBean implements Serializable {
 
     public void setLat(String latStr) throws NumberFormatException {
         this.lat = new BigDecimal(latStr);
-        this.lat.setScale(Parameter.LATLNG_SCALE);
+        this.lat.setScale(conf.getLatlngScale());
     }
     
     public BigDecimal getLng() {
@@ -170,7 +171,7 @@ public class ConfirmPlaceBean implements Serializable {
 
     public void setLng(String lngStr) throws NumberFormatException {
         this.lng = new BigDecimal(lngStr);
-        this.lng.setScale(Parameter.LATLNG_SCALE);
+        this.lng.setScale(conf.getLatlngScale());
     }
 
     public String getName() {
@@ -194,7 +195,7 @@ public class ConfirmPlaceBean implements Serializable {
     }
 
     public void setProductid1(String productid1) {
-        this.productid1 = (productid1.length() == Parameter.ASIN_LENGTH ) ? productid1 : "" ;
+        this.productid1 = (productid1.length() == conf.getAsinLength() ) ? productid1 : "" ;
     }
 
     public String getProductid2() {
@@ -202,7 +203,7 @@ public class ConfirmPlaceBean implements Serializable {
     }
 
     public void setProductid2(String productid2) {
-        this.productid2 = (productid2.length() == Parameter.ASIN_LENGTH ) ? productid2 : "" ;
+        this.productid2 = (productid2.length() == conf.getAsinLength() ) ? productid2 : "" ;
     }
 
     public String getProductid3() {
@@ -210,7 +211,7 @@ public class ConfirmPlaceBean implements Serializable {
     }
 
     public void setProductid3(String productid3) {
-        this.productid3 = (productid3.length() == Parameter.ASIN_LENGTH ) ? productid3 : "" ;
+        this.productid3 = (productid3.length() == conf.getAsinLength() ) ? productid3 : "" ;
     }
 
     public String getProductid4() {
@@ -218,7 +219,7 @@ public class ConfirmPlaceBean implements Serializable {
     }
 
     public void setProductid4(String productid4) {
-        this.productid4 = (productid4.length() == Parameter.ASIN_LENGTH ) ? productid4 : "" ;
+        this.productid4 = (productid4.length() == conf.getAsinLength() ) ? productid4 : "" ;
     }
 
     public String getProductid5() {
@@ -226,7 +227,7 @@ public class ConfirmPlaceBean implements Serializable {
     }
 
     public void setProductid5(String productid5) {
-        this.productid5 = (productid5.length() == Parameter.ASIN_LENGTH ) ? productid5 : "" ;
+        this.productid5 = (productid5.length() == conf.getAsinLength() ) ? productid5 : "" ;
     }
 
     public String getUrl1() {
@@ -329,9 +330,9 @@ public class ConfirmPlaceBean implements Serializable {
     public void setFoursquareid() throws IOException {
         String urlStr = FOURSQUARE_SEARCH_URL;
         urlStr += ("ll=" + this.getLat().toPlainString() + "," + this.getLng().toPlainString());
-        urlStr += ("&client_id=" + Parameter.FOURSQUARE_CLIENT_ID);
-        urlStr += ("&client_secret=" + Parameter.FOURSQUARE_CLIENT_SECRET_ID);
-        urlStr += ("&v=" + Parameter.VERSION_DATE);
+        urlStr += ("&client_id=" + conf.getFoursquareClientId());
+        urlStr += ("&client_secret=" + conf.getFoursquareClientSecretId());
+        urlStr += ("&v=" + conf.getVersionDate());
         //System.out.println("get url : " + urlStr);
         URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -364,7 +365,7 @@ public class ConfirmPlaceBean implements Serializable {
         String urlStr = INSTAGRAM_SEARCH_URL;
         urlStr += ("lat=" + this.getLat().toPlainString());
         urlStr += ("&lng=" + this.getLng().toPlainString());
-        urlStr += ("&client_id=" + Parameter.INSTAGRAM_CLIENT_ID);
+        urlStr += ("&client_id=" + conf.getInstagramClientId());
         //System.out.println("get url : " + urlStr);
         URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -398,7 +399,7 @@ public class ConfirmPlaceBean implements Serializable {
         String urlStr = FACEBOOK_SEARCH_URL;
         urlStr += ("type=place");
         urlStr += ("&center=" + this.getLat().toPlainString() + "," + this.getLng().toPlainString());
-        urlStr += ("&access_token=" + Parameter.FACEBOOK_TOKEN);
+        urlStr += ("&access_token=" + conf.getFacebookToken());
         //System.out.println("get url : " + urlStr);
         URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

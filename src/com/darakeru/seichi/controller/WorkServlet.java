@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.PlaceJsonBean;
 import com.darakeru.seichi.model.Placework;
@@ -26,6 +26,7 @@ import com.darakeru.seichi.model.Workinfo;
 @WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/work/*" })
 public class WorkServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -96,7 +97,7 @@ public class WorkServlet extends HttpServlet {
         String errorStr = "";
         try {
             //リファラーチェック
-            if (request.getHeader("Referer").equals(Parameter.URL_ROOT + "confirmworkadd") 
+            if (request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmworkadd") 
                     || request.getHeader("Referer").startsWith("http://localhost:8080/seichi/import/work-custom.php")) {
                 Work thisWork = new Work();
                 thisWork.setName(request.getParameter("name"));
@@ -123,7 +124,7 @@ public class WorkServlet extends HttpServlet {
                     thisWorkinfo.setWorkid(thisWork.getWorkid());
                     em.persist(thisWorkinfo);
                     em.getTransaction().commit();
-                    redirectURL = Parameter.URL_ROOT + "work/" + thisWork.getWorkid();
+                    redirectURL = conf.getUrlRoot() + "work/" + thisWork.getWorkid();
                 } catch (Exception e) {
                     e.printStackTrace();
                     errorCode = 500;

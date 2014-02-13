@@ -1,6 +1,6 @@
 package com.darakeru.seichi.model;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 import java.io.Serializable;
 
@@ -26,6 +26,7 @@ import java.util.List;
 })
 public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -142,7 +143,7 @@ public class Place implements Serializable {
 
     public void setLat(String latStr) throws NumberFormatException {
         this.lat = new BigDecimal(latStr);
-        this.lat.setScale(Parameter.LATLNG_SCALE);
+        this.lat.setScale(conf.getLatlngScale());
     }
     
 	public BigDecimal getLng() {
@@ -151,7 +152,7 @@ public class Place implements Serializable {
 
     public void setLng(String lngStr) throws NumberFormatException {
         this.lng = new BigDecimal(lngStr);
-        this.lng.setScale(Parameter.LATLNG_SCALE);
+        this.lng.setScale(conf.getLatlngScale());
     }
 
 	public String getName() {
@@ -175,7 +176,7 @@ public class Place implements Serializable {
 	}
 
     public void setProductid1(String productid1) {
-        this.productid1 = (productid1.length() == Parameter.ASIN_LENGTH ) ? productid1 : "" ;
+        this.productid1 = (productid1.length() == conf.getAsinLength() ) ? productid1 : "" ;
     }
 
     public String getProductid2() {
@@ -183,7 +184,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid2(String productid2) {
-        this.productid2 = (productid2.length() == Parameter.ASIN_LENGTH ) ? productid2 : "" ;
+        this.productid2 = (productid2.length() == conf.getAsinLength() ) ? productid2 : "" ;
     }
 
     public String getProductid3() {
@@ -191,7 +192,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid3(String productid3) {
-        this.productid3 = (productid3.length() == Parameter.ASIN_LENGTH ) ? productid3 : "" ;
+        this.productid3 = (productid3.length() == conf.getAsinLength() ) ? productid3 : "" ;
     }
 
     public String getProductid4() {
@@ -199,7 +200,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid4(String productid4) {
-        this.productid4 = (productid4.length() == Parameter.ASIN_LENGTH ) ? productid4 : "" ;
+        this.productid4 = (productid4.length() == conf.getAsinLength() ) ? productid4 : "" ;
     }
 
     public String getProductid5() {
@@ -207,7 +208,7 @@ public class Place implements Serializable {
     }
 
     public void setProductid5(String productid5) {
-        this.productid5 = (productid5.length() == Parameter.ASIN_LENGTH ) ? productid5 : "" ;
+        this.productid5 = (productid5.length() == conf.getAsinLength() ) ? productid5 : "" ;
     }
 
 	public String getUrl1() {

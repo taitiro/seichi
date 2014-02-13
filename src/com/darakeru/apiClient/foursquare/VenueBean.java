@@ -11,15 +11,16 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 
 public class VenueBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
     /** Foursquare Client ID */
-    private final String CLIENT_ID = Parameter.FOURSQUARE_CLIENT_ID;
+    private final String CLIENT_ID = conf.getFoursquareClientId();
     /** Foursquare Client Secret ID */
-    private final String CLIENT_SECRET_ID = Parameter.FOURSQUARE_CLIENT_SECRET_ID;
+    private final String CLIENT_SECRET_ID = conf.getFoursquareClientSecretId();
     /** foursquare venue Endpoint*/
     public static final String ENDPOINT_URL = "https://api.foursquare.com/v2/venues/";
     /** this module's version date */

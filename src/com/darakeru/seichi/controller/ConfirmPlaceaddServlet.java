@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.darakeru.seichi.Parameter;
+import com.darakeru.seichi.SeichiProperties;
 import com.darakeru.seichi.model.ConfirmPlaceBean;
 import com.darakeru.seichi.model.WorkListBean;
 
@@ -18,6 +18,7 @@ import com.darakeru.seichi.model.WorkListBean;
 @WebServlet(description = "聖地追加の確認", urlPatterns = { "/confirmplaceadd" })
 public class ConfirmPlaceaddServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final SeichiProperties conf = new SeichiProperties();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,8 +37,8 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         String errorStr = "";
         try {
             // リファラーチェック
-            if (request.getHeader("Referer").startsWith(Parameter.URL_ROOT + "placeadd.html")
-                    || request.getHeader("Referer").startsWith(Parameter.URL_ROOT + "customplaceadd.html"))
+            if (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "placeadd.html")
+                    || request.getHeader("Referer").startsWith(conf.getUrlRoot() + "customplaceadd.html"))
             {
                 //セッションチェックを含んでおいてー
                 ConfirmPlaceBean thisPlace = new ConfirmPlaceBean();
@@ -156,7 +157,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
                         thisPlace.setWorkid(0);
                     }
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
+                    response.sendRedirect(conf.getUrlRoot() + "error/inputError.html");
                 }
                 if (getServletContext().getAttribute("workList") == null) {
                     getServletContext().setAttribute("workList", new WorkListBean());
@@ -170,7 +171,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
             errorCode = 400;
             errorStr = "数値を送信すべき箇所で数値ではない値もしくは空欄を送信しています";
         } catch (NullPointerException e) {
-            response.sendRedirect(Parameter.URL_ROOT + "error/inputError.html");
+            response.sendRedirect(conf.getUrlRoot() + "error/inputError.html");
         } catch (Exception e) {
             e.printStackTrace();
             errorCode = 500;
