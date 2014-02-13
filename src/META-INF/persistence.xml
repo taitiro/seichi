@@ -10,7 +10,7 @@
 		<class>com.darakeru.seichi.model.Workinfo</class>
 		<class>com.darakeru.seichi.model.Worktag</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/seichidbcopy"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/seichidb"/>
 			<property name="javax.persistence.jdbc.password" value="291114"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.user" value="HelloDB"/>

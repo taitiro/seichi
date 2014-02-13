@@ -12,7 +12,7 @@ function initialize() {
     }
     map = new google.maps.Map(document.getElementById('map'), {
         center : thisCenter,
-        zoom : 17
+        zoom : 15
     });
     service = new google.maps.places.PlacesService(map);
     map.fitBounds(thisBounds);

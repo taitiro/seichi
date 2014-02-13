@@ -47,15 +47,15 @@
         <li><a href="../placeadd.html">聖地情報の追加</a></li>
       </ul>
 
-      <form class="navbar-form navbar-right" role="search" action="search.html" method="get">
+      <form class="navbar-form navbar-right" role="search" action="../search.html" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="住所などを入力">
+          <input type="text" name="place" class="form-control" placeholder="住所などを入力">
         </div>
         <input type="submit" class="btn btn-default" value="聖地検索">
       </form>
-      <form class="navbar-form navbar-right" role="search" action="searchwork.html" method="get">
+      <form class="navbar-form navbar-right" role="search" action="../searchwork.html" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="作品名などを入力">
+          <input type="text" name="name" class="form-control" placeholder="作品名などを入力">
         </div>
         <input type="submit" class="btn btn-default" value="作品検索">
       </form>
@@ -177,7 +177,8 @@
         <div class="col-md-4">
 
           <div class="well">
-            <h2 class="page-header">foursquareからの情報</h2>
+            <h2 class="page-header"><a href="<%=((VenueBean) application.getAttribute("foursquare_"
+                        + String.valueOf(thisPlace.getPlaceid()))).getUrlStr()%>">foursquareからの情報</a></h2>
             <%
                 for (OneTips thisTips : ((VenueBean) application.getAttribute("foursquare_"
                         + String.valueOf(thisPlace.getPlaceid()))).getTipsArray()) {
@@ -223,9 +224,9 @@
         </div>
         <!-- Googleの口コミ表示 -->
         <div class="col-md-4">
-          <div id="google-place-wrapper">
+          <div class="well" id="google-place-wrapper">
             <div id="google-place">
-              <h2 class="page-header">Googleからの情報</h2>
+              <h2 class="page-header" id="google-place-title">Googleからの情報</h2>
             </div>
           </div>
         </div>
@@ -269,14 +270,11 @@
   </article>
   <!--/row-->
   <hr>
-  <footer class="container">
-    <ul>
-      <li>運営している人紹介（連絡先など）</li>
-      <li>利用規約</li>
-      <li>注意書き</li>
-      <li>著作権表記</li>
-    </ul>
-  </footer>
+      <footer class="container text-center list-group">
+            <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
+            <a class="list-group-item" href="terms.html">利用規約</a>
+            <a class="list-group-item" href="copyright.html">著作権について</a>
+      </footer>
   <!--/.container-->
   <!-- Bootstrap core JavaScript
 ================================================== -->

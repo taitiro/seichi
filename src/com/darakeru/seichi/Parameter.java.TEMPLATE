@@ -18,4 +18,16 @@ public class Parameter {
      * バージョンの日付．いまいちなんに使うのかよくわかっていない
      */
     public static final String VERSION_DATE = "20140129";
+    /** 
+     * ASIN(Amazon Standard Identification Number)の桁数
+     */
+    public static final int ASIN_LENGTH = 10;
+    /** API_LIMIT
+     * APIからの取得を制限するか．trueにすると，一旦アクセスされたらサーバーが再起動するまで情報が更新されない．
+     */
+    public static final boolean API_LIMIT = false;
+    /** API_INTERVAL
+     * APIの更新の間隔(秒数)
+     */
+    public static final long API_INTERVAL = 3600;
 }

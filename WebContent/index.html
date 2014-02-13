@@ -72,11 +72,12 @@
                 <h1 class="page-header">「たんけんアニメのまち」ってなに？</h1>
                 <p>アニメやマンガなどの背景に使われている場所，いわゆる「聖地」の情報を，場所や作品から簡単に検索できるサービスだよ．</p>
                 <p>ユーザー登録すれば，自分が訪問した場所を記録したり，どんな場所だったかコメントを残して，それをtwitterやfacebookに投稿したり，その場所でとった写真を公開することも出来るよ．</p>
-                <p>現在の総登録件数は件だよ．</p>
+                <!-- <p>現在の総登録件数は件だよ．</p> -->
               </div>
             </div>
           </div>
-          <div class="row">
+        </section>
+<!--           <div class="row">
             <div class="col-md-12">
               <h1 class="page-header">人気地点</h1>
             </div>
@@ -96,7 +97,7 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
             <div class="col-6 col-sm-6 col-lg-4">
 
               <div class="well">
@@ -112,7 +113,7 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
             <div class="col-6 col-sm-6 col-lg-4">
 
               <div class="well">
@@ -128,10 +129,9 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
           </div>
-          <!--/row-->
-        </section>
+          /row
         <section>
           <div class="row">
             <div class="col-md-6">
@@ -150,7 +150,7 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
             <div class="col-6 col-sm-6 col-lg-4">
 
               <div class="well">
@@ -161,7 +161,7 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
             <div class="col-6 col-sm-6 col-lg-4">
 
               <div class="well">
@@ -172,9 +172,9 @@
                 </p>
               </div>
             </div>
-            <!--/span-->
+            /span
           </div>
-          <!--/row-->
+          /row
         </section>
         <section class="row">
           <div class="col-md-12">
@@ -194,16 +194,16 @@
               <p>作品別検索・地域別検索はajaxでスポット情報表示</p>
             </div>
           </div>
-        </section>
+        </section> -->
       </article>
       <!--/span-->
 
       <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 
-        <div class="well">
           <h1 class="page-header">聖地検索</h1>
           <form action="search.html" method="get" id="searchform">
-            <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
+            <label>場所名など：<input type="text" name="place"></label>
+            <!-- <label>作品名：<input type="text" name="work"></label>
             <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
             <div id="detailinfo" class="collapse">
               <label> 検索件数：<input type="number" name="num" id="search-num" value="10" step="5">
@@ -222,7 +222,7 @@
               <fieldset>
                 検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
               </fieldset>
-            </div>
+            </div> -->
             <p>
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
@@ -234,20 +234,11 @@
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
           </form>
-        </div>
 
-        <div class="well">
+<!--         <div class="well">
           <h1 class="page-header">広告</h1>
           <p>ここに広告置きたい</p>
-          <h1 class="page-header">暫定リンク</h1>
-          <ul>
-            <li><a href="search.html">検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>
-            <li><a href="searchwork.html">作品検索画面</a>（HTMLで，パラメータをwindow.locationで取得し，XMLHTTPRequestで可変部分の情報をJSONで取得）</li>
-            <li><a href="place.html">聖地情報画面</a>（それぞれの場所で個別にJSPでページ出力）</li>
-            <li><a href="user.html">ユーザー情報画面</a>（それぞれのユーザーで個別にJSPでページ出力）</li>
-            <li><a href="work.html">作品情報画面</a>（それぞれの作品で個別にJSPでページ出力）</li>
-          </ul>
-        </div>
+        </div> -->
       </aside>
       <!--/span-->
     </div>
@@ -255,14 +246,11 @@
 
     <hr>
 
-    <footer class="container">
-      <ul>
-        <li>運営している人紹介（連絡先など）</li>
-        <li>利用規約</li>
-        <li>注意書き</li>
-        <li>著作権表記</li>
-      </ul>
-    </footer>
+      <footer class="container text-center list-group">
+            <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
+            <a class="list-group-item" href="terms.html">利用規約</a>
+            <a class="list-group-item" href="copyright.html">著作権について</a>
+      </footer>
 
   </div>
   <!--/.container-->
@@ -272,19 +260,19 @@
   <!-- Bootstrap core JavaScript
 ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
-  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- Load Backbone.js-->
-  <script src="js/underscore-min.js"></script>
-  <script src="js/json2.js"></script>
-  <script src="js/backbone-min.js"></script>
+  <script type="text/javascript" src="js/underscore-min.js"></script>
+  <script type="text/javascript" src="js/json2.js"></script>
+  <script type="text/javascript" src="js/backbone-min.js"></script>
   <!--
 <script src="js/model.js"></script>
 modelはviewファイルで読み込む風にしなきゃ動かないのかな―
 -->
   <!-- Load project's js -->
-  <script src="js/offcanvas.js"></script>
+  <script type="text/javascript" src="js/offcanvas.js"></script>
   <!-- Load page's js -->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="js/index.js"></script>

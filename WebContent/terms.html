@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="たんけんアニメのまちを利用する際の利用規約">
+    <meta name="keyword" content="聖地,聖地巡礼,舞台探訪,アニメ,漫画,マンガ,まんが,ライトノベル,ゲーム,ドラマ,旅行,観光,位置情報">
+    <meta name="author" content="だらけるこむ（小杉太一郎）">
+    <link rel="shortcut icon" href="">
+    
+    <title>たんけんアニメのまち - 利用規約</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--<link href="css/jquery-ui.css" rel="stylesheet">-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./">たんけんアニメのまち</a>
+      </div>
+      <div class="collapse navbar-collapse container">
+        <ul class="nav navbar-nav">
+          <li><a href="./">トップページ</a></li>
+          <li><a href="search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
+          <li><a href="placeadd.html">聖地情報の追加</a></li>
+        </ul>
+        <!--         <form class="btn-group navbar-form pull-right">
+<button type="button" class="btn btn-default btn-sm">ログイン</button>
+<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+<span class="sr-only">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">twitterIDでログイン</a></li>
+<li><a href="#">facebookIDでログイン</a></li>
+</ul>
+</form> -->
+      </div>
+      <!-- /.nav-collapse -->
+    </header>
+    <!-- /.navbar -->
+    
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <article class="col-xs-12 col-sm-9">
+          <section class="jumbotron">
+            <h1>利用規約</h1>
+            <p>このサービスを利用するにあたっては，以下の条項をお読みになり，内容に同意してください．</p>
+          </section>
+          <section>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="well">
+                  <h2 class="page-header">Don't be evil.<small>(悪いことしちゃやーよ)</small></h2>
+                  <p>とりあえず日本の法律はきちんと守ってください．このサービスを不正利用してこのサービス自体や，第三者に不利益を与えるような行為はやめてください．特に，他人に著作権が帰属しており，利用の許諾を得ていない画像・文章を投稿したりしないでください．</p>
+                  <h2 class="page-header">As always, should you or any member of your IM Force be caught or killed, 
+                    the Secretary will disavow all knowledge of your actions. <small>(例によって君もしくは君のメンバーが捕らえられ、あるいは殺されても当局は一切関知しないからそのつもりで。)</small></h2>
+                  <p>このサービスを使ったせいで様々な損害が生じたとしても，こちらは一切責任を負いません．</p>
+                  <h2 class="page-header">What's yours is mine, and what's mine is my own.<small>(おまえのものはおれのもの、おれのものもおれのもの)</small></h2>
+                  <p>このサービスに投稿した情報については，サービス運営者が無制限に利用できることとします．サイトに投稿された情報をこのサイトではない別の場所で公開したりすることもありえます．</p>
+                  <h2 class="page-header">Enjoy &amp; Exciting!<small>(エンジョイ&amp;エキサイティング！)</small></h2>
+                  <p>そういうこと，忘れちゃ駄目だよ．</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </article>
+        <!--/span-->
+        
+        <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          
+          <h1 class="page-header">聖地検索</h1>
+          <form action="search.html" method="get" id="searchform">
+            <label>場所名など：<input type="text" name="place"></label>
+            <!--
+             <label>作品名：<input type="text" name="work"></label>
+<button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
+<div id="detailinfo" class="collapse">
+<label> 検索件数：<input type="number" name="num" id="search-num" value="10" step="5">
+</label> <label> ソート順 <select name="sort">
+<option value="smart" selected>スマート</option>
+<option value="visitnum">訪問者数</option>
+<option value="lastvisit">最終訪問日が早い順</option>
+<option value="add">登録日が早い順</option>
+<option value="geoloc">現在地に近い順</option>
+<option value="place">検索した場所に近い順</option>
+</select>
+</label> <label>登録された日： <br />
+<input type="date" name="fromdate" id="fromdate">から <br />
+<input type="date" name="todate" id="todate">まで
+</label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
+<fieldset>
+検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
+</fieldset>
+</div> 
+            -->
+            <p>
+              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
+            </p>
+          </form>
+          <h1 class="page-header">作品検索</h1>
+          <form action="searchwork.html" method="get" id="searchworkform">
+            <label>検索文字：<input type="text" name="name"></label>
+            <p>
+              <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
+            </p>
+          </form>
+          
+          <!--
+                   <div class="well">
+<h1 class="page-header">広告</h1>
+<p>ここに広告置きたい</p>
+</div> 
+        -->
+        </aside>
+        <!--/span-->
+      </div>
+      <!--/row-->
+      
+      <hr>
+      
+      <footer class="container text-center list-group">
+        
+        <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
+        <a class="list-group-item active" href="terms.html">利用規約</a>
+        <a class="list-group-item" href="copyright.html">著作権について</a>
+      </footer>
+      
+    </div>
+    <!--/.container-->
+    
+    
+    
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--
+<script src="js/model.js"></script>
+modelはviewファイルで読み込む風にしなきゃ動かないのかな―
+-->
+    <!-- Load project's js -->
+    <script src="js/offcanvas.js"></script>
+  </body>
+</html>

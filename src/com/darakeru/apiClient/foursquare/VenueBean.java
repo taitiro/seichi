@@ -27,6 +27,9 @@ public class VenueBean implements Serializable {
 
     /** Foursauare Venue ID*/
     private String id;
+    
+    /** Foursauare Venue URL*/
+    private String urlStr;
 
     /** それぞれのmedia情報 */
     private ArrayList<OneTips> tipsArray;
@@ -77,6 +80,7 @@ public class VenueBean implements Serializable {
             if (con.getResponseCode() == 200) {
                 JsonReader jsonReader = Json.createReader(con.getInputStream());
                 JsonObject object = jsonReader.readObject();
+                this.setUrlStr(object.getJsonObject("response").getJsonObject("venue").getString("canonicalUrl"));
                 JsonArray tips = object.getJsonObject("response").getJsonObject("venue").getJsonObject("tips").getJsonArray("groups");
                 for (int i = 0; i < tips.size(); i++) {
                     //今のところothersのTipsのみ対応
@@ -105,6 +109,14 @@ public class VenueBean implements Serializable {
         }
         this.setTipsArray(tipsArray);
         return true;
+    }
+
+    public String getUrlStr() {
+        return urlStr;
+    }
+
+    public void setUrlStr(String urlStr) {
+        this.urlStr = urlStr;
     }
 
 }

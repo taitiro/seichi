@@ -223,14 +223,11 @@
     <!--/span-->
 
     <hr>
-    <footer class="container">
-      <ul>
-        <li>運営している人紹介（連絡先など）</li>
-        <li>利用規約</li>
-        <li>注意書き</li>
-        <li>著作権表記</li>
-      </ul>
-    </footer>
+      <footer class="container text-center list-group">
+            <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
+            <a class="list-group-item" href="terms.html">利用規約</a>
+            <a class="list-group-item" href="copyright.html">著作権について</a>
+      </footer>
   </div>
   <!--/.container-->
   <!-- Bootstrap core JavaScript

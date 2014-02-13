@@ -5,7 +5,7 @@ $(function() {
                 new google.maps.LatLng(mapData.latlngNorthEast[0],
                         mapData.latlngNorthEast[1]), new google.maps.LatLng(
                         mapData.latlngSouthWest[0], mapData.latlngSouthWest[1])), mapOpt = {
-            zoom : 17,
+            zoom : 15,
             mapTypeId : google.maps.MapTypeId.ROADMAP,
             scaleControl : true,
             center : new google.maps.LatLng(mapData.place[0].latlng[0],

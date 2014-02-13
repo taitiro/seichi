@@ -1,7 +1,7 @@
 //定数
 var DEF_LAT_LNG = [35.698683,139.774219],//緯度経度のデフォルト値は秋葉原駅(なんとなく)
     mapOpt = {
-      zoom:17,
+      zoom:15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       scaleControl: true,
       center: new google.maps.LatLng(DEF_LAT_LNG[0],DEF_LAT_LNG[1]),

@@ -30,7 +30,7 @@
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>php</servlet-name>
 		<servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class>
 		<init-param>
@@ -50,5 +50,5 @@
 	<servlet-mapping>
 		<servlet-name>php</servlet-name>
 		<url-pattern>/import/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 </web-app>

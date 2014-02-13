@@ -201,10 +201,11 @@ amzn_wdgt.marketPlace='JP';
 
       <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 
-        <div class="well">
         <h2 class="page-header">聖地検索</h2>
           <form action="../search.html" method="get" id="searchform">
-            <label>場所：<input type="text" name="place"></label> <label>作品名：<input type="text" name="work"></label>
+            <label>場所：<input type="text" name="place"></label>
+            <!--
+            <label>作品名：<input type="text" name="work"></label>
             <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
             <div id="detailinfo" class="collapse">
               <label> 検索件数：<input type="number" name="num" value="10">
@@ -222,7 +223,8 @@ amzn_wdgt.marketPlace='JP';
                 検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
               </fieldset>
             </div>
-            <p>
+-->
+              <p>
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
           </form>
@@ -233,27 +235,23 @@ amzn_wdgt.marketPlace='JP';
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
           </form>
-        </div>
-
+<!--
         <div class="well">
         <h2 class="page-header">広告</h2>
 
           <p>ここに広告置きたい</p>
-        </div>
+        </div>-->
       </aside>
       <!--/span-->
 
     </div>
     <!--/row-->
     <hr>
-    <footer class="container">
-      <ul>
-        <li>運営している人紹介（連絡先など）</li>
-        <li>利用規約</li>
-        <li>注意書き</li>
-        <li>著作権表記</li>
-      </ul>
-    </footer>
+      <footer class="container text-center list-group">
+            <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
+            <a class="list-group-item" href="terms.html">利用規約</a>
+            <a class="list-group-item" href="copyright.html">著作権について</a>
+      </footer>
 
   </div>
   <!--/.container-->

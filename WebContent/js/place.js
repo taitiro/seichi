@@ -32,25 +32,34 @@ $(function() {
   console.log('2 : ' + $('#map-container').val());
   service.getDetails(request, function (place, status) {
     var reviews = new Array(),str,isEmpty =true;
-    if (status == google.maps.places.PlacesServiceStatus.OK && place.reviews != null) {
-      for(i=0;i<place.reviews.length;i++){
-        if(place.reviews[i].text != null && place.reviews[i].text != ''){
-          isEmpty = false;
-          str = '<div class-"well"><p>' + place.reviews[i].text + ' by ';
-          if(place.reviews[i].author_url != null && place.reviews[i].author_url != ''){
-            str += ('<a href="' + place.reviews[i].author_url + '">' + place.reviews[i].author_name + '</a>');
-          }else{
-            str += place.reviews[i].author_name;
-          }
-          str += '</p></div>';
-          $('#google-place').append(str);
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        $('#google-place-title').html('<a href="' + place.url + '">Googleからの情報</a>');
+        if (place.reviews != null) {
+            for (i = 0; i < place.reviews.length; i++) {
+                if (place.reviews[i].text != null
+                        && place.reviews[i].text != '') {
+                    isEmpty = false;
+                    str = '<p>' + place.reviews[i].text
+                            + ' by ';
+                    if (place.reviews[i].author_url != null
+                            && place.reviews[i].author_url != '') {
+                        str += ('<a href="'
+                                + place.reviews[i].author_url
+                                + '">'
+                                + place.reviews[i].author_name + '</a>');
+                    } else {
+                        str += place.reviews[i].author_name;
+                    }
+                    str += '</p>';
+                    $('#google-place').append(str);
+                }
+            }
         }
-      }
       if(isEmpty){
-        $('#google-place').append('<div class-"well"><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
+        $('#google-place').append('<p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p>');
       }
     }else{
-      $('#google-place').append('<div><p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p></div>');
+      $('#google-place').append('<p class="alert alert-danger">Googleプレイスに口コミ情報は登録されていませんでした．</p>');
     }
     $('#google-place-wrapper').removeClass('hidden');
   });

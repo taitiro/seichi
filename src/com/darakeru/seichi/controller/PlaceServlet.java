@@ -1,6 +1,7 @@
 package com.darakeru.seichi.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,6 +28,7 @@ import com.darakeru.seichi.model.Work;
 @WebServlet(description = "聖地情報を登録・表示", urlPatterns = { "/place", "/place/*" })
 public class PlaceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private Date apiFetchDate;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -67,21 +69,26 @@ public class PlaceServlet extends HttpServlet {
                 em.close();
                 emf.close();
             }
+            Date now = new Date();
             //APIから情報を取得（APIの制限にかかった時はここでなんとかやりくりしてください>未来の自分）
             ServletContext application = getServletContext();
             if (Parameter.API_LIMIT) {
-                if (application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                if (application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid())) == null
+                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
                     application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()),
                             new LocationMediaBean(thisPlace.getInstagramid()));
                 }
-                if (application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                if (application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid())) == null
+                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
                     application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
                             thisPlace.getFoursquareid()));
                 }
-                if (application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid())) == null) {
+                if (application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid())) == null
+                        || (now.getTime() - apiFetchDate.getTime()) > Parameter.API_INTERVAL) {
                     application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
                             thisPlace.getLat(), thisPlace.getLng()));
                 }
+                apiFetchDate = new Date();
             } else {
                 application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()), new LocationMediaBean(
                         thisPlace.getInstagramid()));
