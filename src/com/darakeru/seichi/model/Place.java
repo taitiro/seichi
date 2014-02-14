@@ -19,7 +19,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="table")
+@Table(name="place")
 
 @NamedQueries({
     @NamedQuery(name="Place.findAll", query="SELECT p FROM Place p"),
