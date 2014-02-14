@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * 
  */
 @Entity
+@Table(name="worktag")
 @NamedQuery(name="Worktag.findAll", query="SELECT w FROM Worktag w")
 public class Worktag implements Serializable {
 	private static final long serialVersionUID = 1L;

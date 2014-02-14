@@ -1,6 +1,7 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="placeinfo")
 @NamedQuery(name="Placeinfo.findAll", query="SELECT p FROM Placeinfo p")
 public class Placeinfo implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,7 @@
 package com.darakeru.seichi.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="workinfo")
 @NamedQuery(name="Workinfo.findAll", query="SELECT w FROM Workinfo w")
 public class Workinfo implements Serializable {
 	private static final long serialVersionUID = 1L;

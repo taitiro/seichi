@@ -16,10 +16,11 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="work")
 @NamedQueries({
-    @NamedQuery(name="Work.findAll", query="SELECT w FROM Work w "),
-    @NamedQuery(name="Work.findByName", query="SELECT w FROM Work w WHERE (w.name like :name) OR (w.workdesc like :name) "),
-    @NamedQuery(name="Work.findIdAndName", query="SELECT w.workid, w.name FROM Work w ORDER BY w.workid")
+    @NamedQuery(name="Work.findAll", query="SELECT w FROM work w "),
+    @NamedQuery(name="Work.findByName", query="SELECT w FROM work w WHERE (w.name like :name) OR (w.workdesc like :name) "),
+    @NamedQuery(name="Work.findIdAndName", query="SELECT w.workid, w.name FROM work w ORDER BY w.workid")
     })
 public class Work implements Serializable {
 	private static final long serialVersionUID = 1L;

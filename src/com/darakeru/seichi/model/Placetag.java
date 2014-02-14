@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * 
  */
 @Entity
+@Table(name="placetag")
 @NamedQuery(name="Placetag.findAll", query="SELECT p FROM Placetag p")
 public class Placetag implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="placework")
 @NamedQuery(name="Placework.findAll", query="SELECT p FROM Placework p")
 public class Placework implements Serializable {
 	private static final long serialVersionUID = 1L;
