@@ -1,6 +1,8 @@
 package com.darakeru.seichi.controller;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +69,7 @@ public class WorkServlet extends HttpServlet {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(new PrintWriter(new FileWriter("log.txt")));
                 errorCode = 500;
                 errorStr = "データベースからのデータ取得時にエラーが発生しました";
             } finally {
