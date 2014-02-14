@@ -22,7 +22,8 @@ import java.util.List;
 
 @NamedQueries({
     @NamedQuery(name="Place.findAll", query="SELECT p FROM Place p"),
-    @NamedQuery(name="Place.findByName", query="SELECT p FROM Place p WHERE (p.name like :name ) OR (p.placedesc like :name )")
+    @NamedQuery(name="Place.findByName", query="SELECT p FROM Place p WHERE (p.name like :name ) OR (p.placedesc like :name )"),
+    @NamedQuery(name="Place.findByLatLng", query="SELECT p FROM Place p ORDER BY ( abs(p.lat - :lat ) + abs(p.lng - :lng) )")
 })
 public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;

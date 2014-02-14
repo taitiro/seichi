@@ -57,7 +57,7 @@ $(function () {
           },
           sendData : function(){
             //GETパラメーターを取得URLに追加
-            this.collection.url = this.collection.urlRoot + this.getParam + this.geoParam;
+            this.collection.url = this.collection.urlRoot + this.getParam + '&' + this.geoParam;
             // （collectionのurlにGETリクエストを送信する）
             this.collection.fetch({
               success : function success(collection, res, options) {

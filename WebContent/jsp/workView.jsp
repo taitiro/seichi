@@ -203,7 +203,8 @@ amzn_wdgt.marketPlace='JP';
 
         <h2 class="page-header">聖地検索</h2>
           <form action="../search.html" method="get" id="searchform">
-            <label>場所：<input type="text" name="place"></label>
+            <label>場所名など：<input type="text" name="place" placeholder="住所・地名・スポット名などを入力" required></label>
+            <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
             <!--
             <label>作品名：<input type="text" name="work"></label>
             <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
@@ -230,7 +231,7 @@ amzn_wdgt.marketPlace='JP';
           </form>
         <h2 class="page-header">作品検索</h2>
           <form action="../searchwork.html" method="get" id="searchworkform">
-            <label>検索文字：<input type="text" name="name"></label>
+            <label>検索文字：<input type="text" name="name" placeholder="作品名などを入力" required></label>
             <p>
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>

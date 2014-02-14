@@ -1,6 +1,7 @@
 package com.darakeru.seichi.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
@@ -39,7 +40,12 @@ public class PlaceSearchServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int thisLimitNum = LIMIT_NUM;
+        if(request.getParameter("limit") != null 
+                && !request.getParameter("limit").equals("")
+                && Integer.parseInt(request.getParameter("limit")) <= LIMIT_NUM ){
+            thisLimitNum = Integer.parseInt(request.getParameter("limit"));
+        }
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
         EntityManager em = emf.createEntityManager();
         try {
@@ -49,11 +55,18 @@ public class PlaceSearchServlet extends HttpServlet {
             if (request.getParameter("place") != null && !request.getParameter("place").equals("")) {
                 // Place クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
                 placeList = (ArrayList<Place>) em.createNamedQuery("Place.findByName").setParameter("name", "%" + request.getParameter("place") + "%")
-                        .setMaxResults(LIMIT_NUM).getResultList();
+                        .setMaxResults(thisLimitNum).getResultList();
                 System.out.println("test");
+            } else if(request.getParameter("lat") != null && !request.getParameter("lat").equals("")
+                    && request.getParameter("lng") != null && !request.getParameter("lat").equals("")){
+                // Place クラスで定義された NamedQuery を使って合致する場所を取得してJsonArrayに格納
+                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findByLatLng")
+                        .setParameter("lat", new BigDecimal(request.getParameter("lat")))
+                        .setParameter("lng", new BigDecimal(request.getParameter("lng")))
+                        .setMaxResults(thisLimitNum).getResultList();
             } else {
                 // Place クラスで定義された NamedQuery を使って全場所を取得してJsonArrayに格納
-                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findAll").setMaxResults(LIMIT_NUM).getResultList();
+                placeList = (ArrayList<Place>) em.createNamedQuery("Place.findAll").setMaxResults(thisLimitNum).getResultList();
             }
             if(placeList.isEmpty()){
                 response.sendError(404, "検索結果は存在しません");

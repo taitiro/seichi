@@ -49,13 +49,13 @@
 
       <form class="navbar-form navbar-right" role="search" action="../search.html" method="get">
         <div class="form-group">
-          <input type="text" name="place" class="form-control" placeholder="住所などを入力">
+          <input type="text" name="place" class="form-control" placeholder="住所・地名・スポット名などを入力" required>
         </div>
         <input type="submit" class="btn btn-default" value="聖地検索">
       </form>
       <form class="navbar-form navbar-right" role="search" action="../searchwork.html" method="get">
         <div class="form-group">
-          <input type="text" name="name" class="form-control" placeholder="作品名などを入力">
+          <input type="text" name="name" class="form-control" placeholder="作品名などを入力" required>
         </div>
         <input type="submit" class="btn btn-default" value="作品検索">
       </form>
@@ -138,7 +138,11 @@
                 }
             %>
 
+            <%
+                if (thisPlace.getFacebookid() != 0) {
+            %>
             <li class="list-group-item"><a href="https://www.facebook.com/<jsp:getProperty name="thisPlace" property="facebookid" />">facebookページ</a></li>
+            <% } %>
           </ul>
         </div>
         <div class="col-md-2">
@@ -185,6 +189,10 @@
           <div class="well">
             <h2 class="page-header"><a href="<%=((VenueBean) application.getAttribute("foursquare_"
                         + String.valueOf(thisPlace.getPlaceid()))).getUrlStr()%>">foursquareからの情報</a></h2>
+            <% if(((VenueBean) application.getAttribute("foursquare_"
+                  + String.valueOf(thisPlace.getPlaceid()))).getTipsArray().size() == 0){ %>
+              <p class="alert alert-danger">Tipsは取得できませんでした。</p>
+            <% }else{ %>
             <%
                 for (OneTips thisTips : ((VenueBean) application.getAttribute("foursquare_"
                         + String.valueOf(thisPlace.getPlaceid()))).getTipsArray()) {
@@ -202,6 +210,7 @@
             </blockquote>
             <%
                 }
+            }
             %>
           </div>
         </div>
