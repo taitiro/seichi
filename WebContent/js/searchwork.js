@@ -12,7 +12,7 @@ $(function() {
     WorkCollection = Backbone.Collection.extend({
         model : WorkModel, // このCollectionのBackbone.Modelを指定
         url : undefined,// 取得するJSONのURL．httpから始まってもOK
-        urlRoot : 'http://localhost:8080/seichi/api/searchwork?',
+        urlRoot : 'api/searchwork?',
         //urlRoot : 'data/work.json?'
     }),
     // viewのテンプレート作成
