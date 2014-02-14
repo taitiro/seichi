@@ -1,6 +1,5 @@
 package com.darakeru.seichi.controller;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -70,13 +69,14 @@ public class WorkServlet extends HttpServlet {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
-                StringWriter sw = new StringWriter();
+                /*StringWriter sw = new StringWriter();
                 PrintWriter pw = new PrintWriter(sw);
                 e.printStackTrace(pw);
                 pw.flush();
                 String str = sw.toString();
                 errorCode = 500;
-                errorStr = "データベースからのデータ取得時にエラーが発生しました : " + str;
+                errorStr = "データベースからのデータ取得時にエラーが発生しました ";*/
+                throw e;
             } finally {
                 em.close();
                 emf.close();
@@ -85,9 +85,10 @@ public class WorkServlet extends HttpServlet {
             errorCode = 404;
             errorStr = "作品IDは数字で指定してください";
         } catch (Exception e) {
-            e.printStackTrace();
+            /*e.printStackTrace();
             errorCode = 500;
-            errorStr = "サーバー内部の不明なエラーです";
+            errorStr = "サーバー内部の不明なエラーです";*/
+            throw e;
         }
         if (errorCode != 200) {
             response.sendError(errorCode, errorStr);
