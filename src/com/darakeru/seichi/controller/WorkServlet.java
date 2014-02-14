@@ -3,6 +3,7 @@ package com.darakeru.seichi.controller;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,8 +70,13 @@ public class WorkServlet extends HttpServlet {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                pw.flush();
+                String str = sw.toString();
                 errorCode = 500;
-                errorStr = "データベースからのデータ取得時にエラーが発生しました : " + e.getMessage();
+                errorStr = "データベースからのデータ取得時にエラーが発生しました : " + str;
             } finally {
                 em.close();
                 emf.close();
