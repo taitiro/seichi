@@ -9,6 +9,21 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <!-- テスト中なので限定公開 -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>FOR_DEMO</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>demouser</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>FOR_DEMO</realm-name>
+    </login-config>
+    <!-- ↑までテスト中なので挿入。公開時は削除 -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
