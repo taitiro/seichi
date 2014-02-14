@@ -69,9 +69,8 @@ public class WorkServlet extends HttpServlet {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
-                e.printStackTrace(new PrintWriter(new FileWriter("/var/log/seichilog.txt")));
                 errorCode = 500;
-                errorStr = "データベースからのデータ取得時にエラーが発生しました";
+                errorStr = "データベースからのデータ取得時にエラーが発生しました : " + e.getMessage();
             } finally {
                 em.close();
                 emf.close();
