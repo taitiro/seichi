@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2014 年 2 月 07 日 06:26
+-- 生成日時: 2014 年 2 月 14 日 04:27
 -- サーバのバージョン: 5.5.32
 -- PHP のバージョン: 5.4.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- データベース: `seichidbcopy`
+-- データベース: `seichidb`
 --
 CREATE DATABASE IF NOT EXISTS `seichidb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `seichidb`;
@@ -53,19 +53,51 @@ CREATE TABLE IF NOT EXISTS `place` (
   `instagramid` int(10) NOT NULL DEFAULT '0' COMMENT 'Instagram locationid',
   PRIMARY KEY (`placeid`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='場所情報' AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='場所情報' AUTO_INCREMENT=39 ;
 
 --
 -- テーブルのデータのダンプ `place`
 --
 
 INSERT INTO `place` (`placeid`, `name`, `lat`, `lng`, `placedesc`, `address`, `img`, `url1`, `urlname1`, `url2`, `urlname2`, `url3`, `urlname3`, `productid1`, `productid2`, `productid3`, `productid4`, `productid5`, `googleid`, `foursquareid`, `facebookid`, `instagramid`) VALUES
-(1, '豊郷小学校旧校舎群', '35.203392', '136.232892', 'けいおんのキャラクターたちが通っていた学校のモデルです', '滋賀県犬上郡豊郷町石畑５１８', '', 'https://maps.google.com/maps/place?q=%E8%B1%8A%E9%83%B7%E5%B0%8F%E5%AD%A6%E6%A0%A1%E6%97%A7%E6%A0%A1%E8%88%8E%E7%BE%A4&ftid=0x6003d5dca1ea5f59:0xe2910a32a6ac887d', '豊郷小学校旧校舎群 - 基本情報 - Google+', 'http://www.toyosato-elschool.net/', '豊郷小学校|旧豊郷小学校', 'http://ja.wikipedia.org/wiki/%E8%B1%8A%E9%83%B7%E7%94%BA%E7%AB%8B%E8%B1%8A%E9%83%B7%E5%B0%8F%E5%AD%A6%E6%A0%A1', '豊郷町立豊郷小学校 - Wikipedia', '', '', '', '', '', 'CpQBhwAAABsgTOMaLp3mT6XoJZ5nXROqVPiv4Y5FApA551HR2fW69G46ZoZqHFcUkfQfTxRADtkCbKko8yatg1vKrzqLLOIlJ4ayWAdI8_K9HTxMzCqfgZbM5_6kaipOmjIThDZeMIkxKvR0tWDM17r7TdpBdunlbUoum7lsd54rvw7GFRt97ehQL8WqdRvIYU1Cs54I4xIQcCrekAlyUPaeK-_Xwu-ajxoUuZop8YyZgip4OWhxw8o463nRBk0', '4c00853134ccc9283dcae1cd', 210278822316361, 93795),
+(1, '豊郷小学校旧校舎群', '35.203392', '136.232892', '##説明\r\nけいおんのキャラクターたちが通っていた学校のモデルです\r\n##登場場面\r\n###けいおん！\r\nほぼ全場面', '滋賀県犬上郡豊郷町石畑５１８', '', 'https://maps.google.com/maps/place?q=%E8%B1%8A%E9%83%B7%E5%B0%8F%E5%AD%A6%E6%A0%A1%E6%97%A7%E6%A0%A1%E8%88%8E%E7%BE%A4&ftid=0x6003d5dca1ea5f59:0xe2910a32a6ac887d', '豊郷小学校旧校舎群 - 基本情報 - Google+', 'http://www.toyosato-elschool.net/', '豊郷小学校|旧豊郷小学校', 'http://ja.wikipedia.org/wiki/%E8%B1%8A%E9%83%B7%E7%94%BA%E7%AB%8B%E8%B1%8A%E9%83%B7%E5%B0%8F%E5%AD%A6%E6%A0%A1', '豊郷町立豊郷小学校 - Wikipedia', '', '', '', '', '', 'CpQBhwAAABsgTOMaLp3mT6XoJZ5nXROqVPiv4Y5FApA551HR2fW69G46ZoZqHFcUkfQfTxRADtkCbKko8yatg1vKrzqLLOIlJ4ayWAdI8_K9HTxMzCqfgZbM5_6kaipOmjIThDZeMIkxKvR0tWDM17r7TdpBdunlbUoum7lsd54rvw7GFRt97ehQL8WqdRvIYU1Cs54I4xIQcCrekAlyUPaeK-_Xwu-ajxoUuZop8YyZgip4OWhxw8o463nRBk0', '4c00853134ccc9283dcae1cd', 210278822316361, 93795),
 (2, '修学院駅', '35.050227', '135.790460', '周辺にけいおん第一期OPで軽音部の四人が走っていた「北山橋」という場所があります', '京都市左京区山端壱町田町', '', 'https://maps.google.com/maps/place?q=%E4%BF%AE%E5%AD%A6%E9%99%A2%E9%A7%85&ftid=0x600109cb29d4e1bd:0x4a31bf19dea25aad', '修学院駅 - 基本情報 - Google+', '', '', '', '', '', '', '', '', '', 'CoQBeAAAACTYA02Op40iMlxwAvTQCRuKtvcdF_9kx-uwveUnsahlMkseztiNwTF5CDcUtTNAKl_kntTDq2ZuXLWAp2w8V0T-CG7rPXBKTuEFnFlBDkKYODKggko_mc02o54Xd3Veepux6oXzrqRBp3fZYejuM8qGBrnOpqWu-NfpFg5oMyc1EhAcH_DHhxPujbJT_pLGpIR4GhQxWh5XA5n2EuR_QRIoybjB4Z2jrg', '4bda968bc79cc92873367fe9', 172681059449499, 102215),
 (3, '鷲宮神社', '36.099898', '139.654940', '柊つかさと柊かがみが住んでいる神社のモデル', '埼玉県久喜市鷲宮１丁目６&minus;１', '', 'http://www.washinomiyajinja.or.jp/index.html', '鷲宮神社', 'http://www.wasimiya.org/', '久喜市商工会鷲宮支所（旧鷲宮商工会）ホームページ', 'http://ja.wikipedia.org/wiki/%E9%B7%B2%E5%AE%AE%E7%A5%9E%E7%A4%BE', '鷲宮神社 - Wikipedia', '', '', '', '', '', 'CnRtAAAAKwsa5QdtGo8BdIdAHV4XCVgkOknxEhB0CJSLcURgiK7yEE5dyn60j6HZ0UpXuf2ciLr3xv_gtzissj9-x9A9CZv5Xo3GpVpHqlVlZwp--j8u0KufDN6KyyShtC7nVBS6dXYP89ETsnllAnkYAhiw2BIQpzuVOzDx92NA-aFnfZsVhRoUf3uiUOTLs7F-w14i8YfgLdb2bHg', '4b5aae8ef964a520a1d028e3', 158766514137646, 72662),
 (4, '春日部共栄中学高等学校', '35.960020', '139.741574', '泉こなたたちが通っていた高校のモデル', '埼玉県春日部市上大増新田２１３', '', 'https://plus.google.com/106275720048107166001/about?hl=ja', '春日部共栄中学高等学校 - 基本情報 - Google+', 'http://ja.wikipedia.org/wiki/%E6%98%A5%E6%97%A5%E9%83%A8%E5%85%B1%E6%A0%84%E4%B8%AD%E5%AD%A6%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1', '春日部共栄中学高等学校 - Wikipedia', '', '', '', '', '', '', '', 'CpQBhAAAAMxFIeObFyv3BsQyjUmz_4PL8rN8HnxHKJZ1aeTCLVOq1MFwBPvPy-tJHCJ8Mdp9BL62lYp4pcsucXjJbzKPFh3ijQRIkpGurTFXff6-sHVJDl9zZa5wAoNNlumT4SHtWltDjOs_sV-63jxfPKPbpU7Cd2hrsMl1KuwVkIBDg_b3HF7GrFfynETGTEQhFoINUxIQJq5H_CixrlVfUVta54hRbhoUqwzoU501dsCaa_ZwpCnDsDsBAvg', '4b739068f964a52020b42de3', 0, 56806206),
 (5, '（株）京都アニメーション', '34.924747', '135.798598', '泉こなたたちが修学旅行で訪れた．', '京都府宇治市木幡大瀬戸３２', '', 'http://www.kyotoanimation.co.jp/', '京都アニメーションホームページ', 'http://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3', '京都アニメーション - Wikipedia', 'https://plus.google.com/106411757764437731241/about?hl=ja', '（株）京都アニメーション - 基本情報 - Google+', '', '', '', '', '', 'CpQBhQAAAPHcUPTURpU2ZMIs9fLev-N2mQezUiRkz4elOKxzD18f55qUsifhPhZzy43ybkkg7f6lKqTGKKQPJbFUUou70UmXDMY9IEFc4vCrpYnKSobwkp8QAaX1U_AW3Tr_l2LTgPaXDvkEWX7MAKZTXu2AmECdjz7E9e17px0A59sj5mJQ043ju1fGI1u2BBcp1eJEyRIQfJePJyvtWuz3J2JHt6omhRoUBzrHMDoRNpfjQsQxPIYzJWexsNU', '4c09d200340720a1458e8593', 0, 274617),
-(6, '池袋駅', '35.728926', '139.710380', '1話目に東上線改札口が登場', '東京都豊島区', '', 'http://www.jreast.co.jp/estation/station/info.aspx?StationCd=108', 'JR東日本：各駅情報(池袋駅)', 'http://railway.tobu.co.jp/guide/station/info/7105.html', '池袋駅 | 路線図・駅情報 | 東武鉄道', 'http://www.seibu-group.co.jp/railways/railway/ekimap/ikebukuro/index.html', '池袋駅：西武鉄道Webサイト', '', '', '', '', '', 'CoQBdQAAAHqI6HOK9ok3EAsXDpL8nut1jfzqlk81a20G3pz4xc3u-DPgznK9YZV5Wn7tNZU3t4zPOPdeCXZijSxpbSE9z9Lq1dt6WnK4lup2HNoKZoPAQ6b1VKi04fLf30IkwFj0_tzsZDgqTeTmcOQiH34s3pkR0va0by2K_2wi7RjyikEQEhBgp4SytWWGW5QXdssBz5D-GhSQuD-mL6k4SpjJlO4JyWndbjTrBg', '4f704105e4b0a235d91d6804', 151238138234024, 6699632);
+(6, '池袋駅', '35.728926', '139.710380', '1話目に東上線改札口が登場', '東京都豊島区', '', 'http://www.jreast.co.jp/estation/station/info.aspx?StationCd=108', 'JR東日本：各駅情報(池袋駅)', 'http://railway.tobu.co.jp/guide/station/info/7105.html', '池袋駅 | 路線図・駅情報 | 東武鉄道', 'http://www.seibu-group.co.jp/railways/railway/ekimap/ikebukuro/index.html', '池袋駅：西武鉄道Webサイト', '', '', '', '', '', 'CoQBdQAAAHqI6HOK9ok3EAsXDpL8nut1jfzqlk81a20G3pz4xc3u-DPgznK9YZV5Wn7tNZU3t4zPOPdeCXZijSxpbSE9z9Lq1dt6WnK4lup2HNoKZoPAQ6b1VKi04fLf30IkwFj0_tzsZDgqTeTmcOQiH34s3pkR0va0by2K_2wi7RjyikEQEhBgp4SytWWGW5QXdssBz5D-GhSQuD-mL6k4SpjJlO4JyWndbjTrBg', '4f704105e4b0a235d91d6804', 151238138234024, 6699632),
+(7, '東京タワー', '35.658580', '139.745434', '##出てきた場面\r\nカードキャプターさくら\r\n: [第40話「さくらと夢の中のさくら」](http://www9.nhk.or.jp/anime/sakura/story31_40.html)', '東京都港区芝公園４&minus;２&minus;８', '', 'https://plus.google.com/107241476228101818453/about?hl=ja', '東京タワー - 基本情報 - Google+', 'http://www.tokyotower.co.jp/index.html', '東京タワーオフィシャルサイト', 'http://ja.wikipedia.org/wiki/%E6%9D%B1%E4%BA%AC%E3%82%BF%E3%83%AF%E3%83%BC', 'WikipediaのURL', '', '', '', '', '', 'CoQBcQAAAHT5aTST5uXT_QVZNX6wVgi9LQeGg-h3P5h2HATkiAckyOK4K2euQOKwVdlyEyP6Vg1FtlruHB9rJPhYFWIADR0BgsVBt0t12lRxH5ImX8-paSMXv-by0e-H1TxHVV2b7QnLzJRlKlRgN05mTmCxvd9ZG7aO5n5BsJyHyRR5MigwEhAaqBzCLnK7Tjdz0R7abcWQGhRhUWKbuT9iLlkDsBQwO5tSYwA-VA', '4b56a5e8f964a5208e1728e3', 262348270453358, 3003327),
+(8, 'アメ横商店街', '35.710062', '139.774526', '##登場場面\r\nあまちゃん\r\n: 東京編でのほぼ全般', '東京都台東区上野４', '', 'https://plus.google.com/108440953293560468772/about?hl=ja', 'アメ横商店街 - 基本情報 - Google+', '', '', '', '', '', '', '', '', '', 'CoQBdQAAAH27zahn3yqeNpaK9mfmFBeS2BFcFWdbUFZsCfpSg2gPIl_r_UdVLjRK-aqBr0uEp34eRIMRJ-SMxSbBGtH1S3zO6byljYk_JhWhLZ221xhIsZ9Zua-C6pyPF-dHyQq4VKAaepkzdbXG6a4Y9YlG0t7B5IzJCbmT7ThaSSH6YCVvEhDHE0f_R1aWYOk7P-RYgrMYGhS6VjavxCKC-pUkGcw_-8Melu9nog', '4b5a8df8f964a52023cb28e3', 190145067674236, 1376919),
+(9, 'AKIHABARAゲーマーズ本店', '35.698253', '139.771710', '##アイドルマスターシンデレラガールズ\r\n『アイドルマスターシンデレラガールズ』通常お仕事「秋葉原」の背景に使われています．\r\n', '東京都千代田区外神田１丁目14-7 宝田ビル', '', 'http://www.anibro.jp/gamers/akihabara/main.html', 'AKIHABARAゲーマーズ本店 - 基本情報 - Google+', 'http://www.anibro.jp/gamers/akihabara/main.html', 'AKIHABARAゲーマーズ本店', '', '', '4861765463', '434441232X', '486176694X', 'B00ES5BI0Y', 'B005699XIA', 'CoQBfwAAAC_CYVuvAfcw1F3d91heo31UDKMttm1_eTM947PuPgUQi7K2zkc799_cJelpi4hOAgypiuPczVVUBtA0IfmgHbUf_X_F56UpTnPMAJhOLNUMXrR3CnSBpKQtswqf1wa1jqUfx6DwuNu0w8IGMof7oFuAFnVU1v09ZEiENZ4ZeNHFEhCUc-hjjbx7fjrxDVbRFpkzGhTfH0jBnv1kWr_KxWZJLLvThHTccg', '4b5ab7bff964a520eed128e3', 105405386186891, 0),
+(10, 'レトロビーバー', '35.051907', '135.788013', '##けいおん\r\n唯ちゃんが走っている背景に使われています．けいおんの看板もお店内にあるそうです', '京都府京都市左京区松ケ崎河原田町8-6 1F~2F', '', 'https://plus.google.com/108648860397082590422/about?hl=ja', 'レトロビーバー - 基本情報 - Google+', 'http://shima2cygnus.web.fc2.com/junreikon.html', '聖地巡礼inけいおん', 'http://tabelog.com/kyoto/A2603/A260303/26014889/', 'レトロビーバー （【旧店名】昭和レトロビーバー） - 修学院/カフェ [食べログ]', 'B0024DGN70', '', '', '', '', 'CoQBdgAAAEjgLYvkliXtIRZXmbOPB-igRVDwFjEVKsNWVZfQMkJIG7eZDhtV6B0W04OMAjPVd4SS2CkMcGtOPqVQ414w65262_d6j5YLMrG2p2Vl0GN8-bakXKayTYCSXKjzQBB4_jvn12Pt-NTHVhy2kFsa-GNaKcm1w_6lVow0q8zCnycjEhAcID_EGOdKqI7pB-yFFTeUGhS9kXJOO6MlNjw0QEqS9x5nt0IYFg', '4bac4466f964a520ffed3ae3', 250861694928752, 54580161),
+(11, '南禅寺', '35.011984', '135.794394', '##けいおん\r\nOPで四人がひょっこり顔を出していたり．', '京都府京都市左京区南禅寺福地町８６', '', 'http://www.nanzen.net/index.html', '臨済宗大本山 南禅寺', 'http://shima2cygnus.web.fc2.com/junreikon.html', '聖地巡礼inけいおん', '', '', '', '', '', '', '', 'CnRsAAAA1bgNCyBoDes9Z7rJuCWGnDTc7zypw3UHAx_tmfOlE9DvkPWRiyQ96XIOSwZzSRwYr6Fqz_MyxhWXtfk1fqDESNjISLnLDvpVadvfubaiMZIwtVvXc8fYQg22hOUHrZrxGuJo3T3tsPguc-svMumdAxIQs_HtKfbE7Na9v-DW0A6FzBoUdleV5omes9O5Qs5kbPBLMBHs-uY', '4b62aef2f964a520e54e2ae3', 217682888245659, 1848077),
+(12, 'マクドナルド 北白川店', '35.041905', '135.791488', '##けいおん\r\n1話で唯ちゃんが和ちゃんに抱きつきながら歩いているシーンの背景', '京都府京都市左京区一乗寺中ノ田町７３', '', 'https://plus.google.com/108894857720334015073/about?hl=ja', 'マクドナルド 北白川店 - 基本情報 - Google+', 'http://shima2cygnus.web.fc2.com/junreikon.html', '聖地巡礼inけいおん', '', '', 'B0024DGN70', '', '', '', '', 'CpQBgQAAAEXk9oVdhffJy9QFBKDRMZWPEf73h9Ss3gm0aCoAOhnd-IELmwJIz6is0Gh3T97gp0U5TGDj1_RH-OSQGoX6aqiRH-v8Tf8_X7oK1wN0_UygdcQi6HkXGP57Y8D11vMCjjRSuwVOqnhH4kBETQzgExWxGulVT169cvF0iw3fNlJoYf0tixa32kgmySXKl3GOfhIQ8DodiIc9v55eAKUJdDvjXBoUFlqlLIW_mEXwbKDZ2KRUfefBe1s', '4b68ab1cf964a52019862be3', 0, 101997),
+(13, 'ＪＥＵＧＩＡ三条本店', '35.008578', '135.767705', 'けいおんアニメで「10GIA」の名前で登場．けいおんのディスプレイをやっていた時もあったらしい．', '〒600-0000 京都府京都市中京区石橋町（三条通）１１ ＪＥＵＧＩＡ三条本店', '', 'https://maps.google.com/maps/place?q=%EF%BC%AA%EF%BC%A5%EF%BC%B5%EF%BC%A7%EF%BC%A9%EF%BC%A1%E4%B8%89%E6%9D%A1%E6%9C%AC%E5%BA%97&ftid=0x60010893b4f15b19:0x3912558b559b33a0', 'ＪＥＵＧＩＡ三条本店 - 基本情報 - Google+', 'http://hatenanews.com/articles/201007/1351', '「けいおん！」に登場する楽器屋、JEUGIA三条本店に行ってきた！ - はてなブックマークニュース', 'http://sanjo.jeugia.co.jp/', 'JEUGIA(ジュージヤ)三条本店 CD・DVD・楽器・楽譜・イベント', '', '', '', '', '', 'CpQBiQAAAHr0MAEkicjgI4xyfhC4pzxoJZHWXt_ewBizeI9b9YGpoPLE6-u-NSn9hFSCzygpGkW4oswHCZaOBjd6L08GGaqzMP8Jmo1kWwkApM6dI4qSSmiF5iyaQr-mw6wLQevv1afHr9UdsN025qo8eAMdxIgMTaso5ePQ0RX6Zo4j20_HC-EhEtKO9PfBg51RK5mv_BIQbJqkmsjGIvHNXvKMUMh5qhoUMr3t6mJmFk1rdfAHsbNRDxqO2LU', '4b73b673f964a5204fb92de3', 219547921397925, 0),
+(14, '金閣寺', '35.039370', '135.729243', 'けいおん2期の修学旅行回で訪れていた．修学旅行の定番スポット', '京都府京都市北区金閣寺町１', '', 'https://plus.google.com/107216584040950570787/about?hl=ja', '金閣寺 - 基本情報 - Google+', 'http://shima2cygnus.web.fc2.com/junreikon2.html', '聖地巡礼inけいおん2', '', '', '', '', '', '', '', 'CnRqAAAA76waIgjnYJTLhV4XfUiTy3wThqG2X-1qW3OpV8nN4j14QJPICrO0gWM50J8I-m0qPNzv_JqVXWJvBwWypmxP5Vb0onrMLYVNBOn1bOz7RcngpFn-Bb8HN1_Xk7Ts1dYGebw0WNTZOXqyM6Bp1C4WZhIQzIqq4Ef5FalYby4LOYAO1BoUXcoLzcr9Ai4vmwAjiqRzEjWbbfs', '4b779d4af964a52016a42ee3', 147229948650523, 1407495),
+(15, '渡月橋', '35.014138', '135.677238', 'けいおん2期の修学旅行回で登場．', '京都府京都市Ukyo Ward, 渡月橋', '', 'http://shima2cygnus.web.fc2.com/junreikon2.html', '渡月橋', '', '', '', '', '', '', '', '', '', 'CqQBmgAAAE5HlY8rmbmdqjEOFyXWdI-fRBeti3kzeGzLRcqCwl8oPeAiKh4IrhLdnJHVlfKNcmeHO2Lf8nO1QGJH2o5zuxqCFalM4YpDtT-5Qnu4B6gDxGmqh4JQfZozq-iSEPA73xMj0mGKu1VJNQGdWQQ7WyQhsoDKscu-sDflklcUAKgKhzlTdxWPB98ia9lDYG94MMhDxkscsDjJBMi5BMczcnASEMJFA_hvoPBAG4GvfWpxhA0aFOkUPrGp3hQrvw-F8EHfIWu-CAvm', '4b639108f964a520db832ae3', 171790732842202, 98227307),
+(16, '妙円寺', '35.053979', '135.785522', 'けいおん！22話で憂ちゃんが唯の合格祈願をしていた．「松ヶ崎大黒天」の名前も？', '京都府京都市左京区松ケ崎東町31', '', 'https://plus.google.com/117125233347513571595/about?hl=ja', '妙円寺 - 基本情報 - Google+', 'http://blogs.yahoo.co.jp/tttkazuo/27213974.html', 'けいおん♪聖地巡礼 妙円寺 - SABUのドキドキ好奇心倶楽部 - Yahoo!ブログ', '', '', '', '', '', '', '', 'CnRrAAAAzwzjRe-BhbgrkRvA4yeEPPTwTa8ke3Pa-UQR3nEfRpHgFs0bX7xkoXvyXXiNGbGztSiIN7__DxK2p5h-rHkFGI0f1hWaohfyp0Ur1UAQhIKaiZNN3zrgW0Jqf3Oi3GLpOS0FxnBMeszvB0T4jmo_9hIQ_22ONSoKQ9ltTKjMY-65ORoUajIr8NQRy3Nq69_qpoiWBMgQrqw', '4d1ecf6d16cfb60cb0984c61', 0, 1544531),
+(17, '大宮駅', '35.906295', '139.624000', '『らき☆すた』7・12・14・19話に登場．近くをハガレンのコスプレして歩いている人が居ないかさがしてみよう！', '大宮駅（埼玉）', '', 'https://maps.google.com/maps/place?q=%E5%A4%A7%E5%AE%AE%E9%A7%85&ftid=0x6018c143cc2c5285:0x280f665a32e5d413', '大宮駅 - 基本情報 - Google+', 'http://blog.livedoor.jp/seichijunrei/archives/51990334.html', 'らき☆すた 舞台探訪（聖地巡礼） 大宮編 - そうだ、聖地に行こう。', '', '', '', '', '', '', '', 'CoQBdQAAAEQPNIRX6uGcDbrH057jToOUX9YvLSzVgQjsQnHhYYj4KMEi_26XfkLDWcbPxku1rZDalINHyWF3dIas-1WrqnaN58hLwKrx3-bSQCQ_zz_w2Ji4HC05GqcxemN47a1eHukkntxhvDdp8H4fF3GdM5S4_0MLYkePcP4M3Q-lz6nMEhAttY_yKFSuUDW370rmyYphGhQvWJPEiUgzqQmjwESQQT02CB1u9Q', '4b3dd6ddf964a520089725e3', 115839981802459, 773418),
+(18, '伊豆急下田駅', '34.679114', '138.944470', '『夏色キセキ』にて，オープニングや，東京へ行く時などに登場．', '伊豆急下田駅（静岡）', '', 'https://maps.google.com/maps/place?q=%E4%BC%8A%E8%B1%86%E6%80%A5%E4%B8%8B%E7%94%B0%E9%A7%85&ftid=0x601758bc6b973af9:0x6b19249d50c0ce54', '伊豆急下田駅 - 基本情報 - Google+', 'http://seesaawiki.jp/w/lsh_er/d/%B2%C6%BF%A7%A5%AD%A5%BB%A5%AD%A1%F7%C9%F1%C2%E6%C3%B5%CB%AC%A1%CA%C0%BB%C3%CF%BD%E4%CE%E9%A1%CBList', '夏色キセキ＠舞台探訪（聖地巡礼）List - 舞台探訪まとめWiki - Seesaa Wiki（ウィキ）', 'http://shimoda100.com/event/natsuiro-kiseki/', '下田を舞台にしたアニメ &ndash; 夏色キセキ | 伊豆下田100景', '', '', '', '', '', 'CoQBfQAAAK2Am0zKpJdqpXG1_bLBsfc-iuxY_qwMBs14IJalG9wR3v3HXL07CqVXTtNJlG2iivIHFz4n3fAjuMWeBLt_jwkRpKCNTaoDAcejaWHjdu788bmn40-dyrS-b5MqVvy1MgyHkliXRlZ5ZN04CFicaOo5hEEEIS1Y1tgZCLFwnLToEhCbaPL8u8iwzJzuDbuOVrn-GhReOpn_rU6Rbim90W41H-an_a-sMw', '4b85e2b9f964a520e87731e3', 173018942750577, 300112),
+(19, '下田八幡神社', '34.676453', '138.941795', '『夏色キセキ』のキャラクター凛子の神社．御石様という重要な存在がアニメ中ではあるが，もちろん現実にはない．', '〒415-0024 静岡県下田市一丁目１７&minus;１ 下田八幡神社', '', 'https://maps.google.com/maps/place?q=%E4%B8%8B%E7%94%B0%E5%85%AB%E5%B9%A1%E7%A5%9E%E7%A4%BE&ftid=0x601758be7494c80b:0xfd1067d759804d2a', '下田八幡神社 - 基本情報 - Google+', 'http://seesaawiki.jp/w/lsh_er/d/%B2%C6%BF%A7%A5%AD%A5%BB%A5%AD%A1%F7%C9%F1%C2%E6%C3%B5%CB%AC%A1%CA%C0%BB%C3%CF%BD%E4%CE%E9%A1%CBList#content_1_11', '夏色キセキ＠舞台探訪（聖地巡礼）List - 舞台探訪まとめWiki - Seesaa Wiki（ウィキ）', 'http://www2.izu-kankou.or.jp/izu/info/info0040.asp?d=3&yid=C419638896', 'ゆうゆうネット伊豆 観光｜遊ぶ｜下田八幡神社', '', '', '', '', '', 'CoQBfQAAAKVzFZ71O55cl8eMnJJ_X1HxT7LxwP-xYrzQ2GBfiEba4kFBPgF5Q8lpgS3H-4jPowZViGhl4q20qaGsl29ub0gfV3tK1xhUpP9LNfEMe5vvwT9OkD1CGj6NW6JCnSpn8hkXNrsC2-3PDL6PiCYHC2TFQjIMRuCDzEC7y4P3f29xEhCiOqCn6mnC1s5f_kyJZoKXGhSdaXxvAS4LSwnyuUGaLMvUCj1vMQ', '4eff98914690f6ecea0ba310', 107572222605326, 15844750),
+(20, '下田公園', '34.668070', '138.946502', '『夏色キセキ』オープニングで，四人が展望台から下田の街を眺めている．', '静岡県下田市三丁目１９', '', 'https://plus.google.com/113150198872896936948/about?hl=ja', '下田公園 - 基本情報 - Google+', 'http://seesaawiki.jp/w/lsh_er/d/%B2%C6%BF%A7%A5%AD%A5%BB%A5%AD%A1%F7%C9%F1%C2%E6%C3%B5%CB%AC%A1%CA%C0%BB%C3%CF%BD%E4%CE%E9%A1%CBList#content_1_11', '夏色キセキ＠舞台探訪（聖地巡礼）List - 舞台探訪まとめWiki - Seesaa Wiki（ウィキ）', '', '', '', '', '', '', '', 'CnRtAAAA6j6oPonvQOEBWdAYPvvAVvfwT93o2uGazyeOY7A73yBSDnFoMEuTvcEbA16k_I0f2PULwE_8tnjsP8_k4Fd8Sp95BaLf1k8on1qv_t2ukz-qnRs7-q_9kl_Rvbr2Fn_8CxVreA8z0waDOODjxzvtjxIQD60baWgrb_Mr5iDAa3W_2xoU1yCO0DC0H6bcNr8VWtft3UXaNmI', '4b88a800f964a520160732e3', 196893513774556, 3495483),
+(21, 'ローソン 下田駅前', '34.678370', '138.944891', '『夏色キセキ』で四人がよく言っていたコンビニ．放映当時はタイアップもしていた', '静岡県下田市東本郷１丁目１&minus;１', '', 'https://plus.google.com/113295538528482412789/about?hl=ja', 'ローソン 下田駅前 - 基本情報 - Google+', 'http://seesaawiki.jp/w/lsh_er/d/%B2%C6%BF%A7%A5%AD%A5%BB%A5%AD%A1%F7%C9%F1%C2%E6%C3%B5%CB%AC%A1%CA%C0%BB%C3%CF%BD%E4%CE%E9%A1%CBList#content_1_11', '夏色キセキ＠舞台探訪（聖地巡礼）List - 舞台探訪まとめWiki - Seesaa Wiki（ウィキ）', '', '', '', '', '', '', '', 'CoQBfAAAAI8PBh3cX3fF5XyQAwEKZWLFAnsFdZlIOsRDTAG6wJCNRxKtVrsnkMKOnw-EgmKLZfCJJGh_xs6QcKxXCmyco0NMJyQlUfqjsg65OwAUvBi6bQ5IEgEeVN5WGpq6NzNMuP0yHp5c7iZgqScSOfYnwYFS21QQm7K6P7q-6G1Aj0EyEhBr5088xuh7WDNAm_Hgu54nGhSQZp2EiNOXg4aVxTBpmqVrx675eA', '4c5f7aafb6f3be9a06715d73', 173018942750577, 4703275),
+(22, '下田海中水族館', '34.666100', '138.945990', '『夏色キセキ』4話で登場．', '静岡県下田市３&minus;２２&minus;３１', '', 'https://plus.google.com/107868621551372986628/about?hl=ja', '下田海中水族館 - 基本情報 - Google+', 'http://seesaawiki.jp/w/lsh_er/d/%B2%C6%BF%A7%A5%AD%A5%BB%A5%AD%A1%F7%C9%F1%C2%E6%C3%B5%CB%AC%A1%CA%C0%BB%C3%CF%BD%E4%CE%E9%A1%CBList#content_6', '夏色キセキ＠舞台探訪（聖地巡礼）List - 舞台探訪まとめWiki - Seesaa Wiki（ウィキ）', '', '', '', '', '', '', '', 'CoQBdwAAAClO0sTn_vLKuvYJ7FVg5o8Vpa9vH9sHnnv1eyJgap5n3xdamAbM1owXPj7Mze2fw5Av3afRK_lCl5JKDNl4fgQ0AGhnYskWo2LYPJPwnZxkWaqUzdM4fKyME_rL5L16Z5nu1dxqcqlXTb9tMYhSUPfxfAI0lrdZ6RX6VesL8u0LEhAkEEddFzWCAJ3toKxLX8dYGhT-ElsJgOguRVybBJr59yD2rU2XYw', '4bdd1fd6645e0f476cf16a19', 156590544370068, 581061),
+(23, '荻窪駅', '35.704632', '139.619982', '『輪るピングドラム』1話の最初で登場．', '荻窪駅（東京）', '', 'https://maps.google.com/maps/place?q=%E8%8D%BB%E7%AA%AA%E9%A7%85&ftid=0x6018edf759ef9103:0xe7600a7a235f1f1f', '荻窪駅 - 基本情報 - Google+', 'http://blog.livedoor.jp/seichijunrei/archives/51879991.html', '輪るピングドラム 舞台探訪（聖地巡礼） Act.1（荻窪編） - そうだ、聖地に行こう。 ', '', '', '', '', '', '', '', 'CoQBdQAAANincirAQriQ6LYiW7-Bh0OT0aI4e_13wTwjB8HRsgvGDelFhpVvDYJ1IYTJtwZXxy_2hxbdp2Uka8tRN0Vtmh7ywznpbhB2orsEGEn9WSt2r8gmnthEseg6cjjYU64enrfArsr4urYjGaCcyIdkw_w4qR7TNef2qKlT26ujyZLzEhClPtSfqnGfZQwhzW4K8tqYGhSFYKa117t8-Zy15suKdeaXSR2cFw', '4b24aa1ff964a520506924e3', 141773149198128, 383829),
+(24, 'オーケー荻窪店', '35.700920', '139.616703', '『輪るピングドラム』1話で晶馬が特売のキャベツを買いそびれるスーパーマーケットのモデル。', '東京都杉並区南荻窪４丁目２６&minus;１ オーク荻窪 １Ｆ', '', 'https://plus.google.com/109854034910102440019/about?hl=ja', 'オーケー荻窪店 - 基本情報 - Google+', 'http://d.hatena.ne.jp/riyot/20110710/1310309043', '輪るピングドラム 聖地巡礼 あたしは荻窪って、言葉が好き - ローリング廻し蹴り', 'http://blog.livedoor.jp/seichijunrei/archives/51879991.html', '輪るピングドラム 舞台探訪（聖地巡礼） Act.1（荻窪編） - そうだ、聖地に行こう。 ', '', '', '', '', '', 'CoQBeAAAAICGxnJDuvUGv-YG4hDbTofNR1zvhoy3b8d-DW_MPXdSB_XODbRGXpjIig4asg0H7dpiO2PJDp63O9OsK7LvcjUU2KK1t_A6w7kPdKGwsjkY_Ouo9VYek7IK_v0bC9SkBIZbZ1IYBweVRuS_1TnvQyJ7ZrxSRuvu3WE5nyZCpzmIEhBom0ccRO3H1ruCY3S8vT_aGhRDu_x-baW_54zeCJ8_ZRWKavaagA', '4bb095fcf964a520a14d3ce3', 0, 4208384),
+(25, '新宿御苑前駅', '35.688588', '139.710690', '『輪るピングドラム』1話で晶馬が定期を届けてくれるペンギンと出会ったシーンの背景．', '新宿御苑前駅（東京）', '', 'https://maps.google.com/maps/place?q=%E6%96%B0%E5%AE%BF%E5%BE%A1%E8%8B%91%E5%89%8D%E9%A7%85&ftid=0x60188cc2644989f5:0xd3030ac0c53fb739', '新宿御苑前駅 - 基本情報 - Google+', 'http://d.hatena.ne.jp/riyot/20110710/1310309043', '輪るピングドラム 聖地巡礼 あたしは荻窪って、言葉が好き - ローリング廻し蹴り', '', '', '', '', '', '', '', 'CoQBfgAAAGyXPsFxB5VoH3wgvGAN9bIHvUJHXIvrxQlwM6bHSV1jwwEKSmgS0zcpvl14x2EXpWbM5dizbYe35LuiOGnZZHrkyWefe1wP8V0P7MIbVHPtoxPUlPTyY7ZBPiQUUFzF66VpXJVTcgcA2FpPcso_gm8cuS1uxS7QX27ii92rbzMyEhDvGtGI2NXYgMqn-DNxWziuGhTF-qGOS3K-UhUztkJJjghRVvqPFw', '4b907cabf964a520ca8c33e3', 182494648456757, 0),
+(26, '旅館西郊', '35.702848', '139.625468', '##アイドルマスター\r\nアニメ版1話にて背景に登場\r\n##輪るピングドラム\r\n1話にて背景に登場．', '東京都杉並区荻窪３丁目３８&minus;９', '', 'https://plus.google.com/103097371158685922629/about?hl=ja', '旅館西郊 - 基本情報 - Google+', 'http://d.hatena.ne.jp/riyot/20110710/1310309043', '輪るピングドラム 聖地巡礼 あたしは荻窪って、言葉が好き - ローリング廻し蹴り', '', '', '', '', '', '', '', 'CnRvAAAARLhMgt7S3AQSLtmdcdYDu-_8X7yf3hMsQ20cfzI_8aUCn7Jb1E2RAHkr-PDA1I4cnxc-yjQawBbu3U6zSdD10a-IdZeR1op0BkRjzyKxk2OuQDZJlpL6kDDeaL6-E2eNxghXcOl1UAt4EwKhZn11dxIQHaYHqPnC01_Zvh55391E8RoUs7vhRQYM0j9pZBhkI_NfVZXH5-k', '4dc5e2ea45dd2645527d58b1', 0, 5034393),
+(27, '木崎湖', '36.559078', '137.838539', '「おねがいティーチャー」（2002年）と「おねがいツインズ」（2003年）という、いわゆる「おねがいシリーズ」として放映された一連のTVアニメ作品の舞台となった．', '長野県大町市平 木崎湖', '', 'https://maps.google.com/maps/place?q=%E6%9C%A8%E5%B4%8E%E6%B9%96&ftid=0x5ff7d8ad946d6447:0x155db4f1148b6c20', '木崎湖 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/550/550515/', 'ASCII.jp：これぞオタクツーリズム！　聖地巡礼木崎湖の旅 (1/4)｜アニメファンならぜひ行きたい！聖地巡礼ツアー', '', '', '', '', '', '', '', 'CoQBdQAAADJsJgpvKUspWwdS0wphDTwn72AmmB-5oLolC6YZ2ibTefWf51FzpUosF35rp-pwbklwjmWOWT2PzM4zabeWa5nXXfolJtRwlww8vJUBETVqSxI1FstIbEf1jkuzupS0IRF52WGHcrPafNbUEr4HlQP2R2gt6prODZOx5I2G_lr5EhAqb1IyzRpQIbPcEExs2qMLGhTwCOt_a3khq3ijGMdudseYZlT1Ww', '4ccd7a2a5935bfb799ff6e5b', 434090153315642, 1066797),
+(28, '白川郷', '36.256247', '136.905829', 'ひぐらしのなく頃の舞台になった', '岐阜県大野郡白川村荻町', '', 'https://plus.google.com/114479451262729932145/about?hl=ja', '白川郷 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/572/572604/index-3.html', 'ASCII.jp：土日でどこまで回れるか!?　聖地巡礼弾丸ツアー！ (3/6)｜アニメファンならぜひ行きたい！聖地巡礼ツアー', '', '', '', '', '', '', '', 'CnRsAAAAY4pMH1GLxBUysuv9BCmqzvV0f9wsvaWzR27uw3E2-ff_vkoDpMBxppRHznjrRWRPyU3E_izA1_ijUiJFzjCV6bqA1JuczpIHoRhzzdblMZEFnFzfy0UCieOzikCPwx6xsD_s5JNTXP9vWzwnh6Np1RIQGuVgtfN12iqKco0ZmKVjphoU8y_FC3JsUBiLReLuxOAi4qdXPWA', '4b5a6f39f964a520e2c428e3', 132243103495235, 153921513),
+(29, '上田駅', '36.396498', '138.249736', '映画『サマーウォーズ』に登場．', '上田駅（長野）', '', 'https://maps.google.com/maps/place?q=%E4%B8%8A%E7%94%B0%E9%A7%85&ftid=0x601dbcda710ff00b:0x34f214a313298c5f', '上田駅 - 基本情報 - Google+', 'http://d.hatena.ne.jp/paffue/20131006/1381020224', '映画『サマーウォーズ』舞台探訪（聖地巡礼）@上田・東京 - 舞台探訪総研', '', '', '', '', '', '', '', 'CoQBdAAAACwlYf-zRo6UQatqPAzGgbN0-oe9k9QpgdaSNtCm-3HuMa0JX_4mHrloR991WaL43Nr4EDK-ymjqnaa4YpmzDaXoGixXvOlNIoXVl0D56pbzSgpjukmb44z6tssMvig1ZolfsmlIBQikZB0LySWfmN3RTdjNHWFA_FJA0TIGk4iGEhBpz4KrWMAX8DojYHmaQwb9GhSsLmjL05QDW8OR6dyIfnW2sLI4DQ', '4bbe7772b083a5939d1ca2e9', 135913109813656, 754427),
+(30, '上田城跡', '36.405122', '138.246589', '映画『サマーウォーズ』に登場．中にある真田神社でヒット祈願が行われたそうな．', '長野県上田市二の丸3-3', '', 'https://plus.google.com/109870960892204253667/about?hl=ja', '上田城跡 - 基本情報 - Google+', 'http://d.hatena.ne.jp/paffue/20131006/1381020224', '映画『サマーウォーズ』舞台探訪（聖地巡礼）@上田・東京 - 舞台探訪総研', '', '', '', '', '', '', '', 'CnRtAAAAXMA3KS_v1ioeIK8R1UYQrRb5XkxpBOl-EIxbZ8KSMjw466q6JM9FK-_pP7tQMtaZX60aPAkRQWBgSrRx7Xr4ft1Cn4fjGzUxq3VTls-eRN8h1VECVVaCu_FmuWv0vbQ-hFg7r9DJIc5OcD0qgcraxhIQpZwVkYPG8huAzVxhpgiX5hoU4fI6GDhnYyse_X7LglJUnt3Gh2U', '4bca601a68f976b0e05b5f83', 196325483744048, 1324584),
+(31, '上越市立水族博物館', '37.173992', '138.234000', '「まよいマイマイ」で阿良々木暦と戦場ヶ原ひたぎの二人が乗ったサイクルモノレールがある．', '新潟県上越市西本町４丁目１９&minus;２７', '', 'https://plus.google.com/101087012873833165902/about?hl=ja', '上越市立水族博物館 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/572/572604/index-5.html', 'ASCII.jp：土日でどこまで回れるか!?　聖地巡礼弾丸ツアー！ (5/6)｜アニメファンならぜひ行きたい！聖地巡礼ツアー', '', '', '', '', '', '', '', 'CoQBfAAAAA3tB8CdprLiM-CP8uFE16Xj_dUVjkK-YpbxvOh4xMt9LElouM-1V5QWGmuGWMnGwqmS5jvxJQ9TqmPrPjN-2yyPVesQEjCrQTiaXQvMYvgVM3vdxQIKMk-xVD1OixIJ9IuUPtKhVAt5dkNLHxxXT2Z7rWATJMARHZEGjw3_SRKoEhDgsTe40lrWuPSORUr7S0oWGhTz4s-lLTHw2ESdj7fMrMye2Ate1Q', '4bdf7cb9e75c0f47787acb03', 152067928155252, 581011),
+(32, '多摩桜ヶ丘郵便局', '35.641086', '139.444188', '『耳をすませば』に登場', '東京都多摩市桜ケ丘４丁目１&minus;２ 多摩桜ケ丘郵便局', '', 'https://plus.google.com/112001243374907081074/about?hl=ja', '多摩桜ヶ丘郵便局 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/572/572604/index-6.html', 'ASCII.jp：土日でどこまで回れるか!?　聖地巡礼弾丸ツアー！ (6/6)｜アニメファンならぜひ行きたい！聖地巡礼ツアー ', '', '', '', '', '', '', '', 'CoQBewAAAEYhGW9gHr_RGAR86NW0gYr4ksnlfU3OPJEj5bdw4YJwutnczmQf_t9JF70u6CAkKT5nm4EIBHoHx-UDTSvRO1xRdmjQ4Snxk8T0h2i6KwLxJ1EnNsuxbKFHPEXFydRXZc5tRZGaeVS4qGTOrtmSemmrbdIR1_oUKlHWrvDPy68FEhDEa0gZtgRM8QvcQYMHXiRIGhRoVqRCpqIgkbvakAer1qJai-qw_w', '4c3d21f24bc9a593ebb5d371', 182021025151755, 94678126),
+(33, 'お茶の水公園', '35.701027', '139.766187', '『かなめも』1話で途方にくれた主人公の&ldquo;かな&rdquo;が考え込む公園．', '東京都文京区湯島１丁目４', '', 'https://plus.google.com/113934989303831624253/about?hl=ja', 'お茶の水公園 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (1/3)', '', '', '', '', '', '', '', 'CoQBcwAAABzKqxGZpAd48gxY_qLSu6mlyIBX2DdV5Qp3C_L_Q_FEfxHIp-OMHi696vbzFIfV5ixejLHeT98PHKMy8h8smklVEDPyVAndS0lQwpaRr3DTgZG_m-JiOapipxSVv-crVxyml5GRrOu1RIvHSWFii-8qjqjp7iJu48sMpK6KCROVEhCn5F8tL_Y5UKAaqduBIAfOGhQ2GyJrAwr3J1eNC9VEW54gc6Hw_g', '4b845a80f964a520653031e3', 0, 473595),
+(34, '千葉公園', '35.619755', '140.117853', '『俺の妹がこんなに可愛いわけがない』で京介と麻奈実が会話をしていた公園．', '千葉公園駅（千葉）', '', 'https://maps.google.com/maps/place?q=%E5%8D%83%E8%91%89%E5%85%AC%E5%9C%92%E9%A7%85&ftid=0x602284bec650d3c3:0xdc102f81a4d1a2d7', '千葉公園駅 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/index-2.html', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (2/3)', '', '', '', '', '', '', '', 'CoQBegAAAB65WlGTqm6_Rb3xBWKoshOGLttawEEltI1fJ1KeVn_7pbDeWILOmohnnFu49h0fWWmI8SWpDT8mAsJQ9kZ-wFZbo5sgXqw5odjYsrsJBJpTTWdKqY8Yjg39n8k4KsKvroswszLBbBLzC81njisRTIvQ69I3PwycKj4vZxyv5MJdEhCWiXLCuv_wK7WYe9VXYuqQGhTIk1PODTazokU18gVQEBkX9ETc7g', '4b65086af964a52091e02ae3', 279245155437917, 62780),
+(35, '千住大橋駅', '35.742491', '139.796834', '近くにリクとニノが出会った千住大橋がある．', '千住大橋駅（東京）', '', 'https://maps.google.com/maps/place?q=%E5%8D%83%E4%BD%8F%E5%A4%A7%E6%A9%8B%E9%A7%85&ftid=0x60188e5cee002b37:0xe25ef9bf0ae8fb71', '千住大橋駅 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/index-2.html', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (2/3)', '', '', '', '', '', '', '', 'CoQBewAAAIbPA6sceePVKjZlECJ_409WmfMOCQrgDEHl8hmpiziprubxWiw0NZmqtE4FQqgP6n6kSCggoHmu4JW7QtaAxT6JO2VOgbgznbRghQiousP6jnGez_thsrr0o6-xBUqDcz2zEcvg-sL3O2gnf7Rfx8AAywzvf4K4X3GUktCjKucuEhANBU4T8EA-tooxgscd-_8eGhS86AbQ6YSI0fYGlhBYKzccPOUDzA', '4bbd3b20078095217b6dda91', 164887860231894, 2171320),
+(36, '旧古河庭園', '35.742972', '139.746686', '『うみねこのなく頃に』のゲストハウスの建物外観とバラ園のモデルとなった．', '東京都北区西ヶ原1-27-39', '', 'https://plus.google.com/114253918260015266701/about?hl=ja', '旧古河庭園 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/index-2.html', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (2/3)', '', '', '', '', '', '', '', 'CoQBcgAAAMj93Bbrg5sVOXEMQSUyRjLQT_zkqX6bOS9jpZgm2ZtWxisWTiyd4CpM37XJKx5D3NAL7ChmSYPIxWvjgDr14T2uPrVJJZJSiDiwJHGMnbcHnRQBAJ7O0qJyqUURPreqDCOIpl0YkambB5lq7zdpr9BZjIlWLJKr6F2dhU5Wl4pOEhDknTqvqKaFFwqb3MQQE0hkGhRofI3_7wd9_XAhmwKOiaArjTTbgQ', '4b5fc115f964a52082cb29e3', 165263276832882, 50192),
+(37, '羽村駅', '35.758437', '139.315944', '『CLANNAD』にて春原陽一と古河早苗がデートをするシーンの背景で登場．', '羽村駅（東京）', '', 'https://maps.google.com/maps/place?q=%E7%BE%BD%E6%9D%91%E9%A7%85&ftid=0x601921a85e710549:0xaf4371efa0f5fae6', '羽村駅 - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/index-3.html', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (3/3)', '', '', '', '', '', '', '', 'CoQBdQAAABE2sxWOSVPAFNaJxgQoCDResTJfq1_-1NJfXElW_yREEajG1YN6JZuqm0yHci6lwDFM_QJFQ4WO7msv72vmxss8mzty2gX7EyI-EaufL4hvGj-2h64wgAOqfl4xq_8iBf6ygftEJOSIQ6OtOP843AonG_2SRqI_VLBMEckrcGgGEhCpH9BBmekTn7izjLpgqqoqGhT5kgRXQdk8THhTTwBfqlXstA4XlA', '4b562c7cf964a520a50328e3', 201850409836971, 280849),
+(38, 'アルプス', '35.570050', '139.685888', '『それでも町は廻っている』の喫茶シーサイドのモデルとなった．', '東京都大田区下丸子３丁目１６&minus;６', '', 'https://plus.google.com/111527130107792380986/about?hl=ja', 'アルプス - 基本情報 - Google+', 'http://ascii.jp/elem/000/000/584/584828/index-3.html', 'ASCII.jp：1日でどれだけ回れるか!?　関東の聖地を電車で限界巡礼 (3/3)', '', '', '', '', '', '', '', 'CnRuAAAAMssfpg-F6i8E6aHlSiylp4-wwTU9xO4UACg4HksjCHBOegM4HdKLTAlq7DqI2RKDhrsKVY2QMfNUHRR_50QiUorMQY7MIA8SyJdWBPoZ3u79euvevfX4fbbB3ETsUtVcY77ImYsnbIS2lbRompbqUhIQJfHBLpBgCL0rYdSEbDHVbBoUCQTgXphxz3MuG41Z2goMtiudLdQ', '4ce742dce1eeb60ca01b9cae', 189611621082519, 1289683);
 
 -- --------------------------------------------------------
 
@@ -85,12 +117,44 @@ CREATE TABLE IF NOT EXISTS `placeinfo` (
 --
 
 INSERT INTO `placeinfo` (`placeid`, `accessnum`, `visitnum`) VALUES
-(1, 20, 0),
-(2, 1, 0),
-(3, 2, 0),
-(4, 1, 0),
-(5, 1, 0),
-(6, 2, 0);
+(1, 70, 0),
+(2, 6, 0),
+(3, 5, 0),
+(4, 2, 0),
+(5, 4, 0),
+(6, 4, 0),
+(7, 4, 0),
+(8, 1, 0),
+(9, 1, 0),
+(10, 2, 0),
+(11, 1, 0),
+(12, 2, 0),
+(13, 1, 0),
+(14, 1, 0),
+(15, 1, 0),
+(16, 1, 0),
+(17, 1, 0),
+(18, 1, 0),
+(19, 1, 0),
+(20, 1, 0),
+(21, 1, 0),
+(22, 1, 0),
+(23, 1, 0),
+(24, 1, 0),
+(25, 1, 0),
+(26, 1, 0),
+(27, 1, 0),
+(28, 1, 0),
+(29, 1, 0),
+(30, 1, 0),
+(31, 1, 0),
+(32, 1, 0),
+(33, 1, 0),
+(34, 1, 0),
+(35, 1, 0),
+(36, 1, 0),
+(37, 1, 0),
+(38, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `placework` (
   KEY `placeid_2` (`placeid`),
   KEY `placeid_3` (`placeid`),
   KEY `workid_2` (`workid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='場所作品関係情報' AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='場所作品関係情報' AUTO_INCREMENT=43 ;
 
 --
 -- テーブルのデータのダンプ `placework`
@@ -135,7 +199,41 @@ INSERT INTO `placework` (`placeworkid`, `placeid`, `workid`) VALUES
 (4, 3, 485),
 (5, 4, 485),
 (6, 5, 485),
-(7, 6, 274);
+(7, 6, 274),
+(8, 7, 72),
+(10, 8, 508),
+(11, 9, 5),
+(12, 10, 129),
+(13, 11, 129),
+(14, 12, 129),
+(15, 13, 129),
+(16, 14, 129),
+(17, 15, 129),
+(18, 16, 129),
+(19, 17, 485),
+(20, 18, 312),
+(21, 19, 312),
+(22, 20, 312),
+(23, 21, 312),
+(24, 22, 312),
+(25, 23, 434),
+(26, 24, 434),
+(27, 25, 434),
+(28, 26, 4),
+(29, 26, 434),
+(30, 27, 65),
+(31, 27, 66),
+(32, 28, 353),
+(33, 29, 163),
+(34, 30, 163),
+(35, 31, 336),
+(36, 32, 443),
+(37, 33, 79),
+(38, 34, 68),
+(39, 35, 27),
+(40, 36, 48),
+(41, 37, 125),
+(42, 38, 232);
 
 -- --------------------------------------------------------
 
@@ -162,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `work` (
   `wikipedia` varchar(2083) NOT NULL DEFAULT '' COMMENT 'wikipediaの解説URL',
   PRIMARY KEY (`workid`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='作品情報' AUTO_INCREMENT=507 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='作品情報' AUTO_INCREMENT=509 ;
 
 --
 -- テーブルのデータのダンプ `work`
@@ -679,7 +777,9 @@ INSERT INTO `work` (`workid`, `name`, `workdesc`, `img`, `productid1`, `producti
 (503, 'WORKING!!', '『WORKING!!』（ワーキング）は、高津カリノによる日本の漫画作品であり、それを原作としたメディアミックスの作品群である。 （[wikipedia](http://ja.wikipedia.org/wiki/WORKING!!)より）', '', '4757540299', '4757536178', '4757540302', 'B009WKVBEI', '4757515774', 'http://www.square-enix.co.jp/magazine/yg/introduction/working/', 'WORKING!!', 'http://dir.yahoo.co.jp/Entertainment/Comics_and_Animation/Comic_Books/Titles/Working/Working/', 'WORKING!! アニメ版', '', '', 'http://ja.wikipedia.org/wiki/WORKING!!'),
 (504, '私がモテないのはどう考えてもお前らが悪い!', '『私がモテないのはどう考えてもお前らが悪い!』（わたしがモテないのはどうかんがえてもおまえらがわるい）は、谷川ニコによる日本の漫画作品。スクウェア・エニックスのウェブコミック配信サイト『ガンガンONLINE』2011年8月4日更新分から毎月第1・第3週更新で連載中。 （[wikipedia](http://ja.wikipedia.org/wiki/%E7%A7%81%E3%81%8C%E3%83%A2%E3%83%86%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AF%E3%81%A9%E3%81%86%E8%80%83%E3%81%88%E3%81%A6%E3%82%82%E3%81%8A%E5%89%8D%E3%82%89%E3%81%8C%E6%82%AA%E3%81%84!)より）', '', '4757541228', 'B00DTV0ZE8', '4757540647', 'B00EYZ15YW', '4757539800', 'http://www.tv-tokyo.co.jp/anime/watamote/', '私がモテないのはどう考えてもお前らが悪い！ [tv-tokyo.co.jp]', 'http://www.watamote.jp/', '私がモテないのはどう考えてもお前らが悪い！ [watamote.jp]', '', '', 'http://ja.wikipedia.org/wiki/%E7%A7%81%E3%81%8C%E3%83%A2%E3%83%86%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AF%E3%81%A9%E3%81%86%E8%80%83%E3%81%88%E3%81%A6%E3%82%82%E3%81%8A%E5%89%8D%E3%82%89%E3%81%8C%E6%82%AA%E3%81%84!'),
 (505, 'わんおふ', '『わんおふ -one off-』は、2012年にOVAとして企画、製作されたOVA。本田技研工業が特別協賛として参加している。 （[wikipedia](http://ja.wikipedia.org/wiki/%E3%82%8F%E3%82%93%E3%81%8A%E3%81%B5_-one_off-)より）', '', 'B00AMRU060', 'B008S863RK', 'B008S8E3CW', 'B00DE6NBDU', '4800000750', '', '', '', '', '', '', 'http://ja.wikipedia.org/wiki/%E3%82%8F%E3%82%93%E3%81%8A%E3%81%B5_-one_off-'),
-(506, 'ブラック★ロックシューター', 'ブラック★ロックシューター（BLACK★ROCK SHOOTER、略称：B★RS、BRS）は、日本のイラストレーター、hukeによってデザインされたキャラクター、およびそれを元にした楽曲・アニメーション作品である。（[Wikipedia](http://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E2%98%85%E3%83%AD%E3%83%83%E3%82%AF%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC#.E3.81.B7.E3.81.A1.E3.81.A3.E3.81.A8.E2.98.85.E3.83.AD.E3.83.83.E3.82.AF.E3.82.B7.E3.83.A5.E3.83.BC.E3.82.BF.E3.83.BC)より）', 'http://localhost:8080/seichi/img/brs-test.jpg', 'B0074JETNO', 'B003XJA43S', 'B002M3484M', '4041200458', 'B004HQLLA6', 'http://www.blackrockshooter.jp/', 'アニメ「ブラックロックシューター」公式サイト', 'http://brs.jrpg.jp/', 'ブラックロックシューター THE GAME 公式サイト', 'http://www.brs-social.com/', 'ブラックロックシューター アルカナ', 'http://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E2%98%85%E3%83%AD%E3%83%83%E3%82%AF%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC');
+(506, 'ブラック★ロックシューター', 'ブラック★ロックシューター（BLACK★ROCK SHOOTER、略称：B★RS、BRS）は、日本のイラストレーター、hukeによってデザインされたキャラクター、およびそれを元にした楽曲・アニメーション作品である。（[Wikipedia](http://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E2%98%85%E3%83%AD%E3%83%83%E3%82%AF%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC#.E3.81.B7.E3.81.A1.E3.81.A3.E3.81.A8.E2.98.85.E3.83.AD.E3.83.83.E3.82.AF.E3.82.B7.E3.83.A5.E3.83.BC.E3.82.BF.E3.83.BC)より）', 'http://localhost:8080/seichi/img/brs-test.jpg', 'B0074JETNO', 'B003XJA43S', 'B002M3484M', '4041200458', 'B004HQLLA6', 'http://www.blackrockshooter.jp/', 'アニメ「ブラックロックシューター」公式サイト', 'http://brs.jrpg.jp/', 'ブラックロックシューター THE GAME 公式サイト', 'http://www.brs-social.com/', 'ブラックロックシューター アルカナ', 'http://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E2%98%85%E3%83%AD%E3%83%83%E3%82%AF%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC'),
+(507, '純と愛', '『純と愛』（じゅんとあい）は、2012年度下半期にNHKが大阪放送局制作により、総合テレビとBSプレミアムで放送された連続テレビ小説・第87シリーズの作品である。 （[wikipedia](http://ja.wikipedia.org/wiki/%E7%B4%94%E3%81%A8%E6%84%9B)より）', '', 'B00BMMO4NY', 'B00AF9D6VQ', 'B00ATMS6PK', 'B00BHQO0P2', 'B009F4460W', '', '', '', '', '', '', 'http://ja.wikipedia.org/wiki/%E7%B4%94%E3%81%A8%E6%84%9B'),
+(508, 'あまちゃん', '『あまちゃん』は、2013年度（平成25年度）上半期にNHKで制作され、総合テレビとBSプレミアムで放送された連続テレビ小説・第88シリーズの作品である。 （[wikipedia](http://ja.wikipedia.org/wiki/%E3%81%82%E3%81%BE%E3%81%A1%E3%82%83%E3%82%93)より）', '', 'B00D3J7O8G', 'B00E70MF4I', 'B00DOJQ2S8', 'B00EDYWDC2', 'B00E70MF3O', 'http://matome.naver.jp/topic/1M417', 'NAVERまとめ - あまちゃん', 'http://www.nhk-ondemand.jp/program/P201300106800000/', 'NHKオンデマンド - あまちゃん', 'http://www.nhk.or.jp/amachan/', 'あまちゃん', 'http://ja.wikipedia.org/wiki/%E3%81%82%E3%81%BE%E3%81%A1%E3%82%83%E3%82%93');
 
 -- --------------------------------------------------------
 
@@ -698,10 +798,10 @@ CREATE TABLE IF NOT EXISTS `workinfo` (
 --
 
 INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
-(1, 5),
+(1, 10),
 (2, 1),
 (3, 2),
-(4, 2),
+(4, 3),
 (5, 4),
 (6, 2),
 (7, 0),
@@ -724,7 +824,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (24, 0),
 (25, 0),
 (26, 0),
-(27, 0),
+(27, 1),
 (28, 0),
 (29, 0),
 (30, 0),
@@ -745,7 +845,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (45, 0),
 (46, 0),
 (47, 0),
-(48, 0),
+(48, 1),
 (49, 0),
 (50, 0),
 (51, 0),
@@ -776,7 +876,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (76, 0),
 (77, 0),
 (78, 0),
-(79, 0),
+(79, 1),
 (80, 0),
 (81, 0),
 (82, 0),
@@ -822,11 +922,11 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (122, 0),
 (123, 0),
 (124, 0),
-(125, 0),
+(125, 2),
 (126, 0),
 (127, 0),
 (128, 0),
-(129, 42),
+(129, 53),
 (130, 3),
 (131, 0),
 (132, 0),
@@ -860,7 +960,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (160, 0),
 (161, 0),
 (162, 0),
-(163, 0),
+(163, 2),
 (164, 0),
 (165, 0),
 (166, 0),
@@ -1009,7 +1109,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (309, 0),
 (310, 0),
 (311, 0),
-(312, 0),
+(312, 3),
 (313, 0),
 (314, 0),
 (315, 0),
@@ -1129,7 +1229,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (431, 0),
 (432, 0),
 (433, 0),
-(434, 0),
+(434, 3),
 (435, 0),
 (436, 0),
 (437, 0),
@@ -1138,7 +1238,7 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (440, 0),
 (441, 0),
 (442, 0),
-(443, 0),
+(443, 1),
 (444, 0),
 (445, 0),
 (446, 0),
@@ -1201,7 +1301,9 @@ INSERT INTO `workinfo` (`workid`, `accessnum`) VALUES
 (503, 0),
 (504, 0),
 (505, 0),
-(506, 9);
+(506, 9),
+(507, 1),
+(508, 1);
 
 -- --------------------------------------------------------
 
