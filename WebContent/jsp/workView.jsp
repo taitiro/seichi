@@ -185,7 +185,7 @@ amzn_wdgt.marketPlace='JP';
                   <%=new Markdown4jProcessor().process(thisPlace.getPlacedesc())%>
                 </section>
                 <p>
-                  <a class="btn btn-default" href="place/<%=thisPlace.getPlaceid()%>" role="button">View details &raquo;</a>
+                  <a class="btn btn-default" href="../place/<%=thisPlace.getPlaceid()%>" role="button">View details &raquo;</a>
                 </p>
               </div>
             </div>

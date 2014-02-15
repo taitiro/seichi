@@ -38,7 +38,7 @@ $(function () {
           initGeoLoc : function() {
             this.stopListening(this.geolocation);//listenを解除
             if(this.geolocation.get("lat") && this.geolocation.get("lng")){
-              this.geoParam = 'lat=' + this.geolocation.get("lat") + '&lng=' + this.geolocation.get("lng");
+              this.geoParam = 'lat=' + this.geolocation.get("lat") + '&lng=' + this.geolocation.get("lng") + '&limit=10';
             }
             this.sendData();
           },
