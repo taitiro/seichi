@@ -189,7 +189,11 @@ span{
   width: 100px;
   height: 100px;
 }
-
+#mapdesc {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
 label,fieldset {
   display: block;
 }
