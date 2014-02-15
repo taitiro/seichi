@@ -18,7 +18,7 @@ $(function () {
         // （collectionのurlにGETリクエストを送信する）
         if(this.geolocation.get("lat")){
           geoParam = 'lat=' + this.geolocation.get("lat") + '&lng=' + this.geolocation.get("lng");
-          this.collection.url = this.collection.urlRoot + geoParam;
+          this.collection.url = this.collection.urlRoot + geoParam + '&limit=10';
           /* console.log('success:getlocation'); */
         }
         this.collection.fetch({
