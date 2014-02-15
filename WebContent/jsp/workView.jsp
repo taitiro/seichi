@@ -267,6 +267,16 @@ amzn_wdgt.marketPlace='JP';
   <script src="../js/bootstrap.min.js"></script>
   <!-- Load project's js -->
   <script src="../js/offcanvas.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48085492-1', 'darakeru.com');
+  ga('send', 'pageview');
+
+</script>
   <!-- Load page's js -->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="../js/work.js"></script>
