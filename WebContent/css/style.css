@@ -160,7 +160,7 @@ span{
   padding: 0;
   position: relative;
   width: 100%;
-  min-width: 320px;
+  min-width: 300px;
 }
 
 #map-container:before {
@@ -189,13 +189,11 @@ span{
   width: 100px;
   height: 100px;
 }
-
 #mapdesc {
-  position: absolute;
-  top: 0;
-  left: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
 }
-
 label,fieldset {
   display: block;
 }
