@@ -201,15 +201,14 @@ amzn_wdgt.marketPlace='JP';
 
       <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 
-        <h2 class="page-header">聖地検索</h2>
+          <h2 class="page-header">聖地検索</h2>
           <form action="../search.html" method="get" id="searchform">
             <label>場所名など：<input type="text" name="place" placeholder="住所・地名・スポット名などを入力" required></label>
             <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
-            <!--
-            <label>作品名：<input type="text" name="work"></label>
+            <!-- <label>作品名：<input type="text" name="work"></label>
             <button type="button" class="btn btn-default  btn-xs" data-toggle="collapse" data-target="#detailinfo">詳細検索</button>
             <div id="detailinfo" class="collapse">
-              <label> 検索件数：<input type="number" name="num" value="10">
+              <label> 検索件数：<input type="number" name="num" id="search-num" value="10" step="5">
               </label> <label> ソート順 <select name="sort">
                   <option value="smart" selected>スマート</option>
                   <option value="visitnum">訪問者数</option>
@@ -218,30 +217,35 @@ amzn_wdgt.marketPlace='JP';
                   <option value="geoloc">現在地に近い順</option>
                   <option value="place">検索した場所に近い順</option>
               </select>
-              </label> <label>登録された日： <br /> <input type="date" name="fromdate">から <br /> <input type="date" name="todate">まで
-              </label> <label>現在地付近から検索：<input type="checkbox" name="geolocation" value="on"></label>
+              </label> <label>登録された日： <br />
+                <input type="date" name="fromdate" id="fromdate">から <br />
+                <input type="date" name="todate" id="todate">まで
+              </label>
               <fieldset>
                 検索方法： <label>全ての条件に合致(AND検索)<input type="radio" name="method" value="and" checked></label> <label>いずれかの条件に合致(OR検索)<input type="radio" name="method" value="or"></label>
               </fieldset>
-            </div>
--->
-              <p>
+            </div> -->
+            <p>
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
           </form>
-        <h2 class="page-header">作品検索</h2>
+          <h2 class="page-header">作品検索</h2>
           <form action="../searchwork.html" method="get" id="searchworkform">
             <label>検索文字：<input type="text" name="name" placeholder="作品名などを入力" required></label>
             <p>
               <input class="btn btn-primary btn-xs pull-right" type="submit" value="送信">
             </p>
           </form>
-<!--
-        <div class="well">
-        <h2 class="page-header">広告</h2>
-
-          <p>ここに広告置きたい</p>
-        </div>-->
+          <h2 class="page-header">広告</h2>
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- たんけんアニメのまちサイドバー2 -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:160px;height:600px"
+               data-ad-client="ca-pub-8270952955770553"
+               data-ad-slot="6693688964"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
       </aside>
       <!--/span-->
 
