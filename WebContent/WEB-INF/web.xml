@@ -1,62 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    id="WebApp_ID" version="3.0">
-    <display-name>seichi</display-name>
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.htm</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-    <!-- テスト中なので限定公開 -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>FOR_DEMO</web-resource-name>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>demouser</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>FOR_DEMO</realm-name>
-    </login-config>
-    <!-- ↑までテスト中なので挿入。公開時は削除 -->
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
-    <context-param>
-        <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
-        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>client</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-        <param-value>resources.application</param-value>
-    </context-param>
-    <listener>
-        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>jcaptcha</servlet-name>
-        <servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jcaptcha</servlet-name>
-        <url-pattern>/jcaptcha.jpg</url-pattern>
-    </servlet-mapping>
-    <!-- <servlet> <servlet-name>php</servlet-name> <servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class> 
-        <init-param> <param-name>debug</param-name> <param-value>6</param-value> 
-        </init-param> <init-param> <param-name>cgiPathPrefix</param-name> <param-value>import</param-value> 
-        </init-param> <init-param> <param-name>executable</param-name> <param-value>C:\Users\180003\pleiades\xampp\php\php-cgi.exe</param-value> 
-        </init-param> <load-on-startup>5</load-on-startup> </servlet> <servlet-mapping> 
-        <servlet-name>php</servlet-name> <url-pattern>/import/*</url-pattern> </servlet-mapping> -->
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>seichi</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected</web-resource-name>
+			<url-pattern>*.jsp</url-pattern>
+            <url-pattern>/jsp</url-pattern>
+            <url-pattern>/import</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+		</auth-constraint>
+	</security-constraint>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>resources.application</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>jcaptcha</servlet-name>
+		<servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jcaptcha</servlet-name>
+		<url-pattern>/jcaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> <servlet-name>php</servlet-name> <servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class> 
+		<init-param> <param-name>debug</param-name> <param-value>6</param-value> 
+		</init-param> <init-param> <param-name>cgiPathPrefix</param-name> <param-value>import</param-value> 
+		</init-param> <init-param> <param-name>executable</param-name> <param-value>C:\Users\180003\pleiades\xampp\php\php-cgi.exe</param-value> 
+		</init-param> <load-on-startup>5</load-on-startup> </servlet> <servlet-mapping> 
+		<servlet-name>php</servlet-name> <url-pattern>/import/*</url-pattern> </servlet-mapping> -->
 </web-app>
