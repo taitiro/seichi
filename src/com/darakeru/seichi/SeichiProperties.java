@@ -18,12 +18,14 @@ public class SeichiProperties {
     private String twitterToken;
     private String amazonApiAccessKey;
     private String amazonApiSecretKey;
+    private String amazonAssociateTag;
     private String versionDate;
     private int latlngScale;
     private int asinLength;
     private boolean apiLimit;
     private long apiInterval;
     private String bingAccountKey;
+    private String yahooApiKey;
     
     public SeichiProperties() {
         try {
@@ -32,6 +34,7 @@ public class SeichiProperties {
             this.urlRoot = configuration.getProperty("URL_ROOT");
             this.amazonApiAccessKey = configuration.getProperty("AMAZON_API_ACCESS_KEY");
             this.amazonApiSecretKey = configuration.getProperty("AMAZON_API_SECRET_KEY");
+            this.amazonAssociateTag = configuration.getProperty("AMAZON_ASSOCIATE_TAG");
             this.apiInterval = Long.parseLong(configuration.getProperty("API_INTERVAL"));
             this.apiLimit = Boolean.valueOf(configuration.getProperty("API_LIMIT"));
             this.asinLength = Integer.parseInt(configuration.getProperty("ASIN_LENGTH"));
@@ -46,6 +49,7 @@ public class SeichiProperties {
             this.urlRoot = configuration.getProperty("URL_ROOT");
             this.versionDate = configuration.getProperty("VERSION_DATE");
             this.bingAccountKey = configuration.getProperty("BING_ACCOUNT_KEY");
+            this.yahooApiKey = configuration.getProperty("YAHOO_API_KEY");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,5 +103,13 @@ public class SeichiProperties {
 
     public String getBingAccountKey() {
         return bingAccountKey;
+    }
+
+    public String getYahooApiKey() {
+        return yahooApiKey;
+    }
+
+    public String getAmazonAssociateTag() {
+        return amazonAssociateTag;
     }
 }

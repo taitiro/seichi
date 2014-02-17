@@ -36,13 +36,13 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../">たんけんアニメのまち</a>
+      <a class="navbar-brand" href="http://www.darakeru.com/seichi">たんけんアニメのまち</a>
     </div>
     <div class="collapse navbar-collapse container">
       <ul class="nav navbar-nav">
-        <li><a href="../">トップページ</a></li>
-        <li><a href="../search.html?geolocation=on">現在地の周辺情報へのリンク</a></li>
-        <li><a href="../placeadd.html">聖地情報の追加</a></li>
+        <li><a href="../search.html?geolocation=on">現在地周辺の聖地</a></li>
+        <li><a href="../placeadd.html">聖地の追加</a></li>
+        <li><a href="../workadd.html">作品の追加</a></li>
       </ul>
       <!--       <form class="btn-group navbar-form pull-right">
         <button type="button" class="btn btn-default btn-sm">ログイン</button>
