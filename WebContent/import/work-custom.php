@@ -127,6 +127,7 @@ print <<<EOF
 </head>
 <body>
   <h1>作品カスタムインポート</h1>
+    <p>Amazon URL:{$amazonUrl}</lp>
   <form action="http://localhost:8080/seichi/work" method="POST">
     <label>作品名<input type="text" name="name" value="{$input["name"]}"></label>
     <label>作品の説明<textarea name="workdesc">{$input["workdesc"]}</textarea></label>

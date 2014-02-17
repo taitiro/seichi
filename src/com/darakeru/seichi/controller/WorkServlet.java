@@ -1,8 +1,6 @@
 package com.darakeru.seichi.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import com.darakeru.seichi.model.PlaceJsonBean;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
 import com.darakeru.seichi.model.Workinfo;
+import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
 /**
  * Servlet implementation class WorkServlet
@@ -55,10 +54,10 @@ public class WorkServlet extends HttpServlet {
             try {
                 em.getTransaction().begin();
                 thisWork = (Work) em.find(Work.class, id);
-                if(thisWork == null){
+                if (thisWork == null) {
                     errorCode = 404;
                     errorStr = "指定された作品IDの作品が存在しません";
-                }else{
+                } else {
                     thisWork.getWorkinfo().addAccessnum();
                     for (Placework onePlacework : thisWork.getPlaceworks()) {
                         placeList.add(onePlacework.getPlace());
@@ -104,9 +103,14 @@ public class WorkServlet extends HttpServlet {
         int errorCode = 200;
         String errorStr = "";
         try {
-            //リファラーチェック
-            if (request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmworkadd") 
-                    || request.getHeader("Referer").startsWith("http://localhost:8080/seichi/import/work-custom.php")) {
+            //リファラーチェック&CAPTCHAチェック
+            if (!request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmworkadd")) {
+                errorCode = 403;
+                errorStr="不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+            }else if(!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))){
+                errorCode = 403;
+                errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
+            }else{
                 Work thisWork = new Work();
                 thisWork.setName(request.getParameter("name"));
                 thisWork.setWorkdesc(request.getParameter("workdesc"));
@@ -141,9 +145,6 @@ public class WorkServlet extends HttpServlet {
                     em.close();
                     emf.close();
                 }
-            } else {
-                errorCode = 403;
-                errorStr="不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,5 +157,4 @@ public class WorkServlet extends HttpServlet {
             response.sendRedirect(redirectURL);
         }
     }
-
 }
