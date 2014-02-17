@@ -14,7 +14,7 @@ import com.darakeru.seichi.model.ConfirmWorkBean;
 /**
  * Servlet implementation class ConfirmPlaceaddServlet
  */
-@WebServlet(description = "作品追加の確認", urlPatterns = { "/confirmworkadd" })
+@WebServlet(description = "作品追加の確認", urlPatterns = {"/confirmworkadd"})
 public class ConfirmWorkaddServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final SeichiProperties conf = new SeichiProperties();
