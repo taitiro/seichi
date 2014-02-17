@@ -24,10 +24,12 @@ import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 /**
  * Servlet implementation class WorkServlet
  */
-@WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/work/*" })
+@WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/work", "/work/*" })
 public class WorkServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final SeichiProperties conf = new SeichiProperties();
+    private int errorCode;
+    private String errorStr;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,19 +39,22 @@ public class WorkServlet extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
         int id = 0;
-        int errorCode = 200;
-        String errorStr = "";
+        errorCode = 200;
+        errorStr = "";
         try {
             Work thisWork = null;
             List<Place> placeList = new ArrayList<Place>();
             PlaceJsonBean thisJson = new PlaceJsonBean();
             id = Integer.parseInt(request.getPathInfo().substring(1));
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
+            EntityManagerFactory emf = Persistence
+                    .createEntityManagerFactory("Seichi");
             EntityManager em = emf.createEntityManager();
             try {
                 em.getTransaction().begin();
@@ -68,14 +73,13 @@ public class WorkServlet extends HttpServlet {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
-                /*StringWriter sw = new StringWriter();
-                PrintWriter pw = new PrintWriter(sw);
-                e.printStackTrace(pw);
-                pw.flush();
-                String str = sw.toString();
+                /*
+                 * StringWriter sw = new StringWriter(); PrintWriter pw = new
+                 * PrintWriter(sw); e.printStackTrace(pw); pw.flush(); String
+                 * str = sw.toString();
+                 */
                 errorCode = 500;
-                errorStr = "データベースからのデータ取得時にエラーが発生しました ";*/
-                throw e;
+                errorStr = "データベースからのデータ取得時にエラーが発生しました ";
             } finally {
                 em.close();
                 emf.close();
@@ -84,67 +88,29 @@ public class WorkServlet extends HttpServlet {
             errorCode = 404;
             errorStr = "作品IDは数字で指定してください";
         } catch (Exception e) {
-            /*e.printStackTrace();
+            e.printStackTrace();
             errorCode = 500;
-            errorStr = "サーバー内部の不明なエラーです";*/
-            throw e;
+            errorStr = "サーバー内部の不明なエラーです";
         }
         if (errorCode != 200) {
             response.sendError(errorCode, errorStr);
         } else {
-            request.getRequestDispatcher("/jsp/workView.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/workView.jsp").forward(request,
+                    response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
         String redirectURL = "";
-        int errorCode = 200;
-        String errorStr = "";
+        errorCode = 200;
+        errorStr = "";
         try {
-            //リファラーチェック&CAPTCHAチェック
-            if (!request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmworkadd")) {
-                errorCode = 403;
-                errorStr="不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
-            }else if(!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))){
-                errorCode = 403;
-                errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
-            }else{
-                Work thisWork = new Work();
-                thisWork.setName(request.getParameter("name"));
-                thisWork.setWorkdesc(request.getParameter("workdesc"));
-                thisWork.setImg(request.getParameter("img"));
-                thisWork.setProductid1(request.getParameter("productid1"));
-                thisWork.setProductid2(request.getParameter("productid2"));
-                thisWork.setProductid3(request.getParameter("productid3"));
-                thisWork.setProductid4(request.getParameter("productid4"));
-                thisWork.setProductid5(request.getParameter("productid5"));
-                thisWork.setUrl1(request.getParameter("url1"));
-                thisWork.setUrlname1(request.getParameter("urlname1"));
-                thisWork.setUrl2(request.getParameter("url2"));
-                thisWork.setUrlname2(request.getParameter("urlname2"));
-                thisWork.setUrl3(request.getParameter("url3"));
-                thisWork.setUrlname3(request.getParameter("urlname3"));
-                thisWork.setWikipedia(request.getParameter("wikipedia"));
-                Workinfo thisWorkinfo = new Workinfo();
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
-                EntityManager em = emf.createEntityManager();
-                try {
-                    em.getTransaction().begin();
-                    em.persist(thisWork);
-                    thisWorkinfo.setWorkid(thisWork.getWorkid());
-                    em.persist(thisWorkinfo);
-                    em.getTransaction().commit();
-                    redirectURL = conf.getUrlRoot() + "work/" + thisWork.getWorkid();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    errorCode = 500;
-                    errorStr = "データベースからのデータ取得時にエラーが発生しました";
-                } finally {
-                    em.close();
-                    emf.close();
-                }
+            if (request.getPathInfo() == null) {
+                redirectURL = this.addWork(request);
+            } else {
+                redirectURL = this.editWork(request);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,5 +122,169 @@ public class WorkServlet extends HttpServlet {
         } else {
             response.sendRedirect(redirectURL);
         }
+    }
+
+    private String editWork(HttpServletRequest request) {
+        String redirectURL = "";
+        try {
+            // リファラーチェック&CAPTCHAチェック
+            if (!request.getHeader("Referer").equals(
+                    conf.getUrlRoot() + "workedit")
+                    || !request.getHeader("Referer").equals(
+                            conf.getUrlRoot() + "placeworkadd")) {
+                errorCode = 403;
+                errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+            } else if (!SimpleImageCaptchaServlet.validateResponse(request,
+                    request.getParameter("jcaptcha"))) {
+                errorCode = 403;
+                errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
+            } else {
+                Work thisWork = null;
+                int id = Integer.parseInt(request.getPathInfo().substring(1));
+                EntityManagerFactory emf = Persistence
+                        .createEntityManagerFactory("Seichi");
+                EntityManager em = emf.createEntityManager();
+                thisWork = (Work) em.find(Work.class, id);
+                if (thisWork == null) {
+                    errorCode = 404;
+                    errorStr = "指定された作品IDの作品が存在しません";
+                } else {
+                    if (request.getParameter("name") != null) {
+                        thisWork.setName(request.getParameter("name"));
+                    }
+                    if (request.getParameter("workdesc") != null) {
+                        thisWork.setWorkdesc(request.getParameter("workdesc"));
+                    }
+                    if (request.getParameter("img") != null) {
+                        thisWork.setImg(request.getParameter("img"));
+                    }
+                    if (request.getParameter("productid1") != null) {
+                        thisWork.setProductid1(request
+                                .getParameter("productid1"));
+                    }
+                    if (request.getParameter("productid2") != null) {
+                        thisWork.setProductid2(request
+                                .getParameter("productid2"));
+                    }
+                    if (request.getParameter("productid3") != null) {
+                        thisWork.setProductid3(request
+                                .getParameter("productid3"));
+                    }
+                    if (request.getParameter("productid4") != null) {
+                        thisWork.setProductid4(request
+                                .getParameter("productid4"));
+                    }
+                    if (request.getParameter("productid5") != null) {
+                        thisWork.setProductid5(request
+                                .getParameter("productid5"));
+                    }
+                    if (request.getParameter("url1") != null
+                            && request.getParameter("urlname1") != null) {
+                        thisWork.setUrl1(request.getParameter("url1"));
+                        thisWork.setUrlname1(request.getParameter("urlname1"));
+                    }
+                    if (request.getParameter("url2") != null
+                            && request.getParameter("urlname2") != null) {
+                        thisWork.setUrl1(request.getParameter("url2"));
+                        thisWork.setUrlname1(request.getParameter("urlname2"));
+                    }
+                    if (request.getParameter("url3") != null
+                            && request.getParameter("urlname3") != null) {
+                        thisWork.setUrl1(request.getParameter("url3"));
+                        thisWork.setUrlname1(request.getParameter("urlname3"));
+                    }
+                    if (request.getParameter("wikipedia") != null) {
+                        thisWork.setWikipedia(request.getParameter("wikipedia"));
+                    }
+                    String[] placeidStrArray = request
+                            .getParameterValues("placeid");
+                    int[] placeidArray = new int[placeidStrArray.length];
+                    for (int i = 0; i < placeidStrArray.length; i++) {
+                        placeidArray[i] = Integer.parseInt(placeidStrArray[i]);
+                    }
+                    try {
+                        em.getTransaction().begin();
+                        em.persist(thisWork);
+                        //placeidは複数あるのでforループ
+                        for(int placeid : placeidArray){
+                            Placework thisPlacework = new Placework();
+                            thisPlacework.setWork(thisWork);
+                            thisPlacework.setPlace(em.find(Place.class, placeid));
+                            em.persist(thisPlacework);
+                        }
+                        em.getTransaction().commit();
+                        redirectURL = conf.getUrlRoot() + "work/"
+                                + thisWork.getWorkid();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        errorCode = 500;
+                        errorStr = "データベースからのデータ取得時にエラーが発生しました";
+                    } finally {
+                        em.close();
+                        emf.close();
+                    }
+                }
+            }
+        } catch (NumberFormatException e) {
+            errorCode = 404;
+            errorStr = "数字で指定しなければならないところが数字で指定されていません";
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCode = 500;
+            errorStr = "サーバー内部の不明なエラーです";
+        }
+        return redirectURL;
+    }
+
+    private String addWork(HttpServletRequest request) {
+        String redirectURL = "";
+        // リファラーチェック&CAPTCHAチェック
+        if (!request.getHeader("Referer").equals(
+                conf.getUrlRoot() + "confirmworkadd")) {
+            errorCode = 403;
+            errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+        } else if (!SimpleImageCaptchaServlet.validateResponse(request,
+                request.getParameter("jcaptcha"))) {
+            errorCode = 403;
+            errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
+        } else {
+            Work thisWork = new Work();
+            thisWork.setName(request.getParameter("name"));
+            thisWork.setWorkdesc(request.getParameter("workdesc"));
+            thisWork.setImg(request.getParameter("img"));
+            thisWork.setProductid1(request.getParameter("productid1"));
+            thisWork.setProductid2(request.getParameter("productid2"));
+            thisWork.setProductid3(request.getParameter("productid3"));
+            thisWork.setProductid4(request.getParameter("productid4"));
+            thisWork.setProductid5(request.getParameter("productid5"));
+            thisWork.setUrl1(request.getParameter("url1"));
+            thisWork.setUrlname1(request.getParameter("urlname1"));
+            thisWork.setUrl2(request.getParameter("url2"));
+            thisWork.setUrlname2(request.getParameter("urlname2"));
+            thisWork.setUrl3(request.getParameter("url3"));
+            thisWork.setUrlname3(request.getParameter("urlname3"));
+            thisWork.setWikipedia(request.getParameter("wikipedia"));
+            Workinfo thisWorkinfo = new Workinfo();
+            EntityManagerFactory emf = Persistence
+                    .createEntityManagerFactory("Seichi");
+            EntityManager em = emf.createEntityManager();
+            try {
+                em.getTransaction().begin();
+                em.persist(thisWork);
+                thisWorkinfo.setWorkid(thisWork.getWorkid());
+                em.persist(thisWorkinfo);
+                em.getTransaction().commit();
+                redirectURL = conf.getUrlRoot() + "work/"
+                        + thisWork.getWorkid();
+            } catch (Exception e) {
+                e.printStackTrace();
+                errorCode = 500;
+                errorStr = "データベースからのデータ取得時にエラーが発生しました";
+            } finally {
+                em.close();
+                emf.close();
+            }
+        }
+        return redirectURL;
     }
 }

@@ -159,9 +159,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
                 } catch (NumberFormatException e) {
                     response.sendRedirect(conf.getUrlRoot() + "error/inputError.html");
                 }
-                if (getServletContext().getAttribute("workList") == null) {
-                    getServletContext().setAttribute("workList", new WorkListBean());
-                }
+                getServletContext().setAttribute("workList", new WorkListBean());
                 request.setAttribute("thisPlace", thisPlace);
             } else {
                 errorCode = 403;
