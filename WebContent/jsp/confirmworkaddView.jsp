@@ -202,6 +202,6 @@
 
 </script>
   <!-- Load page's js -->
-  <!-- <script src="js/confirmworkadd.js"></script> -->
+  <script src="js/confirmworkadd.js"></script>
 </body>
 </html>

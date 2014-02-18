@@ -71,7 +71,10 @@
         <section class="jumbotron">
           <%=thisWork.getImg().equals("") ? "" : "<img src=\""
                     + thisWork.getImg() + "\" id=\"workdesc-img\">"%><!-- 作品の画像 -->
-          <h1 class="page-header"><jsp:getProperty name="thisWork" property="name" /></h1>
+          <h1 class="page-header">
+            <jsp:getProperty name="thisWork" property="name" />
+            <a href="../confirmworkedit/<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>編集する</a>
+          </h1>
           <!-- 作品名 -->
           <section class="workdesc">
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
