@@ -71,13 +71,17 @@
         <section class="jumbotron">
           <%=thisWork.getImg().equals("") ? "" : "<img src=\""
                     + thisWork.getImg() + "\" id=\"workdesc-img\">"%><!-- 作品の画像 -->
-          <h1 class="page-header"><jsp:getProperty name="thisWork" property="name" /></h1>
+          <h1 class="page-header">
+            <jsp:getProperty name="thisWork" property="name" />
+            <a href="../confirmworkedit/<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>編集する</a>
+          </h1>
           <!-- 作品名 -->
           <section class="workdesc">
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
           </section>
           <p>
-            <a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">聖地情報を登録する</a>
+            <a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">新たな聖地情報を登録する</a>
+            <a href="../placework?workid=<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-info btn-lg">既存の聖地情報をこの作品に関連付ける</a>
           </p>
         </section>
         <section>

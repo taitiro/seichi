@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Map"%>
-<jsp:useBean id="thisPlace" class="com.darakeru.seichi.model.ConfirmPlaceBean" scope="request" />
-<jsp:useBean id="workList" class="com.darakeru.seichi.model.WorkListBean" scope="application" />
+<jsp:useBean id="thisPlace" class="com.darakeru.seichi.model.Place" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,17 +10,17 @@
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 <meta name="robots" content="noindex,noarchive,follow">
 
-<title>たんけんアニメのまち - 聖地情報追加の確認</title>
+<title>たんけんアニメのまち - 聖地情報変更の確認</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Select2 CSS -->
-<link href="css/select2.css" rel="stylesheet">
-<link href="css/select2-bootstrap.css" rel="stylesheet">
+<link href="../css/select2.css" rel="stylesheet">
+<link href="../css/select2-bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -39,9 +38,9 @@
     </div>
     <div class="collapse navbar-collapse container">
       <ul class="nav navbar-nav">
-        <li><a href="search.html?geolocation=on">現在地周辺の聖地</a></li>
-        <li><a href="placeadd.html">聖地の追加</a></li>
-        <li><a href="workadd.html">作品の追加</a></li>
+        <li><a href="../search.html?geolocation=on">現在地周辺の聖地</a></li>
+        <li><a href="../placeadd.html">聖地の追加</a></li>
+        <li><a href="../workadd.html">作品の追加</a></li>
       </ul>
       <!--         <form class="btn-group navbar-form pull-right">
           <button type="button" class="btn btn-default btn-sm">ログイン</button>
@@ -62,48 +61,41 @@
 
 
     <article class="container">
-      <h1 class="page-header">聖地情報の確認・修正</h1>
-      <p>以下の内容を確認し，赤くなっている項目を選択・修正した上で「送信」をクリックしてください</p>
-      <form class="form-horizontal" role="form" id="confirm-form" action="place" method="post">
+      <h1 class="page-header">聖地情報の変更</h1>
+      <p>以下の内容を確認し，変更したい項目を変更した上で「送信」をクリックしてください</p>
+      <p>なお、新しい作品を聖地に関連付けたい場合は、<a href="../placework?placeid=<jsp:getProperty name="thisPlace" property="placeid" />">聖地・作品の関連付けの追加</a>から関連付けを追加してください</p>
+      <form class="form-horizontal" role="form" id="confirm-form" action="../place/<jsp:getProperty name="thisPlace" property="placeid" />" method="post">
+        <div class="form-group">
+          <div class="col-md-3 control-label"><strong>作品ID（変更できません）</strong></div>
+          <div class="col-md-9">
+            <jsp:getProperty name="thisPlace" property="placeid" />
+          </div>
+        </div>
         <div class="form-group">
           <label for="input-name" class="col-md-3 control-label">名前（必須）</label>
           <div class="col-md-9">
             <input type="text" class="form-control" id="input-name" name="name" value="<jsp:getProperty name="thisPlace" property="name" />" required>
           </div>
         </div>
-        <% if( (thisPlace.getWorkid() == 0) ){ %>
-        <div class="form-group has-error" id="select-workid-wrapper">
-          <label for="select-workid" class="col-md-3 control-label">関連作品（必須・複数選択可）</label>
-          <div class="col-md-9">
-            <select class="form-control" id="select-workid" name="workid" multiple required>
-              <% for(Map.Entry<Integer,String> oneWork : workList.getWorkList().entrySet() ) { %>
-              <option value="<%= oneWork.getKey() %>"><%= oneWork.getValue() %></option>
-              <% } %>
-            </select>
-          </div>
-        </div>
-        <% } else { %>
-        <input type="hidden" name="workid" value="<jsp:getProperty name="thisPlace" property="workid" />">
-        <% } %>
         <div class="form-group">
           <label for="input-address" class="col-md-3 control-label">住所（必須）</label>
           <div class="col-md-9">
             <input type="text" class="form-control" id="input-address" name="address" value="<jsp:getProperty name="thisPlace" property="address" />" required>
           </div>
         </div>
-        <div class="form-group has-success">
+        <div class="form-group">
           <label for="input-lat" class="col-md-3 control-label">緯度（必須）</label>
           <div class="col-md-9">
-            <input type="number" step="0.000001" class="form-control" id="input-lat" name="lat" value="<jsp:getProperty name="thisPlace" property="lat" />" readonly required>
+            <input type="number" step="0.000001" class="form-control" id="input-lat" name="lat" value="<jsp:getProperty name="thisPlace" property="lat" />" required>
           </div>
         </div>
-        <div class="form-group has-success">
+        <div class="form-group">
           <label for="input-lng" class="col-md-3 control-label">経度（必須）</label>
           <div class="col-md-9">
-            <input type="number" step="0.000001" class="form-control" id="input-lng" name="lng" value="<jsp:getProperty name="thisPlace" property="lng" />" readonly required>
+            <input type="number" step="0.000001" class="form-control" id="input-lng" name="lng" value="<jsp:getProperty name="thisPlace" property="lng" />" required>
           </div>
         </div>
-        <div class="form-group has-error" id="textarea-placedesc-wrapper">
+        <div class="form-group" id="textarea-placedesc-wrapper">
           <label for="textarea-placedesc" class="col-md-3 control-label">説明文（必須）</label>
           <div class="col-md-9">
             <textarea class="form-control" id="textarea-placedesc" name="placedesc" placeholder="説明文を入力してください（Markdown記法可）" required><jsp:getProperty name="thisPlace" property="placedesc" /></textarea>
@@ -113,7 +105,7 @@
         <div class="form-group">
           <label for="input-url1" class="col-md-3 control-label">関連URL1</label>
           <div class="col-md-9">
-            <input type="url" class="form-control" id="input-url1" name="url1" value="<jsp:getProperty name="thisPlace" property="url1" />">
+            <input type="url" class="form-control" id="input-address" name="url1" value="<jsp:getProperty name="thisPlace" property="url1" />">
           </div>
         </div>
         <div class="form-group">
@@ -125,7 +117,7 @@
         <div class="form-group">
           <label for="input-url2" class="col-md-3 control-label">関連URL2</label>
           <div class="col-md-9">
-            <input type="url" class="form-control" id="input-url2" name="url2" value="<jsp:getProperty name="thisPlace" property="url2" />">
+            <input type="url" class="form-control" id="input-address" name="url2" value="<jsp:getProperty name="thisPlace" property="url2" />">
           </div>
         </div>
         <div class="form-group">
@@ -137,7 +129,7 @@
         <div class="form-group">
           <label for="input-url3" class="col-md-3 control-label">関連URL3</label>
           <div class="col-md-9">
-            <input type="url" class="form-control" id="input-url3" name="url3" value="<jsp:getProperty name="thisPlace" property="url3" />">
+            <input type="url" class="form-control" id="input-address" name="url3" value="<jsp:getProperty name="thisPlace" property="url3" />">
           </div>
         </div>
         <div class="form-group">
@@ -178,7 +170,7 @@
             <input type="text" class="form-control" id="input-productid5" name="productid5" value="<jsp:getProperty name="thisPlace" property="productid5" />">
           </div>
         </div>
-
+        <%--
         <div class="form-group">
           <label for="select-facebookid" class="col-md-3 control-label">Facebook上での名前</label>
           <div class="col-md-9">
@@ -212,9 +204,10 @@
             </select> <span class="help-block">登録しようとしている場所と合致している場所を選択してください．登録しようとしている場所がない場合は，最後の「この中には存在しません」を選択してください</span>
           </div>
         </div>
+        --%>
         <div class="form-group has-error" id="input-captcha-wrapper">
           <label for="input-captcha" class="col-md-3 control-label">
-          	<img src="jcaptcha.jpg" id="input-captcha-img" />
+          	<img src="../jcaptcha.jpg" id="input-captcha-img" />
           	<button type="button" class="btn btn-default btn-xs" id="input-captcha-refresh" >
               <span class="glyphicon glyphicon-refresh"></span>
             </button>
@@ -226,7 +219,7 @@
           </div>
         </div>
         <!-- 既にインプットされている項目 -->
-        <input type="hidden" name="googleid" value="<jsp:getProperty name="thisPlace" property="googleid" />"> <input type="hidden" name="img" value="">
+        <input type="hidden" name="img" value="">
         <div class="form-group">
           <div class="col-md-offset-3 col-md-9">
             <input type="submit" class="btn btn-default" value="送信">
@@ -248,11 +241,11 @@
 ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <!-- Load Backbone.js-->
-  <script src="js/underscore-min.js"></script>
-  <script src="js/json2.js"></script>
-  <script src="js/backbone-min.js"></script>
+  <script src="../js/underscore-min.js"></script>
+  <script src="../js/json2.js"></script>
+  <script src="../js/backbone-min.js"></script>
   <!-- Load project's js -->
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -265,8 +258,6 @@
 
 </script>
   <!-- Load page's js -->
-  <script src="js/select2.min.js"></script>
-  <script src="js/select2_locale_ja.js"></script>
-  <script src="js/confirmplaceadd.js"></script>
+  <script src="../js/confirmplaceedit.js"></script>
 </body>
 </html>

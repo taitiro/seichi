@@ -81,7 +81,10 @@
     <section class="jumbotron">
       <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
                     + thisPlace.getImg() + "\" id=\"placedesc-img\">"%><!-- 作品の画像 -->
-      <h1 class="page-header"><jsp:getProperty name="thisPlace" property="name" /><small><address><jsp:getProperty name="thisPlace" property="address" /></address></small>
+      <h1 class="page-header">
+        <jsp:getProperty name="thisPlace" property="name" />
+        <address class="small"><jsp:getProperty name="thisPlace" property="address" /></address>
+        <a href="../confirmplaceedit/<jsp:getProperty name="thisPlace" property="placeid" />" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>編集する</a>
       </h1>
       <!-- 作品名 -->
       <h2 class="page-header">説明</h2>
@@ -151,7 +154,34 @@
         </div>
       </div>
     </section>
-    <section>
+    <section>    
+      <section class="row">
+        <div class="col-md-12">
+          <div class="well">
+            <h2 class="page-header">関連作品</h2>
+            <%
+                for (Placework onePlacework : thisPlace.getPlaceworks()) {
+                    Work thisWork = onePlacework.getWork();
+            %>
+
+            <h3><%=thisWork.getName()%></h3>
+            <section>
+              <%=thisWork.getImg().equals("") ? "" : "<img src=\""
+                        + thisWork.getImg() + "\" id=\"placedesc-img\">"%>
+              <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%>
+            </section>
+            <p>
+              <a class="btn btn-default" href="../work/<%=thisWork.getWorkid()%>" role="button">View details &raquo;</a>
+            </p>
+            <%
+                }
+            %>
+            <a href="../placework?placeid=<jsp:getProperty name="thisPlace" property="placeid" />" class="btn btn-info btn-lg">登録されている作品をこの聖地に関連付ける</a>
+          </div>
+        </div>
+        <!--/span-->
+      </section>
+      <!--/row-->
       <!-- Instagramの写真表示 -->
       <div class="row">
         <div class="col-md-12">
@@ -253,33 +283,6 @@
             </div>
         </div>
       </div>
-      <section class="row">
-        <div class="col-md-12">
-          <div class="well">
-
-            <h2 class="page-header">関連作品</h2>
-            <%
-                for (Placework onePlacework : thisPlace.getPlaceworks()) {
-                    Work thisWork = onePlacework.getWork();
-            %>
-
-            <h3><%=thisWork.getName()%></h3>
-            <section>
-              <%=thisWork.getImg().equals("") ? "" : "<img src=\""
-                        + thisWork.getImg() + "\" id=\"placedesc-img\">"%>
-              <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%>
-            </section>
-            <p>
-              <a class="btn btn-default" href="../work/<%=thisWork.getWorkid()%>" role="button">View details &raquo;</a>
-            </p>
-            <%
-                }
-            %>
-          </div>
-        </div>
-        <!--/span-->
-      </section>
-      <!--/row-->
     </section>
     <!--/span-->
   </article>

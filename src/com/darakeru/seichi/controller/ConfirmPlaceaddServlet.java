@@ -28,7 +28,8 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -37,12 +38,12 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         String errorStr = "";
         try {
             // リファラーチェック
-            if (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "placeadd.html")
-                    || request.getHeader("Referer").startsWith(conf.getUrlRoot() + "customplaceadd.html"))
-            {
-                //セッションチェックを含んでおいてー
+            if (request.getHeader("Referer") != null
+                    && (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "placeadd.html") || request
+                            .getHeader("Referer").startsWith(conf.getUrlRoot() + "customplaceadd.html"))) {
+                // セッションチェックを含んでおいてー
                 ConfirmPlaceBean thisPlace = new ConfirmPlaceBean();
-                //絶対に必要な値
+                // 絶対に必要な値
                 thisPlace.setName(request.getParameter("name"));
                 if (thisPlace.getName() == null || thisPlace.getName().equals("")) {
                     errorCode = 400;
@@ -144,7 +145,7 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
                 } else {
                     thisPlace.setFacebookid();
                 }
-                //数値かどうかチェック
+                // 数値かどうかチェック
                 try {
                     if (request.getParameter("instagramid") != null && !request.getParameter("instagramid").equals("")) {
                         thisPlace.setInstagramid(Integer.parseInt(request.getParameter("instagramid")));

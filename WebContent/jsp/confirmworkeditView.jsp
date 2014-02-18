@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Map"%>
-<jsp:useBean id="thisWork" class="com.darakeru.seichi.model.ConfirmWorkBean" scope="request" />
+<jsp:useBean id="thisWork" class="com.darakeru.seichi.model.Work" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,17 +10,17 @@
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 <meta name="robots" content="noindex,noarchive,follow">
 
-<title>たんけんアニメのまち - 作品情報追加の確認</title>
+<title>たんけんアニメのまち - 作品情報変更の確認</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Select2 CSS -->
-<link href="css/select2.css" rel="stylesheet">
-<link href="css/select2-bootstrap.css" rel="stylesheet">
+<link href="../css/select2.css" rel="stylesheet">
+<link href="../css/select2-bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -38,9 +38,9 @@
     </div>
     <div class="collapse navbar-collapse container">
       <ul class="nav navbar-nav">
-        <li><a href="search.html?geolocation=on">現在地周辺の聖地</a></li>
-        <li><a href="placeadd.html">聖地の追加</a></li>
-        <li><a href="workadd.html">作品の追加</a></li>
+        <li><a href="../search.html?geolocation=on">現在地周辺の聖地</a></li>
+        <li><a href="../placeadd.html">聖地の追加</a></li>
+        <li><a href="../workadd.html">作品の追加</a></li>
       </ul>
       <!--         <form class="btn-group navbar-form pull-right">
           <button type="button" class="btn btn-default btn-sm">ログイン</button>
@@ -61,9 +61,16 @@
 
 
     <article class="container">
-      <h1 class="page-header">作品情報の確認・修正</h1>
-      <p>以下の内容を確認し，赤くなっている項目を選択・修正した上で「送信」をクリックしてください</p>
-      <form class="form-horizontal" role="form" id="confirm-form" action="work" method="post">
+      <h1 class="page-header">作品情報の変更</h1>
+      <p>以下の内容を確認し，変更したい項目を変更した上で「送信」をクリックしてください</p>
+      <p>なお、新しい聖地を作品に関連付けたい場合は、<a href="../placework?workid=<jsp:getProperty name="thisWork" property="workid" />">聖地・作品の関連付けの追加</a>から関連付けを追加してください</p>
+      <form class="form-horizontal" role="form" id="confirm-form" action="../work/<jsp:getProperty name="thisWork" property="workid" />" method="post">
+        <div class="form-group">
+          <div class="col-md-3">作品ID（変更できません）</div>
+          <div class="col-md-9">
+            <jsp:getProperty name="thisWork" property="workid" />
+          </div>
+        </div>
         <div class="form-group">
           <label for="input-name" class="col-md-3 control-label">名前（必須）</label>
           <div class="col-md-9">
@@ -128,7 +135,7 @@
         <div class="form-group">
           <label for="input-productid2" class="col-md-3 control-label">関連商品のASIN（2）</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" id="input-productid2" name="productid2" value="<jsp:getProperty name="thisWork" property="productid2" />">
+            <input type="text" class="form-control" id="input-productid2" name="productid2" value="<jsp:getProperty name="thisWork" property="productid3" />">
           </div>
         </div>
         <div class="form-group">
@@ -151,7 +158,7 @@
         </div>
         <div class="form-group" id="input-captcha-wrapper">
           <label for="input-captcha" class="col-md-3 control-label">
-          	<img src="jcaptcha.jpg" id="input-captcha-img" />
+          	<img src="../jcaptcha.jpg" id="input-captcha-img" />
           	<button type="button" class="btn btn-default btn-xs" id="input-captcha-refresh" >
               <span class="glyphicon glyphicon-refresh"></span>
             </button>
@@ -176,8 +183,8 @@
     <hr>
       <footer class="container text-center list-group">
             <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
-            <a class="list-group-item" href="terms.html">利用規約</a>
-            <a class="list-group-item" href="copyright.html">著作権について</a>
+            <a class="list-group-item" href="../terms.html">利用規約</a>
+            <a class="list-group-item" href="../copyright.html">著作権について</a>
       </footer>
   </div>
   <!--/.container-->
@@ -185,11 +192,11 @@
 ================================================== -->
   <!-- Workd at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <!-- Load Backbone.js-->
-  <script src="js/underscore-min.js"></script>
-  <script src="js/json2.js"></script>
-  <script src="js/backbone-min.js"></script>
+  <script src="../js/underscore-min.js"></script>
+  <script src="../js/json2.js"></script>
+  <script src="../js/backbone-min.js"></script>
   <!-- Load project's js -->
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -202,6 +209,6 @@
 
 </script>
   <!-- Load page's js -->
-  <script src="js/confirmworkadd.js"></script>
+  <script src="../js/confirmworkedit.js"></script>
 </body>
 </html>
