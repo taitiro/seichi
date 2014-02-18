@@ -80,7 +80,8 @@
             <%=new Markdown4jProcessor().process(thisWork.getWorkdesc())%><!-- 作品の説明 -->
           </section>
           <p>
-            <a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">聖地情報を登録する</a>
+            <a href="../placeadd.html?<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-primary btn-lg">新たな聖地情報を登録する</a>
+            <a href="../placework?workid=<jsp:getProperty name="thisWork" property="workid" />" class="btn btn-info btn-lg">既存の聖地情報をこの作品に関連付ける</a>
           </p>
         </section>
         <section>

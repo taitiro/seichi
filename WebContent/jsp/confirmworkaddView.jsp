@@ -61,7 +61,7 @@
 
 
     <article class="container">
-      <h1 class="page-header">確認・修正画面</h1>
+      <h1 class="page-header">作品情報の確認・修正</h1>
       <p>以下の内容を確認し，赤くなっている項目を選択・修正した上で「送信」をクリックしてください</p>
       <form class="form-horizontal" role="form" id="confirm-form" action="work" method="post">
         <div class="form-group">

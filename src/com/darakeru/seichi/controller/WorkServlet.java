@@ -18,6 +18,7 @@ import com.darakeru.seichi.model.Place;
 import com.darakeru.seichi.model.PlaceJsonBean;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
+import com.darakeru.seichi.model.WorkListBean;
 import com.darakeru.seichi.model.Workinfo;
 import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
@@ -272,6 +273,7 @@ public class WorkServlet extends HttpServlet {
                             }
                         }
                         em.getTransaction().commit();
+                        getServletContext().setAttribute("workList", new WorkListBean());
                         redirectURL = conf.getUrlRoot() + "work/"
                                 + thisWork.getWorkid();
                     } catch (Exception e) {

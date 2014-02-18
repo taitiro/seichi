@@ -18,6 +18,7 @@ import com.darakeru.apiClient.instagram.LocationMediaBean;
 import com.darakeru.apiClient.twitter.GeoTweetBean;
 import com.darakeru.seichi.SeichiProperties;
 import com.darakeru.seichi.model.Place;
+import com.darakeru.seichi.model.PlaceListBean;
 import com.darakeru.seichi.model.Placeinfo;
 import com.darakeru.seichi.model.Placework;
 import com.darakeru.seichi.model.Work;
@@ -46,16 +47,14 @@ public class PlaceServlet extends HttpServlet {
      *      response)
      */
     @Override
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = 0;
         Place thisPlace = null;
         int errorCode = 200;
         String errorStr = "";
         try {
             id = Integer.parseInt(request.getPathInfo().substring(1));
-            EntityManagerFactory emf = Persistence
-                    .createEntityManagerFactory("Seichi");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
             EntityManager em = emf.createEntityManager();
             try {
                 em.getTransaction().begin();
@@ -76,54 +75,35 @@ public class PlaceServlet extends HttpServlet {
                 em.close();
                 emf.close();
             }
-            Date now = new Date();
-            // APIから情報を取得（APIの制限にかかった時はここでなんとかやりくりしてください>未来の自分）
-            ServletContext application = getServletContext();
-            if (conf.isApiLimit()) {
-                if (application.getAttribute("instagram_"
-                        + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > conf
-                                .getApiInterval()) {
-                    application.setAttribute(
-                            "instagram_"
-                                    + String.valueOf(thisPlace.getPlaceid()),
+            if (errorCode == 200) {
+                Date now = new Date();
+                // APIから情報を取得（APIの制限にかかった時はここでなんとかやりくりしてください>未来の自分）
+                ServletContext application = getServletContext();
+                if (conf.isApiLimit()) {
+                    if (application.getAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid())) == null
+                            || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
+                        application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()),
+                                new LocationMediaBean(thisPlace.getInstagramid()));
+                    }
+                    if (application.getAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid())) == null
+                            || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
+                        application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
+                                thisPlace.getFoursquareid()));
+                    }
+                    if (application.getAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid())) == null
+                            || (now.getTime() - apiFetchDate.getTime()) > conf.getApiInterval()) {
+                        application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
+                                thisPlace.getLat(), thisPlace.getLng()));
+                    }
+                    apiFetchDate = new Date();
+                } else {
+                    application.setAttribute("instagram_" + String.valueOf(thisPlace.getPlaceid()),
                             new LocationMediaBean(thisPlace.getInstagramid()));
+                    application.setAttribute("foursquare_" + String.valueOf(thisPlace.getPlaceid()), new VenueBean(
+                            thisPlace.getFoursquareid()));
+                    application.setAttribute("twitter_" + String.valueOf(thisPlace.getPlaceid()), new GeoTweetBean(
+                            thisPlace.getLat(), thisPlace.getLng()));
                 }
-                if (application.getAttribute("foursquare_"
-                        + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > conf
-                                .getApiInterval()) {
-                    application.setAttribute(
-                            "foursquare_"
-                                    + String.valueOf(thisPlace.getPlaceid()),
-                            new VenueBean(thisPlace.getFoursquareid()));
-                }
-                if (application.getAttribute("twitter_"
-                        + String.valueOf(thisPlace.getPlaceid())) == null
-                        || (now.getTime() - apiFetchDate.getTime()) > conf
-                                .getApiInterval()) {
-                    application
-                            .setAttribute(
-                                    "twitter_"
-                                            + String.valueOf(thisPlace
-                                                    .getPlaceid()),
-                                    new GeoTweetBean(thisPlace.getLat(),
-                                            thisPlace.getLng()));
-                }
-                apiFetchDate = new Date();
-            } else {
-                application.setAttribute(
-                        "instagram_" + String.valueOf(thisPlace.getPlaceid()),
-                        new LocationMediaBean(thisPlace.getInstagramid()));
-                application.setAttribute(
-                        "foursquare_" + String.valueOf(thisPlace.getPlaceid()),
-                        new VenueBean(thisPlace.getFoursquareid()));
-                application
-                        .setAttribute(
-                                "twitter_"
-                                        + String.valueOf(thisPlace.getPlaceid()),
-                                new GeoTweetBean(thisPlace.getLat(), thisPlace
-                                        .getLng()));
             }
         } catch (NumberFormatException e) {
             errorCode = 404;
@@ -136,14 +116,13 @@ public class PlaceServlet extends HttpServlet {
         if (errorCode != 200) {
             response.sendError(errorCode, errorStr);
         } else {
-            request.getRequestDispatcher("/jsp/placeView.jsp").forward(request,
-                    response);
+            request.getRequestDispatcher("/jsp/placeView.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         errorCode = 200;
         errorStr = "";
         String redirectURL = conf.getUrlRoot();
@@ -169,12 +148,10 @@ public class PlaceServlet extends HttpServlet {
         String redirectURL = conf.getUrlRoot();
         // リファラーチェック＆CAPTCHAチェック
         if (request.getHeader("Referer") == null
-                || !request.getHeader("Referer").equals(
-                        conf.getUrlRoot() + "confirmplaceadd")) {
+                || !request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmplaceadd")) {
             errorCode = 403;
             errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
-        } else if (!SimpleImageCaptchaServlet.validateResponse(request,
-                request.getParameter("jcaptcha"))) {
+        } else if (!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))) {
             errorCode = 403;
             errorStr = "CAPTCHAが入力されていない、もしくは間違って入力されました。";
         } else {
@@ -206,8 +183,7 @@ public class PlaceServlet extends HttpServlet {
             for (int i = 0; i < workidStrArray.length; i++) {
                 workidArray[i] = Integer.parseInt(workidStrArray[i]);
             }
-            EntityManagerFactory emf = Persistence
-                    .createEntityManagerFactory("Seichi");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
             EntityManager em = emf.createEntityManager();
             try {
                 em.getTransaction().begin();
@@ -222,8 +198,7 @@ public class PlaceServlet extends HttpServlet {
                     em.persist(thisPlacework);
                 }
                 em.getTransaction().commit();
-                redirectURL = conf.getUrlRoot() + "place/"
-                        + thisPlace.getPlaceid();
+                redirectURL = conf.getUrlRoot() + "place/" + thisPlace.getPlaceid();
             } catch (Exception e) {
                 e.printStackTrace();
                 errorCode = 500;
@@ -241,19 +216,16 @@ public class PlaceServlet extends HttpServlet {
         try {
             // リファラーチェック&CAPTCHAチェック
             if (request.getHeader("Referer") == null
-                    || !request.getHeader("Referer").startsWith(
-                            conf.getUrlRoot() + "confirmplaceedit")) {
+                    || !request.getHeader("Referer").startsWith(conf.getUrlRoot() + "confirmplaceedit")) {
                 errorCode = 403;
                 errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
-            } else if (!SimpleImageCaptchaServlet.validateResponse(request,
-                    request.getParameter("jcaptcha"))) {
+            } else if (!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))) {
                 errorCode = 403;
                 errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
             } else {
                 Place thisPlace = null;
                 int id = Integer.parseInt(request.getPathInfo().substring(1));
-                EntityManagerFactory emf = Persistence
-                        .createEntityManagerFactory("Seichi");
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("Seichi");
                 EntityManager em = emf.createEntityManager();
                 thisPlace = (Place) em.find(Place.class, id);
                 if (thisPlace == null) {
@@ -264,8 +236,7 @@ public class PlaceServlet extends HttpServlet {
                         thisPlace.setName(request.getParameter("name"));
                     }
                     if (request.getParameter("placedesc") != null) {
-                        thisPlace.setPlacedesc(request
-                                .getParameter("placedesc"));
+                        thisPlace.setPlacedesc(request.getParameter("placedesc"));
                     }
                     if (request.getParameter("address") != null) {
                         thisPlace.setAddress(request.getParameter("address"));
@@ -280,48 +251,38 @@ public class PlaceServlet extends HttpServlet {
                         thisPlace.setImg(request.getParameter("img"));
                     }
                     if (request.getParameter("productid1") != null) {
-                        thisPlace.setProductid1(request
-                                .getParameter("productid1"));
+                        thisPlace.setProductid1(request.getParameter("productid1"));
                     }
                     if (request.getParameter("productid2") != null) {
-                        thisPlace.setProductid2(request
-                                .getParameter("productid2"));
+                        thisPlace.setProductid2(request.getParameter("productid2"));
                     }
                     if (request.getParameter("productid3") != null) {
-                        thisPlace.setProductid3(request
-                                .getParameter("productid3"));
+                        thisPlace.setProductid3(request.getParameter("productid3"));
                     }
                     if (request.getParameter("productid4") != null) {
-                        thisPlace.setProductid4(request
-                                .getParameter("productid4"));
+                        thisPlace.setProductid4(request.getParameter("productid4"));
                     }
                     if (request.getParameter("productid5") != null) {
-                        thisPlace.setProductid5(request
-                                .getParameter("productid5"));
+                        thisPlace.setProductid5(request.getParameter("productid5"));
                     }
-                    if (request.getParameter("url1") != null
-                            && request.getParameter("urlname1") != null) {
+                    if (request.getParameter("url1") != null && request.getParameter("urlname1") != null) {
                         thisPlace.setUrl1(request.getParameter("url1"));
                         thisPlace.setUrlname1(request.getParameter("urlname1"));
                     }
-                    if (request.getParameter("url2") != null
-                            && request.getParameter("urlname2") != null) {
+                    if (request.getParameter("url2") != null && request.getParameter("urlname2") != null) {
                         thisPlace.setUrl2(request.getParameter("url2"));
                         thisPlace.setUrlname2(request.getParameter("urlname2"));
                     }
-                    if (request.getParameter("url3") != null
-                            && request.getParameter("urlname3") != null) {
+                    if (request.getParameter("url3") != null && request.getParameter("urlname3") != null) {
                         thisPlace.setUrl3(request.getParameter("url3"));
                         thisPlace.setUrlname3(request.getParameter("urlname3"));
                     }
                     int[] workidArray = null;
                     if (request.getParameter("workid") != null) {
-                        String[] workidStrArray = request
-                                .getParameterValues("workid");
+                        String[] workidStrArray = request.getParameterValues("workid");
                         workidArray = new int[workidStrArray.length];
                         for (int i = 0; i < workidStrArray.length; i++) {
-                            workidArray[i] = Integer
-                                    .parseInt(workidStrArray[i]);
+                            workidArray[i] = Integer.parseInt(workidStrArray[i]);
                         }
                     }
                     try {
@@ -332,14 +293,13 @@ public class PlaceServlet extends HttpServlet {
                             for (int workid : workidArray) {
                                 Placework thisPlacework = new Placework();
                                 thisPlacework.setPlace(thisPlace);
-                                thisPlacework.setWork(em.find(Work.class,
-                                        workid));
+                                thisPlacework.setWork(em.find(Work.class, workid));
                                 em.persist(thisPlacework);
                             }
                         }
                         em.getTransaction().commit();
-                        redirectURL = conf.getUrlRoot() + "place/"
-                                + thisPlace.getPlaceid();
+                        getServletContext().setAttribute("placeList", new PlaceListBean());
+                        redirectURL = conf.getUrlRoot() + "place/" + thisPlace.getPlaceid();
                     } catch (Exception e) {
                         e.printStackTrace();
                         errorCode = 500;
