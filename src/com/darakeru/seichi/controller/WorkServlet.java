@@ -128,9 +128,9 @@ public class WorkServlet extends HttpServlet {
         String redirectURL = "";
         try {
             // リファラーチェック&CAPTCHAチェック
-            if (!request.getHeader("Referer").equals(
-                    conf.getUrlRoot() + "workedit")
-                    || !request.getHeader("Referer").equals(
+            if (!request.getHeader("Referer").startsWith(
+                    conf.getUrlRoot() + "confirmworkedit")
+                    && !request.getHeader("Referer").startsWith(
                             conf.getUrlRoot() + "placeworkadd")) {
                 errorCode = 403;
                 errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
@@ -185,32 +185,37 @@ public class WorkServlet extends HttpServlet {
                     }
                     if (request.getParameter("url2") != null
                             && request.getParameter("urlname2") != null) {
-                        thisWork.setUrl1(request.getParameter("url2"));
-                        thisWork.setUrlname1(request.getParameter("urlname2"));
+                        thisWork.setUrl2(request.getParameter("url2"));
+                        thisWork.setUrlname2(request.getParameter("urlname2"));
                     }
                     if (request.getParameter("url3") != null
                             && request.getParameter("urlname3") != null) {
-                        thisWork.setUrl1(request.getParameter("url3"));
-                        thisWork.setUrlname1(request.getParameter("urlname3"));
+                        thisWork.setUrl3(request.getParameter("url3"));
+                        thisWork.setUrlname3(request.getParameter("urlname3"));
                     }
                     if (request.getParameter("wikipedia") != null) {
                         thisWork.setWikipedia(request.getParameter("wikipedia"));
                     }
-                    String[] placeidStrArray = request
-                            .getParameterValues("placeid");
-                    int[] placeidArray = new int[placeidStrArray.length];
-                    for (int i = 0; i < placeidStrArray.length; i++) {
-                        placeidArray[i] = Integer.parseInt(placeidStrArray[i]);
+                    int[] placeidArray = null;
+                    if (request.getParameter("placeid") != null) {
+                        String[] placeidStrArray = request
+                                .getParameterValues("placeid");
+                        placeidArray = new int[placeidStrArray.length];
+                        for (int i = 0; i < placeidStrArray.length; i++) {
+                            placeidArray[i] = Integer.parseInt(placeidStrArray[i]);
+                        }
                     }
                     try {
                         em.getTransaction().begin();
                         em.persist(thisWork);
                         //placeidは複数あるのでforループ
-                        for(int placeid : placeidArray){
-                            Placework thisPlacework = new Placework();
-                            thisPlacework.setWork(thisWork);
-                            thisPlacework.setPlace(em.find(Place.class, placeid));
-                            em.persist(thisPlacework);
+                        if (placeidArray != null) {
+                            for (int placeid : placeidArray) {
+                                Placework thisPlacework = new Placework();
+                                thisPlacework.setWork(thisWork);
+                                thisPlacework.setPlace(em.find(Place.class, placeid));
+                                em.persist(thisPlacework);
+                            }
                         }
                         em.getTransaction().commit();
                         redirectURL = conf.getUrlRoot() + "work/"
@@ -239,7 +244,7 @@ public class WorkServlet extends HttpServlet {
     private String addWork(HttpServletRequest request) {
         String redirectURL = "";
         // リファラーチェック&CAPTCHAチェック
-        if (!request.getHeader("Referer").equals(
+        if (request.getHeader("Referer") == null || !request.getHeader("Referer").equals(
                 conf.getUrlRoot() + "confirmworkadd")) {
             errorCode = 403;
             errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";

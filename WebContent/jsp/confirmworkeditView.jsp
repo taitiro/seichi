@@ -13,14 +13,14 @@
 <title>たんけんアニメのまち - 作品情報追加の確認</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Select2 CSS -->
-<link href="css/select2.css" rel="stylesheet">
-<link href="css/select2-bootstrap.css" rel="stylesheet">
+<link href="../css/select2.css" rel="stylesheet">
+<link href="../css/select2-bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -38,9 +38,9 @@
     </div>
     <div class="collapse navbar-collapse container">
       <ul class="nav navbar-nav">
-        <li><a href="search.html?geolocation=on">現在地周辺の聖地</a></li>
-        <li><a href="placeadd.html">聖地の追加</a></li>
-        <li><a href="workadd.html">作品の追加</a></li>
+        <li><a href="../search.html?geolocation=on">現在地周辺の聖地</a></li>
+        <li><a href="../placeadd.html">聖地の追加</a></li>
+        <li><a href="../workadd.html">作品の追加</a></li>
       </ul>
       <!--         <form class="btn-group navbar-form pull-right">
           <button type="button" class="btn btn-default btn-sm">ログイン</button>
@@ -63,7 +63,7 @@
     <article class="container">
       <h1 class="page-header">確認・修正画面</h1>
       <p>以下の内容を確認し，変更したい項目を選択・修正した上で「送信」をクリックしてください</p>
-      <form class="form-horizontal" role="form" id="confirm-form" action="work/<jsp:getProperty name="thisWork" property="workid" />" method="post">
+      <form class="form-horizontal" role="form" id="confirm-form" action="../work/<jsp:getProperty name="thisWork" property="workid" />" method="post">
         <div class="form-group">
           <label for="input-workid" class="col-md-3 control-label">作品ID（変更できません）</label>
           <div class="col-md-9">
@@ -157,7 +157,7 @@
         </div>
         <div class="form-group" id="input-captcha-wrapper">
           <label for="input-captcha" class="col-md-3 control-label">
-          	<img src="jcaptcha.jpg" id="input-captcha-img" />
+          	<img src="../jcaptcha.jpg" id="input-captcha-img" />
           	<button type="button" class="btn btn-default btn-xs" id="input-captcha-refresh" >
               <span class="glyphicon glyphicon-refresh"></span>
             </button>
@@ -182,8 +182,8 @@
     <hr>
       <footer class="container text-center list-group">
             <a class="list-group-item" href="http://www.darakeru.com/profile1">運営者について</a>
-            <a class="list-group-item" href="terms.html">利用規約</a>
-            <a class="list-group-item" href="copyright.html">著作権について</a>
+            <a class="list-group-item" href="../terms.html">利用規約</a>
+            <a class="list-group-item" href="../copyright.html">著作権について</a>
       </footer>
   </div>
   <!--/.container-->
@@ -191,11 +191,11 @@
 ================================================== -->
   <!-- Workd at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <!-- Load Backbone.js-->
-  <script src="js/underscore-min.js"></script>
-  <script src="js/json2.js"></script>
-  <script src="js/backbone-min.js"></script>
+  <script src="../js/underscore-min.js"></script>
+  <script src="../js/json2.js"></script>
+  <script src="../js/backbone-min.js"></script>
   <!-- Load project's js -->
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -208,6 +208,6 @@
 
 </script>
   <!-- Load page's js -->
-  <!-- <script src="js/confirmworkadd.js"></script> -->
+  <!-- <script src="../js/confirmworkadd.js"></script> -->
 </body>
 </html>

@@ -122,7 +122,7 @@ public class PlaceServlet extends HttpServlet {
         String redirectURL = conf.getUrlRoot();
         try {
             //リファラーチェック＆CAPTCHAチェック
-            if (!request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmplaceadd")) {
+            if (request.getHeader("Referer")==null || !request.getHeader("Referer").equals(conf.getUrlRoot() + "confirmplaceadd")) {
                 errorCode = 403;
                 errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             } else if (!SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"))){

@@ -36,7 +36,7 @@ public class ConfirmWorkaddServlet extends HttpServlet {
         String errorStr = "";
         try {
             // リファラーチェック
-            if (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "workadd.html")) {
+            if (request.getHeader("Referer") != null && request.getHeader("Referer").startsWith(conf.getUrlRoot() + "workadd.html")) {
                 //セッションチェックを含んでおいてー
                 ConfirmWorkBean thisWork = new ConfirmWorkBean();
                 //絶対に必要な値

@@ -37,8 +37,8 @@ public class ConfirmPlaceaddServlet extends HttpServlet {
         String errorStr = "";
         try {
             // リファラーチェック
-            if (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "placeadd.html")
-                    || request.getHeader("Referer").startsWith(conf.getUrlRoot() + "customplaceadd.html"))
+            if (request.getHeader("Referer") != null && (request.getHeader("Referer").startsWith(conf.getUrlRoot() + "placeadd.html")
+                    || request.getHeader("Referer").startsWith(conf.getUrlRoot() + "customplaceadd.html")))
             {
                 //セッションチェックを含んでおいてー
                 ConfirmPlaceBean thisPlace = new ConfirmPlaceBean();

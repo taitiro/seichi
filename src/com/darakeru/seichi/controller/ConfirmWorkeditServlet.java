@@ -41,8 +41,7 @@ public class ConfirmWorkeditServlet extends HttpServlet {
         int id = 0;
         errorCode = 200;
         errorStr = "";
-        if (!request.getHeader("Referer").startsWith(
-                conf.getUrlRoot() + "work/")) {
+        if (false /*!request.getHeader("Referer").startsWith(conf.getUrlRoot() + "work/")*/) {
             errorCode = 403;
             errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
         } else {
