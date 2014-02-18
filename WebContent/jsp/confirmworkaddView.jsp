@@ -86,7 +86,7 @@
         <div class="form-group">
           <label for="input-url1" class="col-md-3 control-label">関連URL1</label>
           <div class="col-md-9">
-            <input type="url" class="form-control" id="input-address" name="url1" value="<jsp:getProperty name="thisWork" property="url1" />">
+            <input type="url" class="form-control" id="input-url1" name="url1" value="<jsp:getProperty name="thisWork" property="url1" />">
           </div>
         </div>
         <div class="form-group">
@@ -128,7 +128,7 @@
         <div class="form-group">
           <label for="input-productid2" class="col-md-3 control-label">関連商品のASIN（2）</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" id="input-productid2" name="productid2" value="<jsp:getProperty name="thisWork" property="productid3" />">
+            <input type="text" class="form-control" id="input-productid2" name="productid2" value="<jsp:getProperty name="thisWork" property="productid2" />">
           </div>
         </div>
         <div class="form-group">

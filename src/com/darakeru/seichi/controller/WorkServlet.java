@@ -103,7 +103,7 @@ public class WorkServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        String redirectURL = "";
+        String redirectURL = conf.getUrlRoot();
         errorCode = 200;
         errorStr = "";
         try {
@@ -124,14 +124,66 @@ public class WorkServlet extends HttpServlet {
         }
     }
 
+    private String addWork(HttpServletRequest request) {
+        String redirectURL = conf.getUrlRoot();
+        // リファラーチェック&CAPTCHAチェック
+        if (request.getHeader("Referer") == null
+                || !request.getHeader("Referer").equals(
+                        conf.getUrlRoot() + "confirmworkadd")) {
+            errorCode = 403;
+            errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
+        } else if (!SimpleImageCaptchaServlet.validateResponse(request,
+                request.getParameter("jcaptcha"))) {
+            errorCode = 403;
+            errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
+        } else {
+            Work thisWork = new Work();
+            thisWork.setName(request.getParameter("name"));
+            thisWork.setWorkdesc(request.getParameter("workdesc"));
+            thisWork.setImg(request.getParameter("img"));
+            thisWork.setProductid1(request.getParameter("productid1"));
+            thisWork.setProductid2(request.getParameter("productid2"));
+            thisWork.setProductid3(request.getParameter("productid3"));
+            thisWork.setProductid4(request.getParameter("productid4"));
+            thisWork.setProductid5(request.getParameter("productid5"));
+            thisWork.setUrl1(request.getParameter("url1"));
+            thisWork.setUrlname1(request.getParameter("urlname1"));
+            thisWork.setUrl2(request.getParameter("url2"));
+            thisWork.setUrlname2(request.getParameter("urlname2"));
+            thisWork.setUrl3(request.getParameter("url3"));
+            thisWork.setUrlname3(request.getParameter("urlname3"));
+            thisWork.setWikipedia(request.getParameter("wikipedia"));
+            Workinfo thisWorkinfo = new Workinfo();
+            EntityManagerFactory emf = Persistence
+                    .createEntityManagerFactory("Seichi");
+            EntityManager em = emf.createEntityManager();
+            try {
+                em.getTransaction().begin();
+                em.persist(thisWork);
+                thisWorkinfo.setWorkid(thisWork.getWorkid());
+                em.persist(thisWorkinfo);
+                em.getTransaction().commit();
+                redirectURL = conf.getUrlRoot() + "work/"
+                        + thisWork.getWorkid();
+            } catch (Exception e) {
+                e.printStackTrace();
+                errorCode = 500;
+                errorStr = "データベースからのデータ取得時にエラーが発生しました";
+            } finally {
+                em.close();
+                emf.close();
+            }
+        }
+        return redirectURL;
+    }
+
     private String editWork(HttpServletRequest request) {
-        String redirectURL = "";
+        String redirectURL = conf.getUrlRoot();
         try {
             // リファラーチェック&CAPTCHAチェック
-            if (!request.getHeader("Referer").startsWith(
-                    conf.getUrlRoot() + "confirmworkedit")
-                    && !request.getHeader("Referer").startsWith(
-                            conf.getUrlRoot() + "placeworkadd")) {
+            if (request.getHeader("Referer") == null
+                    || !request.getHeader("Referer").startsWith(
+                            conf.getUrlRoot() + "confirmworkedit")) {
                 errorCode = 403;
                 errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
             } else if (!SimpleImageCaptchaServlet.validateResponse(request,
@@ -202,18 +254,20 @@ public class WorkServlet extends HttpServlet {
                                 .getParameterValues("placeid");
                         placeidArray = new int[placeidStrArray.length];
                         for (int i = 0; i < placeidStrArray.length; i++) {
-                            placeidArray[i] = Integer.parseInt(placeidStrArray[i]);
+                            placeidArray[i] = Integer
+                                    .parseInt(placeidStrArray[i]);
                         }
                     }
                     try {
                         em.getTransaction().begin();
                         em.persist(thisWork);
-                        //placeidは複数あるのでforループ
+                        // placeidは複数あるのでforループ
                         if (placeidArray != null) {
                             for (int placeid : placeidArray) {
                                 Placework thisPlacework = new Placework();
                                 thisPlacework.setWork(thisWork);
-                                thisPlacework.setPlace(em.find(Place.class, placeid));
+                                thisPlacework.setPlace(em.find(Place.class,
+                                        placeid));
                                 em.persist(thisPlacework);
                             }
                         }
@@ -237,58 +291,6 @@ public class WorkServlet extends HttpServlet {
             e.printStackTrace();
             errorCode = 500;
             errorStr = "サーバー内部の不明なエラーです";
-        }
-        return redirectURL;
-    }
-
-    private String addWork(HttpServletRequest request) {
-        String redirectURL = "";
-        // リファラーチェック&CAPTCHAチェック
-        if (request.getHeader("Referer") == null || !request.getHeader("Referer").equals(
-                conf.getUrlRoot() + "confirmworkadd")) {
-            errorCode = 403;
-            errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
-        } else if (!SimpleImageCaptchaServlet.validateResponse(request,
-                request.getParameter("jcaptcha"))) {
-            errorCode = 403;
-            errorStr = "CAPTHCAが入力されていない、もしくは間違って入力されました。";
-        } else {
-            Work thisWork = new Work();
-            thisWork.setName(request.getParameter("name"));
-            thisWork.setWorkdesc(request.getParameter("workdesc"));
-            thisWork.setImg(request.getParameter("img"));
-            thisWork.setProductid1(request.getParameter("productid1"));
-            thisWork.setProductid2(request.getParameter("productid2"));
-            thisWork.setProductid3(request.getParameter("productid3"));
-            thisWork.setProductid4(request.getParameter("productid4"));
-            thisWork.setProductid5(request.getParameter("productid5"));
-            thisWork.setUrl1(request.getParameter("url1"));
-            thisWork.setUrlname1(request.getParameter("urlname1"));
-            thisWork.setUrl2(request.getParameter("url2"));
-            thisWork.setUrlname2(request.getParameter("urlname2"));
-            thisWork.setUrl3(request.getParameter("url3"));
-            thisWork.setUrlname3(request.getParameter("urlname3"));
-            thisWork.setWikipedia(request.getParameter("wikipedia"));
-            Workinfo thisWorkinfo = new Workinfo();
-            EntityManagerFactory emf = Persistence
-                    .createEntityManagerFactory("Seichi");
-            EntityManager em = emf.createEntityManager();
-            try {
-                em.getTransaction().begin();
-                em.persist(thisWork);
-                thisWorkinfo.setWorkid(thisWork.getWorkid());
-                em.persist(thisWorkinfo);
-                em.getTransaction().commit();
-                redirectURL = conf.getUrlRoot() + "work/"
-                        + thisWork.getWorkid();
-            } catch (Exception e) {
-                e.printStackTrace();
-                errorCode = 500;
-                errorStr = "データベースからのデータ取得時にエラーが発生しました";
-            } finally {
-                em.close();
-                emf.close();
-            }
         }
         return redirectURL;
     }

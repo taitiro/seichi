@@ -81,7 +81,10 @@
     <section class="jumbotron">
       <%=thisPlace.getImg().equals("") ? "" : "<img src=\""
                     + thisPlace.getImg() + "\" id=\"placedesc-img\">"%><!-- 作品の画像 -->
-      <h1 class="page-header"><jsp:getProperty name="thisPlace" property="name" /><small><address><jsp:getProperty name="thisPlace" property="address" /></address></small>
+      <h1 class="page-header">
+        <jsp:getProperty name="thisPlace" property="name" />
+        <address class="small"><jsp:getProperty name="thisPlace" property="address" /></address>
+        <a href="../confirmplaceedit/<jsp:getProperty name="thisPlace" property="placeid" />" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>編集する</a>
       </h1>
       <!-- 作品名 -->
       <h2 class="page-header">説明</h2>

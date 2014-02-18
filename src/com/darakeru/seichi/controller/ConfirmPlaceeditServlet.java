@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.darakeru.seichi.SeichiProperties;
-import com.darakeru.seichi.model.Work;
+import com.darakeru.seichi.model.Place;
 
 /**
  * Servlet implementation class WorkServlet
  */
-@WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/confirmworkedit/*" })
-public class ConfirmWorkeditServlet extends HttpServlet {
+@WebServlet(description = "作品情報を登録・表示", urlPatterns = { "/confirmplaceedit/*" })
+public class ConfirmPlaceeditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final SeichiProperties conf = new SeichiProperties();
     private int errorCode;
@@ -27,7 +27,7 @@ public class ConfirmWorkeditServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConfirmWorkeditServlet() {
+    public ConfirmPlaceeditServlet() {
         super();
     }
 
@@ -41,23 +41,23 @@ public class ConfirmWorkeditServlet extends HttpServlet {
         int id = 0;
         errorCode = 200;
         errorStr = "";
-        if (!request.getHeader("Referer").startsWith(conf.getUrlRoot() + "work/") ) {
+        if (!request.getHeader("Referer").startsWith(conf.getUrlRoot() + "place/") ) {
             errorCode = 403;
             errorStr = "不正なReferrer，もしくはReferrerが確認できませんでした．設定でReferrer送信を無効にしている場合は有効にしてください．";
         } else {
             try {
-                Work thisWork = null;
+                Place thisPlace = null;
                 id = Integer.parseInt(request.getPathInfo().substring(1));
                 EntityManagerFactory emf = Persistence
                         .createEntityManagerFactory("Seichi");
                 EntityManager em = emf.createEntityManager();
                 try {
-                    thisWork = (Work) em.find(Work.class, id);
-                    if (thisWork == null) {
+                    thisPlace = (Place) em.find(Place.class, id);
+                    if (thisPlace == null) {
                         errorCode = 404;
-                        errorStr = "指定された作品IDの作品が存在しません";
+                        errorStr = "指定された場所IDの作品が存在しません";
                     } else {
-                        request.setAttribute("thisWork", thisWork);
+                        request.setAttribute("thisPlace", thisPlace);
                     }
                 } catch (Exception e) {
                     /*
@@ -73,7 +73,7 @@ public class ConfirmWorkeditServlet extends HttpServlet {
                 }
             } catch (NumberFormatException e) {
                 errorCode = 404;
-                errorStr = "作品IDは数字で指定してください";
+                errorStr = "場所IDは数字で指定してください";
             } catch (Exception e) {
                 e.printStackTrace();
                 errorCode = 500;
@@ -83,7 +83,7 @@ public class ConfirmWorkeditServlet extends HttpServlet {
         if (errorCode != 200) {
             response.sendError(errorCode, errorStr);
         } else {
-            request.getRequestDispatcher("/jsp/confirmworkeditView.jsp")
+            request.getRequestDispatcher("/jsp/confirmplaceeditView.jsp")
                     .forward(request, response);
         }
     }

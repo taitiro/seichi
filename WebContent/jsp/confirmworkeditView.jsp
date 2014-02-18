@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 <meta name="robots" content="noindex,noarchive,follow">
 
-<title>たんけんアニメのまち - 作品情報追加の確認</title>
+<title>たんけんアニメのまち - 作品情報変更の確認</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -61,11 +61,12 @@
 
 
     <article class="container">
-      <h1 class="page-header">確認・修正画面</h1>
-      <p>以下の内容を確認し，変更したい項目を選択・修正した上で「送信」をクリックしてください</p>
+      <h1 class="page-header">作品情報の変更</h1>
+      <p>以下の内容を確認し，変更したい項目を変更した上で「送信」をクリックしてください</p>
+      <p>なお、新しい聖地を作品に関連付けたい場合は、<a href="../placework?workid=<jsp:getProperty name="thisWork" property="workid" />">聖地・作品の関連付けの追加</a>から関連付けを追加してください</p>
       <form class="form-horizontal" role="form" id="confirm-form" action="../work/<jsp:getProperty name="thisWork" property="workid" />" method="post">
         <div class="form-group">
-          <label for="input-workid" class="col-md-3 control-label">作品ID（変更できません）</label>
+          <div class="col-md-3">作品ID（変更できません）</div>
           <div class="col-md-9">
             <jsp:getProperty name="thisWork" property="workid" />
           </div>
@@ -92,7 +93,7 @@
         <div class="form-group">
           <label for="input-url1" class="col-md-3 control-label">関連URL1</label>
           <div class="col-md-9">
-            <input type="url" class="form-control" id="input-address" name="url1" value="<jsp:getProperty name="thisWork" property="url1" />">
+            <input type="url" class="form-control" id="input-url1" name="url1" value="<jsp:getProperty name="thisWork" property="url1" />">
           </div>
         </div>
         <div class="form-group">
