@@ -93,10 +93,16 @@ function callback(results, status) {
                     + '<label>住所：<input class="form-control" type="text" name="address" value="'
                     + results[i].formatted_address.replace('日本, ', '')
                     + '"></label>'
-                    + '<label>緯度：<input class="form-control" type="number" step="0.000001" name="lat" value="'
+/*                    + '<label>緯度：<input class="form-control" type="number" step="0.000001" name="lat" value="'
                     + (Math.ceil(lat*1000000))/1000000
                     + '"></label>'
                     + '<label>経度：<input class="form-control" type="number" step="0.000001" name="lng" value="'
+                    + (Math.ceil(lng*1000000))/1000000
+                    + '"></label>'*/
+                   + '<label>緯度：<input class="form-control" type="text" name="lat" value="'
+                    + (Math.ceil(lat*1000000))/1000000
+                    + '"></label>'
+                    + '<label>経度：<input class="form-control" type="text" name="lng" value="'
                     + (Math.ceil(lng*1000000))/1000000
                     + '"></label>'
                     + '<label>Google Place Reference：<input class="form-control" type="text" name="googleid" value="'
