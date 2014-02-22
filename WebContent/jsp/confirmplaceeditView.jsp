@@ -86,13 +86,13 @@
         <div class="form-group">
           <label for="input-lat" class="col-md-3 control-label">緯度（必須）</label>
           <div class="col-md-9">
-            <input type="number" step="0.000001" class="form-control" id="input-lat" name="lat" value="<jsp:getProperty name="thisPlace" property="lat" />" required>
+            <input type="text" class="form-control" id="input-lat" name="lat" value="<jsp:getProperty name="thisPlace" property="lat" />" required>
           </div>
         </div>
         <div class="form-group">
           <label for="input-lng" class="col-md-3 control-label">経度（必須）</label>
           <div class="col-md-9">
-            <input type="number" step="0.000001" class="form-control" id="input-lng" name="lng" value="<jsp:getProperty name="thisPlace" property="lng" />" required>
+            <input type="text" class="form-control" id="input-lng" name="lng" value="<jsp:getProperty name="thisPlace" property="lng" />" required>
           </div>
         </div>
         <div class="form-group" id="textarea-placedesc-wrapper">
